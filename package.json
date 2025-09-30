@@ -1,0 +1,19 @@
+{
+  "name": "carbon-recycling-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise Carbon & ESG Management Platform",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix apps/web\" \"npm run dev --prefix apps/api\"",
+    "build": "npm run build --prefix apps/web && npm run build --prefix apps/api",
+    "deploy": "npm run build --prefix apps/web && npm run deploy --prefix apps/api",
+    "web:dev": "npm run dev --prefix apps/web",
+    "api:dev": "npm run dev --prefix apps/api",
+    "web:build": "npm run build --prefix apps/web",
+    "api:deploy": "npm run deploy --prefix apps/api"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.2.2"
+  }
+}
