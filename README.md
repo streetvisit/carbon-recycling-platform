@@ -125,4 +125,4 @@ This Data Ingestion Hub is designed to support the following future modules:
 - **Module 3**: Analytics Dashboard (emission hotspots, trends, benchmarks)
 - **Module 4**: Decarbonisation Planner (reduction scenarios, climate projects)
 - **Module 5**: Reporting Suite (CSRD and TCFD compliance reports)
-- **Module 6**: Supplier Portal (Scope 3 data collaboration)
+- **Module 6**: Supplier Portal (Scope 3 data collaboration)# Force deployment update - Sat 18 Oct 2025 21:42:31 BST
