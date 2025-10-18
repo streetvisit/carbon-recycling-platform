@@ -1,15 +1,15 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { authenticateRequest, requireAuth } from './services/authService'
-import * as db from './services/d1DatabaseService'
+import * as db from './services/databaseService'
 import { getEmissionFactor } from './services/emissionFactors'
 
 export interface Env {
-  // Cloudflare D1 Database binding
-  DB: D1Database
-  // Optional Clerk keys
   CLERK_PUBLISHABLE_KEY?: string
   CLERK_SECRET_KEY?: string
+  DATABASE_HOST: string
+  DATABASE_USERNAME: string
+  DATABASE_PASSWORD: string
   // Module 5: Report generation environment variables
   BROWSERLESS_API_KEY?: string
   BROWSERLESS_ENDPOINT?: string
@@ -63,7 +63,6 @@ app.get('/api/v1/datasources', async (c) => {
       }))
     })
   } catch (error) {
-    console.error('Error fetching data sources:', error)
     return c.json({ error: error instanceof Error ? error.message : 'Failed to fetch data sources' }, 500)
   }
 })
@@ -94,7 +93,6 @@ app.post('/api/v1/datasources', async (c) => {
       lastSyncedAt: newDataSource.lastSyncedAt
     }, 201)
   } catch (error) {
-    console.error('Error creating data source:', error)
     return c.json({ error: error instanceof Error ? error.message : 'Failed to create data source' }, 500)
   }
 })
@@ -114,7 +112,6 @@ app.delete('/api/v1/datasources/:id', async (c) => {
     
     return c.body(null, 204)
   } catch (error) {
-    console.error('Error deleting data source:', error)
     return c.json({ error: error instanceof Error ? error.message : 'Failed to delete data source' }, 500)
   }
 })
@@ -144,7 +141,6 @@ app.post('/api/v1/ingestion/mock', async (c) => {
     
     return c.json(activityData, 201)
   } catch (error) {
-    console.error('Error creating activity data:', error)
     return c.json({ 
       error: error instanceof Error ? error.message : 'Failed to create activity data' 
     }, 500)
@@ -197,7 +193,6 @@ app.post('/api/v1/calculations', async (c) => {
       errors
     }, errors.length > 0 ? 207 : 202)
   } catch (error) {
-    console.error('Error processing calculations:', error)
     return c.json({ 
       error: error instanceof Error ? error.message : 'Calculation process failed' 
     }, 500)
@@ -213,7 +208,6 @@ app.get('/api/v1/emissions/summary', async (c) => {
     const summary = await db.calculateEmissionsSummary(c.env, user.organizationId)
     return c.json(summary)
   } catch (error) {
-    console.error('Error calculating emissions summary:', error)
     return c.json({ 
       error: error instanceof Error ? error.message : 'Failed to calculate emissions summary' 
     }, 500)
@@ -222,12 +216,7 @@ app.get('/api/v1/emissions/summary', async (c) => {
 
 // Helper endpoints
 app.get('/api/v1/health', (c) => {
-  return c.json({ 
-    status: 'ok', 
-    timestamp: new Date().toISOString(),
-    database: c.env.DB ? 'D1 Connected' : 'No Database',
-    version: '1.0.0'
-  })
+  return c.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
 app.get('/api/v1/auth/user', async (c) => {
@@ -290,41 +279,8 @@ app.post('/api/v1/test/create-sample-data', async (c) => {
       activities: created
     }, 201)
   } catch (error) {
-    console.error('Error creating sample data:', error)
     return c.json({ 
       error: error instanceof Error ? error.message : 'Failed to create sample data' 
-    }, 500)
-  }
-})
-
-// Initialize database with default organization (for development)
-app.post('/api/v1/test/init-db', async (c) => {
-  try {
-    const authContext = c.get('authContext')
-    const user = requireAuth(authContext)
-    
-    // Check if organization exists
-    const existingOrg = await db.getOrganizationById(c.env, user.organizationId)
-    
-    if (!existingOrg) {
-      // Create default organization
-      const org = await db.createOrganization(c.env, 'Test Organization')
-      console.log('Created organization:', org)
-      
-      return c.json({
-        message: 'Database initialized successfully',
-        organization: org
-      }, 201)
-    }
-    
-    return c.json({
-      message: 'Database already initialized',
-      organization: existingOrg
-    })
-  } catch (error) {
-    console.error('Error initializing database:', error)
-    return c.json({ 
-      error: error instanceof Error ? error.message : 'Failed to initialize database' 
     }, 500)
   }
 })

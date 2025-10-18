@@ -5,8 +5,16 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 ENVIRONMENT = "development"
+CLERK_PUBLISHABLE_KEY = "pk_test_Y2hhbXBpb24tc2VhaG9yc2UtNTMuY2xlcmsuYWNjb3VudHMuZGV2JA"
+CLERK_SECRET_KEY = "sk_test_8u36g24UiZ0BybEdIy7A65Vx8rwrj4aF6JJs8FmUk2"
 
 [[kv_namespaces]]
 binding = "CACHE"
 id = "cache_namespace"
 preview_id = "cache_preview"
+
+# D1 Database Configuration
+[[d1_databases]]
+binding = "DB"
+database_name = "carbon-recycling-platform"
+database_id = "23916764-2973-4278-baf0-e6b419dec3ea"

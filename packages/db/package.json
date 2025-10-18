@@ -1,0 +1,12 @@
+{
+  "name": "@carbon-recycling/db",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "types.ts",
+  "dependencies": {
+    "@planetscale/database": "^1.11.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
