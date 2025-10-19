@@ -1,0 +1,290 @@
+---
+// MainNavigation.astro - Unified navigation component for all pages
+export interface Props {
+  currentPage?: string;
+  showAuthButtons?: boolean;
+  authenticated?: boolean;
+  breadcrumbs?: Array<{ label: string; href: string; current?: boolean }>;
+}
+
+const { 
+  currentPage = '', 
+  showAuthButtons = true, 
+  authenticated = false,
+  breadcrumbs = []
+} = Astro.props;
+
+// Main menu structure
+const mainMenu = [
+  {
+    label: 'Platform',
+    href: '/features',
+    submenu: [
+      { label: 'Data Ingestion Hub', href: '/features/data-ingestion' },
+      { label: 'Emissions Calculator', href: '/features/emissions-calculator' },
+      { label: 'Analytics Dashboard', href: '/features/analytics-dashboard' },
+      { label: 'Decarbonisation Planner', href: '/features/decarbonisation-planner' },
+      { label: 'Smart Reporting', href: '/features/smart-reporting' },
+      { label: 'Supply Chain Optimizer', href: '/features/supply-chain-optimizer' },
+      { label: 'Real-time Monitoring', href: '/features/real-time-monitoring' },
+      { label: 'UK Energy Grid', href: '/features/uk-energy-grid' }
+    ]
+  },
+  {
+    label: 'Integrations',
+    href: '/features/data-ingestion',
+    submenu: [
+      { label: 'View All Integrations', href: '/features/data-ingestion' },
+      { label: 'UK Utilities', href: '/integrations/british-gas' },
+      { label: 'ERP Systems', href: '/integrations/sap-s4-hana' },
+      { label: 'Cloud Platforms', href: '/integrations/aws' },
+      { label: 'Fleet Management', href: '/integrations/geotab' },
+      { label: 'Finance & Accounting', href: '/integrations/xero' },
+      { label: 'Manufacturing', href: '/integrations/honeywell-experion' }
+    ]
+  },
+  {
+    label: 'Guides',
+    href: '/guides',
+    submenu: [
+      { label: 'Utility Integration', href: '/guides/utility-integration' },
+      { label: 'ERP Integration', href: '/guides/erp-integration' },
+      { label: 'Cloud Integration', href: '/guides/cloud-integration' },
+      { label: 'Transport Integration', href: '/guides/transport-integration' },
+      { label: 'Manufacturing Integration', href: '/guides/manufacturing-integration' },
+      { label: 'Finance Integration', href: '/guides/finance-integration' }
+    ]
+  },
+  {
+    label: 'Trading',
+    href: '/trading',
+    submenu: [
+      { label: 'Carbon Trading', href: '/trading' },
+      { label: 'Portfolio Management', href: '/trading/portfolio' }
+    ]
+  },
+  {
+    label: 'Support',
+    href: '/faqs/integrations',
+    submenu: [
+      { label: 'Integration FAQs', href: '/faqs/integrations' },
+      { label: 'Blog', href: '/blog' }
+    ]
+  }
+];
+
+const dashboardMenu = [
+  { label: 'Dashboard', href: '/dashboard', icon: 'home' },
+  { label: 'Data Ingestion', href: '/dashboard/ingestion', icon: 'database' },
+  { label: 'Analytics', href: '/dashboard/analytics', icon: 'chart' },
+  { label: 'Planner', href: '/dashboard/planner', icon: 'target' },
+  { label: 'Reports', href: '/dashboard/reports', icon: 'document' },
+  { label: 'Suppliers', href: '/dashboard/suppliers', icon: 'users' }
+];
+
+const isActive = (href: string) => {
+  if (currentPage === href) return true;
+  if (href !== '/' && currentPage.startsWith(href)) return true;
+  return false;
+};
+---
+
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo/Brand -->
+      <div class="flex items-center">
+        <a href={authenticated ? "/dashboard" : "/public-home"} class="flex items-center">
+          <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex lg:items-center lg:space-x-8">
+        {!authenticated ? (
+          <!-- Public Menu -->
+          <div class="flex space-x-8">
+            {mainMenu.map((item) => (
+              <div class="relative group">
+                <a 
+                  href={item.href}
+                  class={`text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors ${isActive(item.href) ? 'text-green-600 font-semibold' : ''}`}
+                >
+                  {item.label}
+                </a>
+                {item.submenu && (
+                  <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div class="py-2">
+                      {item.submenu.map((subitem) => (
+                        <a 
+                          href={subitem.href}
+                          class={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors ${isActive(subitem.href) ? 'text-green-600 bg-green-50' : ''}`}
+                        >
+                          {subitem.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <!-- Dashboard Menu -->
+          <div class="flex space-x-6">
+            {dashboardMenu.map((item) => (
+              <a 
+                href={item.href}
+                class={`text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors ${isActive(item.href) ? 'text-green-600 font-semibold' : ''}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <!-- Auth Buttons or User Menu -->
+        {showAuthButtons && (
+          <div class="flex items-center space-x-4">
+            {!authenticated ? (
+              <>
+                <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+                <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+              </>
+            ) : (
+              <div class="relative group">
+                <button class="flex items-center text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                  <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                  </div>
+                  Account
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div class="py-2">
+                    <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                    <a href="/portal/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Portal</a>
+                    <a href="/sign-out" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="lg:hidden">
+        <button 
+          id="mobile-menu-button"
+          class="text-gray-600 hover:text-gray-900 p-2"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    {breadcrumbs.length > 0 && (
+      <div class="border-t border-gray-200 py-2">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-2 text-sm text-gray-500">
+            <li><a href={authenticated ? "/dashboard" : "/public-home"} class="hover:text-gray-700">Home</a></li>
+            {breadcrumbs.map((crumb, index) => (
+              <li class="flex items-center">
+                <span class="mx-2">/</span>
+                {crumb.current ? (
+                  <span class="text-gray-900 font-medium">{crumb.label}</span>
+                ) : (
+                  <a href={crumb.href} class="hover:text-gray-700">{crumb.label}</a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+    )}
+  </div>
+
+  <!-- Mobile menu panel -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-gray-200">
+    <div class="px-4 py-6 space-y-4">
+      {!authenticated ? (
+        <>
+          {mainMenu.map((item) => (
+            <div>
+              <a 
+                href={item.href}
+                class={`block text-gray-600 hover:text-gray-900 font-medium ${isActive(item.href) ? 'text-green-600' : ''}`}
+              >
+                {item.label}
+              </a>
+              {item.submenu && (
+                <div class="ml-4 mt-2 space-y-2">
+                  {item.submenu.map((subitem) => (
+                    <a 
+                      href={subitem.href}
+                      class={`block text-sm text-gray-500 hover:text-gray-700 ${isActive(subitem.href) ? 'text-green-600' : ''}`}
+                    >
+                      {subitem.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          {showAuthButtons && (
+            <div class="pt-4 space-y-3 border-t border-gray-200">
+              <a href="/sign-in" class="block w-full text-center px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">Sign In</a>
+              <a href="/sign-up" class="block w-full text-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">Get Started</a>
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          {dashboardMenu.map((item) => (
+            <a 
+              href={item.href}
+              class={`block text-gray-600 hover:text-gray-900 font-medium ${isActive(item.href) ? 'text-green-600' : ''}`}
+            >
+              {item.label}
+            </a>
+          ))}
+          <div class="pt-4 border-t border-gray-200">
+            <a href="/sign-out" class="block text-gray-600 hover:text-gray-900">Sign Out</a>
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    
+    if (button && menu) {
+      button.addEventListener('click', function() {
+        menu.classList.toggle('hidden');
+      });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (menu && button && !menu.contains(event.target) && !button.contains(event.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  });
+</script>
+</nav>

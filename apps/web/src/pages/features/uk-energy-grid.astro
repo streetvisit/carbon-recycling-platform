@@ -2,9 +2,18 @@
 import Layout from '../../layouts/Layout.astro';
 import UKEnergyDashboard from '../../components/UKEnergyDashboard.tsx';
 import UKEnergyMap from '../../components/UKEnergyMap.tsx';
+
+const breadcrumbs = [
+  { label: 'Platform', href: '/features' },
+  { label: 'UK Energy Grid', href: '/features/uk-energy-grid', current: true }
+];
 ---
 
-<Layout title="UK Energy Grid Live - CarbonRecycling.co.uk">
+<Layout 
+  title="UK Energy Grid Live - CarbonRecycling.co.uk"
+  currentPage="/features/uk-energy-grid"
+  breadcrumbs={breadcrumbs}
+>
   <div class="min-h-screen bg-gray-50">
     {/* Hero Section */}
     <section class="bg-gradient-to-br from-blue-600 via-green-600 to-purple-700 text-white relative overflow-hidden">
