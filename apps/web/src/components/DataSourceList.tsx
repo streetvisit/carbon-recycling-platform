@@ -2,6 +2,7 @@ import { useState, useEffect } from 'preact/hooks';
 import { getIntegrationById, type Integration } from '../data/integrations';
 import { useAuth } from '@clerk/clerk-preact';
 import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth';
+import { getMockDataSources, type MockDataSource } from '../utils/mockData';
 
 interface DataSource {
   id: string;
@@ -54,8 +55,17 @@ export default function DataSourceList({ customApiUrl, onRefresh }: DataSourceLi
       setDataSources(data.data || []);
       setError(null);
     } catch (err) {
-      console.error('Error fetching data sources:', err);
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      console.warn('API unavailable, loading mock data:', err);
+      
+      // Fallback to mock data
+      try {
+        const mockResponse = await getMockDataSources();
+        setDataSources(mockResponse.data);
+        setError(null);
+      } catch (mockErr) {
+        console.error('Error loading mock data:', mockErr);
+        setError('Failed to load data sources');
+      }
     } finally {
       setLoading(false);
     }

@@ -339,36 +339,75 @@ export async function getUKRegionalData(): Promise<Record<string, RegionData>> {
   }
 }
 
-// Fallback data for when API is unavailable
+// Dynamic fallback data that simulates realistic UK grid variations
 export function getFallbackGridData(): UKGridData {
   const now = new Date();
   const hour = now.getHours();
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
   
-  // Realistic fallback data based on UK averages
+  // Create time-based variations
+  const timeValue = (hour * 3600 + minute * 60 + second) / 86400; // 0-1 for the day
+  
+  // Base demand with daily pattern + small random variations
   const baseDemand = 32 + (Math.sin((hour - 6) * Math.PI / 12) * 6);
+  const demandVariation = (Math.sin(timeValue * Math.PI * 24) * 1.5) + ((Math.random() - 0.5) * 1);
+  const currentDemand = Math.max(25, baseDemand + demandVariation);
+  
+  // Variable renewable percentages (wind varies more than solar)
+  const baseWind = 24 + (Math.sin(timeValue * Math.PI * 4) * 8) + ((Math.random() - 0.5) * 4);
+  const baseSolar = Math.max(0, 4 + (Math.sin((hour - 12) * Math.PI / 12) * 3));
+  const renewableTotal = Math.max(15, Math.min(55, baseWind + baseSolar + 3));
+  
+  // Adjust other sources to compensate
+  const nuclear = 18 + ((Math.random() - 0.5) * 3);
+  const gas = Math.max(20, 65 - renewableTotal - nuclear + ((Math.random() - 0.5) * 5));
+  const imports = Math.max(5, 15 - (renewableTotal - 35) + ((Math.random() - 0.5) * 3));
+  
+  // Normalize percentages to 100%
+  const total = renewableTotal + nuclear + gas + imports;
+  const windPerc = (baseWind / total) * 100;
+  const solarPerc = (baseSolar / total) * 100;
+  const hydroPerc = ((renewableTotal - baseWind - baseSolar) / total) * 100;
+  const nuclearPerc = (nuclear / total) * 100;
+  const gasPerc = (gas / total) * 100;
+  const importsPerc = (imports / total) * 100;
+  
+  // Calculate carbon intensity based on mix
+  const carbonIntensity = Math.round(
+    (gasPerc * 3.5) + // Gas: ~350g CO2/kWh
+    (windPerc * 0.1) + // Wind: ~10g CO2/kWh
+    (solarPerc * 0.4) + // Solar: ~40g CO2/kWh
+    (hydroPerc * 0.1) + // Hydro: ~10g CO2/kWh
+    (nuclearPerc * 0.12) + // Nuclear: ~12g CO2/kWh
+    (importsPerc * 2.0) // Imports: variable, assume ~200g CO2/kWh
+  );
+  
+  // Dynamic pricing based on demand and carbon intensity
+  const basePrice = 50 + (currentDemand - 32) * 3 + (carbonIntensity - 180) * 0.15;
   
   return {
     timestamp: now.toISOString(),
-    demand: Math.round(baseDemand * 10) / 10,
-    generation: Math.round(baseDemand * 10) / 10,
-    carbonIntensity: 180, // UK average
-    price: 65, // Typical price
+    demand: Math.round(currentDemand * 10) / 10,
+    generation: Math.round(currentDemand * 10) / 10,
+    carbonIntensity: Math.max(80, Math.min(300, carbonIntensity)),
+    price: Math.round(Math.max(35, Math.min(150, basePrice))),
     generationMix: {
-      gas: Math.round(baseDemand * 0.35 * 10) / 10,
-      nuclear: Math.round(baseDemand * 0.18 * 10) / 10,
-      wind: Math.round(baseDemand * 0.24 * 10) / 10,
-      solar: Math.round(baseDemand * 0.04 * 10) / 10,
-      hydroelectric: Math.round(baseDemand * 0.03 * 10) / 10,
-      biomass: Math.round(baseDemand * 0.06 * 10) / 10,
+      gas: Math.round((gasPerc / 100) * currentDemand * 10) / 10,
+      nuclear: Math.round((nuclearPerc / 100) * currentDemand * 10) / 10,
+      wind: Math.round((windPerc / 100) * currentDemand * 10) / 10,
+      solar: Math.round((solarPerc / 100) * currentDemand * 10) / 10,
+      hydroelectric: Math.round((hydroPerc / 100) * currentDemand * 10) / 10,
+      biomass: Math.round(0.06 * currentDemand * 10) / 10,
       coal: 0,
-      imports: Math.round(baseDemand * 0.08 * 10) / 10,
-      other: Math.round(baseDemand * 0.02 * 10) / 10,
+      imports: Math.round((importsPerc / 100) * currentDemand * 10) / 10,
+      other: Math.round(0.02 * currentDemand * 10) / 10,
     },
     percentages: {
-      renewables: 31.0, // wind + solar + hydro
-      fossil: 35.0, // gas + coal
-      nuclear: 18.0,
-      imports: 8.0,
+      renewables: Math.round((windPerc + solarPerc + hydroPerc) * 10) / 10,
+      fossil: Math.round(gasPerc * 10) / 10,
+      nuclear: Math.round(nuclearPerc * 10) / 10,
+      imports: Math.round(importsPerc * 10) / 10,
     }
   };
 }

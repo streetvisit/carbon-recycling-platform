@@ -40,12 +40,12 @@ export default function UKEnergyDashboard() {
     // Initial load
     updateData();
     
-    // Update every 30 minutes to match Carbon Intensity API update frequency
+    // Update every 5 seconds as requested for demo purposes
     const updateInterval = setInterval(() => {
       if (isLive) {
         updateData();
       }
-    }, 30 * 60 * 1000); // 30 minutes
+    }, 5000); // 5 seconds
     
     return () => {
       clearInterval(updateInterval);
@@ -97,29 +97,7 @@ export default function UKEnergyDashboard() {
     });
   };
 
-  // Helper to detect value changes and show visual indicators
-  const getChangeIndicator = (current: number, previous: number | undefined) => {
-    if (!previous || current === previous) return null;
-    const change = current - previous;
-    const isIncrease = change > 0;
-    const absChange = Math.abs(change);
-    
-    // Only show significant changes (>0.1)
-    if (absChange < 0.1) return null;
-    
-    return (
-      <span class={`ml-1 text-xs font-bold animate-pulse ${
-        isIncrease ? 'text-green-600' : 'text-red-600'
-      }`}>
-        {isIncrease ? '↗' : '↘'}
-      </span>
-    );
-  };
-
-  // Live pulse animation class
-  const getLiveAnimationClass = () => {
-    return isLive ? 'transition-all duration-1000 ease-in-out' : '';
-  };
+  // Removed animation functions to fix glitchy interface
 
   if (loading || !gridData) {
     return (
@@ -358,9 +336,9 @@ export default function UKEnergyDashboard() {
       <div class="bg-gray-50 px-6 py-3 border-t border-gray-200">
         <div class="flex items-center justify-between text-xs text-gray-500">
           <div class="flex items-center space-x-3">
-            <span>Data from National Grid ESO Carbon Intensity API</span>
+            <span>Live simulation based on National Grid ESO patterns</span>
             <span class="text-gray-300">•</span>
-            <span>Updates every 30 minutes</span>
+            <span>Updates every 5 seconds</span>
           </div>
           <div class="flex items-center space-x-3">
             <button 
