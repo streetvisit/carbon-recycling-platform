@@ -1,0 +1,105 @@
+import { BaseIntegration, IntegrationType, IntegrationStatus, IntegrationConfig } from './base';
+
+export interface CoOpEnergyMeterReading {
+  id: string;
+  date: string;
+  electricity_kwh: number; gas_kwh?: number;
+}
+
+export class CoOpEnergyIntegration extends BaseIntegration {
+  protected baseUrl = 'https://api.coop-energy.coop/v1';
+  
+  constructor(config: IntegrationConfig) {
+    super({
+      ...config,
+      type: IntegrationType.UTILITIES,
+      provider: 'Co-op Energy',
+      requiredCredentials: ['client_id', 'client_secret']
+    });
+  }
+
+  async authenticate(): Promise<boolean> {
+    try {
+      this.setStatus(IntegrationStatus.AUTHENTICATING);
+      const tokenResponse = await fetch(`${this.baseUrl}/oauth/token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          grant_type: 'client_credentials',
+          client_id: this.credentials.client_id,
+          client_secret: this.credentials.client_secret
+        })
+      });
+      
+      if (!tokenResponse.ok) throw new Error(`OAuth failed: ${tokenResponse.statusText}`);
+      
+      const tokenData = await tokenResponse.json();
+      this.credentials.access_token = tokenData.access_token;
+      this.credentials.expires_at = Date.now() + (tokenData.expires_in * 1000);
+      this.setStatus(IntegrationStatus.CONNECTED);
+      return true;
+    } catch (error) {
+      this.setStatus(IntegrationStatus.ERROR, `Authentication failed: ${error.message}`);
+      return false;
+    }
+  }
+
+  async fetchData(): Promise<any[]> {
+    try {
+      if (!this.isAuthenticated()) {
+        const authSuccess = await this.authenticate();
+        if (!authSuccess) throw new Error('Authentication required');
+      }
+
+      const endpoint = '/accounts/${this.credentials.account_number}/readings';
+
+      const response = await fetch(`${this.baseUrl}${endpoint}`, {
+        headers: {
+          'Authorization': `Bearer ${this.credentials.access_token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) throw new Error(`Failed to fetch data: ${response.statusText}`);
+
+      const data = await response.json();
+      this.rawData = { data: data.data || data, timestamp: new Date().toISOString() };
+      return this.rawData.data;
+    } catch (error) {
+      this.setStatus(IntegrationStatus.ERROR, `Data fetch failed: ${error.message}`);
+      throw error;
+    }
+  }
+
+  async calculateEmissions(): Promise<any> {
+    if (!this.rawData?.data) throw new Error('No data available for emission calculations');
+
+    const data = this.rawData.data;
+    let totalElectricityKwh = 0, totalGasKwh = 0;
+    data.forEach(reading => {
+      totalElectricityKwh += reading.electricity_kwh || 0;
+      totalGasKwh += reading.gas_kwh || 0;
+    });
+    
+    const electricityEmissions = totalElectricityKwh * 0.193;
+    const gasEmissions = totalGasKwh * 0.184;
+    
+    this.emissionsData = {
+      total_co2e_kg: Math.round((electricityEmissions + gasEmissions) * 100) / 100,
+      electricity: { consumption_kwh: totalElectricityKwh, emissions_kg_co2e: electricityEmissions },
+      gas: { consumption_kwh: totalGasKwh, emissions_kg_co2e: gasEmissions },
+      calculation_timestamp: new Date().toISOString()
+    };
+
+    return this.emissionsData;
+  }
+
+  async getEmissions(): Promise<any> {
+    if (!this.emissionsData) await this.calculateEmissions();
+    return this.emissionsData;
+  }
+
+  private isAuthenticated(): boolean {
+    return !!(this.credentials.access_token && this.credentials.expires_at && Date.now() < this.credentials.expires_at);
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "title": "UK Government GHG Conversion Factors 2025 - Major Changes",
+    "source": "2025-GHG-CF-major-changes-document.pdf",
+    "year": 2025,
+    "criteria": {
+      "scope_1_2_threshold": "5%",
+      "scope_3_threshold": "10%",
+      "description": "Changes greater than 5% for Scope 1&2, greater than 10% for Scope 3"
+    },
+    "total_major_changes": 40
+  },
+  "key_impacts": {
+    "uk_electricity": {
+      "change_percentage": -15,
+      "reason": "Decrease primarily due to less natural gas use in power stations and increase in net imports of electricity",
+      "impact": "Major reduction in carbon intensity of UK grid electricity",
+      "affected_categories": ["UK electricity", "Electric vehicles", "Heat pumps"]
+    },
+    "business_travel_air": {
+      "change_percentage_range": [-16, -42],
+      "reason": "COVID-19 recovery - load factors have returned to normal from unusually low 2021 levels",
+      "impact": "Significant reduction in aviation emission factors per passenger.km"
+    },
+    "electric_vehicles": {
+      "change_percentage_range": [-11, -22],
+      "reason": "Combination of UK electricity grid improvement and more efficient new vehicle registrations",
+      "impact": "Electric vehicles becoming significantly cleaner"
+    }
+  },
+  "major_changes": [
+    {
+      "ref": 1,
+      "category": "Bioenergy",
+      "subcategory": "Grass/straw",
+      "ghg_unit": "CO2e",
+      "unit": "All",
+      "change_percentage": -12,
+      "reason": "Changes apply only to CH4 factor with N2O remaining the same; due to more accurate data on emissions from power stations from Pollutant Inventory for straw fired power stations",
+      "section": "Section 9"
+    },
+    {
+      "ref": 2,
+      "category": "Passenger Vehicles",
+      "subcategory": "Cars (by market segment) – Sports, PHEVs",
+      "ghg_unit": "CO2e and CO2",
+      "unit": "km and miles",
+      "change_percentage": 16,
+      "reason": "Sports PHEV direct emissions increased because of a new car model with relatively higher direct emissions than previous Sports PHEV models in the fleet with high 2023 registrations",
+      "section": "Section 5"
+    },
+    {
+      "ref": 7,
+      "category": "UK Electricity",
+      "subcategory": "UK Electricity",
+      "ghg_unit": "CO2e and CO2",
+      "unit": "kWh",
+      "change_percentage": -15,
+      "reason": "Decrease primarily due to less natural gas use in power stations and increase in net imports of electricity",
+      "section": "Section 3",
+      "priority": "high"
+    },
+    {
+      "ref": 13,
+      "category": "WTT – bioenergy",
+      "subcategory": "Avtur (renewable)",
+      "ghg_unit": "CO2e",
+      "unit": "All",
+      "change_percentage": 48,
+      "reason": "WTT EFs reported under RTFO are very specific to feedstock, source, and production conditions. Mix changes year-on-year cause significant factor changes",
+      "section": "Section 9"
+    },
+    {
+      "ref": 21,
+      "category": "Water supply",
+      "subcategory": "Water supply",
+      "ghg_unit": "CO2e",
+      "unit": "All",
+      "change_percentage": 25,
+      "reason": "2025 figures reflect latest data from water companies showing considerable interannual variation",
+      "section": "Section 9"
+    },
+    {
+      "ref": 28,
+      "category": "Business travel- air",
+      "subcategory": "All factors",
+      "ghg_unit": "CO2e",
+      "unit": "passenger.km",
+      "change_percentage_range": [-16, -42],
+      "reason": "Last update was 2023 using COVID-impacted 2021 data with unusually low load factors. Load factors have now returned to normal, reducing emissions per passenger.km",
+      "section": "Section 8",
+      "priority": "high"
+    },
+    {
+      "ref": 35,
+      "category": "Freighting goods",
+      "subcategory": "Freight flights",
+      "ghg_unit": "CO2e and CO2",
+      "unit": "tonne.km",
+      "change_percentage_range": [-18, -23],
+      "reason": "COVID recovery in load factors plus improvements in aviation model with more recent data replacing 2012 CAA data",
+      "section": "Section 8"
+    },
+    {
+      "ref": 40,
+      "category": "Outside of scopes",
+      "subcategory": "Forecourt fuels containing biofuel - Diesel (average biofuel blend)",
+      "ghg_unit": "CO2",
+      "unit": "All",
+      "change_percentage_range": [-13, -50],
+      "reason": "Genuine trend in RTFO stats showing decreased use of biofuels this year. Percentage distorted by small factor values and rounding",
+      "section": "Section 9"
+    }
+  ],
+  "categories_with_no_major_changes": [
+    "Fuels",
+    "Refrigerants and other",
+    "Delivery vehicles",
+    "Heat and Steam",
+    "WTT – fuels",
+    "Transmission and distribution (T&D)",
+    "UK electricity T&D for EVs",
+    "WTT- UK electricity",
+    "WTT- heat and steam",
+    "Water treatment",
+    "Material use",
+    "Business travel- sea",
+    "WTT- Business travel - sea",
+    "WTT – pass vehs & travel- land",
+    "WTT – delivery vehs & freight",
+    "Hotel Stay",
+    "Homeworking"
+  ],
+  "implementation_priorities": {
+    "immediate": [
+      "UK electricity factors (-15%)",
+      "Business travel air factors (-16% to -42%)",
+      "Electric vehicle factors (multiple changes)"
+    ],
+    "high": [
+      "Bioenergy factors (various changes)",
+      "Water supply factors (+25%)",
+      "Freight aviation factors (-18% to -23%)"
+    ],
+    "medium": [
+      "Sports PHEV factors (+16%)",
+      "Waste disposal factors (-27%)",
+      "Construction waste factors (multiple -27% changes)"
+    ]
+  },
+  "technical_notes": {
+    "covid_recovery_impact": "Many transport-related factors show improvement due to load factor recovery from COVID-19 impact in 2021 data",
+    "electricity_decarbonization": "UK electricity grid continues to decarbonize with less natural gas and more renewables/imports",
+    "bioenergy_variability": "Bioenergy factors show high year-over-year variation due to changing feedstock mix and production methods",
+    "rounding_effects": "Some percentage changes appear large due to small absolute values and rounding in government data"
+  }
+}

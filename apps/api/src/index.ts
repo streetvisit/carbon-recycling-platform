@@ -220,6 +220,132 @@ app.get('/api/v1/emissions/summary', async (c) => {
   }
 })
 
+// GET /api/v1/emissions/timeseries - Get timeseries emissions data
+app.get('/api/v1/emissions/timeseries', async (c) => {
+  try {
+    const authContext = c.get('authContext')
+    const user = requireAuth(authContext)
+    
+    const period = c.req.query('period') || '12m'
+    const scope = c.req.query('scope') || 'all'
+    const groupBy = c.req.query('groupBy') || 'month'
+    
+    const timeseries = await db.getEmissionsTimeseries(c.env, user.organizationId, {
+      period, scope, groupBy
+    })
+    
+    return c.json({ data: timeseries })
+  } catch (error) {
+    console.error('Error fetching timeseries data:', error)
+    return c.json({ 
+      error: error instanceof Error ? error.message : 'Failed to fetch timeseries data' 
+    }, 500)
+  }
+})
+
+// GET /api/v1/emissions/breakdown - Get emissions breakdown by category
+app.get('/api/v1/emissions/breakdown', async (c) => {
+  try {
+    const authContext = c.get('authContext')
+    const user = requireAuth(authContext)
+    
+    const period = c.req.query('period') || '12m'
+    const scope = c.req.query('scope') || 'all'
+    const sortBy = c.req.query('sortBy') || 'co2e_desc'
+    const limit = parseInt(c.req.query('limit') || '10')
+    
+    const breakdown = await db.getEmissionsBreakdown(c.env, user.organizationId, {
+      period, scope, sortBy, limit
+    })
+    
+    return c.json({ data: breakdown })
+  } catch (error) {
+    console.error('Error fetching breakdown data:', error)
+    return c.json({ 
+      error: error instanceof Error ? error.message : 'Failed to fetch breakdown data' 
+    }, 500)
+  }
+})
+
+// GET /api/v1/analytics/benchmarking - Get industry benchmarking data
+app.get('/api/v1/analytics/benchmarking', async (c) => {
+  try {
+    const authContext = c.get('authContext')
+    const user = requireAuth(authContext)
+    
+    const industry = c.req.query('industry') || 'general'
+    const metric = c.req.query('metric') || 'carbon_intensity'
+    
+    const benchmarking = await db.getIndustryBenchmarks(c.env, user.organizationId, industry, metric)
+    
+    return c.json({ data: benchmarking })
+  } catch (error) {
+    console.error('Error fetching benchmarking data:', error)
+    return c.json({ 
+      error: error instanceof Error ? error.message : 'Failed to fetch benchmarking data' 
+    }, 500)
+  }
+})
+
+// GET /api/v1/analytics/predictions - Get predictive analytics
+app.get('/api/v1/analytics/predictions', async (c) => {
+  try {
+    const authContext = c.get('authContext')
+    const user = requireAuth(authContext)
+    
+    const months = parseInt(c.req.query('months') || '6')
+    const algorithm = c.req.query('algorithm') || 'linear_trend'
+    
+    const predictions = await db.generateEmissionsPredictions(c.env, user.organizationId, months, algorithm)
+    
+    return c.json({ data: predictions })
+  } catch (error) {
+    console.error('Error generating predictions:', error)
+    return c.json({ 
+      error: error instanceof Error ? error.message : 'Failed to generate predictions' 
+    }, 500)
+  }
+})
+
+// GET /api/v1/analytics/alerts - Get real-time alerts
+app.get('/api/v1/analytics/alerts', async (c) => {
+  try {
+    const authContext = c.get('authContext')
+    const user = requireAuth(authContext)
+    
+    const status = c.req.query('status') || 'active'
+    const severity = c.req.query('severity')
+    
+    const alerts = await db.getAnalyticsAlerts(c.env, user.organizationId, { status, severity })
+    
+    return c.json({ data: alerts })
+  } catch (error) {
+    console.error('Error fetching alerts:', error)
+    return c.json({ 
+      error: error instanceof Error ? error.message : 'Failed to fetch alerts' 
+    }, 500)
+  }
+})
+
+// GET /api/v1/analytics/real-time - Get real-time monitoring data
+app.get('/api/v1/analytics/real-time', async (c) => {
+  try {
+    const authContext = c.get('authContext')
+    const user = requireAuth(authContext)
+    
+    const metrics = c.req.query('metrics')?.split(',') || ['emissions', 'energy', 'intensity']
+    
+    const realtimeData = await db.getRealTimeMetrics(c.env, user.organizationId, metrics)
+    
+    return c.json({ data: realtimeData })
+  } catch (error) {
+    console.error('Error fetching real-time data:', error)
+    return c.json({ 
+      error: error instanceof Error ? error.message : 'Failed to fetch real-time data' 
+    }, 500)
+  }
+})
+
 // Helper endpoints
 app.get('/api/v1/health', (c) => {
   return c.json({ 
