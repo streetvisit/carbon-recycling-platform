@@ -49,7 +49,7 @@ export async function generateReport(
     const fileUrl = await uploadPdfToR2(pdfBuffer, reportId, env);
 
     // Step 5: Update report status to complete
-    await updateReportStatus(organizationId, reportId, 'complete', fileUrl);
+    await updateReportStatus(env, organizationId, reportId, 'complete', fileUrl);
 
     console.log(`Report generation completed for ${reportId}`);
 
@@ -57,7 +57,7 @@ export async function generateReport(
     console.error(`Report generation failed for ${reportId}:`, error);
     
     // Update report status to failed
-    await updateReportStatus(organizationId, reportId, 'failed');
+    await updateReportStatus(env, organizationId, reportId, 'failed');
     
     throw error;
   }

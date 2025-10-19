@@ -1,15 +1,12 @@
 ---
-// Access control: Check if user has developer access
-const cookies = Astro.request.headers.get('cookie') || '';
-const hasDevAccess = cookies.includes('devAccess=granted');
-
-// If no dev access, show the access gate
-if (!hasDevAccess) {
-  return Astro.redirect('/access-gate');
-}
-
-// If has access, show the real homepage
 import Layout from '../layouts/Layout.astro';
+import { getAuth } from '@clerk/astro/server';
+
+// Check if user is authenticated and redirect to dashboard
+const auth = getAuth(Astro);
+if (auth.userId) {
+  return Astro.redirect('/dashboard');
+}
 ---
 
 <Layout title="CarbonRecycling.co.uk - Carbon Management Platform">
@@ -18,14 +15,6 @@ import Layout from '../layouts/Layout.astro';
     <div class="relative overflow-hidden bg-gradient-to-r from-green-600 to-blue-600">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div class="text-center">
-          <!-- Dev Access Notice -->
-          <div class="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full text-sm text-yellow-800 mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z"/>
-            </svg>
-            Developer Preview Mode
-          </div>
-          
           <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
             Carbon Management
             <span class="block text-green-200">Made Simple</span>
@@ -169,23 +158,4 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </main>
 
-  <!-- Cookie management script -->
-  <script>
-    // Add logout functionality for dev mode
-    function toggleDevMode() {
-      if (confirm('Exit developer mode?')) {
-        document.cookie = 'devAccess=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        window.location.reload();
-      }
-    }
-
-    // Add dev mode indicator
-    const devIndicator = document.createElement('div');
-    devIndicator.innerHTML = `
-      <div style="position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 8px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 9999;" onclick="toggleDevMode()">
-        🔧 DEV MODE - Click to exit
-      </div>
-    `;
-    document.body.appendChild(devIndicator);
-  </script>
 </Layout>

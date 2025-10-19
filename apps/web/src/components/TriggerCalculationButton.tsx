@@ -1,13 +1,14 @@
 import { useState } from 'preact/hooks';
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth';
 
 interface TriggerCalculationButtonProps {
   onSuccess?: (result: { processed: number; errors?: string[] }) => void;
-  apiBaseUrl?: string;
+  customApiUrl?: string;
 }
 
 export default function TriggerCalculationButton({ 
   onSuccess, 
-  apiBaseUrl = 'http://localhost:8787' 
+  customApiUrl 
 }: TriggerCalculationButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
@@ -17,19 +18,18 @@ export default function TriggerCalculationButton({
   } | null>(null);
 
   const triggerCalculation = async () => {
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
+    
     setIsLoading(true);
     setResult(null);
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/calculations`, {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/calculations`, {
         method: 'POST',
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
       });
 
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 

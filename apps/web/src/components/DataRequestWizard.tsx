@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'preact/hooks'
 import type { SupplierWithInviteStatus } from '../../../api/src/types/suppliers'
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth'
 
 interface DataType {
   value: string
@@ -14,9 +15,10 @@ interface DataRequestWizardProps {
   isOpen: boolean
   onClose: () => void
   onSuccess: () => void
+  customApiUrl?: string
 }
 
-export default function DataRequestWizard({ isOpen, onClose, onSuccess }: DataRequestWizardProps) {
+export default function DataRequestWizard({ isOpen, onClose, onSuccess, customApiUrl }: DataRequestWizardProps) {
   const [step, setStep] = useState(1)
   const [suppliers, setSuppliers] = useState<SupplierWithInviteStatus[]>([])
   const [dataTypes, setDataTypes] = useState<DataType[]>([])
@@ -39,10 +41,16 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess }: DataRe
   }, [isOpen])
 
   const fetchSuppliers = async () => {
+    const apiBaseUrl = customApiUrl || getApiBaseUrl()
+    
     try {
-      const response = await fetch('/api/v1/suppliers', {
-        headers: { 'Authorization': 'Bearer mock-token' }
-      })
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/suppliers`)
+      
+      if (!response.ok) {
+        handleAuthError(response)
+        throw new Error('Failed to fetch suppliers')
+      }
+      
       const data = await response.json()
       setSuppliers(data.data.filter((s: SupplierWithInviteStatus) => s.status === 'active'))
     } catch (error) {
@@ -51,10 +59,16 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess }: DataRe
   }
 
   const fetchDataTypes = async () => {
+    const apiBaseUrl = customApiUrl || getApiBaseUrl()
+    
     try {
-      const response = await fetch('/api/v1/data-types', {
-        headers: { 'Authorization': 'Bearer mock-token' }
-      })
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/data-types`)
+      
+      if (!response.ok) {
+        handleAuthError(response)
+        throw new Error('Failed to fetch data types')
+      }
+      
       const data = await response.json()
       setDataTypes(data.data)
     } catch (error) {
@@ -75,18 +89,17 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess }: DataRe
   }
 
   const handleSubmit = async () => {
+    const apiBaseUrl = customApiUrl || getApiBaseUrl()
+    
     setLoading(true)
     try {
-      const response = await fetch('/api/v1/data-requests', {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/data-requests`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer mock-token'
-        },
         body: JSON.stringify(formData)
       })
 
       if (!response.ok) {
+        handleAuthError(response)
         throw new Error('Failed to create data request')
       }
 

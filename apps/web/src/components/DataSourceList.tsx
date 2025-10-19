@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'preact/hooks';
+import { getIntegrationById, type Integration } from '../data/integrations';
+import { useAuth } from '@clerk/clerk-preact';
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth';
 
 interface DataSource {
   id: string;
@@ -6,36 +9,52 @@ interface DataSource {
   type: string;
   status: string;
   lastSyncedAt: string | null;
+  integration_id?: string;
+  metadata?: {
+    name?: string;
+    description?: string;
+    setup_complexity?: string;
+    estimated_setup_time?: string;
+    data_types?: string[];
+    emission_scopes?: string[];
+  };
 }
 
 interface DataSourceListProps {
-  apiBaseUrl?: string;
+  customApiUrl?: string;
   onRefresh?: (fetchFunction: () => void) => void;
 }
 
-export default function DataSourceList({ apiBaseUrl = 'http://localhost:8787', onRefresh }: DataSourceListProps) {
+export default function DataSourceList({ customApiUrl, onRefresh }: DataSourceListProps) {
   const [dataSources, setDataSources] = useState<DataSource[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { getToken, isSignedIn } = useAuth();
 
   const fetchDataSources = async () => {
+    if (!isSignedIn) {
+      setError('Please sign in to view your data sources');
+      setLoading(false);
+      return;
+    }
+
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
+
     try {
       setLoading(true);
-      const response = await fetch(`${apiBaseUrl}/api/v1/datasources`, {
-        headers: {
-          'Authorization': 'Bearer mock-token', // Mock auth for now
-          'Content-Type': 'application/json',
-        },
-      });
+      
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/datasources`);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch data sources');
+        handleAuthError(response);
+        throw new Error(`Failed to fetch data sources: ${response.status}`);
       }
 
       const data = await response.json();
-      setDataSources(data.data);
+      setDataSources(data.data || []);
       setError(null);
     } catch (err) {
+      console.error('Error fetching data sources:', err);
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
@@ -47,21 +66,22 @@ export default function DataSourceList({ apiBaseUrl = 'http://localhost:8787', o
       return;
     }
 
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
+
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/datasources/${id}`, {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/datasources/${id}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': 'Bearer mock-token',
-        },
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete data source');
+        handleAuthError(response);
+        throw new Error(`Failed to delete data source: ${response.status}`);
       }
 
       // Remove from local state
       setDataSources(prev => prev.filter(ds => ds.id !== id));
     } catch (err) {
+      console.error('Error deleting data source:', err);
       alert(err instanceof Error ? err.message : 'Failed to delete data source');
     }
   };
@@ -79,14 +99,39 @@ export default function DataSourceList({ apiBaseUrl = 'http://localhost:8787', o
     }
   };
 
-  const getProviderIcon = (provider: string) => {
-    switch (provider) {
+  const getProviderIcon = (dataSource: DataSource) => {
+    // First try to get icon from integration registry
+    if (dataSource.integration_id) {
+      const integration = getIntegrationById(dataSource.integration_id);
+      if (integration) {
+        return integration.logo;
+      }
+    }
+    
+    // Fallback to provider-based icons
+    switch (dataSource.provider) {
       case 'aws':
         return '☁️';
       case 'azure':
         return '🔷';
       case 'edf_energy':
         return '⚡';
+      case 'british_gas':
+        return '⚡';
+      case 'octopus_energy':
+        return '🐙';
+      case 'scottish_power':
+        return '💨';
+      case 'sse_energy':
+        return '🔋';
+      case 'eon_next':
+        return '⚡';
+      case 'openai':
+        return '🤖';
+      case 'anthropic':
+        return '🧠';
+      case 'google_cloud':
+        return '☁️';
       case 'csv_fleet_data':
         return '🚛';
       case 'csv_facilities_data':
@@ -96,6 +141,38 @@ export default function DataSourceList({ apiBaseUrl = 'http://localhost:8787', o
       default:
         return '📊';
     }
+  };
+  
+  const getProviderName = (dataSource: DataSource) => {
+    // First try to get name from metadata or integration registry
+    if (dataSource.metadata?.name) {
+      return dataSource.metadata.name;
+    }
+    
+    if (dataSource.integration_id) {
+      const integration = getIntegrationById(dataSource.integration_id);
+      if (integration) {
+        return integration.name;
+      }
+    }
+    
+    // Fallback to formatted provider name
+    return dataSource.provider.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  };
+  
+  const getProviderDescription = (dataSource: DataSource) => {
+    if (dataSource.metadata?.description) {
+      return dataSource.metadata.description;
+    }
+    
+    if (dataSource.integration_id) {
+      const integration = getIntegrationById(dataSource.integration_id);
+      if (integration) {
+        return integration.description;
+      }
+    }
+    
+    return dataSource.type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   };
 
   const formatDate = (dateString: string | null) => {
@@ -180,41 +257,116 @@ export default function DataSourceList({ apiBaseUrl = 'http://localhost:8787', o
         <h2 class="text-lg font-medium text-gray-900">Connected Data Sources</h2>
       </div>
       <div class="divide-y divide-gray-200">
-        {dataSources.map((dataSource) => (
-          <div key={dataSource.id} class="p-6">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <div class="text-2xl mr-4">
-                  {getProviderIcon(dataSource.provider)}
+        {dataSources.map((dataSource) => {
+          const integration = dataSource.integration_id ? getIntegrationById(dataSource.integration_id) : null;
+          
+          return (
+            <div key={dataSource.id} class="p-6">
+              <div class="flex items-start justify-between">
+                <div class="flex items-start">
+                  <div class="text-3xl mr-4">
+                    {getProviderIcon(dataSource)}
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center mb-1">
+                      <h3 class="text-lg font-medium text-gray-900 mr-3">
+                        {getProviderName(dataSource)}
+                      </h3>
+                      <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(dataSource.status)}`}>
+                        {dataSource.status.charAt(0).toUpperCase() + dataSource.status.slice(1)}
+                      </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-3 max-w-2xl">
+                      {getProviderDescription(dataSource)}
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 text-sm text-gray-500">
+                      <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Last sync: {formatDate(dataSource.lastSyncedAt)}
+                      </div>
+                      
+                      <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                        Type: {dataSource.type.replace(/_/g, ' ')}
+                      </div>
+                      
+                      {integration && (
+                        <div class="flex items-center">
+                          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                          Setup: {integration.setup_complexity} ({integration.estimated_setup_time})
+                        </div>
+                      )}
+                    </div>
+                    
+                    {(dataSource.metadata?.data_types || integration?.data_types) && (
+                      <div class="mt-3">
+                        <div class="text-xs text-gray-500 mb-1">Data Types:</div>
+                        <div class="flex flex-wrap gap-1">
+                          {(dataSource.metadata?.data_types || integration?.data_types || []).slice(0, 4).map(type => (
+                            <span key={type} class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                              {type.replace('_', ' ')}
+                            </span>
+                          ))}
+                          {(dataSource.metadata?.data_types || integration?.data_types || []).length > 4 && (
+                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600">
+                              +{(dataSource.metadata?.data_types || integration?.data_types || []).length - 4} more
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {(dataSource.metadata?.emission_scopes || integration?.emission_scopes) && (
+                      <div class="mt-2">
+                        <div class="text-xs text-gray-500 mb-1">Emission Scopes:</div>
+                        <div class="flex flex-wrap gap-1">
+                          {(dataSource.metadata?.emission_scopes || integration?.emission_scopes || []).map(scope => (
+                            <span key={scope} class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-purple-100 text-purple-800">
+                              {scope.toUpperCase()}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h3 class="text-sm font-medium text-gray-900">
-                    {dataSource.provider.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                  </h3>
-                  <p class="text-sm text-gray-500">
-                    {dataSource.type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                  </p>
+                
+                <div class="flex items-center space-x-2 ml-4">
+                  {integration?.has_setup_guide && (
+                    <button 
+                      onClick={() => window.open(`/integrations/${dataSource.integration_id}`, '_blank')}
+                      class="text-blue-600 hover:text-blue-800 text-sm font-medium px-3 py-1 border border-blue-200 rounded hover:bg-blue-50 transition-colors"
+                      title="View integration guide"
+                    >
+                      <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                      Guide
+                    </button>
+                  )}
+                  <button 
+                    onClick={() => deleteDataSource(dataSource.id)}
+                    class="text-red-600 hover:text-red-800 text-sm font-medium px-3 py-1 border border-red-200 rounded hover:bg-red-50 transition-colors"
+                    title="Delete data source"
+                  >
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Delete
+                  </button>
                 </div>
-              </div>
-              <div class="flex items-center space-x-4">
-                <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(dataSource.status)}`}>
-                  {dataSource.status.charAt(0).toUpperCase() + dataSource.status.slice(1)}
-                </span>
-                <div class="text-sm text-gray-500">
-                  <div>Last sync:</div>
-                  <div>{formatDate(dataSource.lastSyncedAt)}</div>
-                </div>
-                <button 
-                  onClick={() => deleteDataSource(dataSource.id)}
-                  class="text-red-600 hover:text-red-800 text-sm font-medium"
-                  title="Delete data source"
-                >
-                  Delete
-                </button>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

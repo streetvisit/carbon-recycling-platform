@@ -1,6 +1,7 @@
 // stores/plannerStore.ts - State management for the decarbonisation planner
 
 import { create } from 'zustand';
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../lib/auth.ts';
 
 export interface Initiative {
   id: string;
@@ -117,21 +118,19 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
   setShowCreateModal: (show) => set({ showCreateModal: show }),
   
   // API functions
-  fetchInitiatives: async (apiBaseUrl = 'http://localhost:8787') => {
+  fetchInitiatives: async (customApiUrl?: string) => {
     const { setLoading, setError, setInitiatives } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/initiatives`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/initiatives`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to fetch initiatives: ${response.status}`);
       }
       
@@ -144,18 +143,16 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     }
   },
   
-  fetchCategories: async (apiBaseUrl = 'http://localhost:8787') => {
+  fetchCategories: async (customApiUrl?: string) => {
     const { setError, setCategories } = get();
     
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
+    
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/categories`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/categories`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to fetch categories: ${response.status}`);
       }
       
@@ -166,21 +163,19 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     }
   },
   
-  fetchInitiativeDetails: async (id: string, apiBaseUrl = 'http://localhost:8787') => {
+  fetchInitiativeDetails: async (id: string, customApiUrl?: string) => {
     const { setLoading, setError, setSelectedInitiative } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/initiatives/${id}`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/initiatives/${id}`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to fetch initiative: ${response.status}`);
       }
       
@@ -193,23 +188,22 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     }
   },
   
-  createInitiative: async (data: CreateInitiativeData, apiBaseUrl = 'http://localhost:8787') => {
+  createInitiative: async (data: CreateInitiativeData, customApiUrl?: string) => {
     const { setLoading, setError, addInitiative, setShowCreateModal } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/initiatives`, {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/initiatives`, {
         method: 'POST',
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(data),
       });
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to create initiative: ${response.status}`);
       }
       
@@ -223,23 +217,22 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     }
   },
   
-  updateInitiative: async (id: string, updates: Partial<Initiative>, apiBaseUrl = 'http://localhost:8787') => {
+  updateInitiative: async (id: string, updates: Partial<Initiative>, customApiUrl?: string) => {
     const { setLoading, setError, updateInitiativeInList } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/initiatives/${id}`, {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/initiatives/${id}`, {
         method: 'PUT',
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(updates),
       });
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to update initiative: ${response.status}`);
       }
       
@@ -252,22 +245,21 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     }
   },
   
-  deleteInitiative: async (id: string, apiBaseUrl = 'http://localhost:8787') => {
+  deleteInitiative: async (id: string, customApiUrl?: string) => {
     const { setLoading, setError, removeInitiative } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/initiatives/${id}`, {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/initiatives/${id}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
       });
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to delete initiative: ${response.status}`);
       }
       

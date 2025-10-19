@@ -1,0 +1,47 @@
+name = "carbon-recycling-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# Database configuration
+[[d1_databases]]
+binding = "DB"
+database_name = "carbon-recycling-db"
+database_id = "49a2a044-6bd4-4a5c-b32d-3690ac219040"
+
+# Environment variables
+[env.development.vars]
+ENVIRONMENT = "development"
+CLERK_SECRET_KEY = "mock-development"
+API_BASE_URL = "https://carbon-recycling-api.charles-39b.workers.dev"
+OAUTH_REDIRECT_URL = "http://localhost:4321"
+
+# Development environment database
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "carbon-recycling-db"
+database_id = "49a2a044-6bd4-4a5c-b32d-3690ac219040"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+OAUTH_REDIRECT_URL = "https://carbonrecycling.co.uk"
+
+# Production environment database
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "carbon-recycling-db"
+database_id = "49a2a044-6bd4-4a5c-b32d-3690ac219040"
+
+# Scheduled triggers for data synchronization
+[triggers]
+crons = ["0 */1 * * *"]  # Run every hour
+
+# KV namespace for caching (optional)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = ""
+
+# R2 bucket for file storage (for CSV uploads)
+# [[r2_buckets]]
+# binding = "FILES"
+# bucket_name = "carbon-recycling-files"

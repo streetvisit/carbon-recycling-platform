@@ -1,0 +1,430 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAuth } from '@clerk/astro/server';
+
+// Require authentication
+const auth = getAuth(Astro);
+if (!auth.userId) {
+  return Astro.redirect('/sign-in');
+}
+
+const pageTitle = "Carbon Trading Platform";
+---
+
+<Layout title={pageTitle}>
+  <div id="trading-app" class="h-screen bg-gray-900 text-white">
+    <!-- Top Navigation Bar -->
+    <nav class="bg-gray-800 border-b border-gray-700 px-4 py-2">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-6">
+          <h1 class="text-xl font-bold text-green-400">CarbonRecycling.co.uk</h1>
+          <div class="flex space-x-4">
+            <a href="/trading" class="px-3 py-2 bg-green-600 rounded text-sm">Trading</a>
+            <a href="/trading/portfolio" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Portfolio</a>
+            <a href="/trading/markets" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Markets</a>
+            <a href="/trading/orders" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Orders</a>
+            <a href="/trading/analytics" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Analytics</a>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <div class="text-sm">
+            <span class="text-gray-400">Balance:</span>
+            <span class="text-green-400 font-mono" id="account-balance">£100,000.00</span>
+          </div>
+          <div class="text-sm">
+            <span class="text-gray-400">P&L:</span>
+            <span class="text-green-400 font-mono" id="pnl-display">+£2,450.50</span>
+          </div>
+          <button class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm">Demo Mode</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Trading Interface -->
+    <div class="flex h-full">
+      <!-- Left Sidebar - Market List -->
+      <div class="w-64 bg-gray-800 border-r border-gray-700 p-4">
+        <h3 class="text-lg font-semibold mb-4">Carbon Markets</h3>
+        <div class="space-y-2" id="market-list">
+          <div class="p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600 market-item active" data-symbol="VER-VCS">
+            <div class="flex justify-between items-center">
+              <div>
+                <div class="font-medium">VER-VCS</div>
+                <div class="text-xs text-gray-400">Verified Carbon Standard</div>
+              </div>
+              <div class="text-right">
+                <div class="text-green-400">£24.50</div>
+                <div class="text-xs text-green-400">+2.1%</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600 market-item" data-symbol="GS-CER">
+            <div class="flex justify-between items-center">
+              <div>
+                <div class="font-medium">GS-CER</div>
+                <div class="text-xs text-gray-400">Gold Standard Credits</div>
+              </div>
+              <div class="text-right">
+                <div class="text-red-400">£31.20</div>
+                <div class="text-xs text-red-400">-1.3%</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600 market-item" data-symbol="CAR-CRT">
+            <div class="flex justify-between items-center">
+              <div>
+                <div class="font-medium">CAR-CRT</div>
+                <div class="text-xs text-gray-400">Climate Action Reserve</div>
+              </div>
+              <div class="text-right">
+                <div class="text-green-400">£18.75</div>
+                <div class="text-xs text-green-400">+0.8%</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600 market-item" data-symbol="EU-ETS">
+            <div class="flex justify-between items-center">
+              <div>
+                <div class="font-medium">EU-ETS</div>
+                <div class="text-xs text-gray-400">EU Emissions Trading</div>
+              </div>
+              <div class="text-right">
+                <div class="text-green-400">€85.40</div>
+                <div class="text-xs text-green-400">+3.2%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 flex flex-col">
+        <!-- Market Header -->
+        <div class="bg-gray-800 border-b border-gray-700 p-4">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+              <h2 class="text-2xl font-bold" id="current-symbol">VER-VCS</h2>
+              <div class="text-3xl font-mono" id="current-price">£24.50</div>
+              <div class="text-green-400" id="price-change">+£0.50 (+2.1%)</div>
+            </div>
+            
+            <div class="flex items-center space-x-6 text-sm">
+              <div>
+                <span class="text-gray-400">24h Volume:</span>
+                <span class="font-mono">2,456 tCO2e</span>
+              </div>
+              <div>
+                <span class="text-gray-400">High:</span>
+                <span class="font-mono">£24.85</span>
+              </div>
+              <div>
+                <span class="text-gray-400">Low:</span>
+                <span class="font-mono">£23.90</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trading Interface -->
+        <div class="flex flex-1">
+          <!-- Chart Area -->
+          <div class="flex-1 p-4">
+            <div class="bg-gray-800 rounded-lg p-4 h-full">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Price Chart</h3>
+                <div class="flex space-x-2">
+                  <button class="px-3 py-1 bg-gray-700 rounded text-sm timeframe-btn active" data-timeframe="1h">1H</button>
+                  <button class="px-3 py-1 bg-gray-700 rounded text-sm timeframe-btn" data-timeframe="4h">4H</button>
+                  <button class="px-3 py-1 bg-gray-700 rounded text-sm timeframe-btn" data-timeframe="1d">1D</button>
+                  <button class="px-3 py-1 bg-gray-700 rounded text-sm timeframe-btn" data-timeframe="1w">1W</button>
+                  <button class="px-3 py-1 bg-gray-700 rounded text-sm timeframe-btn" data-timeframe="1m">1M</button>
+                </div>
+              </div>
+              <div class="h-96" id="trading-chart">
+                <!-- Chart will be rendered here -->
+                <canvas id="price-chart" class="w-full h-full"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Book & Trading Panel -->
+          <div class="w-80 flex flex-col space-y-4 p-4">
+            <!-- Order Book -->
+            <div class="bg-gray-800 rounded-lg p-4 flex-1">
+              <h3 class="text-lg font-semibold mb-4">Order Book</h3>
+              
+              <!-- Sell Orders -->
+              <div class="mb-4">
+                <div class="text-xs text-gray-400 mb-2 flex justify-between">
+                  <span>Price (£)</span>
+                  <span>Size (tCO2e)</span>
+                </div>
+                <div class="space-y-1" id="sell-orders">
+                  <div class="flex justify-between text-xs text-red-400">
+                    <span>24.85</span>
+                    <span>150</span>
+                  </div>
+                  <div class="flex justify-between text-xs text-red-400">
+                    <span>24.75</span>
+                    <span>200</span>
+                  </div>
+                  <div class="flex justify-between text-xs text-red-400">
+                    <span>24.65</span>
+                    <span>75</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Current Price -->
+              <div class="text-center py-2 bg-gray-700 rounded mb-4">
+                <div class="text-lg font-mono text-green-400">£24.50</div>
+                <div class="text-xs text-gray-400">Last Price</div>
+              </div>
+
+              <!-- Buy Orders -->
+              <div>
+                <div class="space-y-1" id="buy-orders">
+                  <div class="flex justify-between text-xs text-green-400">
+                    <span>24.45</span>
+                    <span>180</span>
+                  </div>
+                  <div class="flex justify-between text-xs text-green-400">
+                    <span>24.35</span>
+                    <span>120</span>
+                  </div>
+                  <div class="flex justify-between text-xs text-green-400">
+                    <span>24.25</span>
+                    <span>95</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trading Form -->
+            <div class="bg-gray-800 rounded-lg p-4">
+              <div class="flex space-x-2 mb-4">
+                <button class="flex-1 py-2 bg-green-600 rounded text-sm order-type-btn active" data-type="buy">Buy</button>
+                <button class="flex-1 py-2 bg-red-600 rounded text-sm order-type-btn" data-type="sell">Sell</button>
+              </div>
+
+              <div class="space-y-4">
+                <!-- Order Type -->
+                <div>
+                  <label class="block text-sm text-gray-400 mb-1">Order Type</label>
+                  <select class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2" id="order-type-select">
+                    <option value="market">Market Order</option>
+                    <option value="limit">Limit Order</option>
+                    <option value="stop">Stop Order</option>
+                  </select>
+                </div>
+
+                <!-- Price (for limit orders) -->
+                <div id="price-input" style="display: none;">
+                  <label class="block text-sm text-gray-400 mb-1">Price (£)</label>
+                  <input type="number" step="0.01" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2" placeholder="24.50">
+                </div>
+
+                <!-- Quantity -->
+                <div>
+                  <label class="block text-sm text-gray-400 mb-1">Quantity (tCO2e)</label>
+                  <input type="number" step="1" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2" placeholder="100" id="quantity-input">
+                </div>
+
+                <!-- Order Total -->
+                <div class="bg-gray-700 rounded p-3">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-gray-400">Estimated Total:</span>
+                    <span class="font-mono" id="order-total">£2,450.00</span>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button class="w-full py-3 bg-green-600 hover:bg-green-700 rounded font-semibold" id="submit-order">
+                  Place Buy Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Trading interface functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Market selection
+      const marketItems = document.querySelectorAll('.market-item');
+      const currentSymbol = document.getElementById('current-symbol');
+      const currentPrice = document.getElementById('current-price');
+      const priceChange = document.getElementById('price-change');
+
+      marketItems.forEach(item => {
+        item.addEventListener('click', function() {
+          marketItems.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+          
+          const symbol = this.dataset.symbol;
+          const price = this.querySelector('.text-green-400, .text-red-400').textContent;
+          const change = this.querySelector('.text-xs').textContent;
+          
+          currentSymbol.textContent = symbol;
+          currentPrice.textContent = price;
+          priceChange.textContent = change;
+          
+          // Update chart for new symbol
+          updateChart(symbol);
+        });
+      });
+
+      // Order type switching
+      const orderTypeBtns = document.querySelectorAll('.order-type-btn');
+      const submitOrderBtn = document.getElementById('submit-order');
+      
+      orderTypeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          orderTypeBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          const orderType = this.dataset.type;
+          submitOrderBtn.textContent = orderType === 'buy' ? 'Place Buy Order' : 'Place Sell Order';
+          submitOrderBtn.className = orderType === 'buy' 
+            ? 'w-full py-3 bg-green-600 hover:bg-green-700 rounded font-semibold'
+            : 'w-full py-3 bg-red-600 hover:bg-red-700 rounded font-semibold';
+        });
+      });
+
+      // Order type select
+      const orderTypeSelect = document.getElementById('order-type-select');
+      const priceInput = document.getElementById('price-input');
+      
+      orderTypeSelect.addEventListener('change', function() {
+        if (this.value === 'limit' || this.value === 'stop') {
+          priceInput.style.display = 'block';
+        } else {
+          priceInput.style.display = 'none';
+        }
+      });
+
+      // Calculate order total
+      const quantityInput = document.getElementById('quantity-input');
+      const orderTotal = document.getElementById('order-total');
+      
+      quantityInput.addEventListener('input', function() {
+        const quantity = parseFloat(this.value) || 0;
+        const price = parseFloat(currentPrice.textContent.replace('£', '').replace('€', '')) || 0;
+        const total = quantity * price;
+        orderTotal.textContent = currentPrice.textContent.includes('£') ? `£${total.toFixed(2)}` : `€${total.toFixed(2)}`;
+      });
+
+      // Submit order
+      submitOrderBtn.addEventListener('click', function() {
+        const quantity = parseFloat(quantityInput.value);
+        const orderType = document.querySelector('.order-type-btn.active').dataset.type;
+        const symbol = currentSymbol.textContent;
+        
+        if (!quantity || quantity <= 0) {
+          alert('Please enter a valid quantity');
+          return;
+        }
+        
+        // Demo order submission
+        alert(`Demo ${orderType.toUpperCase()} order for ${quantity} ${symbol} submitted!`);
+        quantityInput.value = '';
+        orderTotal.textContent = '£0.00';
+      });
+
+      // Initialize chart
+      initializeChart();
+      
+      // Start real-time price updates
+      startPriceUpdates();
+    });
+
+    function initializeChart() {
+      const canvas = document.getElementById('price-chart');
+      const ctx = canvas.getContext('2d');
+      
+      // Simple chart initialization - in production, use TradingView or Chart.js
+      drawSimpleChart(ctx, canvas.width, canvas.height);
+    }
+
+    function drawSimpleChart(ctx, width, height) {
+      ctx.fillStyle = '#1f2937';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw simple price line
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      
+      const points = generateSamplePriceData();
+      points.forEach((point, index) => {
+        const x = (index / (points.length - 1)) * width;
+        const y = height - (point.price / 30) * height;
+        
+        if (index === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+      
+      ctx.stroke();
+    }
+
+    function generateSamplePriceData() {
+      const data = [];
+      let price = 24.50;
+      
+      for (let i = 0; i < 50; i++) {
+        price += (Math.random() - 0.5) * 0.5;
+        data.push({ time: Date.now() - (50 - i) * 60000, price: Math.max(price, 20) });
+      }
+      
+      return data;
+    }
+
+    function updateChart(symbol) {
+      // Update chart for new symbol
+      console.log('Updating chart for:', symbol);
+      initializeChart(); // Re-draw chart
+    }
+
+    function startPriceUpdates() {
+      // Simulate real-time price updates
+      setInterval(() => {
+        const marketItems = document.querySelectorAll('.market-item');
+        marketItems.forEach(item => {
+          const priceElement = item.querySelector('.text-green-400, .text-red-400');
+          const changeElement = item.querySelector('.text-xs');
+          
+          if (priceElement) {
+            let currentPrice = parseFloat(priceElement.textContent.replace('£', '').replace('€', ''));
+            const change = (Math.random() - 0.5) * 0.10;
+            const newPrice = Math.max(currentPrice + change, 1);
+            
+            const currency = priceElement.textContent.includes('£') ? '£' : '€';
+            priceElement.textContent = `${currency}${newPrice.toFixed(2)}`;
+            
+            const percentChange = ((newPrice - currentPrice) / currentPrice * 100).toFixed(1);
+            changeElement.textContent = `${percentChange >= 0 ? '+' : ''}${percentChange}%`;
+            
+            // Update colors
+            if (change >= 0) {
+              priceElement.className = 'text-green-400';
+              changeElement.className = 'text-xs text-green-400';
+            } else {
+              priceElement.className = 'text-red-400';
+              changeElement.className = 'text-xs text-red-400';
+            }
+          }
+        });
+      }, 5000); // Update every 5 seconds
+    }
+  </script>
+</Layout>

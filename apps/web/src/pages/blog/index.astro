@@ -1,0 +1,340 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const pageTitle = "Carbon Market News & Analysis | Blog";
+
+// Sample blog posts - in production, these would come from a database
+const featuredPost = {
+  id: '1',
+  title: 'Carbon Credit Prices Surge 15% Following UK Climate Policy Announcement',
+  slug: 'carbon-prices-surge-uk-climate-policy',
+  excerpt: 'VER-VCS and Gold Standard credits see significant uptick as UK government announces ambitious net-zero targets with mandatory corporate reporting requirements.',
+  content: '',
+  author: 'Sarah Thompson',
+  authorRole: 'Senior Market Analyst',
+  category: 'Market Analysis',
+  publishedAt: '2024-01-15T09:00:00Z',
+  readTime: '5 min read',
+  image: '/images/blog/uk-climate-policy.jpg'
+};
+
+const recentPosts = [
+  {
+    id: '2',
+    title: 'Weekly Market Update: Voluntary Carbon Markets Show Strong Growth',
+    slug: 'weekly-market-update-vcm-growth',
+    excerpt: 'Trading volumes increased 23% week-over-week as corporate demand continues to outpace supply across all major registries.',
+    author: 'Michael Chen',
+    authorRole: 'Market Data Analyst',
+    category: 'Market Update',
+    publishedAt: '2024-01-12T14:30:00Z',
+    readTime: '3 min read',
+    image: '/images/blog/market-growth.jpg'
+  },
+  {
+    id: '3',
+    title: 'Understanding Nature-Based Solutions: A Guide for Corporate Buyers',
+    slug: 'nature-based-solutions-corporate-guide',
+    excerpt: 'Learn how forestry, agriculture, and blue carbon projects can fit into your carbon offset strategy with real-world examples.',
+    author: 'Dr. Emma Rodriguez',
+    authorRole: 'Sustainability Consultant',
+    category: 'Educational',
+    publishedAt: '2024-01-10T11:00:00Z',
+    readTime: '8 min read',
+    image: '/images/blog/nature-solutions.jpg'
+  },
+  {
+    id: '4',
+    title: 'Platform Update: New AI-Powered Risk Assessment Tools',
+    slug: 'platform-update-ai-risk-tools',
+    excerpt: 'Introducing machine learning algorithms that help assess carbon credit quality and predict price movements.',
+    author: 'Tech Team',
+    authorRole: 'Product Development',
+    category: 'Technology',
+    publishedAt: '2024-01-08T16:00:00Z',
+    readTime: '4 min read',
+    image: '/images/blog/ai-tools.jpg'
+  },
+  {
+    id: '5',
+    title: 'EU ETS Phase 4: What Corporate Buyers Need to Know',
+    slug: 'eu-ets-phase-4-corporate-guide',
+    excerpt: 'Key changes in the European Union Emissions Trading System and implications for carbon pricing strategies.',
+    author: 'James Wilson',
+    authorRole: 'Policy Analyst',
+    category: 'Regulatory',
+    publishedAt: '2024-01-05T08:45:00Z',
+    readTime: '6 min read',
+    image: '/images/blog/eu-ets.jpg'
+  },
+  {
+    id: '6',
+    title: 'Case Study: How TechCorp Achieved Carbon Neutrality Through Strategic Offsetting',
+    slug: 'techcorp-carbon-neutral-case-study',
+    excerpt: 'A detailed look at how a leading technology company designed and executed their path to net-zero emissions.',
+    author: 'Lisa Park',
+    authorRole: 'Customer Success Manager',
+    category: 'Case Study',
+    publishedAt: '2024-01-03T13:20:00Z',
+    readTime: '7 min read',
+    image: '/images/blog/techcorp-case-study.jpg'
+  }
+];
+
+const categories = [
+  { name: 'Market Analysis', count: 15, color: 'bg-blue-600' },
+  { name: 'Market Update', count: 28, color: 'bg-green-600' },
+  { name: 'Educational', count: 12, color: 'bg-purple-600' },
+  { name: 'Technology', count: 8, color: 'bg-orange-600' },
+  { name: 'Regulatory', count: 18, color: 'bg-red-600' },
+  { name: 'Case Study', count: 6, color: 'bg-yellow-600' }
+];
+
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<Layout title={pageTitle}>
+  <!-- Hero Section with Featured Post -->
+  <div class="bg-gradient-to-r from-green-600 to-blue-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Carbon Market Insights</h1>
+        <p class="text-xl text-green-100 max-w-3xl mx-auto">
+          Stay ahead of market trends with expert analysis, regulatory updates, and actionable insights 
+          for carbon trading professionals.
+        </p>
+      </div>
+      
+      <!-- Featured Article -->
+      <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8">
+        <div class="flex items-center space-x-2 mb-4">
+          <span class="px-3 py-1 bg-blue-600 rounded-full text-xs font-medium">Featured</span>
+          <span class="px-3 py-1 bg-white/20 rounded-full text-xs">{featuredPost.category}</span>
+        </div>
+        
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          <a href={`/blog/${featuredPost.slug}`} class="hover:text-green-200 transition-colors">
+            {featuredPost.title}
+          </a>
+        </h2>
+        
+        <p class="text-lg text-green-100 mb-6">{featuredPost.excerpt}</p>
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                <span class="text-sm font-semibold">{featuredPost.author.charAt(0)}</span>
+              </div>
+              <div>
+                <p class="font-medium text-sm">{featuredPost.author}</p>
+                <p class="text-xs text-green-200">{featuredPost.authorRole}</p>
+              </div>
+            </div>
+            <span class="text-sm text-green-200">{formatDate(featuredPost.publishedAt)}</span>
+            <span class="text-sm text-green-200">{featuredPost.readTime}</span>
+          </div>
+          
+          <a 
+            href={`/blog/${featuredPost.slug}`}
+            class="bg-white text-green-600 px-6 py-2 rounded-lg font-semibold hover:bg-green-50 transition-colors"
+          >
+            Read More
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Main Content -->
+      <div class="flex-1">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-900">Latest Articles</h2>
+          <div class="flex space-x-2">
+            <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
+              All Posts
+            </button>
+            <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors">
+              Subscribe
+            </button>
+          </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {recentPosts.map((post) => (
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="h-48 bg-gray-200 flex items-center justify-center">
+                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              
+              <div class="p-6">
+                <div class="flex items-center space-x-2 mb-3">
+                  <span class={`px-2 py-1 text-xs font-medium text-white rounded ${
+                    post.category === 'Market Analysis' ? 'bg-blue-600' :
+                    post.category === 'Market Update' ? 'bg-green-600' :
+                    post.category === 'Educational' ? 'bg-purple-600' :
+                    post.category === 'Technology' ? 'bg-orange-600' :
+                    post.category === 'Regulatory' ? 'bg-red-600' :
+                    'bg-yellow-600'
+                  }`}>
+                    {post.category}
+                  </span>
+                  <span class="text-sm text-gray-500">{post.readTime}</span>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-900 mb-3">
+                  <a href={`/blog/${post.slug}`} class="hover:text-green-600 transition-colors">
+                    {post.title}
+                  </a>
+                </h3>
+                
+                <p class="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center">
+                      <span class="text-xs font-semibold text-white">{post.author.charAt(0)}</span>
+                    </div>
+                    <div>
+                      <p class="text-sm font-medium text-gray-900">{post.author}</p>
+                      <p class="text-xs text-gray-500">{formatDate(post.publishedAt)}</p>
+                    </div>
+                  </div>
+                  
+                  <a 
+                    href={`/blog/${post.slug}`}
+                    class="text-green-600 hover:text-green-700 text-sm font-semibold"
+                  >
+                    Read More →
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+          <button class="px-8 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+            Load More Articles
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:w-80">
+        <!-- Market Ticker -->
+        <div class="bg-gray-900 text-white rounded-lg p-6 mb-8">
+          <h3 class="text-lg font-bold mb-4">Live Market Prices</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-sm">VER-VCS</span>
+              <div class="text-right">
+                <div class="text-green-400">£24.50</div>
+                <div class="text-xs text-green-400">+2.1%</div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm">GS-CER</span>
+              <div class="text-right">
+                <div class="text-red-400">£31.20</div>
+                <div class="text-xs text-red-400">-1.3%</div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm">EU-ETS</span>
+              <div class="text-right">
+                <div class="text-green-400">€85.40</div>
+                <div class="text-xs text-green-400">+3.2%</div>
+              </div>
+            </div>
+          </div>
+          <a href="/trading" class="block mt-4 text-center bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm transition-colors">
+            View Trading Platform
+          </a>
+        </div>
+
+        <!-- Categories -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Categories</h3>
+          <div class="space-y-3">
+            {categories.map((category) => (
+              <a 
+                href={`/blog/category/${category.name.toLowerCase().replace(' ', '-')}`}
+                class="flex justify-between items-center hover:bg-gray-50 -mx-2 px-2 py-2 rounded transition-colors"
+              >
+                <div class="flex items-center space-x-3">
+                  <div class={`w-3 h-3 rounded-full ${category.color}`}></div>
+                  <span class="text-gray-700">{category.name}</span>
+                </div>
+                <span class="text-sm text-gray-500">{category.count}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="bg-green-50 rounded-lg p-6 mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Stay Updated</h3>
+          <p class="text-gray-600 mb-4 text-sm">
+            Get weekly market insights and analysis delivered to your inbox.
+          </p>
+          <form class="space-y-3">
+            <input 
+              type="email" 
+              placeholder="Your email address"
+              class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+            <button 
+              type="submit"
+              class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+        <!-- Recent Comments -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Recent Comments</h3>
+          <div class="space-y-4">
+            <div class="border-b border-gray-200 pb-3">
+              <p class="text-sm text-gray-600">"Great analysis on the EU ETS changes..."</p>
+              <div class="flex items-center space-x-2 mt-2">
+                <div class="w-4 h-4 bg-gray-400 rounded-full"></div>
+                <span class="text-xs text-gray-500">John D. on EU ETS Phase 4</span>
+              </div>
+            </div>
+            <div class="border-b border-gray-200 pb-3">
+              <p class="text-sm text-gray-600">"The AI risk tools are a game-changer..."</p>
+              <div class="flex items-center space-x-2 mt-2">
+                <div class="w-4 h-4 bg-gray-400 rounded-full"></div>
+                <span class="text-xs text-gray-500">Sarah M. on Platform Update</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+</style>

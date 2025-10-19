@@ -19,7 +19,7 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
             UK Energy Grid <span class="text-yellow-300">Live</span>
           </h1>
           <p class="text-xl lg:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Real-time insights into the UK's electricity generation mix, carbon intensity, and energy trends to help you make smarter sustainability decisions.
+            Live data from National Grid ESO's Carbon Intensity API showing the UK's current electricity generation mix, carbon intensity, and energy trends to help you make data-driven sustainability decisions.
           </p>
           
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto">
@@ -54,7 +54,7 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Live Grid Dashboard</h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Monitor the UK's electricity system in real-time and understand how your energy consumption impacts your carbon footprint.
+            Official data from National Grid ESO updated every 30 minutes. Monitor the UK's electricity system and understand how energy timing impacts your carbon footprint.
           </p>
         </div>
         
@@ -192,7 +192,7 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Technical Specifications</h2>
           <p class="text-xl text-gray-600">
-            Built with accuracy and reliability in mind, using real UK grid patterns and industry-standard calculations.
+            Built using official National Grid ESO APIs with real-time carbon intensity data and generation mix information.
           </p>
         </div>
 
@@ -200,10 +200,10 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
           <div class="border border-gray-200 rounded-lg p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Data Sources</h3>
             <ul class="text-sm text-gray-600 space-y-2">
-              <li>• Simulates National Grid ESO patterns</li>
-              <li>• Follows BMRS data structures</li>
-              <li>• Uses realistic UK generation mix</li>
-              <li>• Based on historical grid behavior</li>
+              <li>• National Grid ESO Carbon Intensity API</li>
+              <li>• Real-time generation mix data</li>
+              <li>• Official UK carbon intensity figures</li>
+              <li>• Regional grid data by DNO areas</li>
             </ul>
           </div>
 
@@ -232,12 +232,12 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
           </div>
         </div>
 
-        <div class="mt-12 bg-gray-50 rounded-lg p-8">
-          <div class="text-center">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">🔄 Updates Every 30 Seconds</h3>
-            <p class="text-gray-600 mb-6">
-              Our dashboard refreshes automatically to show you the most current grid conditions, just like the real UK energy system.
-            </p>
+          <div class="bg-gray-50 rounded-lg p-8">
+            <div class="text-center">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">🔄 Updates Every 5 Minutes</h3>
+              <p class="text-gray-600 mb-6">
+                Our dashboard connects directly to National Grid ESO's API, refreshing every 5 minutes to check for the latest official carbon intensity and generation data.
+              </p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div class="bg-white rounded p-4">
                 <div class="text-2xl text-green-600 font-bold">~35GW</div>

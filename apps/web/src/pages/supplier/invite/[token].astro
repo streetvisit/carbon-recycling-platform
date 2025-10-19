@@ -1,0 +1,320 @@
+---
+// pages/supplier/invite/[token].astro - Supplier invitation acceptance page
+import Layout from '../../../layouts/Layout.astro';
+
+// Get the token from URL params
+const token = Astro.params.token;
+
+if (!token) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title="Accept Supplier Invitation - CarbonRecycling.co.uk">
+  <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <!-- Loading State -->
+    <div id="loading-state" class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+      <h2 class="text-lg font-semibold text-gray-900">Validating invitation...</h2>
+      <p class="text-sm text-gray-500 mt-2">Please wait while we verify your invitation.</p>
+    </div>
+
+    <!-- Invalid/Expired State -->
+    <div id="invalid-state" class="hidden text-center max-w-md mx-auto">
+      <div class="bg-white rounded-lg shadow p-6">
+        <svg class="mx-auto h-12 w-12 text-red-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Invalid or Expired Invitation</h3>
+        <p class="text-sm text-gray-500 mb-6" id="error-message">
+          This invitation link is no longer valid. Please contact the company that sent you this invitation for assistance.
+        </p>
+        <div class="space-y-3">
+          <button 
+            onclick="window.location.reload()"
+            class="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
+          >
+            Retry
+          </button>
+          <a 
+            href="/"
+            class="block w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors text-center"
+          >
+            Go to Homepage
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Valid Invitation State -->
+    <div id="valid-state" class="hidden">
+      <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <!-- Success Icon -->
+          <div class="text-center mb-6">
+            <div class="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900">Welcome to the Supplier Portal</h2>
+          </div>
+
+          <!-- Invitation Details -->
+          <div class="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6">
+            <div class="text-sm">
+              <div class="font-medium text-blue-900 mb-2">You've been invited to collaborate with:</div>
+              <div class="text-blue-700" id="host-company-name">Loading...</div>
+              <div class="text-blue-600 mt-2 text-xs" id="invited-by">Invited by: Loading...</div>
+            </div>
+          </div>
+
+          <!-- Supplier Information Form -->
+          <form id="accept-invitation-form" class="space-y-6">
+            <div>
+              <label for="supplier-name" class="block text-sm font-medium text-gray-700">
+                Supplier Company Name *
+              </label>
+              <input
+                id="supplier-name"
+                name="supplier-name"
+                type="text"
+                required
+                class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                placeholder="Enter your company name"
+              />
+            </div>
+
+            <div>
+              <label for="contact-email" class="block text-sm font-medium text-gray-700">
+                Contact Email *
+              </label>
+              <input
+                id="contact-email"
+                name="contact-email"
+                type="email"
+                required
+                class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                placeholder="Enter your contact email"
+              />
+            </div>
+
+            <div>
+              <label for="contact-person" class="block text-sm font-medium text-gray-700">
+                Contact Person Name *
+              </label>
+              <input
+                id="contact-person"
+                name="contact-person"
+                type="text"
+                required
+                class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                placeholder="Enter contact person name"
+              />
+            </div>
+
+            <!-- Error message display -->
+            <div id="form-error" class="hidden bg-red-50 border border-red-200 rounded-md p-3">
+              <div class="text-sm text-red-600" id="form-error-text"></div>
+            </div>
+
+            <!-- Submit button -->
+            <div>
+              <button
+                type="submit"
+                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                id="submit-button"
+              >
+                <span id="submit-text">Accept Invitation & Continue</span>
+                <div id="submit-loading" class="hidden ml-2">
+                  <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </form>
+
+          <!-- Terms and Information -->
+          <div class="mt-6 text-xs text-gray-500">
+            <div class="bg-gray-50 rounded-md p-3">
+              <h4 class="font-medium text-gray-700 mb-2">What happens next?</h4>
+              <ul class="space-y-1">
+                <li>• You'll gain secure access to the supplier portal</li>
+                <li>• You can view and respond to data requests</li>
+                <li>• Your submissions will be reviewed and validated</li>
+                <li>• All data is handled securely and confidentially</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success State -->
+    <div id="success-state" class="hidden text-center max-w-md mx-auto">
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Welcome to the Supplier Portal!</h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Your invitation has been accepted successfully. You now have access to the supplier portal.
+        </p>
+        <a 
+          href="/portal/dashboard"
+          class="block w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
+        >
+          Go to Supplier Portal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Token from URL - passed from Astro params
+    const invitationToken = '{token}';
+    let invitationData = null;
+
+    // API base URL
+    const getApiBaseUrl = () => {
+      return import.meta.env.NODE_ENV === 'production' 
+        ? 'https://carbon-recycling-api.your-subdomain.workers.dev'
+        : 'http://localhost:8787';
+    };
+
+    // Show specific state
+    const showState = (stateName) => {
+      const states = ['loading-state', 'invalid-state', 'valid-state', 'success-state'];
+      states.forEach(state => {
+        document.getElementById(state).classList.add('hidden');
+      });
+      document.getElementById(stateName).classList.remove('hidden');
+    };
+
+    // Show error message
+    const showError = (message) => {
+      document.getElementById('error-message').textContent = message;
+      showState('invalid-state');
+    };
+
+    // Validate invitation on page load
+    const validateInvitation = async () => {
+      try {
+        const apiBaseUrl = getApiBaseUrl();
+        const response = await fetch(`${apiBaseUrl}/api/v1/suppliers/invite/validate/${invitationToken}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error || 'Invalid invitation');
+        }
+
+        invitationData = await response.json();
+        
+        // Populate invitation details
+        document.getElementById('host-company-name').textContent = invitationData.hostCompanyName || 'Unknown Company';
+        document.getElementById('invited-by').textContent = `Invited by: ${invitationData.invitedByName || 'Unknown'}`;
+        
+        // Pre-fill email if available
+        if (invitationData.supplierEmail) {
+          document.getElementById('contact-email').value = invitationData.supplierEmail;
+        }
+
+        showState('valid-state');
+      } catch (error) {
+        console.error('Invitation validation failed:', error);
+        showError(error.message);
+      }
+    };
+
+    // Handle form submission
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      
+      const submitButton = document.getElementById('submit-button');
+      const submitText = document.getElementById('submit-text');
+      const submitLoading = document.getElementById('submit-loading');
+      const formError = document.getElementById('form-error');
+
+      // Show loading state
+      submitButton.disabled = true;
+      submitText.textContent = 'Accepting...';
+      submitLoading.classList.remove('hidden');
+      formError.classList.add('hidden');
+
+      try {
+        const formData = new FormData(event.target);
+        const supplierInfo = {
+          name: formData.get('supplier-name'),
+          contactEmail: formData.get('contact-email'),
+          contactPerson: formData.get('contact-person')
+        };
+
+        const apiBaseUrl = getApiBaseUrl();
+        const response = await fetch(`${apiBaseUrl}/api/v1/suppliers/invite/accept/${invitationToken}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(supplierInfo)
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error || 'Failed to accept invitation');
+        }
+
+        const result = await response.json();
+        
+        // Store supplier authentication info
+        localStorage.setItem('supplierToken', result.supplierToken || invitationToken);
+        localStorage.setItem('supplierInfo', JSON.stringify({
+          id: result.supplierId,
+          name: supplierInfo.name,
+          contactEmail: supplierInfo.contactEmail,
+          contactPerson: supplierInfo.contactPerson
+        }));
+
+        showState('success-state');
+      } catch (error) {
+        console.error('Form submission failed:', error);
+        document.getElementById('form-error-text').textContent = error.message;
+        document.getElementById('form-error').classList.remove('hidden');
+
+        // Reset button state
+        submitButton.disabled = false;
+        submitText.textContent = 'Accept Invitation & Continue';
+        submitLoading.classList.add('hidden');
+      }
+    };
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Replace token placeholder
+      const script = document.currentScript || document.querySelector('script');
+      const tokenPlaceholder = '{token}';
+      if (script && script.textContent.includes(tokenPlaceholder)) {
+        script.textContent = script.textContent.replace(tokenPlaceholder, `${token}`);
+      }
+      
+      // Set up form handler
+      document.getElementById('accept-invitation-form').addEventListener('submit', handleFormSubmit);
+      
+      // Start validation
+      validateInvitation();
+    });
+  </script>
+
+  <script is:inline define:vars={{ token }}>
+    // Set the token variable from Astro
+    window.invitationToken = token;
+  </script>
+</Layout>

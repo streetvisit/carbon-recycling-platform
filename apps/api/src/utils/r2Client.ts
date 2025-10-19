@@ -80,7 +80,7 @@ export class R2Client {
         'AWS4-HMAC-SHA256',
         timeString,
         credentialScope,
-await this.sha256(canonicalRequest)
+        await this.sha256(canonicalRequest)
       ].join('\n');
       
       // Calculate signature
@@ -162,7 +162,7 @@ await this.sha256(canonicalRequest)
       'AWS4-HMAC-SHA256',
       timeString,
       credentialScope,
-await this.sha256(canonicalRequest)
+      await this.sha256(canonicalRequest)
     ].join('\n');
     
     const signature = await this.calculateSignature(
@@ -220,7 +220,5 @@ await this.sha256(canonicalRequest)
   private async hmacSha256Hex(key: Uint8Array, data: string): Promise<string> {
     const signature = await this.hmacSha256(key, data);
     return Array.from(signature).map(b => b.toString(16).padStart(2, '0')).join('');
-  }
-    return signature;
   }
 }

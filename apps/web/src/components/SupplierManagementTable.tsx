@@ -2,17 +2,20 @@
 
 import { useState, useEffect } from 'preact/hooks'
 import type { SupplierWithInviteStatus } from '../../../api/src/types/suppliers'
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth'
 
 interface SupplierManagementTableProps {
   onAddSupplier: () => void
   onInviteSupplier: (supplierId: string) => void
   onDeleteSupplier: (supplierId: string) => void
+  customApiUrl?: string
 }
 
 export default function SupplierManagementTable({ 
   onAddSupplier, 
   onInviteSupplier, 
-  onDeleteSupplier 
+  onDeleteSupplier,
+  customApiUrl
 }: SupplierManagementTableProps) {
   const [suppliers, setSuppliers] = useState<SupplierWithInviteStatus[]>([])
   const [loading, setLoading] = useState(true)
@@ -23,15 +26,14 @@ export default function SupplierManagementTable({
   }, [])
 
   const fetchSuppliers = async () => {
+    const apiBaseUrl = customApiUrl || getApiBaseUrl()
+    
     try {
       setLoading(true)
-      const response = await fetch('/api/v1/suppliers', {
-        headers: {
-          'Authorization': 'Bearer mock-token'
-        }
-      })
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/suppliers`)
       
       if (!response.ok) {
+        handleAuthError(response)
         throw new Error('Failed to fetch suppliers')
       }
       
@@ -49,15 +51,15 @@ export default function SupplierManagementTable({
       return
     }
 
+    const apiBaseUrl = customApiUrl || getApiBaseUrl()
+
     try {
-      const response = await fetch(`/api/v1/suppliers/${supplierId}`, {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/suppliers/${supplierId}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': 'Bearer mock-token'
-        }
       })
 
       if (!response.ok) {
+        handleAuthError(response)
         throw new Error('Failed to delete supplier')
       }
 

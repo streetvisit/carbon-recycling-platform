@@ -1,12 +1,14 @@
 import { useState } from 'preact/hooks';
 import DataSourceList from './DataSourceList';
 import AddDataSourceModal from './AddDataSourceModal';
+import { getApiBaseUrl } from '../utils/auth';
 
 interface IngestionPageProps {
-  apiBaseUrl?: string;
+  customApiUrl?: string;
 }
 
-export default function IngestionPage({ apiBaseUrl = 'http://localhost:8787' }: IngestionPageProps) {
+export default function IngestionPage({ customApiUrl }: IngestionPageProps) {
+  const apiBaseUrl = customApiUrl || getApiBaseUrl();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [refreshFunction, setRefreshFunction] = useState<(() => void) | null>(null);
 
@@ -47,7 +49,7 @@ export default function IngestionPage({ apiBaseUrl = 'http://localhost:8787' }: 
         <div class="space-y-8">
           <DataSourceList 
             onRefresh={setRefreshFunction}
-            apiBaseUrl={apiBaseUrl} 
+            customApiUrl={apiBaseUrl} 
           />
         </div>
       </main>
@@ -57,7 +59,7 @@ export default function IngestionPage({ apiBaseUrl = 'http://localhost:8787' }: 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSuccess={handleModalSuccess}
-        apiBaseUrl={apiBaseUrl}
+        customApiUrl={apiBaseUrl}
       />
     </div>
   );

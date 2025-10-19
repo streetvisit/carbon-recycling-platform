@@ -39,6 +39,70 @@ CREATE TABLE source_credentials (
   FOREIGN KEY (dataSourceId) REFERENCES data_sources(id) ON DELETE CASCADE
 );
 
+-- OAuth state management for secure authorization flows
+CREATE TABLE oauth_states (
+  id TEXT PRIMARY KEY, -- e.g., oauth_xxxxxxxxxxxx
+  organizationId TEXT NOT NULL,
+  provider TEXT NOT NULL, -- e.g., 'octopus_energy', 'edf_energy'
+  state TEXT NOT NULL UNIQUE, -- CSRF protection state parameter
+  codeVerifier TEXT, -- PKCE code verifier for enhanced security
+  redirectUri TEXT NOT NULL,
+  expiresAt TEXT NOT NULL, -- Expires after 10 minutes
+  createdAt TEXT NOT NULL DEFAULT (datetime('now')),
+  FOREIGN KEY (organizationId) REFERENCES organizations(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_oauth_states_state ON oauth_states(state, provider);
+CREATE INDEX idx_oauth_states_expires ON oauth_states(expiresAt);
+
+-- Enhanced emissions calculation tables
+CREATE TABLE custom_emission_factors (
+  id TEXT PRIMARY KEY, -- e.g., cef_xxxxxxxxxxxx
+  organizationId TEXT NOT NULL,
+  activityType TEXT NOT NULL,
+  value REAL NOT NULL,
+  unit TEXT NOT NULL,
+  region TEXT NOT NULL,
+  source TEXT NOT NULL,
+  scope TEXT NOT NULL CHECK(scope IN ('scope_1', 'scope_2', 'scope_3')),
+  category TEXT NOT NULL,
+  subcategory TEXT,
+  industry TEXT,
+  methodology TEXT NOT NULL,
+  uncertainty REAL NOT NULL DEFAULT 10.0, -- percentage
+  validFrom TEXT NOT NULL,
+  validTo TEXT,
+  isCustom INTEGER NOT NULL DEFAULT 1,
+  createdAt TEXT NOT NULL DEFAULT (datetime('now')),
+  FOREIGN KEY (organizationId) REFERENCES organizations(id) ON DELETE CASCADE
+);
+
+CREATE TABLE enhanced_calculations (
+  id TEXT PRIMARY KEY, -- e.g., calc_xxxxxxxxxxxx
+  activityDataId TEXT NOT NULL,
+  organizationId TEXT NOT NULL,
+  ghgScope TEXT NOT NULL CHECK(ghgScope IN ('scope_1', 'scope_2', 'scope_3')),
+  category TEXT NOT NULL,
+  subcategory TEXT,
+  co2e REAL NOT NULL, -- tonnes CO2e
+  co2eMin REAL NOT NULL, -- uncertainty range minimum
+  co2eMax REAL NOT NULL, -- uncertainty range maximum
+  emissionFactorId TEXT NOT NULL,
+  methodology TEXT NOT NULL,
+  calculationDate TEXT NOT NULL DEFAULT (datetime('now')),
+  biogenicCo2 REAL, -- separate biogenic CO2
+  qualityScore REAL NOT NULL DEFAULT 3.0, -- 1-5 rating
+  metadata TEXT, -- JSON metadata
+  FOREIGN KEY (activityDataId) REFERENCES activity_data(id) ON DELETE CASCADE,
+  FOREIGN KEY (organizationId) REFERENCES organizations(id) ON DELETE CASCADE
+);
+
+-- Indexes for enhanced calculations
+CREATE INDEX idx_custom_factors_org ON custom_emission_factors(organizationId, activityType);
+CREATE INDEX idx_custom_factors_valid ON custom_emission_factors(validFrom, validTo);
+CREATE INDEX idx_enhanced_calc_org ON enhanced_calculations(organizationId, calculationDate);
+CREATE INDEX idx_enhanced_calc_scope ON enhanced_calculations(organizationId, ghgScope);
+
 -- MODULE 2: Emissions Calculation Engine Tables
 
 -- Stores raw, unprocessed activity data from various sources

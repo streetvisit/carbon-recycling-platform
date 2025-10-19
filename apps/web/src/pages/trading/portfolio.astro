@@ -1,0 +1,346 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAuth } from '@clerk/astro/server';
+
+// Require authentication
+const auth = getAuth(Astro);
+if (!auth.userId) {
+  return Astro.redirect('/sign-in');
+}
+
+const pageTitle = "Portfolio Management - Carbon Trading";
+---
+
+<Layout title={pageTitle}>
+  <div class="min-h-screen bg-gray-900 text-white">
+    <!-- Top Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700 px-4 py-2">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-6">
+          <h1 class="text-xl font-bold text-green-400">CarbonRecycling.co.uk</h1>
+          <div class="flex space-x-4">
+            <a href="/trading" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Trading</a>
+            <a href="/trading/portfolio" class="px-3 py-2 bg-green-600 rounded text-sm">Portfolio</a>
+            <a href="/trading/markets" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Markets</a>
+            <a href="/trading/orders" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Orders</a>
+            <a href="/trading/analytics" class="px-3 py-2 hover:bg-gray-700 rounded text-sm">Analytics</a>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <div class="text-sm">
+            <span class="text-gray-400">Balance:</span>
+            <span class="text-green-400 font-mono">£97,549.50</span>
+          </div>
+          <div class="text-sm">
+            <span class="text-gray-400">Total P&L:</span>
+            <span class="text-green-400 font-mono">+£2,450.50</span>
+          </div>
+          <button class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm">Demo Mode</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+      <!-- Portfolio Overview -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold mb-6">Portfolio Overview</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Total Portfolio Value -->
+          <div class="bg-gray-800 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-gray-400 text-sm">Total Value</h3>
+              <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="text-2xl font-bold text-white">£100,000.00</div>
+            <div class="text-green-400 text-sm">+2.45% (+£2,450.50)</div>
+          </div>
+
+          <!-- Cash Balance -->
+          <div class="bg-gray-800 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-gray-400 text-sm">Cash Balance</h3>
+              <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="text-2xl font-bold text-white">£97,549.50</div>
+            <div class="text-gray-400 text-sm">Available</div>
+          </div>
+
+          <!-- Holdings Value -->
+          <div class="bg-gray-800 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-gray-400 text-sm">Holdings</h3>
+              <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="text-2xl font-bold text-white">£2,450.50</div>
+            <div class="text-gray-400 text-sm">100 tCO2e</div>
+          </div>
+
+          <!-- Day Change -->
+          <div class="bg-gray-800 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-gray-400 text-sm">Today's Change</h3>
+              <div class="w-8 h-8 bg-yellow-600 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.414 14.586 7H12z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="text-2xl font-bold text-green-400">+£125.75</div>
+            <div class="text-green-400 text-sm">+0.13%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Holdings Table -->
+      <div class="mb-8">
+        <div class="bg-gray-800 rounded-lg p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold">Current Holdings</h2>
+            <div class="flex space-x-2">
+              <button class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded text-sm">Buy Credits</button>
+              <button class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-sm">Export CSV</button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-gray-700">
+                  <th class="text-left py-3">Symbol</th>
+                  <th class="text-left py-3">Quantity</th>
+                  <th class="text-left py-3">Avg Cost</th>
+                  <th class="text-left py-3">Current Price</th>
+                  <th class="text-left py-3">Market Value</th>
+                  <th class="text-left py-3">Unrealized P&L</th>
+                  <th class="text-left py-3">% Change</th>
+                  <th class="text-left py-3">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-700 hover:bg-gray-700">
+                  <td class="py-4">
+                    <div>
+                      <div class="font-medium">VER-VCS</div>
+                      <div class="text-xs text-gray-400">Verified Carbon Standard</div>
+                    </div>
+                  </td>
+                  <td class="py-4 font-mono">100 tCO2e</td>
+                  <td class="py-4 font-mono">£24.00</td>
+                  <td class="py-4 font-mono">£24.50</td>
+                  <td class="py-4 font-mono">£2,450.00</td>
+                  <td class="py-4 font-mono text-green-400">+£50.00</td>
+                  <td class="py-4 text-green-400">+2.08%</td>
+                  <td class="py-4">
+                    <div class="flex space-x-2">
+                      <button class="px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-xs">Sell</button>
+                      <button class="px-2 py-1 bg-blue-600 hover:bg-blue-700 rounded text-xs">Details</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Performance Chart -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-gray-800 rounded-lg p-6">
+          <h3 class="text-lg font-bold mb-4">Portfolio Performance</h3>
+          <div class="h-64" id="performance-chart">
+            <canvas id="portfolio-chart" class="w-full h-full"></canvas>
+          </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6">
+          <h3 class="text-lg font-bold mb-4">Asset Allocation</h3>
+          <div class="h-64" id="allocation-chart">
+            <canvas id="allocation-pie-chart" class="w-full h-full"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="bg-gray-800 rounded-lg p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-bold">Recent Transactions</h2>
+          <a href="/trading/orders" class="text-green-400 hover:text-green-300 text-sm">View All →</a>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-700">
+                <th class="text-left py-3">Date</th>
+                <th class="text-left py-3">Type</th>
+                <th class="text-left py-3">Symbol</th>
+                <th class="text-left py-3">Quantity</th>
+                <th class="text-left py-3">Price</th>
+                <th class="text-left py-3">Total</th>
+                <th class="text-left py-3">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700">
+                <td class="py-3 text-gray-400">2024-01-15 14:30</td>
+                <td class="py-3">
+                  <span class="px-2 py-1 bg-green-600 rounded-full text-xs">BUY</span>
+                </td>
+                <td class="py-3 font-medium">VER-VCS</td>
+                <td class="py-3 font-mono">100 tCO2e</td>
+                <td class="py-3 font-mono">£24.00</td>
+                <td class="py-3 font-mono">£2,400.00</td>
+                <td class="py-3">
+                  <span class="px-2 py-1 bg-green-600 rounded-full text-xs">FILLED</span>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <td class="py-3 text-gray-400">2024-01-14 11:15</td>
+                <td class="py-3">
+                  <span class="px-2 py-1 bg-red-600 rounded-full text-xs">SELL</span>
+                </td>
+                <td class="py-3 font-medium">GS-CER</td>
+                <td class="py-3 font-mono">50 tCO2e</td>
+                <td class="py-3 font-mono">£31.50</td>
+                <td class="py-3 font-mono">£1,575.00</td>
+                <td class="py-3">
+                  <span class="px-2 py-1 bg-green-600 rounded-full text-xs">FILLED</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeCharts();
+    });
+
+    function initializeCharts() {
+      // Portfolio performance chart
+      const portfolioCanvas = document.getElementById('portfolio-chart');
+      const portfolioCtx = portfolioCanvas.getContext('2d');
+      drawPerformanceChart(portfolioCtx, portfolioCanvas.width, portfolioCanvas.height);
+
+      // Asset allocation chart
+      const allocationCanvas = document.getElementById('allocation-pie-chart');
+      const allocationCtx = allocationCanvas.getContext('2d');
+      drawAllocationChart(allocationCtx, allocationCanvas.width, allocationCanvas.height);
+    }
+
+    function drawPerformanceChart(ctx, width, height) {
+      ctx.fillStyle = '#1f2937';
+      ctx.fillRect(0, 0, width, height);
+
+      // Generate sample performance data
+      const data = generatePerformanceData();
+      
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+
+      data.forEach((point, index) => {
+        const x = (index / (data.length - 1)) * width;
+        const y = height - ((point.value - 95000) / 10000) * height;
+        
+        if (index === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+
+      ctx.stroke();
+
+      // Draw grid lines
+      ctx.strokeStyle = '#374151';
+      ctx.lineWidth = 1;
+      for (let i = 1; i < 5; i++) {
+        const y = (i / 5) * height;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawAllocationChart(ctx, width, height) {
+      ctx.fillStyle = '#1f2937';
+      ctx.fillRect(0, 0, width, height);
+
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radius = Math.min(width, height) / 2 - 20;
+
+      const data = [
+        { label: 'VER-VCS', value: 60, color: '#10b981' },
+        { label: 'Cash', value: 40, color: '#6b7280' }
+      ];
+
+      let currentAngle = -Math.PI / 2;
+
+      data.forEach(segment => {
+        const sliceAngle = (segment.value / 100) * 2 * Math.PI;
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+        ctx.closePath();
+        
+        ctx.fillStyle = segment.color;
+        ctx.fill();
+        
+        currentAngle += sliceAngle;
+      });
+
+      // Draw labels
+      currentAngle = -Math.PI / 2;
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'center';
+
+      data.forEach(segment => {
+        const sliceAngle = (segment.value / 100) * 2 * Math.PI;
+        const labelAngle = currentAngle + sliceAngle / 2;
+        const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
+        const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+        
+        ctx.fillText(`${segment.label} ${segment.value}%`, labelX, labelY);
+        
+        currentAngle += sliceAngle;
+      });
+    }
+
+    function generatePerformanceData() {
+      const data = [];
+      let value = 97500;
+      
+      for (let i = 0; i < 30; i++) {
+        value += (Math.random() - 0.45) * 200;
+        data.push({ 
+          date: new Date(Date.now() - (30 - i) * 24 * 60 * 60 * 1000),
+          value: Math.max(value, 95000)
+        });
+      }
+      
+      return data;
+    }
+  </script>
+</Layout>

@@ -154,6 +154,7 @@ import Layout from '../../layouts/Layout.astro'
       import { render } from 'preact'
       import { useState } from 'preact/hooks'
       import { createElement as h } from 'preact'
+      import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../../utils/auth'
 
       function SuppliersPage() {
         const [showAddSupplier, setShowAddSupplier] = useState(false)
@@ -168,17 +169,16 @@ import Layout from '../../layouts/Layout.astro'
         }
 
         const handleInviteSupplier = async (supplierId) => {
+          const apiBaseUrl = getApiBaseUrl()
+          
           try {
-            const response = await fetch(`/api/v1/suppliers/${supplierId}/invite`, {
+            const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/suppliers/${supplierId}/invite`, {
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer mock-token'
-              },
               body: JSON.stringify({})
             })
 
             if (!response.ok) {
+              handleAuthError(response)
               throw new Error('Failed to send invite')
             }
 
@@ -242,10 +242,12 @@ import Layout from '../../layouts/Layout.astro'
 
       // Update stats
       async function updateStats() {
+        const apiBaseUrl = getApiBaseUrl()
+        
         try {
           const [suppliersRes, requestsRes] = await Promise.all([
-            fetch('/api/v1/suppliers', { headers: { 'Authorization': 'Bearer mock-token' } }),
-            fetch('/api/v1/data-requests', { headers: { 'Authorization': 'Bearer mock-token' } })
+            authenticatedFetch(`${apiBaseUrl}/api/v1/suppliers`),
+            authenticatedFetch(`${apiBaseUrl}/api/v1/data-requests`)
           ])
 
           const suppliersData = await suppliersRes.json()

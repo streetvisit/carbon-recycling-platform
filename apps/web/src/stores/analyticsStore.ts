@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../lib/auth.ts';
 
 export interface AnalyticsFilters {
   period: string;
@@ -246,9 +247,11 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     });
   },
   
-  refreshAllData: async (apiBaseUrl = 'http://localhost:8787') => {
+  refreshAllData: async (customApiUrl?: string) => {
     const { filters, setTimeseriesLoading, setTimeseriesError, setTimeseriesData,
             setBreakdownLoading, setBreakdownError, setBreakdownData } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     // Build query parameters
     const params = new URLSearchParams();
@@ -261,14 +264,10 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
       setTimeseriesLoading(true);
       setTimeseriesError(null);
       
-      const timeseriesResponse = await fetch(`${apiBaseUrl}/api/v1/emissions/timeseries?${params}`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const timeseriesResponse = await authenticatedFetch(`${apiBaseUrl}/api/v1/emissions/timeseries?${params}`);
       
       if (!timeseriesResponse.ok) {
+        handleAuthError(timeseriesResponse);
         throw new Error(`Timeseries fetch failed: ${timeseriesResponse.status}`);
       }
       
@@ -285,14 +284,10 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
       breakdownParams.append('sortBy', 'co2e_desc');
       breakdownParams.append('limit', '10');
       
-      const breakdownResponse = await fetch(`${apiBaseUrl}/api/v1/emissions/breakdown?${breakdownParams}`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const breakdownResponse = await authenticatedFetch(`${apiBaseUrl}/api/v1/emissions/breakdown?${breakdownParams}`);
       
       if (!breakdownResponse.ok) {
+        handleAuthError(breakdownResponse);
         throw new Error(`Breakdown fetch failed: ${breakdownResponse.status}`);
       }
       
@@ -309,8 +304,10 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     }
   },
   
-  startRealTimeUpdates: (apiBaseUrl = 'http://localhost:8787') => {
+  startRealTimeUpdates: (customApiUrl?: string) => {
     const { setRealTimeAutoRefresh, refreshIntervals } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     // Clear existing interval
     if (refreshIntervals.realTime) {
@@ -320,17 +317,14 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     // Start real-time updates every 30 seconds
     const interval = setInterval(async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/api/v1/analytics/real-time?metrics=emissions,energy,intensity`, {
-          headers: {
-            'Authorization': 'Bearer mock-token',
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/analytics/real-time?metrics=emissions,energy,intensity`);
         
         if (response.ok) {
           const data = await response.json();
           get().setRealTimeData(data.data);
           get().setRealTimeError(null);
+        } else {
+          handleAuthError(response);
         }
       } catch (error) {
         console.error('Real-time update failed:', error);
@@ -353,21 +347,19 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     setRealTimeAutoRefresh(false);
   },
   
-  fetchBenchmarkData: async (industry = 'general', metric = 'carbon_intensity', apiBaseUrl = 'http://localhost:8787') => {
+  fetchBenchmarkData: async (industry = 'general', metric = 'carbon_intensity', customApiUrl?: string) => {
     const { setBenchmarkLoading, setBenchmarkError, setBenchmarkData } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     try {
       setBenchmarkLoading(true);
       setBenchmarkError(null);
       
-      const response = await fetch(`${apiBaseUrl}/api/v1/analytics/benchmarking?industry=${industry}&metric=${metric}`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/analytics/benchmarking?industry=${industry}&metric=${metric}`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Benchmarking fetch failed: ${response.status}`);
       }
       
@@ -381,21 +373,19 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     }
   },
   
-  fetchPredictions: async (months = 6, algorithm = 'linear_trend', apiBaseUrl = 'http://localhost:8787') => {
+  fetchPredictions: async (months = 6, algorithm = 'linear_trend', customApiUrl?: string) => {
     const { setPredictionsLoading, setPredictionsError, setPredictionsData } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     try {
       setPredictionsLoading(true);
       setPredictionsError(null);
       
-      const response = await fetch(`${apiBaseUrl}/api/v1/analytics/predictions?months=${months}&algorithm=${algorithm}`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/analytics/predictions?months=${months}&algorithm=${algorithm}`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Predictions fetch failed: ${response.status}`);
       }
       
@@ -409,8 +399,10 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     }
   },
   
-  fetchAlerts: async (status = 'active', severity, apiBaseUrl = 'http://localhost:8787') => {
+  fetchAlerts: async (status = 'active', severity?, customApiUrl?: string) => {
     const { setAlertsLoading, setAlertsError, setAlertsData } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     try {
       setAlertsLoading(true);
@@ -420,14 +412,10 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
       params.append('status', status);
       if (severity) params.append('severity', severity);
       
-      const response = await fetch(`${apiBaseUrl}/api/v1/analytics/alerts?${params}`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/analytics/alerts?${params}`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Alerts fetch failed: ${response.status}`);
       }
       

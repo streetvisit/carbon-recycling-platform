@@ -3,12 +3,15 @@ import Layout from '../../layouts/Layout.astro';
 import EmissionsSummaryCard from '../../components/EmissionsSummaryCard.tsx';
 import ScopeBreakdownChart from '../../components/ScopeBreakdownChart.tsx';
 import TriggerCalculationButton from '../../components/TriggerCalculationButton.tsx';
-import MockDataHelper from '../../components/MockDataHelper.tsx';
+import { getAuth } from '@clerk/astro/server';
 
-// For now, we'll handle auth on the client side
-// In production, this would use Clerk's server-side auth
+// Check if user is authenticated
+const auth = getAuth(Astro);
+if (!auth.userId) {
+  return Astro.redirect('/sign-in');
+}
 
-// Server-side data fetching
+// Server-side data fetching with proper authentication
 let emissionsSummary = {
   totalCo2e: 0,
   byScope: {
@@ -23,16 +26,24 @@ let emissionsSummary = {
 };
 
 try {
-  // In production, this would use proper API base URL and authentication
-  const response = await fetch('http://localhost:8787/api/v1/emissions/summary', {
+  // Get session token for API authentication
+  const sessionToken = await auth.getToken();
+  const apiBaseUrl = import.meta.env.API_BASE_URL || 
+    (import.meta.env.NODE_ENV === 'production' 
+      ? 'https://carbon-recycling-api.your-subdomain.workers.dev/api/v1'
+      : 'http://localhost:8787/api/v1');
+  
+  const response = await fetch(`${apiBaseUrl}/emissions/summary`, {
     headers: {
-      'Authorization': 'Bearer mock-token',
+      'Authorization': `Bearer ${sessionToken}`,
       'Content-Type': 'application/json',
     },
   });
   
   if (response.ok) {
     emissionsSummary = await response.json();
+  } else {
+    console.warn('API returned non-200 status:', response.status);
   }
 } catch (error) {
   // Fallback to default values if API is not available
@@ -52,49 +63,67 @@ try {
               Carbon emissions tracking and calculation for {emissionsSummary.period.start.split('-')[0]}
             </p>
           </div>
-          <nav class="flex space-x-4">
-            <a 
-              href="/dashboard/ingestion" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Data Ingestion
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard" 
-              class="text-sm font-medium text-green-600"
-            >
-              Overview
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/analytics" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Analytics
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/planner" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Planner
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/reports" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Reports
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/suppliers" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Suppliers
-            </a>
-          </nav>
+          
+          <div class="flex items-center space-x-8">
+            {/* Navigation */}
+            <nav class="hidden md:flex space-x-4">
+              <a 
+                href="/dashboard/ingestion" 
+                class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Data Ingestion
+              </a>
+              <span class="text-gray-400">|</span>
+              <a 
+                href="/dashboard" 
+                class="text-sm font-medium text-green-600"
+              >
+                Overview
+              </a>
+              <span class="text-gray-400">|</span>
+              <a 
+                href="/dashboard/analytics" 
+                class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Analytics
+              </a>
+              <span class="text-gray-400">|</span>
+              <a 
+                href="/dashboard/planner" 
+                class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Planner
+              </a>
+              <span class="text-gray-400">|</span>
+              <a 
+                href="/dashboard/reports" 
+                class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Reports
+              </a>
+              <span class="text-gray-400">|</span>
+              <a 
+                href="/dashboard/suppliers" 
+                class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Suppliers
+              </a>
+            </nav>
+            
+            {/* User Profile */}
+            <div class="flex items-center space-x-3">
+              <div class="text-right hidden sm:block">
+                <p class="text-sm font-medium text-gray-900" id="user-name">Loading...</p>
+                <p class="text-xs text-gray-500" id="user-email">user@example.com</p>
+              </div>
+              <button 
+                id="sign-out-btn"
+                class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -102,9 +131,6 @@ try {
     {/* Main Content */}
     <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <div class="space-y-8">
-        
-        {/* Testing Helper Section */}
-        <MockDataHelper client:load />
         
         {/* Calculation Trigger Section */}
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -233,15 +259,6 @@ try {
                 </div>
               </button>
               
-              <div class="p-4 rounded-lg bg-gray-50 border border-gray-200">
-                <div class="flex items-center">
-                  <span class="text-2xl mr-3">📈</span>
-                  <div>
-                    <h4 class="text-sm font-medium text-gray-600">Reporting Suite</h4>
-                    <p class="text-xs text-gray-500">Coming in Module 5: Compliance reporting and stakeholder communications</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -304,19 +321,37 @@ try {
               </div>
               
               <div class="flex items-center">
-                <div class="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                 <div class="flex-1">
-                  <p class="text-sm font-medium text-gray-600">Module 3: Analytics Dashboard</p>
-                  <p class="text-xs text-gray-500">Coming soon - Advanced visualizations</p>
+                  <p class="text-sm font-medium text-gray-900">Module 3: Analytics Dashboard</p>
+                  <p class="text-xs text-gray-600">Completed - Advanced visualizations and insights</p>
                 </div>
-                <span class="text-gray-400 text-sm">○</span>
+                <span class="text-green-600 text-sm">✓</span>
+              </div>
+              
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">Module 4: Decarbonisation Planner</p>
+                  <p class="text-xs text-gray-600">Completed - Reduction initiatives and forecasting</p>
+                </div>
+                <span class="text-green-600 text-sm">✓</span>
+              </div>
+              
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">Module 5: Reporting & Compliance Suite</p>
+                  <p class="text-xs text-gray-600">Completed - Professional sustainability reports</p>
+                </div>
+                <span class="text-green-600 text-sm">✓</span>
               </div>
               
               <div class="flex items-center">
                 <div class="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
                 <div class="flex-1">
-                  <p class="text-sm font-medium text-gray-600">Module 4-6: Advanced Features</p>
-                  <p class="text-xs text-gray-500">Planning, reporting, and supplier collaboration</p>
+                  <p class="text-sm font-medium text-gray-600">Module 6: Supplier Portal</p>
+                  <p class="text-xs text-gray-500">Final module - Supply chain collaboration</p>
                 </div>
                 <span class="text-gray-400 text-sm">○</span>
               </div>
@@ -329,6 +364,30 @@ try {
   </div>
 
   <script>
+    import { Clerk } from '@clerk/clerk-js';
+
+    // Initialize Clerk
+    const clerkPublishableKey = import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2hhbXBpb24tc2VhaG9yc2UtNTMuY2xlcmsuYWNjb3VudHMuZGV2JA';
+    
+    if (clerkPublishableKey) {
+      const clerk = new Clerk(clerkPublishableKey);
+      clerk.load().then(() => {
+        // Update user information in header
+        const user = clerk.user;
+        if (user) {
+          document.getElementById('user-name').textContent = user.fullName || user.firstName || 'User';
+          document.getElementById('user-email').textContent = user.primaryEmailAddress?.emailAddress || 'user@example.com';
+        }
+        
+        // Handle sign out
+        document.getElementById('sign-out-btn').addEventListener('click', () => {
+          clerk.signOut().then(() => {
+            window.location.href = '/sign-in';
+          });
+        });
+      });
+    }
+
     // Auto-refresh emissions summary when calculations are triggered
     window.addEventListener('calculationComplete', () => {
       // Refresh the page to get updated data

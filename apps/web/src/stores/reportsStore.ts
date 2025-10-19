@@ -1,6 +1,7 @@
 // stores/reportsStore.ts - State management for the reports module
 
 import { create } from 'zustand';
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth';
 
 export interface Report {
   id: string;
@@ -85,21 +86,19 @@ export const useReportsStore = create<ReportsState>((set, get) => ({
   setIsGenerating: (generating) => set({ isGenerating: generating }),
   
   // API functions
-  fetchReports: async (apiBaseUrl = 'http://localhost:8787') => {
+  fetchReports: async (customApiUrl?: string) => {
     const { setLoading, setError } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/reports`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/reports`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to fetch reports: ${response.status}`);
       }
       
@@ -112,18 +111,16 @@ export const useReportsStore = create<ReportsState>((set, get) => ({
     }
   },
   
-  fetchReportTypes: async (apiBaseUrl = 'http://localhost:8787') => {
+  fetchReportTypes: async (customApiUrl?: string) => {
     const { setError } = get();
     
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
+    
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/report-types`, {
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/report-types`);
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to fetch report types: ${response.status}`);
       }
       
@@ -134,23 +131,22 @@ export const useReportsStore = create<ReportsState>((set, get) => ({
     }
   },
   
-  createReport: async (data: CreateReportData, apiBaseUrl = 'http://localhost:8787') => {
+  createReport: async (data: CreateReportData, customApiUrl?: string) => {
     const { setIsGenerating, setError, addReport } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     setIsGenerating(true);
     setError(null);
     
     try {
-      const response = await fetch(`${apiBaseUrl}/api/v1/reports`, {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/reports`, {
         method: 'POST',
-        headers: {
-          'Authorization': 'Bearer mock-token',
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(data),
       });
       
       if (!response.ok) {
+        handleAuthError(response);
         throw new Error(`Failed to create report: ${response.status}`);
       }
       
@@ -163,8 +159,10 @@ export const useReportsStore = create<ReportsState>((set, get) => ({
     }
   },
   
-  downloadReport: async (id: string, apiBaseUrl = 'http://localhost:8787') => {
+  downloadReport: async (id: string, customApiUrl?: string) => {
     const { setError } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     try {
       // Create a direct link to the download endpoint
@@ -185,8 +183,10 @@ export const useReportsStore = create<ReportsState>((set, get) => ({
   },
   
   // Polling functionality
-  startPolling: (apiBaseUrl = 'http://localhost:8787') => {
+  startPolling: (customApiUrl?: string) => {
     const { stopPolling, fetchReports } = get();
+    
+    const apiBaseUrl = customApiUrl || getApiBaseUrl();
     
     // Clear any existing polling
     stopPolling();

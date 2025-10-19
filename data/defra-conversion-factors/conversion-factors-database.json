@@ -1,0 +1,422 @@
+{
+  "lastUpdated": "2025-10-19T19:40:52.298Z",
+  "totalDocuments": 24,
+  "yearsCovered": [
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "totalFactors": 0,
+  "categories": [],
+  "documents": [
+    {
+      "year": 2025,
+      "title": "Greenhouse gas reporting: conversion factors 2025",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2025",
+      "publishedDate": "2025-10-19T19:40:05.319Z",
+      "lastUpdated": "2025-10-19T19:40:05.417Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/6846a4e6d25e6f6afd4c0180/ghg-conversion-factors-2025-condensed-set.xlsx"
+    },
+    {
+      "year": 2024,
+      "title": "Greenhouse gas reporting: conversion factors 2024",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
+      "publishedDate": "2025-10-19T19:40:05.319Z",
+      "lastUpdated": "2025-10-19T19:40:07.550Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/6722566a3758e4604742aa1e/ghg-conversion-factors-2024-condensed_set__for_most_users__v1_1.xlsx"
+    },
+    {
+      "year": 2023,
+      "title": "Greenhouse gas reporting: conversion factors 2023",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2023",
+      "publishedDate": "2025-10-19T19:40:05.319Z",
+      "lastUpdated": "2025-10-19T19:40:09.687Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/649c5340bb13dc0012b2e2b6/ghg-conversion-factors-2023-condensed-set-update.xlsx"
+    },
+    {
+      "year": 2022,
+      "title": "Greenhouse gas reporting: conversion factors 2022",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2022",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:11.855Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/62aed8cd8fa8f53577129729/ghg-conversion-factors-2022-condensed-set.xls"
+    },
+    {
+      "year": 2021,
+      "title": "Greenhouse gas reporting: conversion factors 2021",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2021",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:14.010Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/61ee7495e90e07037c8d6176/conversion-factors-2021-condensed-set-most-users.xls"
+    },
+    {
+      "year": 2020,
+      "title": "Greenhouse gas reporting: conversion factors 2020",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2020",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:15.913Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5edfa162e90e07141cd90b1d/Conversion_Factors_2020_-_Condensed_set__for_most_users_.xlsx"
+    },
+    {
+      "year": 2019,
+      "title": "Greenhouse gas reporting: conversion factors 2019",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2019",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:17.970Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5f1ff1a58fa8f50478144844/conversion-factors-2019-condensed-set-v01-02.xls"
+    },
+    {
+      "year": 2018,
+      "title": "Greenhouse gas reporting: conversion factors 2018",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2018",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:20.034Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5b1e96f340f0b634babc04b3/Conversion_Factors_2018_-_Condensed_set__for_most_users__v01-01.xls"
+    },
+    {
+      "year": 2017,
+      "title": "Greenhouse gas reporting: conversion factors 2017",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2017",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:22.200Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a81c3e5e5274a2e8ab55b3a/Conversion_factors_2017_-_Condensed_set__for_most_users__v02-00.xls"
+    },
+    {
+      "year": 2016,
+      "title": "Greenhouse gas reporting - Conversion factors 2016",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2016",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:24.270Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a809db1ed915d74e622f7b8/ghg-conversion-factors-2016update_MASTER__links_removed__DECC_Standard_Set.xls"
+    },
+    {
+      "year": 2015,
+      "title": "Greenhouse gas reporting - Conversion factors 2015",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2015",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:26.262Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a80639ded915d74e622e2c4/2015_condensed_factor_set.xls"
+    },
+    {
+      "year": 2014,
+      "title": "Greenhouse gas reporting - Conversion factors 2014",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2014",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:28.053Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a80cc5940f0b62305b8d350/2014_condensed_factor_set.xls"
+    },
+    {
+      "year": 2013,
+      "title": "Greenhouse gas reporting - Conversion factors 2013",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2013",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:30.012Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a80a0aae5274a2e8ab513bf/2013_condensed_factor_set.xls"
+    },
+    {
+      "year": 2012,
+      "title": "Greenhouse gas reporting - Conversion factors 2012",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2012",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:31.959Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a805c30e5274a2e87db95ea/2012_condensed_factor_set.xls"
+    },
+    {
+      "year": 2011,
+      "title": "Greenhouse gas reporting - Conversion factors 2011",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2011",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:33.859Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a808a2e40f0b6230269419d/2011_condensed_factor_set.xls"
+    },
+    {
+      "year": 2010,
+      "title": "Greenhouse gas reporting - Conversion factors 2010",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2010",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:35.746Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a747f3840f0b646cbc404a8/2010_condensed_factor_set.xls"
+    },
+    {
+      "year": 2009,
+      "title": "Greenhouse gas reporting - Conversion factors 2009",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2009",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:37.628Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a80493fe5274a2e87db8f04/2009_condensed_factor_set.xls"
+    },
+    {
+      "year": 2008,
+      "title": "Greenhouse gas reporting - Conversion factors 2008",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2008",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:39.463Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a756f9440f0b6397f35e682/2008_condensed_factor_set.xls"
+    },
+    {
+      "year": 2007,
+      "title": "Greenhouse gas reporting - Conversion factors 2007",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2007",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:41.305Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a8042b0ed915d74e622d6a2/2007_condensed_factor_set.xls"
+    },
+    {
+      "year": 2006,
+      "title": "Greenhouse gas reporting - Conversion factors 2006",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2006",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:43.202Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a80ad7ded915d74e622fd11/2006_condensed_factor_set.xls"
+    },
+    {
+      "year": 2005,
+      "title": "Greenhouse gas reporting - Conversion factors 2005",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2005",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:44.965Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a81aa9bed915d74e33ff710/2005_condensed_factor_set.xls"
+    },
+    {
+      "year": 2004,
+      "title": "Greenhouse gas reporting - Conversion factors 2004",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2004",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:46.847Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a7f93f9e5274a2e8ab4d06e/2004_condensed_factor_set.xls"
+    },
+    {
+      "year": 2003,
+      "title": "Greenhouse gas reporting - Conversion factors 2003",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2003",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:48.636Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a75c27aed915d506ee81442/2003_condensed_factor_set.xls"
+    },
+    {
+      "year": 2002,
+      "title": "Greenhouse gas reporting - Conversion factors 2002",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2002",
+      "publishedDate": "2025-10-19T19:40:05.320Z",
+      "lastUpdated": "2025-10-19T19:40:50.481Z",
+      "documentType": "excel",
+      "metadata": {
+        "department": "Department for Energy Security and Net Zero"
+      },
+      "content": {
+        "sheets": []
+      },
+      "downloadUrl": "https://assets.publishing.service.gov.uk/media/5a7562ca40f0b6360e473b58/2002_condensed_factor_set.xls"
+    }
+  ],
+  "factorsByYear": {
+    "2002": [],
+    "2003": [],
+    "2004": [],
+    "2005": [],
+    "2006": [],
+    "2007": [],
+    "2008": [],
+    "2009": [],
+    "2010": [],
+    "2011": [],
+    "2012": [],
+    "2013": [],
+    "2014": [],
+    "2015": [],
+    "2016": [],
+    "2017": [],
+    "2018": [],
+    "2019": [],
+    "2020": [],
+    "2021": [],
+    "2022": [],
+    "2023": [],
+    "2024": [],
+    "2025": []
+  },
+  "factorsByCategory": {},
+  "trends": []
+}

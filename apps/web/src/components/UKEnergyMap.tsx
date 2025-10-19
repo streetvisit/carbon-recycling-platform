@@ -1,16 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
-
-interface RegionData {
-  name: string;
-  renewableCapacity: number; // MW
-  currentGeneration: number; // MW
-  carbonIntensity: number; // gCO2/kWh
-  population: number;
-  windFarms: number;
-  solarFarms: number;
-  nuclearPlants: number;
-  dominantSource: 'wind' | 'nuclear' | 'gas' | 'solar' | 'hydro';
-}
+import { getUKRegionalData, type RegionData } from '../lib/ukCarbonIntensityApi.ts';
 
 interface UKRegionMap {
   [key: string]: RegionData;
@@ -22,110 +11,106 @@ export default function UKEnergyMap() {
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Generate realistic regional data
-  const generateRegionData = (): UKRegionMap => {
-    const regions = {
-      scotland: {
-        name: 'Scotland',
-        renewableCapacity: 14500,
-        currentGeneration: 8200 + Math.random() * 2000,
-        carbonIntensity: 50 + Math.random() * 30,
-        population: 5500000,
-        windFarms: 180,
-        solarFarms: 25,
-        nuclearPlants: 2,
-        dominantSource: 'wind' as const,
-      },
-      northern_england: {
-        name: 'Northern England',
-        renewableCapacity: 6800,
-        currentGeneration: 4200 + Math.random() * 1500,
-        carbonIntensity: 120 + Math.random() * 40,
-        population: 15000000,
-        windFarms: 95,
-        solarFarms: 180,
-        nuclearPlants: 3,
-        dominantSource: 'wind' as const,
-      },
-      midlands: {
-        name: 'Midlands',
-        renewableCapacity: 4200,
-        currentGeneration: 2800 + Math.random() * 1000,
-        carbonIntensity: 180 + Math.random() * 60,
-        population: 10800000,
-        windFarms: 45,
-        solarFarms: 240,
-        nuclearPlants: 0,
-        dominantSource: 'gas' as const,
-      },
-      eastern_england: {
-        name: 'Eastern England',
-        renewableCapacity: 5600,
-        currentGeneration: 3400 + Math.random() * 1200,
-        carbonIntensity: 140 + Math.random() * 50,
-        population: 6200000,
-        windFarms: 85,
-        solarFarms: 320,
-        nuclearPlants: 1,
-        dominantSource: 'wind' as const,
-      },
-      london_southeast: {
-        name: 'London & Southeast',
-        renewableCapacity: 3200,
-        currentGeneration: 1800 + Math.random() * 800,
-        carbonIntensity: 200 + Math.random() * 80,
-        population: 18000000,
-        windFarms: 15,
-        solarFarms: 450,
-        nuclearPlants: 0,
-        dominantSource: 'gas' as const,
-      },
-      southwest: {
-        name: 'Southwest England',
-        renewableCapacity: 3800,
-        currentGeneration: 2200 + Math.random() * 900,
-        carbonIntensity: 110 + Math.random() * 45,
-        population: 5700000,
-        windFarms: 55,
-        solarFarms: 290,
-        nuclearPlants: 2,
-        dominantSource: 'nuclear' as const,
-      },
-      wales: {
-        name: 'Wales',
-        renewableCapacity: 2400,
-        currentGeneration: 1600 + Math.random() * 600,
-        carbonIntensity: 90 + Math.random() * 35,
-        population: 3100000,
-        windFarms: 65,
-        solarFarms: 85,
-        nuclearPlants: 1,
-        dominantSource: 'hydro' as const,
-      },
-      northern_ireland: {
-        name: 'Northern Ireland',
-        renewableCapacity: 1200,
-        currentGeneration: 800 + Math.random() * 300,
-        carbonIntensity: 160 + Math.random() * 55,
-        population: 1900000,
-        windFarms: 35,
-        solarFarms: 15,
-        nuclearPlants: 0,
-        dominantSource: 'wind' as const,
-      },
-    };
-
-    return regions;
+  // Fetch real UK regional data from Carbon Intensity API
+  const fetchRegionalData = async (): Promise<UKRegionMap> => {
+    try {
+      return await getUKRegionalData();
+    } catch (error) {
+      console.warn('Failed to fetch real UK regional data, using fallback:', error);
+      // Return fallback data based on realistic UK regional patterns
+      return {
+        scotland: {
+          name: 'Scotland',
+          regionId: 1,
+          renewableCapacity: 14500,
+          currentGeneration: 8200,
+          carbonIntensity: 80,
+          population: 5500000,
+          dominantSource: 'wind',
+        },
+        northern_england: {
+          name: 'Northern England',
+          regionId: 2,
+          renewableCapacity: 6800,
+          currentGeneration: 4200,
+          carbonIntensity: 150,
+          population: 15000000,
+          dominantSource: 'wind',
+        },
+        midlands: {
+          name: 'Midlands',
+          regionId: 3,
+          renewableCapacity: 4200,
+          currentGeneration: 2800,
+          carbonIntensity: 200,
+          population: 10800000,
+          dominantSource: 'gas',
+        },
+        eastern_england: {
+          name: 'Eastern England',
+          regionId: 4,
+          renewableCapacity: 5600,
+          currentGeneration: 3400,
+          carbonIntensity: 160,
+          population: 6200000,
+          dominantSource: 'wind',
+        },
+        london_southeast: {
+          name: 'London & Southeast',
+          regionId: 5,
+          renewableCapacity: 3200,
+          currentGeneration: 1800,
+          carbonIntensity: 220,
+          population: 18000000,
+          dominantSource: 'gas',
+        },
+        southwest: {
+          name: 'Southwest England',
+          regionId: 6,
+          renewableCapacity: 3800,
+          currentGeneration: 2200,
+          carbonIntensity: 130,
+          population: 5700000,
+          dominantSource: 'nuclear',
+        },
+        wales: {
+          name: 'Wales',
+          regionId: 7,
+          renewableCapacity: 2400,
+          currentGeneration: 1600,
+          carbonIntensity: 110,
+          population: 3100000,
+          dominantSource: 'hydro',
+        },
+        northern_ireland: {
+          name: 'Northern Ireland',
+          regionId: 8,
+          renewableCapacity: 1200,
+          currentGeneration: 800,
+          carbonIntensity: 180,
+          population: 1900000,
+          dominantSource: 'wind',
+        },
+      };
+    }
   };
 
   useEffect(() => {
-    const updateData = () => {
-      setRegionData(generateRegionData());
-      setLoading(false);
+    const updateData = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchRegionalData();
+        setRegionData(data);
+      } catch (error) {
+        console.error('Error updating regional data:', error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     updateData();
-    const interval = setInterval(updateData, 5000); // Update every 5 seconds
+    // Update every 10 minutes for regional data (less frequent than main dashboard)
+    const interval = setInterval(updateData, 10 * 60 * 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -386,16 +371,12 @@ export default function UKEnergyMap() {
                         <span class="font-medium">{(regionData[selectedRegion].population / 1000000).toFixed(1)}M</span>
                       </div>
                       <div class="flex justify-between">
-                        <span class="text-gray-600">Wind Farms:</span>
-                        <span class="font-medium">{regionData[selectedRegion].windFarms}</span>
+                        <span class="text-gray-600">Dominant Source:</span>
+                        <span class="font-medium capitalize">{regionData[selectedRegion].dominantSource}</span>
                       </div>
                       <div class="flex justify-between">
-                        <span class="text-gray-600">Solar Farms:</span>
-                        <span class="font-medium">{regionData[selectedRegion].solarFarms}</span>
-                      </div>
-                      <div class="flex justify-between">
-                        <span class="text-gray-600">Nuclear Plants:</span>
-                        <span class="font-medium">{regionData[selectedRegion].nuclearPlants}</span>
+                        <span class="text-gray-600">Region ID:</span>
+                        <span class="font-medium">{regionData[selectedRegion].regionId}</span>
                       </div>
                     </div>
                     

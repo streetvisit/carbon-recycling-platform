@@ -1,9 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import IngestionPage from '../../components/IngestionPage.tsx';
+import { getAuth } from '@clerk/astro/server';
 
-// For now, we'll handle auth on the client side
-// In production, this would use Clerk's server-side auth
+// Check if user is authenticated
+const auth = getAuth(Astro);
+if (!auth.userId) {
+  return Astro.redirect('/sign-in');
+}
 ---
 
 <Layout title="Data Ingestion Hub - CarbonRecycling.co.uk">

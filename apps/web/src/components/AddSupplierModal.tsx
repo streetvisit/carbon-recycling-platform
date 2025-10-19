@@ -1,14 +1,16 @@
 // components/AddSupplierModal.tsx - Modal for adding new suppliers
 
 import { useState } from 'preact/hooks'
+import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth'
 
 interface AddSupplierModalProps {
   isOpen: boolean
   onClose: () => void
   onSuccess: () => void
+  customApiUrl?: string
 }
 
-export default function AddSupplierModal({ isOpen, onClose, onSuccess }: AddSupplierModalProps) {
+export default function AddSupplierModal({ isOpen, onClose, onSuccess, customApiUrl }: AddSupplierModalProps) {
   const [formData, setFormData] = useState({
     name: '',
     contactEmail: ''
@@ -33,18 +35,17 @@ export default function AddSupplierModal({ isOpen, onClose, onSuccess }: AddSupp
       return
     }
 
+    const apiBaseUrl = customApiUrl || getApiBaseUrl()
+    
     setLoading(true)
     try {
-      const response = await fetch('/api/v1/suppliers', {
+      const response = await authenticatedFetch(`${apiBaseUrl}/api/v1/suppliers`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer mock-token'
-        },
         body: JSON.stringify(formData)
       })
 
       if (!response.ok) {
+        handleAuthError(response)
         const errorData = await response.json()
         throw new Error(errorData.error || 'Failed to create supplier')
       }

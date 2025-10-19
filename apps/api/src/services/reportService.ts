@@ -1,86 +1,103 @@
 // services/reportService.ts - CRUD operations for reports
 
 import { Report, CreateReportRequest } from '../types/reports';
+import { getD1Database, generateId } from '../../../../../packages/db/d1-connection';
 
-// Mock database - in production this would connect to PlanetScale
-let mockReports: Report[] = [];
-let idCounter = 1;
-
-function generateId(prefix: string): string {
-  return `${prefix}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+interface Env {
+  DB: D1Database;
 }
 
 export async function createReport(
+  env: Env,
   organizationId: string,
   data: CreateReportRequest
 ): Promise<Report> {
+  const db = getD1Database(env);
+  const id = generateId('rept');
+  const generatedAt = new Date().toISOString();
+
   const report: Report = {
-    id: generateId('rept'),
+    id,
     organizationId,
     reportType: data.reportType,
     reportingPeriodStart: data.reportingPeriodStart,
     reportingPeriodEnd: data.reportingPeriodEnd,
     status: 'generating',
     version: 1,
-    generatedAt: new Date().toISOString(),
+    generatedAt,
   };
 
-  mockReports.push(report);
+  await db.prepare(`
+    INSERT INTO reports (
+      id, organizationId, reportType, reportingPeriodStart, reportingPeriodEnd,
+      status, version, generatedAt
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).bind(
+    id, organizationId, data.reportType, data.reportingPeriodStart,
+    data.reportingPeriodEnd, 'generating', 1, generatedAt
+  ).run();
+
   return report;
 }
 
-export async function getAllReports(organizationId: string): Promise<Report[]> {
-  return mockReports
-    .filter(report => report.organizationId === organizationId)
-    .sort((a, b) => new Date(b.generatedAt).getTime() - new Date(a.generatedAt).getTime());
+export async function getAllReports(env: Env, organizationId: string): Promise<Report[]> {
+  const db = getD1Database(env);
+  const result = await db.prepare(`
+    SELECT * FROM reports 
+    WHERE organizationId = ? 
+    ORDER BY generatedAt DESC
+  `).bind(organizationId).all();
+  
+  return result.results as Report[];
 }
 
 export async function getReportById(
+  env: Env,
   organizationId: string, 
   reportId: string
 ): Promise<Report | null> {
-  return mockReports.find(
-    report => report.id === reportId && report.organizationId === organizationId
-  ) || null;
+  const db = getD1Database(env);
+  const result = await db.prepare(`
+    SELECT * FROM reports 
+    WHERE id = ? AND organizationId = ?
+  `).bind(reportId, organizationId).first();
+  
+  return result ? result as Report : null;
 }
 
 export async function updateReportStatus(
+  env: Env,
   organizationId: string,
   reportId: string,
   status: 'generating' | 'complete' | 'failed',
   fileUrl?: string
 ): Promise<Report | null> {
-  const index = mockReports.findIndex(
-    report => report.id === reportId && report.organizationId === organizationId
-  );
-
-  if (index === -1) {
-    return null;
-  }
-
-  mockReports[index] = {
-    ...mockReports[index],
-    status,
-    fileUrl: fileUrl || mockReports[index].fileUrl,
-  };
-
-  return mockReports[index];
+  const db = getD1Database(env);
+  
+  // Update the report
+  await db.prepare(`
+    UPDATE reports 
+    SET status = ?, fileUrl = ? 
+    WHERE id = ? AND organizationId = ?
+  `).bind(status, fileUrl || null, reportId, organizationId).run();
+  
+  // Return the updated report
+  return getReportById(env, organizationId, reportId);
 }
 
 export async function deleteReport(
+  env: Env,
   organizationId: string,
   reportId: string
 ): Promise<boolean> {
-  const index = mockReports.findIndex(
-    report => report.id === reportId && report.organizationId === organizationId
-  );
-
-  if (index === -1) {
-    return false;
-  }
-
-  mockReports.splice(index, 1);
-  return true;
+  const db = getD1Database(env);
+  
+  const result = await db.prepare(`
+    DELETE FROM reports 
+    WHERE id = ? AND organizationId = ?
+  `).bind(reportId, organizationId).run();
+  
+  return result.changes > 0;
 }
 
 // Helper function to get available report types

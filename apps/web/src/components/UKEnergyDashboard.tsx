@@ -1,29 +1,8 @@
 import { useEffect, useState } from 'preact/hooks';
+import { getUKGridData, getFallbackGridData, type UKGridData } from '../lib/ukCarbonIntensityApi.ts';
 
-interface GridData {
-  timestamp: string;
-  demand: number; // GW
-  generation: number; // GW
-  carbonIntensity: number; // gCO2/kWh
-  price: number; // £/MWh
-  generationMix: {
-    gas: number;
-    nuclear: number;
-    wind: number;
-    solar: number;
-    hydroelectric: number;
-    biomass: number;
-    coal: number;
-    imports: number;
-    other: number;
-  };
-  percentages: {
-    renewables: number;
-    fossil: number;
-    nuclear: number;
-    imports: number;
-  };
-}
+// Use the API data type directly
+type GridData = UKGridData;
 
 export default function UKEnergyDashboard() {
   const [gridData, setGridData] = useState<GridData | null>(null);
@@ -32,156 +11,47 @@ export default function UKEnergyDashboard() {
   const [previousData, setPreviousData] = useState<GridData | null>(null);
   const [isLive, setIsLive] = useState(true);
 
-  // Mock data that simulates real UK grid data patterns with micro-fluctuations
-  const generateMockData = (isLiveUpdate = false): GridData => {
-    const now = new Date();
-    const hour = now.getHours();
-    
-    // For live updates, create smaller fluctuations from previous data
-    if (isLiveUpdate && gridData) {
-      const fluctuation = 0.05; // 5% maximum fluctuation for live updates
-      
-      const demand = Math.max(20, gridData.demand + (Math.random() - 0.5) * gridData.demand * fluctuation);
-      
-      // Fluctuate each generation source slightly
-      const wind = Math.max(1, gridData.generationMix.wind + (Math.random() - 0.5) * 2);
-      const solar = Math.max(0, gridData.generationMix.solar + (Math.random() - 0.5) * 0.5);
-      const nuclear = Math.max(3, gridData.generationMix.nuclear + (Math.random() - 0.5) * 0.3);
-      const hydroelectric = Math.max(0.1, gridData.generationMix.hydroelectric + (Math.random() - 0.5) * 0.1);
-      const biomass = Math.max(1, gridData.generationMix.biomass + (Math.random() - 0.5) * 0.3);
-      const imports = Math.max(0, gridData.generationMix.imports + (Math.random() - 0.5) * 1);
-      const gas = Math.max(3, demand - wind - solar - nuclear - hydroelectric - biomass - imports - 0.5);
-      const coal = 0;
-      const other = 0.5;
-      
-      const totalGeneration = gas + nuclear + wind + solar + hydroelectric + biomass + coal + imports + other;
-      
-      // Calculate percentages
-      const renewables = ((wind + solar + hydroelectric) / totalGeneration) * 100;
-      const fossil = ((gas + coal) / totalGeneration) * 100;
-      const nuclearPercent = (nuclear / totalGeneration) * 100;
-      const importsPercent = (imports / totalGeneration) * 100;
-      
-      // Carbon intensity with slight fluctuation
-      const carbonIntensity = Math.round(
-        (gas * 350 + coal * 850 + biomass * 120 + imports * 200) / totalGeneration + (Math.random() - 0.5) * 10
-      );
-      
-      // Price with market-like fluctuations
-      const priceFluctuation = 1 + (Math.random() - 0.5) * 0.1;
-      const price = Math.round(gridData.price * priceFluctuation);
-
-      return {
-        timestamp: now.toISOString(),
-        demand: Math.round(demand * 10) / 10,
-        generation: Math.round(totalGeneration * 10) / 10,
-        carbonIntensity,
-        price,
-        generationMix: {
-          gas: Math.round(gas * 10) / 10,
-          nuclear: Math.round(nuclear * 10) / 10,
-          wind: Math.round(wind * 10) / 10,
-          solar: Math.round(solar * 10) / 10,
-          hydroelectric: Math.round(hydroelectric * 10) / 10,
-          biomass: Math.round(biomass * 10) / 10,
-          coal,
-          imports: Math.round(imports * 10) / 10,
-          other: Math.round(other * 10) / 10,
-        },
-        percentages: {
-          renewables: Math.round(renewables * 10) / 10,
-          fossil: Math.round(fossil * 10) / 10,
-          nuclear: Math.round(nuclearPercent * 10) / 10,
-          imports: Math.round(importsPercent * 10) / 10,
-        }
-      };
+  // Fetch real UK grid data from Carbon Intensity API
+  const fetchRealGridData = async (): Promise<GridData> => {
+    try {
+      return await getUKGridData();
+    } catch (error) {
+      console.warn('Failed to fetch real UK grid data, using fallback:', error);
+      return getFallbackGridData();
     }
-    
-    // Full regeneration for initial load or major updates
-    // Simulate demand patterns (higher during day, lower at night)
-    const baseDemand = 25 + (Math.sin((hour - 6) * Math.PI / 12) * 8) + (Math.random() - 0.5) * 2;
-    
-    // Generate realistic energy mix with more variation
-    const wind = Math.max(2, 15 + (Math.random() - 0.5) * 10);
-    const solar = hour > 6 && hour < 18 ? Math.max(0, 3 + (Math.random() - 0.5) * 5) : Math.random() * 0.2;
-    const nuclear = 4 + (Math.random() - 0.5) * 1.5;
-    const gas = Math.max(5, baseDemand - wind - solar - nuclear - 3);
-    const hydroelectric = 0.3 + (Math.random() - 0.5) * 0.3;
-    const biomass = 2 + (Math.random() - 0.5) * 0.8;
-    const coal = 0; // UK has phased out coal
-    const imports = Math.max(0, 2 + (Math.random() - 0.5) * 4);
-    const other = 0.5;
-    
-    const totalGeneration = gas + nuclear + wind + solar + hydroelectric + biomass + coal + imports + other;
-    
-    // Calculate percentages
-    const renewables = ((wind + solar + hydroelectric) / totalGeneration) * 100;
-    const fossil = ((gas + coal) / totalGeneration) * 100;
-    const nuclearPercent = (nuclear / totalGeneration) * 100;
-    const importsPercent = (imports / totalGeneration) * 100;
-    
-    // Carbon intensity calculation (simplified)
-    const carbonIntensity = Math.round(
-      (gas * 350 + coal * 850 + biomass * 120 + imports * 200) / totalGeneration
-    );
-    
-    // Price simulation (higher when demand is high or renewables are low)
-    const basePrice = 60;
-    const demandMultiplier = baseDemand > 30 ? 1.5 : 1;
-    const renewableMultiplier = renewables < 40 ? 1.3 : 0.9;
-    const price = Math.round(basePrice * demandMultiplier * renewableMultiplier * (1 + (Math.random() - 0.5) * 0.2));
-
-    return {
-      timestamp: now.toISOString(),
-      demand: Math.round(baseDemand * 10) / 10,
-      generation: Math.round(totalGeneration * 10) / 10,
-      carbonIntensity,
-      price,
-      generationMix: {
-        gas: Math.round(gas * 10) / 10,
-        nuclear: Math.round(nuclear * 10) / 10,
-        wind: Math.round(wind * 10) / 10,
-        solar: Math.round(solar * 10) / 10,
-        hydroelectric: Math.round(hydroelectric * 10) / 10,
-        biomass: Math.round(biomass * 10) / 10,
-        coal,
-        imports: Math.round(imports * 10) / 10,
-        other: Math.round(other * 10) / 10,
-      },
-      percentages: {
-        renewables: Math.round(renewables * 10) / 10,
-        fossil: Math.round(fossil * 10) / 10,
-        nuclear: Math.round(nuclearPercent * 10) / 10,
-        imports: Math.round(importsPercent * 10) / 10,
-      }
-    };
   };
 
   useEffect(() => {
-    const updateData = (isLive = false) => {
-      setPreviousData(gridData);
-      setGridData(generateMockData(isLive));
-      setLastUpdated(new Date());
-      setLoading(false);
+    const updateData = async () => {
+      try {
+        setLoading(true);
+        setPreviousData(gridData);
+        const newData = await fetchRealGridData();
+        setGridData(newData);
+        setLastUpdated(new Date());
+      } catch (error) {
+        console.error('Error updating grid data:', error);
+        // Keep previous data if update fails
+      } finally {
+        setLoading(false);
+      }
     };
 
-    updateData(); // Initial load
+    // Initial load
+    updateData();
     
-    // Major updates every 30 seconds
-    const majorUpdateInterval = setInterval(() => updateData(), 30000);
-    
-    // Live micro-updates every 3-5 seconds for that "live" feel
-    const liveUpdateInterval = setInterval(() => {
-      if (gridData && isLive) {
-        updateData(true);
+    // Update every 5 minutes (Carbon Intensity API updates every 30 minutes, 
+    // but we check more frequently in case of changes)
+    const updateInterval = setInterval(() => {
+      if (isLive) {
+        updateData();
       }
-    }, 3000 + Math.random() * 2000); // Randomized 3-5 seconds
+    }, 5 * 60 * 1000); // 5 minutes
     
     return () => {
-      clearInterval(majorUpdateInterval);
-      clearInterval(liveUpdateInterval);
+      clearInterval(updateInterval);
     };
-  }, [gridData, isLive]);
+  }, [isLive]); // Removed gridData dependency to prevent infinite loops
 
   const getSourceColor = (source: string) => {
     const colors: { [key: string]: string } = {
