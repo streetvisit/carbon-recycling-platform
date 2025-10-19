@@ -40,13 +40,12 @@ export default function UKEnergyDashboard() {
     // Initial load
     updateData();
     
-    // Update every 5 minutes (Carbon Intensity API updates every 30 minutes, 
-    // but we check more frequently in case of changes)
+    // Update every 30 minutes to match Carbon Intensity API update frequency
     const updateInterval = setInterval(() => {
       if (isLive) {
         updateData();
       }
-    }, 5 * 60 * 1000); // 5 minutes
+    }, 30 * 60 * 1000); // 30 minutes
     
     return () => {
       clearInterval(updateInterval);
@@ -141,34 +140,19 @@ export default function UKEnergyDashboard() {
   return (
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
       {/* Header */}
-      <div class={`bg-gradient-to-r from-blue-600 to-green-600 p-6 text-white relative overflow-hidden ${
-        isLive ? 'animate-pulse' : ''
-      }`}>
-        {isLive && (
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer"></div>
-        )}
-        <div class="relative flex items-center justify-between">
+      <div class="bg-gradient-to-r from-blue-600 to-green-600 p-6 text-white">
+        <div class="flex items-center justify-between">
           <div>
             <h3 class="text-2xl font-bold mb-2 flex items-center">
-              🇬🇧 UK Energy Grid 
-              <span class={`ml-2 ${isLive ? 'animate-pulse' : ''}`}>Live</span>
+              🇬🇧 UK Energy Grid Live
               {isLive && (
-                <div class="ml-3 flex items-center space-x-1">
-                  <div class="w-1 h-1 bg-yellow-300 rounded-full animate-ping"></div>
-                  <div class="w-1 h-1 bg-yellow-300 rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
-                  <div class="w-1 h-1 bg-yellow-300 rounded-full animate-ping" style={{ animationDelay: '0.4s' }}></div>
-                </div>
+                <div class="ml-3 w-2 h-2 bg-green-300 rounded-full"></div>
               )}
             </h3>
             <p class="text-blue-100">Real-time electricity generation and carbon intensity</p>
           </div>
           <div class="text-right">
-            <div class="text-sm opacity-90 flex items-center justify-end">
-              <span>Last updated</span>
-              {isLive && (
-                <div class="ml-2 w-2 h-2 bg-green-300 rounded-full animate-pulse"></div>
-              )}
-            </div>
+            <div class="text-sm opacity-90">Last updated</div>
             <div class="text-lg font-mono">{formatTime(lastUpdated)}</div>
           </div>
         </div>
@@ -177,42 +161,38 @@ export default function UKEnergyDashboard() {
       <div class="p-6">
         {/* Key Metrics */}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div class={`bg-blue-50 rounded-lg p-4 text-center ${getLiveAnimationClass()}`}>
-            <div class="text-2xl mb-2 animate-pulse">⚡</div>
-            <div class="text-2xl font-bold text-gray-900 flex items-center justify-center">
+          <div class="bg-blue-50 rounded-lg p-4 text-center">
+            <div class="text-2xl mb-2">⚡</div>
+            <div class="text-2xl font-bold text-gray-900">
               {gridData.demand} GW
-              {getChangeIndicator(gridData.demand, previousData?.demand)}
             </div>
             <div class="text-sm text-gray-600">Demand</div>
           </div>
 
-          <div class={`bg-green-50 rounded-lg p-4 text-center ${getLiveAnimationClass()}`}>
-            <div class="text-2xl mb-2 animate-pulse">🔋</div>
-            <div class="text-2xl font-bold text-gray-900 flex items-center justify-center">
+          <div class="bg-green-50 rounded-lg p-4 text-center">
+            <div class="text-2xl mb-2">🔋</div>
+            <div class="text-2xl font-bold text-gray-900">
               {gridData.generation} GW
-              {getChangeIndicator(gridData.generation, previousData?.generation)}
             </div>
             <div class="text-sm text-gray-600">Generation</div>
           </div>
 
-          <div class={`rounded-lg p-4 text-center ${getLiveAnimationClass()} ${
+          <div class={`rounded-lg p-4 text-center ${
             getCarbonIntensityColor(gridData.carbonIntensity).includes('bg-green') ? 'bg-green-50' : 
             getCarbonIntensityColor(gridData.carbonIntensity).includes('bg-yellow') ? 'bg-yellow-50' : 
             getCarbonIntensityColor(gridData.carbonIntensity).includes('bg-orange') ? 'bg-orange-50' : 'bg-red-50'
           }`}>
-            <div class="text-2xl mb-2 animate-pulse">🌍</div>
-            <div class="text-2xl font-bold text-gray-900 flex items-center justify-center">
+            <div class="text-2xl mb-2">🌍</div>
+            <div class="text-2xl font-bold text-gray-900">
               {gridData.carbonIntensity}g
-              {getChangeIndicator(gridData.carbonIntensity, previousData?.carbonIntensity)}
             </div>
             <div class="text-sm text-gray-600">CO₂/kWh</div>
           </div>
 
-          <div class={`bg-purple-50 rounded-lg p-4 text-center ${getLiveAnimationClass()}`}>
-            <div class="text-2xl mb-2 animate-pulse">💰</div>
-            <div class="text-2xl font-bold text-gray-900 flex items-center justify-center">
+          <div class="bg-purple-50 rounded-lg p-4 text-center">
+            <div class="text-2xl mb-2">💰</div>
+            <div class="text-2xl font-bold text-gray-900">
               £{gridData.price}
-              {getChangeIndicator(gridData.price, previousData?.price)}
             </div>
             <div class="text-sm text-gray-600">/MWh</div>
           </div>
@@ -223,29 +203,21 @@ export default function UKEnergyDashboard() {
           <h4 class="text-lg font-semibold text-gray-900 mb-4">Energy Generation Mix</h4>
           
           {/* Stacked Bar */}
-          <div class="w-full h-8 bg-gray-200 rounded-lg overflow-hidden mb-4 flex relative">
+          <div class="w-full h-8 bg-gray-200 rounded-lg overflow-hidden mb-4 flex">
             {Object.entries(gridData.generationMix).map(([source, value], index) => {
               const percentage = (value / gridData.generation) * 100;
-              const previousValue = previousData?.generationMix[source as keyof typeof previousData.generationMix] || 0;
-              const previousPercentage = previousData ? (previousValue / previousData.generation) * 100 : percentage;
-              const hasChanged = Math.abs(percentage - previousPercentage) > 0.5;
               
               return percentage > 0 ? (
                 <div
                   key={source}
-                  class={`${getSourceColor(source)} flex items-center justify-center text-white text-xs font-bold transition-all duration-1000 ease-in-out ${
-                    hasChanged ? 'animate-pulse' : ''
-                  }`}
+                  class={`${getSourceColor(source)} flex items-center justify-center text-white text-xs font-bold`}
                   style={{ width: `${percentage}%` }}
                   title={`${source}: ${value} GW (${percentage.toFixed(1)}%)`}
                 >
                   {percentage > 8 && (
-                    <span class={hasChanged ? 'animate-bounce' : ''}>
+                    <span>
                       {getSourceIcon(source)}
                     </span>
-                  )}
-                  {hasChanged && (
-                    <div class="absolute -top-1 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 rounded animate-pulse opacity-75"></div>
                   )}
                 </div>
               ) : null;
@@ -269,69 +241,65 @@ export default function UKEnergyDashboard() {
 
         {/* Category Breakdown */}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div class={`bg-green-50 rounded-lg p-4 ${getLiveAnimationClass()}`}>
+          <div class="bg-green-50 rounded-lg p-4">
             <div class="flex items-center justify-between mb-2">
               <span class="text-green-700 font-medium">🌱 Renewables</span>
-              <span class="text-green-900 font-bold flex items-center">
+              <span class="text-green-900 font-bold">
                 {gridData.percentages.renewables}%
-                {getChangeIndicator(gridData.percentages.renewables, previousData?.percentages.renewables)}
               </span>
             </div>
             <div class="text-sm text-green-600">Wind + Solar + Hydro</div>
             <div class="w-full bg-green-200 rounded-full h-1.5 mt-2">
               <div 
-                class="bg-green-600 h-1.5 rounded-full transition-all duration-1000 ease-in-out" 
+                class="bg-green-600 h-1.5 rounded-full" 
                 style={{ width: `${Math.min(100, gridData.percentages.renewables)}%` }}
               ></div>
             </div>
           </div>
 
-          <div class={`bg-gray-50 rounded-lg p-4 ${getLiveAnimationClass()}`}>
+          <div class="bg-gray-50 rounded-lg p-4">
             <div class="flex items-center justify-between mb-2">
               <span class="text-gray-700 font-medium">🔥 Fossil Fuels</span>
-              <span class="text-gray-900 font-bold flex items-center">
+              <span class="text-gray-900 font-bold">
                 {gridData.percentages.fossil}%
-                {getChangeIndicator(gridData.percentages.fossil, previousData?.percentages.fossil)}
               </span>
             </div>
             <div class="text-sm text-gray-600">Gas + Coal</div>
             <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
               <div 
-                class="bg-gray-600 h-1.5 rounded-full transition-all duration-1000 ease-in-out" 
+                class="bg-gray-600 h-1.5 rounded-full" 
                 style={{ width: `${Math.min(100, gridData.percentages.fossil)}%` }}
               ></div>
             </div>
           </div>
 
-          <div class={`bg-purple-50 rounded-lg p-4 ${getLiveAnimationClass()}`}>
+          <div class="bg-purple-50 rounded-lg p-4">
             <div class="flex items-center justify-between mb-2">
               <span class="text-purple-700 font-medium">⚙️ Nuclear</span>
-              <span class="text-purple-900 font-bold flex items-center">
+              <span class="text-purple-900 font-bold">
                 {gridData.percentages.nuclear}%
-                {getChangeIndicator(gridData.percentages.nuclear, previousData?.percentages.nuclear)}
               </span>
             </div>
             <div class="text-sm text-purple-600">Low Carbon</div>
             <div class="w-full bg-purple-200 rounded-full h-1.5 mt-2">
               <div 
-                class="bg-purple-600 h-1.5 rounded-full transition-all duration-1000 ease-in-out" 
+                class="bg-purple-600 h-1.5 rounded-full" 
                 style={{ width: `${Math.min(100, gridData.percentages.nuclear)}%` }}
               ></div>
             </div>
           </div>
 
-          <div class={`bg-blue-50 rounded-lg p-4 ${getLiveAnimationClass()}`}>
+          <div class="bg-blue-50 rounded-lg p-4">
             <div class="flex items-center justify-between mb-2">
               <span class="text-blue-700 font-medium">🔌 Imports</span>
-              <span class="text-blue-900 font-bold flex items-center">
+              <span class="text-blue-900 font-bold">
                 {gridData.percentages.imports}%
-                {getChangeIndicator(gridData.percentages.imports, previousData?.percentages.imports)}
               </span>
             </div>
             <div class="text-sm text-blue-600">Interconnectors</div>
             <div class="w-full bg-blue-200 rounded-full h-1.5 mt-2">
               <div 
-                class="bg-blue-600 h-1.5 rounded-full transition-all duration-1000 ease-in-out" 
+                class="bg-blue-600 h-1.5 rounded-full" 
                 style={{ width: `${Math.min(100, gridData.percentages.imports)}%` }}
               ></div>
             </div>
@@ -390,9 +358,9 @@ export default function UKEnergyDashboard() {
       <div class="bg-gray-50 px-6 py-3 border-t border-gray-200">
         <div class="flex items-center justify-between text-xs text-gray-500">
           <div class="flex items-center space-x-3">
-            <span>Data simulates live UK grid patterns</span>
+            <span>Data from National Grid ESO Carbon Intensity API</span>
             <span class="text-gray-300">•</span>
-            <span>Major updates every 30s, micro-changes every 3-5s</span>
+            <span>Updates every 30 minutes</span>
           </div>
           <div class="flex items-center space-x-3">
             <button 
@@ -404,7 +372,7 @@ export default function UKEnergyDashboard() {
               }`}
             >
               <div class={`w-2 h-2 rounded-full ${
-                isLive ? 'bg-green-500 animate-pulse' : 'bg-gray-400'
+                isLive ? 'bg-green-500' : 'bg-gray-400'
               }`}></div>
               <span>{isLive ? 'Live' : 'Paused'}</span>
             </button>

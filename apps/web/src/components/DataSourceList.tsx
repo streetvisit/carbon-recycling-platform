@@ -214,13 +214,29 @@ export default function DataSourceList({ customApiUrl, onRefresh }: DataSourceLi
       <div class="bg-white shadow rounded-lg">
         <div class="p-6">
           <div class="text-center">
-            <div class="text-red-600 text-sm">{error}</div>
-            <button 
-              onClick={fetchDataSources}
-              class="mt-2 text-green-600 hover:text-green-800 text-sm font-medium"
-            >
-              Try again
-            </button>
+            <div class="text-4xl mb-4">⚠️</div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">
+              Unable to connect to API
+            </h3>
+            <div class="text-red-600 text-sm mb-4">{error}</div>
+            <p class="text-sm text-gray-500 mb-4">
+              This is expected during development. The API backend is being configured.
+              You can still explore the interface - mock data will be used where possible.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <button 
+                onClick={fetchDataSources}
+                class="text-green-600 hover:text-green-800 text-sm font-medium px-4 py-2 border border-green-300 rounded-md hover:bg-green-50 transition-colors"
+              >
+                Try again
+              </button>
+              <a 
+                href="/dashboard/analytics"
+                class="text-blue-600 hover:text-blue-800 text-sm font-medium px-4 py-2 border border-blue-300 rounded-md hover:bg-blue-50 transition-colors"
+              >
+                View Analytics Demo
+              </a>
+            </div>
           </div>
         </div>
       </div>

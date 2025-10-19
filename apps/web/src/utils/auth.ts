@@ -17,14 +17,17 @@ export function getApiBaseUrl(): string {
   
   // Fallback to environment-based logic
   if (typeof window !== 'undefined') {
-    // Client-side
-    return window.location.hostname === 'localhost' 
-      ? 'http://localhost:8787'
-      : 'https://carbon-recycling-api.your-subdomain.workers.dev';
+    // Client-side - for development, use mock data; for production, use real API
+    if (window.location.hostname === 'localhost') {
+      return 'http://localhost:8787';
+    } else {
+      // Production: Use the actual API URL from your Cloudflare deployment
+      return 'https://carbon-recycling-api.charles-39b.workers.dev';
+    }
   } else {
     // Server-side
     return process.env.NODE_ENV === 'production'
-      ? 'https://carbon-recycling-api.your-subdomain.workers.dev'
+      ? 'https://carbon-recycling-api.charles-39b.workers.dev'
       : 'http://localhost:8787';
   }
 }

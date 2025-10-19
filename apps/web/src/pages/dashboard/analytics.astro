@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import DashboardFilterBar from '../../components/DashboardFilterBar.tsx';
 import EmissionsTrendChart from '../../components/EmissionsTrendChart.tsx';
 import CategoryBreakdownTable from '../../components/CategoryBreakdownTable.tsx';
@@ -14,47 +14,12 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
 // In production, this would use Clerk's server-side auth
 ---
 
-<Layout title="Analytics Dashboard - CarbonRecycling.co.uk">
-  <div class="min-h-screen bg-gray-50">
-    {/* Header */}
-    <header class="bg-white shadow-sm border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-6">
-          <div>
-            <h1 class="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
-            <p class="mt-2 text-sm text-gray-600">
-              Deep insights into your carbon emissions data
-            </p>
-          </div>
-          <nav class="flex space-x-4">
-            <a 
-              href="/dashboard/ingestion" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Data Ingestion
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Overview
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/analytics" 
-              class="text-sm font-medium text-green-600"
-            >
-              Analytics
-            </a>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    {/* Main Content */}
-    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <div class="space-y-8">
+<DashboardLayout 
+  title="Analytics Dashboard" 
+  description="Deep insights into your carbon emissions data"
+  currentPage="analytics"
+>
+  <div class="space-y-8">
         
         {/* Filter Bar */}
         <DashboardFilterBar client:only="preact" />
@@ -276,8 +241,6 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
           </div>
         </div>
 
-      </div>
-    </main>
   </div>
 
   <script>
@@ -294,4 +257,4 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
       console.log('Filters changed:', event.detail);
     });
   </script>
-</Layout>
+</DashboardLayout>
