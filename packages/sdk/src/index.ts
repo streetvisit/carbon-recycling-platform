@@ -164,6 +164,21 @@ export { SAPIntegration } from './integrations/sap';
 export { OctopusEnergyIntegration } from './integrations/octopus-energy';
 export { MicrosoftAzureIntegration } from './integrations/azure';
 
+export { GoodEnergyIntegration } from './integrations/good-energy';
+export { MicrosoftDynamicsCrmIntegration } from './integrations/microsoft-dynamics-crm';
+export { OracleHcmCloudIntegration } from './integrations/oracle-hcm-cloud';
+export { SapSuccessfactorsIntegration } from './integrations/sap-successfactors';
+export { CoupaProcurementIntegration } from './integrations/coupa-procurement';
+export { AribaProcurementIntegration } from './integrations/ariba-procurement';
+export { FleetCompleteAdvancedIntegration } from './integrations/fleet-complete-advanced';
+export { UberFreightIntegration } from './integrations/uber-freight';
+export { SiemensTeamcenterIntegration } from './integrations/siemens-teamcenter';
+export { Dassault3dexperienceIntegration } from './integrations/dassault-3dexperience';
+export { AutodeskVaultIntegration } from './integrations/autodesk-vault';
+export { PtcWindchillIntegration } from './integrations/ptc-windchill';
+export { ServicenowIntegration } from './integrations/servicenow';
+export { AtlassianJiraIntegration } from './integrations/atlassian-jira';
+
 // Export utility functions
 export { validateCredentials, encryptCredentials } from './utils/auth';
 export { calculateEmissions, convertUnits } from './utils/emissions';

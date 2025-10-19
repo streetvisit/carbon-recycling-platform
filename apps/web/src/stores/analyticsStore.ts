@@ -441,4 +441,3 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     }
   }
 }));
-}));

@@ -258,12 +258,12 @@ import Layout from '../../../layouts/Layout.astro';
             <h3 class="text-2xl font-semibold text-gray-900 mb-6">Configuration Example</h3>
             <div class="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm overflow-x-auto">
               <div class="text-gray-400 mb-2">// Energy data collection config</div>
-              <pre>{
+              <pre set:html={`{
   "source": "british_gas_api",
   "name": "HQ Energy Consumption",
   "schedule": "0 */6 * * *",
   "config": {
-    "api_key": "${BRITISH_GAS_API_KEY}",
+    "api_key": "\${BRITISH_GAS_API_KEY}",
     "meter_ids": ["BG123456789"],
     "data_types": ["electricity", "gas"],
     "start_date": "auto",
@@ -279,7 +279,7 @@ import Layout from '../../../layouts/Layout.astro';
     "data_quality_checks": true,
     "duplicate_detection": true
   }
-}</pre>
+}`}></pre>
             </div>
           </div>
 
