@@ -1,0 +1,476 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Decarbonisation Planner - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-yellow-500 to-orange-500 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Decarbonisation Planner</h1>
+          <p class="text-xl text-yellow-100 max-w-3xl mx-auto mb-8">
+            AI-powered recommendations and scenario planning for your net-zero journey. Create data-driven roadmaps with clear milestones, costs, and impact projections.
+          </p>
+          <a href="/sign-up" class="bg-white text-yellow-600 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors inline-flex items-center">
+            Start Planning
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">AI-Powered Decarbonisation Intelligence</h2>
+          <p class="text-xl text-gray-600">Create actionable roadmaps with real impact and cost projections</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Smart Recommendations</h3>
+            <p class="text-gray-600">AI analyzes your data to suggest the most impactful decarbonisation initiatives</p>
+          </div>
+
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Scenario Modeling</h3>
+            <p class="text-gray-600">Compare multiple pathways with detailed cost-benefit analysis</p>
+          </div>
+
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Progress Tracking</h3>
+            <p class="text-gray-600">Monitor milestone achievement with real-time impact measurements</p>
+          </div>
+        </div>
+
+        <!-- Demo Scenario Planning -->
+        <div class="bg-white border rounded-lg shadow-sm p-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-6">Example Decarbonisation Scenarios</h3>
+          
+          <!-- Scenario Comparison -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="border rounded-lg p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h4 class="font-semibold text-gray-900">Conservative Path</h4>
+                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">Low Risk</span>
+              </div>
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Timeline:</span>
+                  <span class="font-medium">2030 Target</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Reduction:</span>
+                  <span class="font-medium text-green-600">42% CO2e</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Investment:</span>
+                  <span class="font-medium">£2.1M</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Payback:</span>
+                  <span class="font-medium">4.2 years</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border rounded-lg p-6 ring-2 ring-green-500">
+              <div class="flex items-center justify-between mb-4">
+                <h4 class="font-semibold text-gray-900">Recommended Path</h4>
+                <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">AI Optimized</span>
+              </div>
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Timeline:</span>
+                  <span class="font-medium">2028 Target</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Reduction:</span>
+                  <span class="font-medium text-green-600">65% CO2e</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Investment:</span>
+                  <span class="font-medium">£3.8M</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Payback:</span>
+                  <span class="font-medium">3.1 years</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border rounded-lg p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h4 class="font-semibold text-gray-900">Aggressive Path</h4>
+                <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-1 rounded">High Impact</span>
+              </div>
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Timeline:</span>
+                  <span class="font-medium">2026 Target</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Reduction:</span>
+                  <span class="font-medium text-green-600">85% CO2e</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Investment:</span>
+                  <span class="font-medium">£7.2M</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Payback:</span>
+                  <span class="font-medium">5.8 years</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emissions Forecast Chart -->
+          <div class="mb-8">
+            <h4 class="text-lg font-medium text-gray-900 mb-4">Projected Emissions Reduction</h4>
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="flex items-end space-x-2 h-40">
+                <div class="flex flex-col items-center">
+                  <div class="bg-red-500 rounded-t" style="height: 120px; width: 24px;"></div>
+                  <span class="text-xs mt-2">2024</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="bg-orange-500 rounded-t" style="height: 105px; width: 24px;"></div>
+                  <span class="text-xs mt-2">2025</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="bg-yellow-500 rounded-t" style="height: 85px; width: 24px;"></div>
+                  <span class="text-xs mt-2">2026</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="bg-green-400 rounded-t" style="height: 65px; width: 24px;"></div>
+                  <span class="text-xs mt-2">2027</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="bg-green-500 rounded-t" style="height: 42px; width: 24px;"></div>
+                  <span class="text-xs mt-2">2028</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="bg-green-600 rounded-t" style="height: 28px; width: 24px;"></div>
+                  <span class="text-xs mt-2">2029</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="bg-green-700 rounded-t" style="height: 18px; width: 24px;"></div>
+                  <span class="text-xs mt-2">2030</span>
+                </div>
+              </div>
+              <div class="flex justify-between mt-4 text-sm text-gray-600">
+                <span>Current: 1,245 tCO2e</span>
+                <span>Target: 436 tCO2e (65% reduction)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initiative Categories -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Initiative Categories</h2>
+          <p class="text-xl text-gray-600">Comprehensive coverage of all decarbonisation opportunities</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Energy Efficiency -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-3">Energy Efficiency</h3>
+            <div class="space-y-2 text-sm text-gray-600">
+              <div>• LED Lighting Upgrades</div>
+              <div>• HVAC Optimization</div>
+              <div>• Building Insulation</div>
+              <div>• Smart Energy Systems</div>
+              <div>• Equipment Upgrades</div>
+            </div>
+            <div class="mt-4 pt-4 border-t text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Avg. ROI:</span>
+                <span class="font-medium text-green-600">2.1 years</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Renewable Energy -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-3">Renewable Energy</h3>
+            <div class="space-y-2 text-sm text-gray-600">
+              <div>• Solar Panel Installation</div>
+              <div>• Wind Energy Systems</div>
+              <div>• Green Energy Contracts</div>
+              <div>• Battery Storage</div>
+              <div>• Grid Modernization</div>
+            </div>
+            <div class="mt-4 pt-4 border-t text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Avg. ROI:</span>
+                <span class="font-medium text-green-600">4.3 years</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transport -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-3">Transport</h3>
+            <div class="space-y-2 text-sm text-gray-600">
+              <div>• Electric Vehicle Fleet</div>
+              <div>• Route Optimization</div>
+              <div>• Public Transport</div>
+              <div>• Remote Working</div>
+              <div>• Logistics Efficiency</div>
+            </div>
+            <div class="mt-4 pt-4 border-t text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Avg. ROI:</span>
+                <span class="font-medium text-green-600">3.7 years</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Operational -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-3">Operational</h3>
+            <div class="space-y-2 text-sm text-gray-600">
+              <div>• Waste Reduction</div>
+              <div>• Circular Economy</div>
+              <div>• Process Optimization</div>
+              <div>• Supply Chain</div>
+              <div>• Digital Transformation</div>
+            </div>
+            <div class="mt-4 pt-4 border-t text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Avg. ROI:</span>
+                <span class="font-medium text-green-600">1.8 years</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Recommendations -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">AI-Powered Recommendations</h2>
+          <p class="text-xl text-gray-600">Personalized action plans based on your industry, size, and goals</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-6">Top 5 Recommendations for Your Industry</h3>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3 p-4 bg-white rounded-lg shadow-sm">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-white text-sm font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900">LED Lighting Retrofit</h4>
+                    <p class="text-sm text-gray-600 mt-1">Replace 234 fixtures across 3 facilities</p>
+                    <div class="flex space-x-4 mt-2 text-xs text-gray-500">
+                      <span>Impact: 89 tCO2e/year</span>
+                      <span>Cost: £45k</span>
+                      <span>ROI: 1.2 years</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-3 p-4 bg-white rounded-lg shadow-sm">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-white text-sm font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900">Electric Vehicle Fleet</h4>
+                    <p class="text-sm text-gray-600 mt-1">Replace 12 delivery vehicles with EVs</p>
+                    <div class="flex space-x-4 mt-2 text-xs text-gray-500">
+                      <span>Impact: 156 tCO2e/year</span>
+                      <span>Cost: £280k</span>
+                      <span>ROI: 3.1 years</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-3 p-4 bg-white rounded-lg shadow-sm">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span class="text-white text-sm font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900">Solar Panel Installation</h4>
+                    <p class="text-sm text-gray-600 mt-1">500kW rooftop system with battery storage</p>
+                    <div class="flex space-x-4 mt-2 text-xs text-gray-500">
+                      <span>Impact: 287 tCO2e/year</span>
+                      <span>Cost: £425k</span>
+                      <span>ROI: 4.8 years</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-6">Investment Timeline</h3>
+              <div class="space-y-3">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div class="flex-1">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium">Year 1 (2024)</span>
+                      <span class="text-sm text-gray-600">£785k</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                      <div class="bg-green-500 h-2 rounded-full" style="width: 65%"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <div class="flex-1">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium">Year 2 (2025)</span>
+                      <span class="text-sm text-gray-600">£1.2M</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                      <div class="bg-blue-500 h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                  <div class="flex-1">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium">Year 3 (2026)</span>
+                      <span class="text-sm text-gray-600">£920k</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                      <div class="bg-purple-500 h-2 rounded-full" style="width: 77%"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="flex-1">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium">Year 4 (2027)</span>
+                      <span class="text-sm text-gray-600">£650k</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                      <div class="bg-yellow-500 h-2 rounded-full" style="width: 54%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-white rounded-lg border">
+                <h4 class="font-medium text-gray-900 mb-2">Total Investment Summary</h4>
+                <div class="flex justify-between text-sm">
+                  <span>Total Investment:</span>
+                  <span class="font-semibold">£3.56M</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span>Expected Savings:</span>
+                  <span class="font-semibold text-green-600">£4.2M</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span>Net Benefit:</span>
+                  <span class="font-semibold text-green-600">£640k</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-yellow-500 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Plan Your Net-Zero Journey?</h2>
+        <p class="text-xl text-yellow-100 mb-8">Get personalized recommendations and start building your roadmap today</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-yellow-600 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors">
+            Start Planning
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-yellow-600 transition-colors">
+            Book Consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

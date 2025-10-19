@@ -1,0 +1,620 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="How to Set Up Utility Integrations - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-600 to-green-800 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Utility Integration Guide</h1>
+          <p class="text-xl text-green-100 max-w-3xl mx-auto">
+            Step-by-step instructions for connecting your UK utility providers to automatically track energy consumption and emissions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Table of Contents -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
+          <h2 class="text-lg font-semibold text-blue-900 mb-4">What You'll Learn</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <ul class="space-y-2 text-sm text-blue-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Prerequisites and requirements
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Authentication setup
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Data mapping configuration
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="space-y-2 text-sm text-blue-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Testing and validation
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Monitoring and troubleshooting
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Best practices
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisites -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Prerequisites</h2>
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Before you start, ensure you have:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Account Requirements</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Active Carbon Recycling Platform account
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Business account with your utility provider
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Account administrator permissions
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Information Needed</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Utility account number(s)
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Meter point reference numbers (MPRN/MPAN)
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    API credentials (if available)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 1: Choose Your Provider -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">1</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Choose Your Utility Provider</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              We support 50+ UK utility providers including the Big Six, challenger brands, and green energy suppliers.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Major Suppliers</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• British Gas</li>
+                  <li>• EDF Energy</li>
+                  <li>• E.ON Next</li>
+                  <li>• SSE Energy Services</li>
+                  <li>• ScottishPower</li>
+                </ul>
+              </div>
+              <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Green Suppliers</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Octopus Energy</li>
+                  <li>• Bulb Energy</li>
+                  <li>• Good Energy</li>
+                  <li>• Ecotricity</li>
+                  <li>• OVO Energy</li>
+                </ul>
+              </div>
+              <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Challenger Brands</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Together Energy</li>
+                  <li>• Utilita</li>
+                  <li>• Co-op Energy</li>
+                  <li>• Igloo Energy</li>
+                  <li>• So Energy</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div class="flex">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-sm text-blue-800">
+                    <strong>Don't see your provider?</strong> We're constantly adding new integrations. 
+                    <a href="/contact" class="underline">Contact us</a> to request your utility provider.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2: Authentication Setup -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">2</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up Authentication</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <!-- API Authentication -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Option A: API Integration (Recommended)</h3>
+              <p class="text-gray-600 mb-4">
+                For providers that support API access, this provides real-time data synchronization.
+              </p>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">OAuth Setup (Most Providers)</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Log into your Carbon Recycling Platform dashboard</li>
+                  <li>Navigate to <strong>Integrations → Add New Integration</strong></li>
+                  <li>Select your utility provider from the list</li>
+                  <li>Click <strong>"Connect via API"</strong></li>
+                  <li>You'll be redirected to your utility provider's authorization page</li>
+                  <li>Grant permission for data access</li>
+                  <li>Return to our platform to complete setup</li>
+                </ol>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">API Key Setup (Select Providers)</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Log into your utility provider's business portal</li>
+                  <li>Navigate to API settings or developer section</li>
+                  <li>Generate a new API key with read permissions</li>
+                  <li>Copy the API key securely</li>
+                  <li>In our platform, paste the API key in the integration setup</li>
+                  <li>Enter your account number and meter details</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Manual Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Option B: Manual Data Upload</h3>
+              <p class="text-gray-600 mb-4">
+                For providers without API access, upload monthly bills and meter readings manually.
+              </p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-50 border rounded-lg p-4">
+                  <h4 class="font-semibold text-gray-900 mb-2">Supported Formats</h4>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• PDF bills (auto-extraction)</li>
+                    <li>• CSV data exports</li>
+                    <li>• Excel spreadsheets</li>
+                    <li>• Manual data entry</li>
+                  </ul>
+                </div>
+                <div class="bg-gray-50 border rounded-lg p-4">
+                  <h4 class="font-semibold text-gray-900 mb-2">Upload Process</h4>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Drag & drop files</li>
+                    <li>• Automatic data validation</li>
+                    <li>• Review before import</li>
+                    <li>• Monthly reminders</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Data Mapping -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">3</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Configure Data Mapping</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              Map your utility data fields to our carbon accounting categories for accurate emissions tracking.
+            </p>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Data Type
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Common Fields
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Carbon Category
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Emission Factor
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Electricity
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      kWh, Units, Consumption
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 2 - Location-based
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      0.193 kgCO2e/kWh
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Natural Gas
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      kWh, Therms, m³
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 - Direct
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      0.184 kgCO2e/kWh
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Renewable
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Green kWh, REGO certificates
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 2 - Market-based
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Provider-specific
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4: Testing -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">4</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Test Your Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Validation Checklist</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Data Quality Checks</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Historical data imports correctly</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Consumption values are reasonable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Emission calculations are accurate</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Date ranges align with billing periods</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">System Integration</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">API connection is stable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Sync frequency is appropriate</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Error handling works correctly</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Notifications are configured</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results Example -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Sample Test Results</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <pre class="text-sm text-gray-600"><code>Integration Test Results: Octopus Energy
+✅ Authentication: SUCCESS
+✅ Data Retrieval: SUCCESS (247 records)
+✅ Data Validation: SUCCESS
+✅ Emission Calculations: SUCCESS
+⚠️  Historical Gap: Missing data for Dec 2024 (manual upload required)
+
+Total Monthly Consumption: 2,450 kWh
+Estimated Emissions: 473.85 kgCO2e
+Data Quality Score: 94/100</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 5: Go Live -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">5</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Go Live & Monitor</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Enable Monitoring</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Set up automated sync schedules
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Configure email alerts for sync failures
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Enable data quality monitoring
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Set up monthly reporting schedules
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Best Practices</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Review data weekly for accuracy
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Keep backup of important credentials
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Update integration when changing suppliers
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Monitor for API changes and updates
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Common Issues & Solutions</h2>
+          
+          <div class="space-y-4">
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Authentication fails during OAuth setup
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Account permissions insufficient</li>
+                    <li>API access not enabled with utility provider</li>
+                    <li>Browser blocking third-party cookies</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Contact your utility provider to enable API access</li>
+                    <li>Try authentication in an incognito window</li>
+                    <li>Ensure you're using the account administrator login</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Data sync returns zero or incorrect values
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Account numbers or meter references incorrect</li>
+                    <li>Data mapping configuration issues</li>
+                    <li>Utility provider API changes</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Verify account details match your utility bill exactly</li>
+                    <li>Check data mapping settings in integration config</li>
+                    <li>Contact support if API responses have changed</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Integration stops working after initial setup
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>OAuth token expired</li>
+                    <li>API rate limits exceeded</li>
+                    <li>Utility provider system maintenance</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Re-authenticate the integration</li>
+                    <li>Check sync frequency settings</li>
+                    <li>Review error logs in the integration status page</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Need Help?</h2>
+            <p class="text-blue-100 mb-6">
+              Our support team is here to help you get your utility integrations up and running smoothly.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                Contact Support
+              </a>
+              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                View Documentation
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

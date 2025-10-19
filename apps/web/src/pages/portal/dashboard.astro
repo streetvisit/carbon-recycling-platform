@@ -1,0 +1,212 @@
+---
+// pages/portal/dashboard.astro - Supplier portal main dashboard
+import Layout from '../../layouts/Layout.astro'
+---
+
+<Layout title="Supplier Portal | Carbon Recycling Platform">
+  <div id="portalApp" class="min-h-screen bg-gray-50">
+    <!-- Loading state -->
+    <div id="loadingState" class="min-h-screen flex items-center justify-center">
+      <div class="text-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p class="text-gray-500">Loading portal...</p>
+      </div>
+    </div>
+
+    <!-- Unauthorized state -->
+    <div id="unauthorizedState" class="hidden min-h-screen flex items-center justify-center">
+      <div class="text-center">
+        <svg class="mx-auto h-12 w-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 class="mt-2 text-lg font-medium text-gray-900">Access Required</h3>
+        <p class="mt-2 text-sm text-gray-500">
+          You need a valid invitation to access the supplier portal.
+        </p>
+        <div class="mt-6">
+          <a
+            href="/"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+          >
+            Go to Homepage
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main portal -->
+    <div id="mainPortal" class="hidden">
+      <!-- Portal Header -->
+      <div id="portalHeaderContainer"></div>
+
+      <!-- Main Content -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Data Requests List -->
+          <div id="requestsListContainer"></div>
+
+          <!-- Submission Form -->
+          <div id="submissionFormContainer"></div>
+        </div>
+
+        <!-- Quick Help Section -->
+        <div class="mt-8 bg-white shadow rounded-lg p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">How to Use This Portal</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-blue-600 font-semibold text-lg">1</span>
+              </div>
+              <h4 class="text-sm font-medium text-gray-900 mb-2">Select a Request</h4>
+              <p class="text-xs text-gray-500">
+                Click on any data request from the left panel to view details and requirements.
+              </p>
+            </div>
+            
+            <div class="text-center">
+              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-green-600 font-semibold text-lg">2</span>
+              </div>
+              <h4 class="text-sm font-medium text-gray-900 mb-2">Submit Your Data</h4>
+              <p class="text-xs text-gray-500">
+                Enter the requested values with proper units and any additional notes or context.
+              </p>
+            </div>
+            
+            <div class="text-center">
+              <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-purple-600 font-semibold text-lg">3</span>
+              </div>
+              <h4 class="text-sm font-medium text-gray-900 mb-2">Track Progress</h4>
+              <p class="text-xs text-gray-500">
+                Monitor the status of your submissions and receive feedback from the host company.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+            <div class="text-sm text-blue-800">
+              <h4 class="font-medium mb-1">Need Help?</h4>
+              <p>If you have questions about any data request, you can add notes to your submission or contact your host company directly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import PortalHeader from '../../components/PortalHeader.tsx'
+    import PendingRequestsList from '../../components/PendingRequestsList.tsx'
+    import DataSubmissionForm from '../../components/DataSubmissionForm.tsx'
+    import { render } from 'preact'
+    import { useState, useEffect } from 'preact/hooks'
+    import { createElement as h } from 'preact'
+
+    function SupplierPortalApp() {
+      const [supplierToken, setSupplierToken] = useState(null)
+      const [supplierInfo, setSupplierInfo] = useState(null)
+      const [selectedRequest, setSelectedRequest] = useState(null)
+      const [isAuthorized, setIsAuthorized] = useState(false)
+      const [loading, setLoading] = useState(true)
+
+      useEffect(() => {
+        // Check for stored authentication
+        const token = localStorage.getItem('supplierToken')
+        const info = localStorage.getItem('supplierInfo')
+
+        if (token && info) {
+          setSupplierToken(token)
+          setSupplierInfo(JSON.parse(info))
+          setIsAuthorized(true)
+        } else {
+          setIsAuthorized(false)
+        }
+        
+        setLoading(false)
+      }, [])
+
+      useEffect(() => {
+        // Update UI state based on authorization
+        if (loading) {
+          document.getElementById('loadingState').classList.remove('hidden')
+          document.getElementById('unauthorizedState').classList.add('hidden')
+          document.getElementById('mainPortal').classList.add('hidden')
+        } else if (isAuthorized) {
+          document.getElementById('loadingState').classList.add('hidden')
+          document.getElementById('unauthorizedState').classList.add('hidden')
+          document.getElementById('mainPortal').classList.remove('hidden')
+        } else {
+          document.getElementById('loadingState').classList.add('hidden')
+          document.getElementById('unauthorizedState').classList.remove('hidden')
+          document.getElementById('mainPortal').classList.add('hidden')
+        }
+      }, [loading, isAuthorized])
+
+      const handleLogout = () => {
+        localStorage.removeItem('supplierToken')
+        localStorage.removeItem('supplierInfo')
+        window.location.href = '/'
+      }
+
+      const handleRequestSelect = (request) => {
+        setSelectedRequest(request)
+      }
+
+      const handleSubmissionSuccess = () => {
+        // Refresh the requests list by clearing and re-rendering
+        setSelectedRequest(null)
+        // Force re-render of requests list by updating a key or state
+        window.location.reload()
+      }
+
+      if (!isAuthorized || loading) {
+        return null // States handled by the static HTML above
+      }
+
+      return h('div', {},
+        h(PortalHeader, {
+          supplierName: supplierInfo?.name || 'Supplier',
+          hostCompanyName: 'Carbon Recycling Host Company',
+          onLogout: handleLogout
+        }),
+        h('div', { className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8' },
+          h('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-8' },
+            h(PendingRequestsList, {
+              onSelectRequest: handleRequestSelect,
+              selectedRequestId: selectedRequest?.id,
+              supplierToken: supplierToken
+            }),
+            h(DataSubmissionForm, {
+              request: selectedRequest,
+              supplierToken: supplierToken,
+              onSubmitted: handleSubmissionSuccess
+            })
+          )
+        )
+      )
+    }
+
+    // Mount header component
+    function mountPortalComponents() {
+      const portalHeaderContainer = document.getElementById('portalHeaderContainer')
+      const requestsListContainer = document.getElementById('requestsListContainer') 
+      const submissionFormContainer = document.getElementById('submissionFormContainer')
+
+      if (portalHeaderContainer && requestsListContainer && submissionFormContainer) {
+        render(h(SupplierPortalApp), document.getElementById('mainPortal'))
+      } else {
+        // Retry mounting after a short delay
+        setTimeout(mountPortalComponents, 100)
+      }
+    }
+
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mountPortalComponents)
+    } else {
+      mountPortalComponents()
+    }
+  </script>
+</Layout>

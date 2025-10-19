@@ -1,0 +1,425 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Smart Reporting - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Smart Reporting</h1>
+          <p class="text-xl text-indigo-100 max-w-3xl mx-auto mb-8">
+            Automated compliance reports, custom dashboards, and stakeholder communications. Generate professional reports that meet regulatory requirements and impress stakeholders.
+          </p>
+          <a href="/sign-up" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors inline-flex items-center">
+            Generate Reports
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report Templates Demo -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Professional Report Templates</h2>
+          <p class="text-xl text-gray-600">Choose from industry-standard templates or create custom reports</p>
+        </div>
+
+        <!-- Template Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="bg-white border-2 border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+            <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+              <div class="text-center text-white">
+                <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h3 class="text-xl font-bold">SECR Report</h3>
+                <p class="text-green-100 mt-2">UK Compliance</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-sm font-medium text-gray-600">Streamlined Energy & Carbon Reporting</span>
+                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Required</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">Automatically generated reports meeting UK SECR requirements with all mandatory disclosures and calculations.</p>
+              <div class="space-y-2 text-xs text-gray-500">
+                <div class="flex justify-between">
+                  <span>Energy consumption</span>
+                  <span>✓ Included</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Greenhouse gas emissions</span>
+                  <span>✓ Included</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Energy efficiency actions</span>
+                  <span>✓ Included</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+            <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+              <div class="text-center text-white">
+                <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                </svg>
+                <h3 class="text-xl font-bold">CDP Response</h3>
+                <p class="text-blue-100 mt-2">Global Standard</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-sm font-medium text-gray-600">Carbon Disclosure Project</span>
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Optional</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">Comprehensive CDP questionnaire responses with detailed climate data and strategic insights.</p>
+              <div class="space-y-2 text-xs text-gray-500">
+                <div class="flex justify-between">
+                  <span>Climate governance</span>
+                  <span>✓ Included</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Risks & opportunities</span>
+                  <span>✓ Included</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Business strategy</span>
+                  <span>✓ Included</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+            <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+              <div class="text-center text-white">
+                <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                <h3 class="text-xl font-bold">ESG Report</h3>
+                <p class="text-purple-100 mt-2">Stakeholder Ready</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-sm font-medium text-gray-600">Environmental, Social & Governance</span>
+                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-medium">Premium</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">Comprehensive sustainability reports designed for investors, customers, and regulatory bodies.</p>
+              <div class="space-y-2 text-xs text-gray-500">
+                <div class="flex justify-between">
+                  <span>Environmental metrics</span>
+                  <span>✓ Included</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Social impact data</span>
+                  <span>✓ Included</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Governance framework</span>
+                  <span>✓ Included</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Report Features -->
+        <div class="bg-gray-50 rounded-lg p-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-6">Report Features & Customization</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-4">Automated Generation</h4>
+              <div class="space-y-3">
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">One-click report generation</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Scheduled automatic delivery</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Real-time data integration</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Multi-format export (PDF, Excel, PPT)</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-4">Custom Branding</h4>
+              <div class="space-y-3">
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Company logos and colors</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Custom report layouts</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Personalized messaging</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Executive summary templates</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Report Section -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Sample Report Preview</h2>
+          <p class="text-xl text-gray-600">See what your automated reports will look like</p>
+        </div>
+
+        <!-- Report Preview -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="bg-gradient-to-r from-gray-800 to-gray-900 px-8 py-6">
+            <div class="flex items-center justify-between text-white">
+              <div>
+                <h3 class="text-2xl font-bold">2024 Sustainability Report</h3>
+                <p class="text-gray-300 mt-1">Acme Manufacturing Ltd</p>
+              </div>
+              <div class="text-right">
+                <p class="text-gray-300">Report Period</p>
+                <p class="font-semibold">January - December 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-8">
+            <!-- Executive Summary -->
+            <div class="mb-8">
+              <h4 class="text-xl font-semibold text-gray-900 mb-4">Executive Summary</h4>
+              <p class="text-gray-600 mb-4">
+                In 2024, Acme Manufacturing achieved a 15.3% reduction in carbon emissions compared to our 2023 baseline, 
+                exceeding our annual target of 12%. This performance was driven by strategic investments in renewable energy, 
+                process optimization, and supply chain improvements.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="bg-green-50 p-4 rounded-lg text-center">
+                  <div class="text-2xl font-bold text-green-600">-15.3%</div>
+                  <div class="text-sm text-gray-600">Carbon Reduction</div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                  <div class="text-2xl font-bold text-blue-600">£234K</div>
+                  <div class="text-sm text-gray-600">Cost Savings</div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                  <div class="text-2xl font-bold text-purple-600">68%</div>
+                  <div class="text-sm text-gray-600">Renewable Energy</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Metrics Table -->
+            <div class="mb-8">
+              <h4 class="text-xl font-semibold text-gray-900 mb-4">Key Performance Indicators</h4>
+              <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metric</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">2023</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">2024</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Change</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Total Emissions (tCO2e)</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1,470</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1,245</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-medium">-15.3%</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-12%</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Energy Consumption (MWh)</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3,245</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2,890</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-medium">-10.9%</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-8%</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Renewable Energy (%)</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">42%</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">68%</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-medium">+26pp</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">60%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="mb-8">
+              <h4 class="text-xl font-semibold text-gray-900 mb-4">Trend Analysis</h4>
+              <div class="bg-gray-50 rounded-lg p-6 h-64 flex items-center justify-center">
+                <div class="text-center text-gray-500">
+                  <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                  </svg>
+                  <p>Interactive charts and visualizations</p>
+                  <p class="text-sm">Monthly emissions trends, departmental breakdowns, and progress tracking</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliance Features -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Compliance Made Simple</h2>
+          <p class="text-xl text-gray-600">Meet all regulatory requirements with confidence</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg border shadow-sm">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">SECR Compliance</h3>
+            <p class="text-gray-600 mb-4">Automatically meet UK Streamlined Energy & Carbon Reporting requirements with compliant calculations and disclosures.</p>
+            <div class="text-sm text-gray-500">
+              <p>• Energy consumption reporting</p>
+              <p>• Greenhouse gas emissions</p>
+              <p>• Energy efficiency measures</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">EU CSRD Ready</h3>
+            <p class="text-gray-600 mb-4">Prepare for the Corporate Sustainability Reporting Directive with comprehensive ESG data collection and reporting.</p>
+            <div class="text-sm text-gray-500">
+              <p>• Double materiality assessment</p>
+              <p>• ESRS-aligned reporting</p>
+              <p>• Digital taxonomy compliance</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">GRI Standards</h3>
+            <p class="text-gray-600 mb-4">Generate reports following Global Reporting Initiative standards for consistent, comparable sustainability reporting.</p>
+            <div class="text-sm text-gray-500">
+              <p>• Universal standards</p>
+              <p>• Topic-specific standards</p>
+              <p>• Sector-specific guidance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-indigo-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Automate Your Reporting?</h2>
+        <p class="text-xl text-indigo-100 mb-8">Generate professional, compliant reports in minutes instead of weeks</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors">
+            Try Report Builder
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+            Request Demo Report
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

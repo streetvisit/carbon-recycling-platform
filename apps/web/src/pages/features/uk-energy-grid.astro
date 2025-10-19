@@ -1,0 +1,291 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import UKEnergyDashboard from '../../components/UKEnergyDashboard.tsx';
+import UKEnergyMap from '../../components/UKEnergyMap.tsx';
+---
+
+<Layout title="UK Energy Grid Live - CarbonRecycling.co.uk">
+  <div class="min-h-screen bg-gray-50">
+    {/* Hero Section */}
+    <section class="bg-gradient-to-br from-blue-600 via-green-600 to-purple-700 text-white relative overflow-hidden">
+      <div class="absolute inset-0 bg-black/20"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <div class="text-center">
+          <div class="mb-8">
+            <span class="text-6xl">🇬🇧</span>
+          </div>
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6">
+            UK Energy Grid <span class="text-yellow-300">Live</span>
+          </h1>
+          <p class="text-xl lg:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            Real-time insights into the UK's electricity generation mix, carbon intensity, and energy trends to help you make smarter sustainability decisions.
+          </p>
+          
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto">
+            <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+              <div class="text-2xl mb-2">⚡</div>
+              <div class="text-lg font-bold">Live Demand</div>
+              <div class="text-sm opacity-80">Real-time GW</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+              <div class="text-2xl mb-2">🌱</div>
+              <div class="text-lg font-bold">Renewables</div>
+              <div class="text-sm opacity-80">Wind, Solar, Hydro</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+              <div class="text-2xl mb-2">🌍</div>
+              <div class="text-lg font-bold">Carbon Intensity</div>
+              <div class="text-sm opacity-80">gCO₂/kWh</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+              <div class="text-2xl mb-2">💰</div>
+              <div class="text-lg font-bold">Energy Price</div>
+              <div class="text-sm opacity-80">£/MWh</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Live Dashboard */}
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Live Grid Dashboard</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Monitor the UK's electricity system in real-time and understand how your energy consumption impacts your carbon footprint.
+          </p>
+        </div>
+        
+        <UKEnergyDashboard client:load />
+      </div>
+    </section>
+
+    {/* Regional Map */}
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Regional Energy Breakdown</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore energy generation and carbon intensity across different regions of the UK with our interactive map.
+          </p>
+        </div>
+        
+        <UKEnergyMap client:load />
+      </div>
+    </section>
+
+    {/* Features Section */}
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Track UK Grid Data?</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Understanding the electricity grid helps you make informed decisions about when to consume energy for the lowest carbon impact.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-green-50 rounded-lg p-8">
+            <div class="text-4xl mb-4">🕒</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Optimal Timing</h3>
+            <p class="text-gray-600">
+              Time your energy-intensive activities when renewable generation is high and carbon intensity is low, reducing your environmental impact.
+            </p>
+          </div>
+
+          <div class="bg-blue-50 rounded-lg p-8">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Grid Context</h3>
+            <p class="text-gray-600">
+              Understand how national energy trends affect your carbon footprint calculations and make data-driven sustainability decisions.
+            </p>
+          </div>
+
+          <div class="bg-purple-50 rounded-lg p-8">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Smart Planning</h3>
+            <p class="text-gray-600">
+              Plan ahead by monitoring grid patterns and renewable forecasts to align your operations with cleaner energy periods.
+            </p>
+          </div>
+
+          <div class="bg-yellow-50 rounded-lg p-8">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Live Updates</h3>
+            <p class="text-gray-600">
+              Real-time data updates every 30 seconds, keeping you informed of the latest grid conditions and generation mix changes.
+            </p>
+          </div>
+
+          <div class="bg-orange-50 rounded-lg p-8">
+            <div class="text-4xl mb-4">🌍</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Carbon Impact</h3>
+            <p class="text-gray-600">
+              See immediately how different energy sources contribute to overall carbon intensity and make conscious consumption choices.
+            </p>
+          </div>
+
+          <div class="bg-indigo-50 rounded-lg p-8">
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Trend Analysis</h3>
+            <p class="text-gray-600">
+              Monitor daily patterns in renewable generation, demand peaks, and carbon intensity to identify the best times for energy use.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Integration Section */}
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 lg:p-12 text-white">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 class="text-3xl font-bold mb-4">Integrated with Your Analytics</h2>
+              <p class="text-green-100 text-lg mb-6">
+                The UK Energy Grid dashboard is seamlessly integrated with your carbon tracking platform, providing context for all your sustainability metrics.
+              </p>
+              <ul class="space-y-3 text-green-100">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>
+                  Factor grid carbon intensity into your emissions calculations
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>
+                  Time energy-intensive processes during low-carbon periods
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>
+                  Compare your efficiency against national renewable trends
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>
+                  Access historical grid data for comprehensive reporting
+                </li>
+              </ul>
+            </div>
+            
+            <div class="text-center">
+              <div class="text-6xl mb-4">🔗</div>
+              <p class="text-lg font-medium mb-4">Connected to your dashboard</p>
+              <a 
+                href="/dashboard/analytics" 
+                class="inline-flex items-center px-6 py-3 bg-white text-green-600 font-medium rounded-lg hover:bg-green-50 transition-colors"
+              >
+                View Full Analytics Dashboard
+                <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Technical Details */}
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Technical Specifications</h2>
+          <p class="text-xl text-gray-600">
+            Built with accuracy and reliability in mind, using real UK grid patterns and industry-standard calculations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="border border-gray-200 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Data Sources</h3>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>• Simulates National Grid ESO patterns</li>
+              <li>• Follows BMRS data structures</li>
+              <li>• Uses realistic UK generation mix</li>
+              <li>• Based on historical grid behavior</li>
+            </ul>
+          </div>
+
+          <div class="border border-gray-200 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Generation Types</h3>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>• Wind (Offshore & Onshore)</li>
+              <li>• Solar Photovoltaic</li>
+              <li>• Natural Gas</li>
+              <li>• Nuclear</li>
+              <li>• Hydroelectric & Pumped Storage</li>
+              <li>• Biomass & Interconnectors</li>
+            </ul>
+          </div>
+
+          <div class="border border-gray-200 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Metrics Calculated</h3>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>• Carbon intensity (gCO₂/kWh)</li>
+              <li>• Renewable percentage</li>
+              <li>• Supply-demand balance</li>
+              <li>• Energy pricing (£/MWh)</li>
+              <li>• Real-time generation mix</li>
+              <li>• Grid stability indicators</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 bg-gray-50 rounded-lg p-8">
+          <div class="text-center">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">🔄 Updates Every 30 Seconds</h3>
+            <p class="text-gray-600 mb-6">
+              Our dashboard refreshes automatically to show you the most current grid conditions, just like the real UK energy system.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div class="bg-white rounded p-4">
+                <div class="text-2xl text-green-600 font-bold">~35GW</div>
+                <div class="text-sm text-gray-600">Typical UK Demand</div>
+              </div>
+              <div class="bg-white rounded p-4">
+                <div class="text-2xl text-blue-600 font-bold">40-60%</div>
+                <div class="text-sm text-gray-600">Renewables Range</div>
+              </div>
+              <div class="bg-white rounded p-4">
+                <div class="text-2xl text-purple-600 font-bold">150-250g</div>
+                <div class="text-sm text-gray-600">Carbon Intensity</div>
+              </div>
+              <div class="bg-white rounded p-4">
+                <div class="text-2xl text-orange-600 font-bold">£50-150</div>
+                <div class="text-sm text-gray-600">Energy Price Range</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Call to Action */}
+    <section class="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-4">Ready to Track Your Carbon Impact?</h2>
+        <p class="text-xl text-green-100 mb-8">
+          Combine UK grid insights with your own emissions data for the complete sustainability picture.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/dashboard/analytics" 
+            class="inline-flex items-center px-8 py-4 bg-white text-green-600 font-semibold rounded-lg hover:bg-green-50 transition-colors"
+          >
+            View Live Dashboard
+            <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a 
+            href="/features/analytics-dashboard" 
+            class="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-green-600 transition-colors"
+          >
+            Explore All Analytics
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

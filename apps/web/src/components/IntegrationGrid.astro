@@ -1,0 +1,90 @@
+---
+interface Integration {
+  id: string;
+  name: string;
+  provider: string;
+  type: 'api_integration' | 'file_upload' | 'manual_entry';
+  description: string;
+  logo: string;
+}
+
+const integrations: Integration[] = [
+  {
+    id: 'aws',
+    name: 'Amazon Web Services',
+    provider: 'aws',
+    type: 'api_integration',
+    description: 'Connect your AWS account to pull EC2, S3, and other service usage data',
+    logo: '☁️'
+  },
+  {
+    id: 'azure',
+    name: 'Microsoft Azure',
+    provider: 'azure',
+    type: 'api_integration',
+    description: 'Integrate with Azure services for cloud infrastructure emissions',
+    logo: '🔷'
+  },
+  {
+    id: 'edf_energy',
+    name: 'EDF Energy',
+    provider: 'edf_energy',
+    type: 'api_integration',
+    description: 'Connect to your EDF Energy account for electricity consumption data',
+    logo: '⚡'
+  },
+  {
+    id: 'csv_fleet',
+    name: 'Fleet Data Upload',
+    provider: 'csv_fleet_data',
+    type: 'file_upload',
+    description: 'Upload CSV files containing vehicle fleet and fuel consumption data',
+    logo: '🚛'
+  },
+  {
+    id: 'csv_facilities',
+    name: 'Facilities Data Upload',
+    provider: 'csv_facilities_data',
+    type: 'file_upload',
+    description: 'Upload CSV files with office and facility energy consumption data',
+    logo: '🏢'
+  },
+  {
+    id: 'manual_entry',
+    name: 'Manual Data Entry',
+    provider: 'manual_entry',
+    type: 'manual_entry',
+    description: 'Manually input emission data for smaller data sources',
+    logo: '✏️'
+  }
+];
+---
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {integrations.map((integration) => (
+    <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow">
+      <div class="p-6">
+        <div class="flex items-center">
+          <div class="text-3xl mr-4">{integration.logo}</div>
+          <div class="flex-1">
+            <h3 class="text-lg font-medium text-gray-900">
+              {integration.name}
+            </h3>
+            <p class="mt-2 text-sm text-gray-500">
+              {integration.description}
+            </p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <button 
+            class="connect-integration-btn w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+            data-provider={integration.provider}
+            data-type={integration.type}
+          >
+            Connect
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>

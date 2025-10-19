@@ -1,0 +1,915 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="How to Set Up Manufacturing System Integrations - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-700 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Manufacturing Integration Guide</h1>
+          <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+            Connect your manufacturing and industrial systems to track energy consumption, production emissions, and operational efficiency in real-time.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Table of Contents -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
+          <h2 class="text-lg font-semibold text-blue-900 mb-4">What You'll Learn</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <ul class="space-y-2 text-sm text-blue-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Industrial system identification & access
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  OT/IT network integration setup
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Production & energy data extraction
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="space-y-2 text-sm text-blue-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Process emissions tracking & monitoring
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Manufacturing efficiency optimization
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Sustainability reporting & compliance
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisites -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Prerequisites</h2>
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Before you start, ensure you have:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">System Access Requirements</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Access to manufacturing execution systems (MES)
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Industrial control system (SCADA/PLC) connectivity
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    IT/OT network permissions and security clearance
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Manufacturing Data Needed</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Production schedules and volume data
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Energy consumption meters and sensors
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Material consumption and waste tracking
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 1: Identify Your Manufacturing Systems -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">1</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Identify Your Manufacturing Systems</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              We support 15+ major industrial automation and manufacturing systems with specialized connectors for carbon tracking.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div class="border rounded-lg p-4 hover:border-blue-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-gray-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-gray-600">SMN</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Siemens</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• SIMATIC PCS 7 (Process Control)</li>
+                  <li>• WinCC SCADA & HMI systems</li>
+                  <li>• MindSphere IoT platform</li>
+                  <li>• Opcenter MES & MOM</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    OPC UA
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-blue-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-orange-600">RAL</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Rockwell Automation</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• FactoryTalk View SE/ME</li>
+                  <li>• Allen-Bradley ControlLogix PLCs</li>
+                  <li>• FactoryTalk Historian</li>
+                  <li>• MES & Manufacturing Analytics</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    EtherNet/IP
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-blue-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-blue-600">GE</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">GE Digital</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Proficy Plant Applications</li>
+                  <li>• iFIX SCADA systems</li>
+                  <li>• Predix IoT platform</li>
+                  <li>• Manufacturing Execution Systems</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    OPC Classic
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-blue-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-green-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-green-600">SCH</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Schneider Electric</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• EcoStruxure Plant SCADA Expert</li>
+                  <li>• Modicon PLCs & PACs</li>
+                  <li>• Wonderware System Platform</li>
+                  <li>• AVEVA Manufacturing Execution</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Modbus TCP
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Manufacturing Systems -->
+            <div class="border-t border-gray-200 pt-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Additional Manufacturing Platforms</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">ABB</h5>
+                  <p class="text-xs text-gray-600 mt-1">System 800xA, AC800M</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Honeywell</h5>
+                  <p class="text-xs text-gray-600 mt-1">Experion PKS, MXP</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Emerson</h5>
+                  <p class="text-xs text-gray-600 mt-1">DeltaV, PlantWeb</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Yokogawa</h5>
+                  <p class="text-xs text-gray-600 mt-1">CENTUM VP, ProSafe-RS</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Mitsubishi</h5>
+                  <p class="text-xs text-gray-600 mt-1">iQ-R, GOT HMI</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Omron</h5>
+                  <p class="text-xs text-gray-600 mt-1">NX/NJ Controllers</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Beckhoff</h5>
+                  <p class="text-xs text-gray-600 mt-1">TwinCAT, IoT Platform</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Aveva</h5>
+                  <p class="text-xs text-gray-600 mt-1">System Platform, MES</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+              <div class="flex">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-sm text-blue-800">
+                    <strong>Legacy or custom systems?</strong> We specialize in connecting older industrial systems and can create custom protocols for proprietary equipment. 
+                    <a href="/contact" class="underline">Contact us</a> to discuss your specific manufacturing environment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2: OT/IT Integration Setup -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">2</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up OT/IT Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <!-- Siemens Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-gray-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-gray-600">SMN</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Siemens Integration</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Configure OPC UA Server</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Access SIMATIC PCS 7 or WinCC Runtime Professional</li>
+                  <li>Enable <strong>OPC UA Server</strong> in system configuration</li>
+                  <li>Create carbon monitoring user: <code class="bg-gray-200 px-1 rounded">carbon_data_reader</code></li>
+                  <li>Configure security policy and authentication:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Security Policy: Basic256Sha256
+- Authentication: Username/Password + Certificate
+- Endpoint: opc.tcp://plc-server:4840
+- Namespace: Carbon monitoring tags</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Tag Configuration for Carbon Tracking</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Configure energy consumption tags (kWh, gas flow, steam usage)</li>
+                  <li>• Set up production count and batch tracking variables</li>
+                  <li>• Enable material flow and waste output measurements</li>
+                  <li>• Configure equipment efficiency and runtime metrics</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Rockwell Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-orange-600">RAL</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Rockwell Automation Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">FactoryTalk Gateway Configuration</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Open <strong>FactoryTalk Administration Console</strong></li>
+                  <li>Configure <strong>FactoryTalk Gateway</strong> for external access</li>
+                  <li>Set up carbon data collection user with appropriate permissions</li>
+                  <li>Configure data server connections:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- FactoryTalk Historian SE: Energy data collection
+- ControlLogix PLC: Production counters and material flow
+- PowerFlex Drives: Motor energy consumption
+- ProcessLogix: Batch tracking and quality data</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Data Collection Setup</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Configure trending and data collection in FactoryTalk View</li>
+                  <li>Set up EtherNet/IP data acquisition from energy meters</li>
+                  <li>Enable real-time data streaming via CIP connections</li>
+                  <li>Test data connectivity and establish baseline measurements</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- GE Digital Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-blue-600">GE</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">GE Digital Platform Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Proficy Historian Configuration</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Access <strong>Proficy Administrator</strong> application</li>
+                  <li>Create carbon data collection node and configure collectors</li>
+                  <li>Set up OPC Classic or OPC UA data interfaces</li>
+                  <li>Configure data collection parameters:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Collection Interval: 1 minute (energy data)
+- Collection Interval: 5 minutes (production data)
+- Compression: Enable for storage efficiency
+- Archive Settings: 13 months retention minimum</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">iFIX SCADA Integration</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Configure database blocks for carbon monitoring tags</li>
+                  <li>• Set up calculated blocks for emissions calculations</li>
+                  <li>• Enable web service interfaces for external data access</li>
+                  <li>• Configure alarm and event logging for sustainability KPIs</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Production Data Mapping -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">3</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Configure Production Data Mapping</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              Map manufacturing data to carbon accounting categories for comprehensive emissions tracking across production processes.
+            </p>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Manufacturing Process
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Data Sources
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Emission Categories
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Carbon Scope
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Energy Consumption
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Electricity meters, gas flow sensors, steam consumption, compressed air usage
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Purchased electricity & fuels
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 & 2
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Raw Material Processing
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Material flow sensors, inventory tracking, batch records, process parameters
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Purchased goods & services
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 1
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Production Output
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Production counters, quality data, yield measurements, packaging quantities
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Product carbon intensity
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Product lifecycle
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Waste & By-products
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Waste weighing systems, recycling data, disposal tracking, emission monitors
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Waste generated in operations
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 5
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Equipment Operations
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Motor runtime hours, equipment efficiency, maintenance schedules, downtime
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Operational efficiency
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 & 2
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Process Emissions
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      CEMS data, chemical reactions, combustion processes, fugitive emissions
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Direct process emissions
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Manufacturing Optimization Framework -->
+            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h4 class="font-semibold text-blue-900 mb-3">Manufacturing Carbon Optimization Framework</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <div class="font-medium text-blue-900 mb-2">Energy Efficiency</div>
+                  <ul class="text-blue-700 space-y-1">
+                    <li>• Peak demand management</li>
+                    <li>• Equipment optimization</li>
+                    <li>• Process parameter tuning</li>
+                    <li>• Renewable energy integration</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-blue-900 mb-2">Process Optimization</div>
+                  <ul class="text-blue-700 space-y-1">
+                    <li>• Yield improvement strategies</li>
+                    <li>• Quality enhancement programs</li>
+                    <li>• Waste reduction initiatives</li>
+                    <li>• Circular economy practices</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-blue-900 mb-2">Predictive Maintenance</div>
+                  <ul class="text-blue-700 space-y-1">
+                    <li>• Equipment health monitoring</li>
+                    <li>• Preventive maintenance scheduling</li>
+                    <li>• Performance degradation tracking</li>
+                    <li>• Energy efficiency monitoring</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4: Testing & Validation -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">4</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Test & Validate Manufacturing Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Manufacturing Integration Testing Checklist</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Technical Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">OT/IT network connectivity established</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Industrial protocol communication active</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Real-time data streaming functional</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Security policies and access controls verified</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Data historian integration working</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Production Data Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Energy consumption data accurate</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Production counts match actual output</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Material flow tracking operational</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Carbon intensity calculations reasonable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Manufacturing team approval obtained</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results Example -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Sample Manufacturing Integration Test Results</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <pre class="text-sm text-gray-600"><code>Manufacturing Integration Test Results: Siemens PCS 7 Production Line
+✅ OPC UA Connectivity: SUCCESS (192 tags streaming)
+✅ Energy Monitoring: SUCCESS (4 main meters + 12 sub-meters)
+✅ Production Tracking: SUCCESS (3 production lines monitored)
+✅ Material Flow: SUCCESS (Raw materials and waste tracking active)
+⚠️  Data Quality: WARNING (1.8% missing data during shift changes)
+
+Manufacturing Carbon Summary (Last 7 Days):
+- Total Production: 2,847 units (target: 2,900 units)
+- Energy Consumption: 89,456 kWh
+- Process Efficiency: 94.2% (↑2.1% from previous week)
+- Carbon Intensity: 15.7 kg CO₂e/unit (↓0.8 kg from baseline)
+- Waste Generation: 847 kg (67% recycled)
+
+Optimization Opportunities:
+- Motor drive efficiency optimization: 8.2% energy savings potential
+- Heat recovery system implementation: 12% thermal efficiency gain
+- Predictive maintenance scheduling: 4.5% uptime improvement</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 5: Smart Manufacturing Analytics -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">5</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up Smart Manufacturing Analytics</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Automated Process Analytics</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Real-time energy efficiency monitoring
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Production-based carbon intensity tracking
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Equipment performance benchmarking
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Predictive maintenance optimization
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Material waste reduction analytics
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Sustainability Reporting</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    ISO 14001 environmental management compliance
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    GRI Standards manufacturing disclosure
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Product carbon footprint (PCF) calculations
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    SASB industry-specific metrics tracking
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Automated ESG performance reporting
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Manufacturing Dashboard Preview -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border">
+              <h4 class="font-semibold text-gray-900 mb-2">Your Manufacturing Carbon Dashboard Will Show:</h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Production Emissions</div>
+                  <div class="text-2xl font-bold text-blue-600">18.4</div>
+                  <div class="text-gray-600">kg CO₂e/unit</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Energy Efficiency</div>
+                  <div class="text-2xl font-bold text-green-600">94.2%</div>
+                  <div class="text-gray-600">OEE performance</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Waste Reduction</div>
+                  <div class="text-2xl font-bold text-purple-600">67%</div>
+                  <div class="text-gray-600">recycling rate</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Cost Savings</div>
+                  <div class="text-2xl font-bold text-orange-600">£83K</div>
+                  <div class="text-gray-600">efficiency/month</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Common Issues & Solutions</h2>
+          
+          <div class="space-y-4">
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                OT/IT network connectivity and security issues
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Industrial network firewalls blocking external access</li>
+                    <li>Security policies preventing OT/IT data bridging</li>
+                    <li>VPN or network segmentation configuration issues</li>
+                    <li>SSL certificate or authentication problems</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Work with IT security team to configure firewall rules</li>
+                    <li>Implement industrial DMZ for secure data exchange</li>
+                    <li>Use OPC UA security features and certificates</li>
+                    <li>Set up VPN tunnels with appropriate encryption</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Inconsistent or missing production data
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>PLC program changes affecting tag structure</li>
+                    <li>Equipment downtime or maintenance periods</li>
+                    <li>Sensor failures or calibration drift</li>
+                    <li>Data historian storage or archiving issues</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Implement version control for PLC programs and tag databases</li>
+                    <li>Set up data quality monitoring and alerts</li>
+                    <li>Establish regular sensor calibration schedules</li>
+                    <li>Configure automatic data backup and redundancy</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Industrial protocol communication errors
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Protocol version mismatches between systems</li>
+                    <li>Network congestion during peak production periods</li>
+                    <li>Industrial ethernet or fieldbus configuration issues</li>
+                    <li>Device driver compatibility problems</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Verify protocol versions and update drivers as needed</li>
+                    <li>Optimize network bandwidth and prioritize critical data</li>
+                    <li>Check industrial ethernet settings and cable integrity</li>
+                    <li>Use protocol analyzers to debug communication issues</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Carbon calculation accuracy for complex processes
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Incorrect emission factors for specific industrial processes</li>
+                    <li>Complex multi-product production lines affecting allocation</li>
+                    <li>By-product and co-product allocation methodology issues</li>
+                    <li>Scope 3 upstream emissions not properly accounted</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Use industry-specific emission factors and methodologies</li>
+                    <li>Implement mass or economic allocation methods consistently</li>
+                    <li>Track material-specific carbon content and provenance</li>
+                    <li>Validate calculations with third-party carbon accounting experts</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Need Help?</h2>
+            <p class="text-blue-100 mb-6">
+              Our industrial automation and carbon accounting specialists have deep experience with manufacturing systems and sustainability reporting.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                Contact Support
+              </a>
+              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                View Documentation
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

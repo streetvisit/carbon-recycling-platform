@@ -1,0 +1,816 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="How to Set Up Cloud Service Integrations - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-700 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Cloud Integration Guide</h1>
+          <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+            Connect your cloud infrastructure to automatically track compute, storage, and network emissions across AWS, Azure, GCP, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Table of Contents -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
+          <h2 class="text-lg font-semibold text-blue-900 mb-4">What You'll Learn</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <ul class="space-y-2 text-sm text-blue-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Cloud provider setup and permissions
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Service account configuration
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Billing integration and cost allocation
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="space-y-2 text-sm text-blue-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Emission factor configuration
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Regional data center mapping
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Monitoring and optimization
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisites -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Prerequisites</h2>
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Before you start, ensure you have:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Account Requirements</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Active Carbon Recycling Platform account
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Cloud provider administrator access
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Billing account access (for cost data)
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Information Needed</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Cloud account IDs and subscription details
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Primary regions and data centers used
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Resource tagging strategy (if any)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 1: Choose Your Provider -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">1</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Choose Your Cloud Provider</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              We support 20+ cloud providers from major hyperscalers to specialized platforms.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div class="border rounded-lg p-4 hover:border-blue-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-orange-600">AWS</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Amazon Web Services</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• EC2, S3, RDS, Lambda</li>
+                  <li>• Cost & Usage Reports</li>
+                  <li>• CloudWatch metrics</li>
+                  <li>• Multi-account support</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Real-time data
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-blue-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-blue-600">AZ</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Microsoft Azure</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• VMs, Storage, SQL, Functions</li>
+                  <li>• Cost Management API</li>
+                  <li>• Azure Monitor</li>
+                  <li>• Subscription hierarchy</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Real-time data
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-blue-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-red-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-red-600">GCP</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Google Cloud Platform</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Compute Engine, Cloud Storage</li>
+                  <li>• Cloud Billing API</li>
+                  <li>• Cloud Monitoring</li>
+                  <li>• Project organization</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Real-time data
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Providers -->
+            <div class="border-t border-gray-200 pt-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Additional Cloud Providers</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">DigitalOcean</h5>
+                  <p class="text-xs text-gray-600 mt-1">Droplets, Spaces, App Platform</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Cloudflare</h5>
+                  <p class="text-xs text-gray-600 mt-1">Workers, R2, Pages</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Vercel</h5>
+                  <p class="text-xs text-gray-600 mt-1">Serverless functions, Edge</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Netlify</h5>
+                  <p class="text-xs text-gray-600 mt-1">Functions, CDN, Forms</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+              <div class="flex">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-sm text-blue-800">
+                    <strong>Multi-cloud setup?</strong> You can integrate multiple providers simultaneously. 
+                    We'll help you consolidate emissions data across all your cloud infrastructure.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2: Authentication Setup -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">2</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up Service Account Authentication</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <!-- AWS Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-orange-600">AWS</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Amazon Web Services Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create IAM Role for Cross-Account Access</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Log into your AWS Management Console</li>
+                  <li>Navigate to <strong>IAM → Roles → Create Role</strong></li>
+                  <li>Select <strong>"Another AWS Account"</strong></li>
+                  <li>Enter Account ID: <code class="bg-gray-200 px-1 rounded">123456789012</code> (our Carbon Recycling account)</li>
+                  <li>Require external ID: <code class="bg-gray-200 px-1 rounded">[provided during setup]</code></li>
+                  <li>Attach the following policies:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- ReadOnlyAccess
+- CostExplorerServiceReadOnlyAccess  
+- CloudWatchReadOnlyAccess
+- BillingReadOnlyAccess</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Enable Cost and Usage Reports</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Go to <strong>AWS Billing → Cost & Usage Reports</strong></li>
+                  <li>Click <strong>"Create Report"</strong></li>
+                  <li>Report name: <code class="bg-gray-200 px-1 rounded">carbon-recycling-cur</code></li>
+                  <li>Include resource IDs: <strong>Yes</strong></li>
+                  <li>S3 bucket: Create new or use existing</li>
+                  <li>File format: <strong>Parquet</strong> (recommended)</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Azure Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-blue-600">AZ</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Microsoft Azure Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create Service Principal</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Open Azure Cloud Shell or Azure CLI</li>
+                  <li>Run the following command:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>az ad sp create-for-rbac --name "carbon-recycling-reader" \
+  --role "Cost Management Reader" \
+  --scopes "/subscriptions/YOUR-SUBSCRIPTION-ID"</code></pre>
+                </div>
+                <p class="text-xs text-gray-600 mt-2">Save the output JSON - you'll need the appId, password, and tenant values.</p>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Assign Additional Permissions</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• <strong>Reader</strong> role on subscription level</li>
+                  <li>• <strong>Cost Management Reader</strong> for billing data</li>
+                  <li>• <strong>Monitoring Reader</strong> for metrics</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- GCP Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-red-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-red-600">GCP</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Google Cloud Platform Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create Service Account</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Go to <strong>IAM & Admin → Service Accounts</strong></li>
+                  <li>Click <strong>"Create Service Account"</strong></li>
+                  <li>Name: <code class="bg-gray-200 px-1 rounded">carbon-recycling-reader</code></li>
+                  <li>Grant the following roles:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Cloud Asset Viewer
+- Billing Account Viewer  
+- Monitoring Viewer
+- Compute Viewer</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Generate Key File</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Click on the created service account</li>
+                  <li>Go to <strong>"Keys"</strong> tab</li>
+                  <li>Click <strong>"Add Key" → "Create new key"</strong></li>
+                  <li>Choose <strong>JSON</strong> format</li>
+                  <li>Download and securely store the key file</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Configure Data Collection -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">3</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Configure Data Collection & Mapping</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              Map your cloud resources to our carbon accounting framework for accurate emissions tracking.
+            </p>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Service Category
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Resources Tracked
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Emission Scope
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Calculation Method
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Compute
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      VMs, Containers, Serverless functions
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 2 - Purchased electricity
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Instance hours × region factor
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Storage
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Object storage, Block storage, Databases
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 2 - Purchased electricity
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      GB stored × storage factor
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Network
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Data transfer, CDN, Load balancers
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Downstream transport
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      GB transferred × network factor
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Managed Services
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      AI/ML, Analytics, Monitoring
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Purchased services
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Usage metrics × service factor
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Regional Factors -->
+            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h4 class="font-semibold text-blue-900 mb-3">Regional Emission Factors (kgCO2e per compute hour)</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                <div class="text-center">
+                  <div class="font-medium text-blue-900">Europe West (London)</div>
+                  <div class="text-blue-700">0.00005</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-medium text-blue-900">US East (Virginia)</div>
+                  <div class="text-blue-700">0.00008</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-medium text-blue-900">Asia Pacific (Singapore)</div>
+                  <div class="text-blue-700">0.00012</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-medium text-blue-900">Other regions</div>
+                  <div class="text-blue-700">Calculated dynamically</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4: Testing -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">4</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Test Your Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Validation Checklist</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Authentication & Permissions</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Service account connects successfully</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Billing data is accessible</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Resource metrics are retrievable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Multi-region access works</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Data Quality & Accuracy</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Resource usage aligns with console</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Cost data matches billing reports</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Emission calculations are reasonable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Historical data imports correctly</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results Example -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Sample Test Results</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <pre class="text-sm text-gray-600"><code>Cloud Integration Test Results: AWS Production Account
+✅ Authentication: SUCCESS (Role: arn:aws:iam::123456789012:role/CarbonRecyclingReader)
+✅ Billing Access: SUCCESS (CUR reports available)
+✅ Resource Discovery: SUCCESS (1,247 resources found)
+✅ Regional Mapping: SUCCESS (3 regions: us-east-1, eu-west-1, ap-southeast-1)
+
+Monthly Resource Summary:
+- EC2 Compute Hours: 8,760 hours
+- S3 Storage: 2.4 TB
+- Data Transfer: 156 GB
+- Estimated Emissions: 127.3 kgCO2e
+- Monthly Cost: $1,847.23</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 5: Optimization -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-blue-600">5</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Optimize & Monitor</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Carbon Optimization Tips</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Choose regions with renewable energy grids
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Use auto-scaling to minimize idle resources
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Implement right-sizing recommendations
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Use serverless functions for variable workloads
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Set up lifecycle policies for storage
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Monitoring Setup</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Configure alerts for emission spikes
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Set up monthly carbon reporting
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Track carbon efficiency metrics over time
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Review architecture recommendations
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Monitor for service updates and new features
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Carbon Dashboard Preview -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border">
+              <h4 class="font-semibold text-gray-900 mb-2">Your Carbon Dashboard Will Show:</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Real-time Emissions</div>
+                  <div class="text-2xl font-bold text-green-600">127.3</div>
+                  <div class="text-gray-600">kgCO2e this month</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Carbon Efficiency</div>
+                  <div class="text-2xl font-bold text-blue-600">0.069</div>
+                  <div class="text-gray-600">kgCO2e per $1 spent</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Optimization Score</div>
+                  <div class="text-2xl font-bold text-purple-600">87%</div>
+                  <div class="text-gray-600">carbon optimized</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Common Issues & Solutions</h2>
+          
+          <div class="space-y-4">
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Service account authentication fails
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Incorrect permissions on the service account</li>
+                    <li>Cross-account trust policy misconfiguration</li>
+                    <li>Service account key file corrupted or expired</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Verify all required permissions are attached</li>
+                    <li>Check trust relationships and external ID (AWS)</li>
+                    <li>Generate new service account keys</li>
+                    <li>Test authentication using cloud CLI tools</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Billing data not accessible
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Missing billing permissions</li>
+                    <li>Cost & Usage Reports not enabled</li>
+                    <li>Billing account linked to different organization</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Add billing-specific roles to service account</li>
+                    <li>Enable detailed billing reports in cloud console</li>
+                    <li>Verify billing account access and permissions</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                High API usage or rate limiting
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Too frequent sync intervals</li>
+                    <li>Large number of resources being queried</li>
+                    <li>Multiple integrations hitting same API</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Adjust sync frequency to optimal intervals</li>
+                    <li>Implement resource filtering and pagination</li>
+                    <li>Configure exponential backoff for retries</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Emission calculations seem incorrect
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Regional emission factors not updated</li>
+                    <li>Resource usage metrics misaligned</li>
+                    <li>Double counting across services</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Verify regional data center mapping</li>
+                    <li>Cross-reference usage with cloud console</li>
+                    <li>Review resource attribution settings</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-r from-purple-600 to-blue-700 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Need Help?</h2>
+            <p class="text-purple-100 mb-6">
+              Our cloud specialists are here to help you set up and optimize your cloud carbon tracking.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+                Contact Support
+              </a>
+              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                View Documentation
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

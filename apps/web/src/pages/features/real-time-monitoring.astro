@@ -1,0 +1,213 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Real-time Carbon Monitoring - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Real-time Carbon Monitoring</h1>
+          <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            Monitor your carbon emissions minute-by-minute with live data streams, automated alerts, and continuous tracking across all operations.
+          </p>
+          <a href="/dashboard/analytics" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center">
+            View Live Demo
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Live Carbon Intelligence</h2>
+          <p class="text-xl text-gray-600">Never miss critical changes in your emissions profile</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div class="bg-blue-50 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">🔴 Live Data Streaming</h3>
+            <p class="text-gray-600 mb-6">
+              Get real-time updates every 30 seconds across all your emission sources. Our platform continuously monitors:
+            </p>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                Energy consumption across facilities
+              </li>
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                Transportation emissions
+              </li>
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                Production line carbon intensity
+              </li>
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                Supply chain activities
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-yellow-50 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">🚨 Smart Alerts</h3>
+            <p class="text-gray-600 mb-6">
+              Automated threshold monitoring with intelligent alerts that help you take immediate action:
+            </p>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
+                Emission spikes above set thresholds
+              </li>
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                Equipment efficiency anomalies
+              </li>
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></div>
+                Target deviation warnings
+              </li>
+              <li class="flex items-center">
+                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                Unusual consumption patterns
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Real-time Dashboard Preview -->
+        <div class="bg-gray-900 rounded-2xl p-8 mb-16">
+          <h3 class="text-2xl font-bold text-white mb-6 text-center">Live Dashboard Preview</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-gray-300 text-sm">Current Emissions</span>
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              </div>
+              <div class="text-2xl font-bold text-white">125.4 tCO2e</div>
+              <div class="text-sm text-red-400">↗ +2.3% vs yesterday</div>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-gray-300 text-sm">Energy Usage</span>
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+              </div>
+              <div class="text-2xl font-bold text-white">2,840 kWh</div>
+              <div class="text-sm text-green-400">↘ -1.8% from avg</div>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-gray-300 text-sm">Carbon Intensity</span>
+                <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+              </div>
+              <div class="text-2xl font-bold text-white">0.34 kg/£</div>
+              <div class="text-sm text-yellow-400">↗ +0.5% trending</div>
+            </div>
+          </div>
+
+          <div class="bg-gray-800 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-3">Recent Alerts</h4>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between p-2 bg-red-900/30 rounded border-l-4 border-red-500">
+                <span class="text-red-200 text-sm">High emissions detected in Facility A</span>
+                <span class="text-red-400 text-xs">2 min ago</span>
+              </div>
+              <div class="flex items-center justify-between p-2 bg-yellow-900/30 rounded border-l-4 border-yellow-500">
+                <span class="text-yellow-200 text-sm">Energy usage 15% above baseline</span>
+                <span class="text-yellow-400 text-xs">5 min ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">⚡</span>
+            </div>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Instant Response</h4>
+            <p class="text-gray-600 text-sm">React to emission spikes within minutes, not days</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🎯</span>
+            </div>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">24/7 Monitoring</h4>
+            <p class="text-gray-600 text-sm">Continuous tracking even when you're not watching</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">📱</span>
+            </div>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Mobile Access</h4>
+            <p class="text-gray-600 text-sm">Monitor from anywhere with responsive dashboards</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🔔</span>
+            </div>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Smart Alerts</h4>
+            <p class="text-gray-600 text-sm">Get notified only when it matters most</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-blue-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Start Monitoring in Real-time Today</h2>
+        <p class="text-xl text-blue-100 mb-8">Join companies reducing emissions by 25% through continuous monitoring</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/dashboard/analytics" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            View Live Demo
+          </a>
+          <a href="/sign-up" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            Start Free Trial
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

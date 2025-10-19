@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import IngestionPage from '../../components/IngestionPage.tsx';
+
+// For now, we'll handle auth on the client side
+// In production, this would use Clerk's server-side auth
+---
+
+<Layout title="Data Ingestion Hub - CarbonRecycling.co.uk">
+  <IngestionPage client:load />
+</Layout>

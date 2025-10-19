@@ -1,0 +1,918 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="How to Set Up Finance System Integrations - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-600 to-teal-600 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Finance Integration Guide</h1>
+          <p class="text-xl text-green-100 max-w-3xl mx-auto">
+            Connect your financial systems to automatically extract expense, procurement, and payment data for comprehensive carbon accounting and reporting.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Table of Contents -->
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-12">
+          <h2 class="text-lg font-semibold text-green-900 mb-4">What You'll Learn</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <ul class="space-y-2 text-sm text-green-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Finance system identification and setup
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  API authentication and secure access
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Financial data extraction and mapping
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="space-y-2 text-sm text-green-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Carbon spend analysis and categorization
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Automated expense carbon calculations
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Financial carbon reporting and compliance
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisites -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Prerequisites</h2>
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Before you start, ensure you have:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">System Access Requirements</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Administrator access to your finance system
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    API access permissions or app marketplace access
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Accounting team collaboration and approval
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Financial Data Requirements</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Expense transactions and receipts
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Supplier and vendor information
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Chart of accounts and cost center structure
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 1: Identify Your Finance System -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">1</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Identify Your Finance System</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              We support 20+ major finance and accounting systems with specialized connectors for carbon-relevant financial data extraction.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div class="border rounded-lg p-4 hover:border-green-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-blue-600">QB</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">QuickBooks</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Online & Desktop versions</li>
+                  <li>• Expense tracking & categorization</li>
+                  <li>• Vendor & customer management</li>
+                  <li>• Purchase order integration</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    OAuth 2.0 API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-green-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-teal-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-teal-600">XE</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Xero</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Cloud accounting platform</li>
+                  <li>• Automated bank feeds</li>
+                  <li>• Expense claims & receipts</li>
+                  <li>• Project cost tracking</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    REST API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-green-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-green-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-green-600">SG</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Sage</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Sage 50cloud & Sage Business Cloud</li>
+                  <li>• Advanced purchase ledger</li>
+                  <li>• Multi-currency support</li>
+                  <li>• Comprehensive reporting</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    API Gateway
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-green-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-purple-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-purple-600">FF</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">FreeAgent</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Small business accounting</li>
+                  <li>• Expense & mileage tracking</li>
+                  <li>• Time tracking integration</li>
+                  <li>• Tax compliance features</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    REST API
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Finance Systems -->
+            <div class="border-t border-gray-200 pt-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Additional Finance & Accounting Platforms</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Wave</h5>
+                  <p class="text-xs text-gray-600 mt-1">Free accounting software</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">FreshBooks</h5>
+                  <p class="text-xs text-gray-600 mt-1">Time tracking, invoicing</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Kashoo</h5>
+                  <p class="text-xs text-gray-600 mt-1">Small business accounting</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Zoho Books</h5>
+                  <p class="text-xs text-gray-600 mt-1">Online accounting</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">KashFlow</h5>
+                  <p class="text-xs text-gray-600 mt-1">UK SME accounting</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Clear Books</h5>
+                  <p class="text-xs text-gray-600 mt-1">Cloud accounting</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Expensify</h5>
+                  <p class="text-xs text-gray-600 mt-1">Expense management</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Concur</h5>
+                  <p class="text-xs text-gray-600 mt-1">Travel & expense</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-6">
+              <div class="flex">
+                <svg class="w-5 h-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-sm text-green-800">
+                    <strong>Multiple finance systems?</strong> We can consolidate data from different accounting software, expense tools, and payment platforms. 
+                    <a href="/contact" class="underline">Contact us</a> for multi-system integration guidance.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2: API Authentication Setup -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">2</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up API Authentication</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <!-- QuickBooks Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-blue-600">QB</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">QuickBooks Integration</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create QuickBooks App</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Visit <strong>Intuit Developer</strong> console and sign in</li>
+                  <li>Create new app: <code class="bg-gray-200 px-1 rounded">Carbon Tracking Integration</code></li>
+                  <li>Select <strong>QuickBooks Online Accounting API</strong></li>
+                  <li>Configure OAuth 2.0 settings:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Scopes: accounting.read, accounting.write
+- Redirect URI: https://your-app.com/callback/quickbooks
+- App Type: Web app
+- Environment: Production (after testing in Sandbox)</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">QuickBooks OAuth Flow</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Initiate OAuth authorization with QuickBooks</li>
+                  <li>• User grants permissions for financial data access</li>
+                  <li>• Exchange authorization code for access/refresh tokens</li>
+                  <li>• Test API connection with company information endpoint</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Xero Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-teal-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-teal-600">XE</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Xero Integration Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create Xero App</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Access <strong>Xero Developer Portal</strong></li>
+                  <li>Create new app: <code class="bg-gray-200 px-1 rounded">Carbon Data Connector</code></li>
+                  <li>Configure app settings and OAuth 2.0:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Integration type: Web app
+- Company or application URL: https://your-domain.com
+- OAuth redirect URI: https://your-app.com/callback/xero
+- Scopes: accounting.read, accounting.contacts.read</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Xero Connection Process</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Generate OAuth 2.0 authorization URL with required scopes</li>
+                  <li>User authenticates and authorizes data access</li>
+                  <li>Handle callback and exchange code for tokens</li>
+                  <li>Validate connection with organisation endpoint call</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Sage Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-green-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-green-600">SG</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Sage Business Cloud Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Sage Developer Registration</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Register at <strong>Sage Developer Portal</strong></li>
+                  <li>Create application: <code class="bg-gray-200 px-1 rounded">Carbon Emissions Tracker</code></li>
+                  <li>Request API access and configure OAuth:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Application Type: Server-side web application
+- Callback URLs: https://your-app.com/sage/callback
+- Requested Scopes: full_access (or specific resource scopes)
+- Business Cloud APIs: Accounting, Business Cloud Financials</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Sage API Authentication</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Implement OAuth 2.0 authorization code flow</li>
+                  <li>• Handle multi-tenant access for different Sage companies</li>
+                  <li>• Configure automatic token refresh mechanisms</li>
+                  <li>• Test API endpoints for purchases, expenses, and suppliers</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Financial Data Mapping -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">3</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Configure Financial Data Mapping</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              Map financial transactions to carbon accounting categories for spend-based emission factor calculations and Scope 3 reporting.
+            </p>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Financial Category
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Data Sources
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Carbon Category
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Emission Scope
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Office Expenses
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Utilities, rent, office supplies, telecommunications, cleaning services
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Purchased goods & services
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 1
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Travel & Entertainment
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Airfare, accommodation, meals, car rentals, taxi/rideshare, fuel cards
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Business travel & employee commuting
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 6 & 7
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Procurement & Materials
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Raw materials, components, packaging, manufacturing services, tooling
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Purchased goods & services
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 1
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Professional Services
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Consulting, legal, audit, marketing, IT services, training, recruitment
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Purchased services
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 1
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Asset Purchases
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Equipment, machinery, vehicles, IT hardware, furniture, property
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Capital goods
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 2
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Logistics & Transportation
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Shipping, freight, courier services, warehousing, distribution
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Upstream & downstream transport
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 4 & 9
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Spend-based Emission Factor Framework -->
+            <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+              <h4 class="font-semibold text-green-900 mb-3">Spend-based Emission Factor Framework</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <div class="font-medium text-green-900 mb-2">Data Classification</div>
+                  <ul class="text-green-700 space-y-1">
+                    <li>• Supplier categorization</li>
+                    <li>• Industry sector mapping</li>
+                    <li>• Product/service classification</li>
+                    <li>• Geographic region analysis</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-green-900 mb-2">Emission Factors</div>
+                  <ul class="text-green-700 space-y-1">
+                    <li>• UK DEFRA conversion factors</li>
+                    <li>• EXIOBASE sectoral factors</li>
+                    <li>• EEIO spend-based factors</li>
+                    <li>• Custom supplier-specific factors</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-green-900 mb-2">Data Quality Enhancement</div>
+                  <ul class="text-green-700 space-y-1">
+                    <li>• Supplier engagement programs</li>
+                    <li>• Primary data collection</li>
+                    <li>• Activity-based refinements</li>
+                    <li>• Uncertainty quantification</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4: Testing & Validation -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">4</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Test & Validate Finance Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Finance Integration Testing Checklist</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Technical Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">OAuth authentication successful</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">API data extraction working</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Transaction mapping accuracy verified</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Multi-currency handling functional</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Historical data synchronization complete</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Financial Data Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Transaction amounts match accounting records</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Vendor information correctly captured</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Carbon calculations reasonable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Category mapping approved by accounting team</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Compliance with financial data policies</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results Example -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Sample Finance Integration Test Results</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <pre class="text-sm text-gray-600"><code>Finance Integration Test Results: QuickBooks Online (Company: Acme Ltd)
+✅ OAuth Connection: SUCCESS (Read/write permissions active)
+✅ Transaction Sync: SUCCESS (8,247 transactions in last 12 months)
+✅ Vendor Data: SUCCESS (156 suppliers with complete information)
+✅ Currency Handling: SUCCESS (GBP, EUR, USD conversions accurate)
+⚠️  Data Quality: WARNING (4.1% transactions missing detailed descriptions)
+
+Financial Carbon Summary (Last 12 Months):
+- Total Business Spend: £1,247,891
+- Carbon Intensive Categories: £398,456 (32% of total spend)
+- Travel & Transport: £89,234 → 127.3 tCO2e
+- Office & Utilities: £67,891 → 23.8 tCO2e  
+- Procurement & Materials: £241,331 → 89.4 tCO2e
+- Professional Services: £124,567 → 8.9 tCO2e
+
+Spend-based Carbon Footprint: 249.4 tCO2e
+Average Emission Intensity: 0.20 tCO2e/£1k spend
+Data Quality Score: 87.3/100
+
+Top Carbon Spend Categories:
+1. Raw materials & components: £156,234 (62.7 tCO2e)
+2. Business flights & accommodation: £67,123 (89.1 tCO2e)
+3. Freight & logistics: £45,678 (18.9 tCO2e)</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 5: Financial Carbon Analytics -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-green-600">5</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up Financial Carbon Analytics</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Automated Spend Analysis</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Real-time carbon spend monitoring
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Supplier carbon intensity analysis
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Department-level carbon budgeting
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Purchase order carbon impact assessment
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Carbon cost accounting integration
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Financial Carbon Reporting</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Scope 3 spend-based emission reporting
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Monthly financial carbon statements
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Supplier sustainability scorecards
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    CFO-ready sustainability dashboards
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Carbon accounting integration with GAAP
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Finance Dashboard Preview -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg border">
+              <h4 class="font-semibold text-gray-900 mb-2">Your Finance Carbon Dashboard Will Show:</h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Spend Emissions</div>
+                  <div class="text-2xl font-bold text-green-600">249.4</div>
+                  <div class="text-gray-600">tCO2e annually</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Carbon Intensity</div>
+                  <div class="text-2xl font-bold text-teal-600">0.20</div>
+                  <div class="text-gray-600">tCO2e/£1k spend</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">High-Impact Spend</div>
+                  <div class="text-2xl font-bold text-blue-600">32%</div>
+                  <div class="text-gray-600">of total budget</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Potential Savings</div>
+                  <div class="text-2xl font-bold text-purple-600">£89K</div>
+                  <div class="text-gray-600">carbon reduction/year</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Common Issues & Solutions</h2>
+          
+          <div class="space-y-4">
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                OAuth authentication failures or token expiration
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Incorrect OAuth application configuration in finance system</li>
+                    <li>Refresh token expired or not properly handled</li>
+                    <li>User permissions changed or revoked in accounting software</li>
+                    <li>Callback URL mismatch between app and finance system settings</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Verify OAuth app settings and redirect URLs</li>
+                    <li>Implement robust token refresh and error handling</li>
+                    <li>Check user permissions and re-authorize if necessary</li>
+                    <li>Monitor token expiration and set up automated renewal</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Missing or incomplete financial transaction data
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Finance system API limitations or date range restrictions</li>
+                    <li>Transactions missing required fields (descriptions, categories)</li>
+                    <li>Multi-company or multi-currency data filtering issues</li>
+                    <li>Bank feed delays or manual entry timing differences</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Adjust API query parameters and pagination settings</li>
+                    <li>Work with accounting team to improve data entry practices</li>
+                    <li>Configure company and currency filtering appropriately</li>
+                    <li>Set up regular data synchronization and validation checks</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Inaccurate carbon calculations from financial data
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Incorrect spend-based emission factor assignments</li>
+                    <li>Currency conversion errors affecting calculation accuracy</li>
+                    <li>Category mapping misalignments between finance and carbon systems</li>
+                    <li>VAT/tax inclusive vs exclusive amount handling</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Validate emission factors against industry benchmarks</li>
+                    <li>Implement accurate currency conversion with historical rates</li>
+                    <li>Review and refine category mapping with sustainability team</li>
+                    <li>Standardize on net amounts for carbon calculations</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Data privacy and security compliance concerns
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Financial data containing sensitive supplier or customer information</li>
+                    <li>Regulatory compliance requirements for financial data handling</li>
+                    <li>Audit trail and data retention policy conflicts</li>
+                    <li>Multi-jurisdiction data processing requirements</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Implement data anonymization and pseudonymization techniques</li>
+                    <li>Ensure compliance with PCI-DSS, SOX, and GDPR requirements</li>
+                    <li>Configure appropriate data retention and deletion policies</li>
+                    <li>Work with legal and compliance teams on data processing agreements</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-r from-green-600 to-teal-600 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Need Help?</h2>
+            <p class="text-green-100 mb-6">
+              Our financial systems and carbon accounting specialists understand the complexities of spend-based emission calculations and financial data integration.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors">
+                Contact Support
+              </a>
+              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+                View Documentation
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

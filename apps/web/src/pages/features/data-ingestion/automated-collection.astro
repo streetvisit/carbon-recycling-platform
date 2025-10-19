@@ -1,0 +1,402 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Automated Collection - Data Ingestion Hub - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <!-- Breadcrumb -->
+            <nav class="flex" aria-label="Breadcrumb">
+              <ol class="flex items-center space-x-2 text-sm text-gray-500">
+                <li><a href="/features/data-ingestion" class="hover:text-gray-700">Data Ingestion</a></li>
+                <li class="flex items-center"><span class="mx-2">/</span>Automated Collection</li>
+              </ol>
+            </nav>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-600 to-green-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Automated Collection</h1>
+          <p class="text-xl text-green-100 max-w-3xl mx-auto mb-8">
+            Set up once, collect forever. Automatically pull carbon activity data from all your systems, APIs, and data sources without manual intervention.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview Section -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">How Automated Collection Works</h2>
+            <p class="text-lg text-gray-600 mb-6">
+              Our automated collection system continuously monitors and pulls data from your integrated systems, 
+              eliminating the need for manual data entry and reducing errors by up to 95%.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Schedule-Based Collection</h3>
+                  <p class="text-gray-600">Automatically pull data hourly, daily, weekly, or monthly based on your needs</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Event-Driven Triggers</h3>
+                  <p class="text-gray-600">Collect data automatically when new records are created or updated</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Incremental Updates</h3>
+                  <p class="text-gray-600">Only collect new or changed data to minimize system load and costs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-lg">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Collection Status Dashboard</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-3 bg-white rounded border-l-4 border-green-500">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <span class="font-medium">British Gas Smart Meter</span>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm text-gray-500">Last: 2 mins ago</div>
+                  <div class="text-xs text-green-600">Active</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-white rounded border-l-4 border-green-500">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <span class="font-medium">SAP ERP System</span>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm text-gray-500">Last: 15 mins ago</div>
+                  <div class="text-xs text-green-600">Active</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-white rounded border-l-4 border-yellow-500">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                  <span class="font-medium">Fleet Management API</span>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm text-gray-500">Last: 2 hours ago</div>
+                  <div class="text-xs text-yellow-600">Delayed</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-white rounded border-l-4 border-red-500">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
+                  <span class="font-medium">Azure Cost Management</span>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm text-gray-500">Last: 24 hours ago</div>
+                  <div class="text-xs text-red-600">Error</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collection Methods -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Collection Methods</h2>
+          <p class="text-xl text-gray-600">Multiple ways to automatically gather your carbon activity data</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- API Integration -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">API Integration</h3>
+            <p class="text-gray-600 mb-4">Direct connection to your systems' APIs for real-time data access</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                REST & GraphQL APIs
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                OAuth & API key authentication
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Rate limiting & retry logic
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Webhook subscriptions
+              </div>
+            </div>
+          </div>
+
+          <!-- Database Connection -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 1.79 4 4 4h8c0 2.21 1.79 4 4 4h8c0-2.21-1.79-4-4-4V7c0-2.21-1.79-4-4-4H8c-2.21 0-4 1.79-4 4z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Database Connection</h3>
+            <p class="text-gray-600 mb-4">Secure read-only connections to your databases and data warehouses</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                MySQL, PostgreSQL, SQL Server
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Oracle, MongoDB, Snowflake
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                SSH tunnel & SSL encryption
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Custom SQL queries
+              </div>
+            </div>
+          </div>
+
+          <!-- File Monitoring -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2v2z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">File Monitoring</h3>
+            <p class="text-gray-600 mb-4">Automatically detect and process new files in monitored directories</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                FTP/SFTP monitoring
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Cloud storage (S3, Azure, GCS)
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                CSV, Excel, JSON, XML
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Archive & error handling
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Implementation -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Technical Implementation</h2>
+          <p class="text-xl text-gray-600">How to set up automated collection for your data sources</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Configuration Example -->
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Configuration Example</h3>
+            <div class="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm overflow-x-auto">
+              <div class="text-gray-400 mb-2">// Energy data collection config</div>
+              <pre>{
+  "source": "british_gas_api",
+  "name": "HQ Energy Consumption",
+  "schedule": "0 */6 * * *",
+  "config": {
+    "api_key": "${BRITISH_GAS_API_KEY}",
+    "meter_ids": ["BG123456789"],
+    "data_types": ["electricity", "gas"],
+    "start_date": "auto",
+    "incremental": true
+  },
+  "mapping": {
+    "timestamp": "reading_date",
+    "consumption_kwh": "consumption",
+    "meter_id": "meter_serial"
+  },
+  "validation": {
+    "required_fields": ["timestamp", "consumption_kwh"],
+    "data_quality_checks": true,
+    "duplicate_detection": true
+  }
+}</pre>
+            </div>
+          </div>
+
+          <!-- Setup Steps -->
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Quick Setup Guide</h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="text-white font-semibold text-sm">1</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">Choose Your Data Source</h4>
+                  <p class="text-gray-600">Select from 100+ pre-built connectors or create a custom integration</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="text-white font-semibold text-sm">2</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">Configure Authentication</h4>
+                  <p class="text-gray-600">Provide API keys, database credentials, or OAuth tokens securely</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="text-white font-semibold text-sm">3</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">Map Your Data</h4>
+                  <p class="text-gray-600">Define how source fields map to our standard carbon data schema</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="text-white font-semibold text-sm">4</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">Set Schedule & Test</h4>
+                  <p class="text-gray-600">Configure collection frequency and run initial test to validate setup</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="text-white font-semibold text-sm">5</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-1">Monitor & Optimize</h4>
+                  <p class="text-gray-600">Track collection performance and receive alerts for any issues</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Benefits of Automation</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">95% Error Reduction</h3>
+            <p class="text-gray-600">Eliminate manual data entry errors and ensure consistent, accurate data collection</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">80% Time Savings</h3>
+            <p class="text-gray-600">Free your team from repetitive data collection tasks to focus on analysis and strategy</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Real-time Insights</h3>
+            <p class="text-gray-600">Get up-to-date carbon data as soon as it's available from your systems</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-green-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Automate Your Data Collection?</h2>
+        <p class="text-xl text-green-100 mb-8">Set up your first automated collection in under 10 minutes</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors">
+            Start Free Trial
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+            Book Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

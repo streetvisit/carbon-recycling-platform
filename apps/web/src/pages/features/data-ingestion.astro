@@ -1,0 +1,342 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllIntegrations, getTotalIntegrationsCount } from '../../data/uk-utility-integrations.ts';
+
+const integrations = getAllIntegrations();
+const totalCount = getTotalIntegrationsCount();
+---
+
+<Layout title="Data Ingestion Hub - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 1.79 4 4 4h8c0 2.21 1.79 4 4 4h8c0-2.21-1.79-4-4-4V7c0-2.21-1.79-4-4-4H8c-2.21 0-4 1.79-4 4z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Data Ingestion Hub</h1>
+          <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            Connect all your data sources in one central hub. Automatically collect, validate, and process emissions data from ERP systems, utility providers, transport logs, and more.
+          </p>
+          <a href="/sign-up" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center">
+            Start Free Trial
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Comprehensive Data Integration</h2>
+          <p class="text-xl text-gray-600">Connect {totalCount}+ data sources with automated validation and processing</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Automated Collection</h3>
+            <p class="text-gray-600">Set up once, collect forever. Automated data pulls from all your systems.</p>
+          </div>
+
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Smart Validation</h3>
+            <p class="text-gray-600">AI-powered data validation catches errors and anomalies automatically.</p>
+          </div>
+
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Real-time Processing</h3>
+            <p class="text-gray-600">Process and standardize data in real-time for immediate insights.</p>
+          </div>
+        </div>
+
+        <!-- Demo Data Sources Chart -->
+        <div class="bg-white border rounded-lg shadow-sm p-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-6">Connected Data Sources</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-4">Integration Status</h4>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                    <span class="font-medium">SAP ERP System</span>
+                  </div>
+                  <span class="text-sm text-green-600 font-medium">Active</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                    <span class="font-medium">British Gas API</span>
+                  </div>
+                  <span class="text-sm text-green-600 font-medium">Active</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                    <span class="font-medium">Fleet Management</span>
+                  </div>
+                  <span class="text-sm text-green-600 font-medium">Active</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                    <span class="font-medium">Azure Cloud Services</span>
+                  </div>
+                  <span class="text-sm text-yellow-600 font-medium">Syncing</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-gray-400 rounded-full mr-3"></div>
+                    <span class="font-medium">Office 365 Travel</span>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">Pending</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 class="text-lg font-medium text-gray-900 mb-4">Data Volume (Last 30 Days)</h4>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span>Energy Consumption</span>
+                    <span>2,847 records</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span>Transport & Fuel</span>
+                    <span>1,923 records</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-green-600 h-2 rounded-full" style="width: 58%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span>Waste Management</span>
+                    <span>756 records</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-yellow-600 h-2 rounded-full" style="width: 23%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span>Business Travel</span>
+                    <span>412 records</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-purple-600 h-2 rounded-full" style="width: 12%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Sources Grid -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">{totalCount} Pre-built Integrations</h2>
+          <p class="text-xl text-gray-600">Connect to popular enterprise systems out of the box</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <!-- ERP Systems -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-4">ERP Systems ({integrations.erp.length})</h3>
+            <div class="space-y-2 text-sm">
+              {integrations.erp.slice(0, 5).map(erp => (
+                <div>
+                  <a href={`/integrations/${erp.id}`} class="text-blue-600 hover:text-blue-800 hover:underline">
+                    • {erp.name}
+                  </a>
+                </div>
+              ))}
+              {integrations.erp.length > 5 && (
+                <div class="pt-2">
+                  <a href="/integrations" class="text-sm text-gray-500 hover:text-gray-700">
+                    + {integrations.erp.length - 5} more
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Utility Providers -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-4">Utility Providers ({integrations.utilities.length})</h3>
+            <div class="space-y-2 text-sm">
+              {integrations.utilities.slice(0, 5).map(utility => (
+                <div>
+                  <a href={`/integrations/${utility.id}`} class="text-blue-600 hover:text-blue-800 hover:underline">
+                    • {utility.name}
+                  </a>
+                </div>
+              ))}
+              {integrations.utilities.length > 5 && (
+                <div class="pt-2">
+                  <a href="/integrations" class="text-sm text-gray-500 hover:text-gray-700">
+                    + {integrations.utilities.length - 5} more
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Cloud Services -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-4">Cloud Services ({integrations.cloud.length})</h3>
+            <div class="space-y-2 text-sm">
+              {integrations.cloud.slice(0, 5).map(cloud => (
+                <div>
+                  <a href={`/integrations/${cloud.id}`} class="text-blue-600 hover:text-blue-800 hover:underline">
+                    • {cloud.name}
+                  </a>
+                </div>
+              ))}
+              {integrations.cloud.length > 5 && (
+                <div class="pt-2">
+                  <a href="/integrations" class="text-sm text-gray-500 hover:text-gray-700">
+                    + {integrations.cloud.length - 5} more
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Transport & Fleet -->
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-4">Transport & Fleet ({integrations.transport.length})</h3>
+            <div class="space-y-2 text-sm">
+              {integrations.transport.slice(0, 5).map(transport => (
+                <div>
+                  <a href={`/integrations/${transport.id}`} class="text-blue-600 hover:text-blue-800 hover:underline">
+                    • {transport.name}
+                  </a>
+                </div>
+              ))}
+              {integrations.transport.length > 5 && (
+                <div class="pt-2">
+                  <a href="/integrations" class="text-sm text-gray-500 hover:text-gray-700">
+                    + {integrations.transport.length - 5} more
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-blue-600">1</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Connect</h3>
+            <p class="text-gray-600">Select from {totalCount} pre-built connectors or use our universal API</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-blue-600">2</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Validate</h3>
+            <p class="text-gray-600">AI automatically validates data quality and flags anomalies</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-blue-600">3</span>
+            </div>
+            <h3 class="text-lg font-semibent text-gray-900 mb-2">Transform</h3>
+            <p class="text-gray-600">Standardize formats and units for consistent analysis</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-blue-600">4</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Analyze</h3>
+            <p class="text-gray-600">Data flows automatically to analytics and reporting modules</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-blue-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Connect Your Data?</h2>
+        <p class="text-xl text-blue-100 mb-8">Start with a free trial and connect your first data source in minutes</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            Start Free Trial
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

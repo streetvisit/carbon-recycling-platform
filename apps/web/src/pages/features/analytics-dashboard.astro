@@ -1,0 +1,359 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Analytics Dashboard - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-purple-600 to-purple-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Analytics Dashboard</h1>
+          <p class="text-xl text-purple-100 max-w-3xl mx-auto mb-8">
+            Real-time insights and trends with interactive charts, benchmarking, and predictive analytics. Turn your carbon data into actionable business intelligence.
+          </p>
+          <a href="/sign-up" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors inline-flex items-center">
+            View Analytics
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Metrics Demo -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Real-time Carbon Intelligence</h2>
+          <p class="text-xl text-gray-600">Monitor your environmental impact with comprehensive analytics</p>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+          <div class="bg-white border rounded-lg p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-600 mb-1">Total Emissions</p>
+                <p class="text-2xl font-bold text-gray-900">1,245</p>
+                <p class="text-xs text-gray-500">tCO2e this year</p>
+              </div>
+              <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+                </svg>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center">
+                <span class="text-green-600 text-sm font-medium">↓ 12.3%</span>
+                <span class="text-gray-500 text-sm ml-1">vs last year</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border rounded-lg p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-600 mb-1">Energy Use</p>
+                <p class="text-2xl font-bold text-gray-900">2.8M</p>
+                <p class="text-xs text-gray-500">kWh this month</p>
+              </div>
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center">
+                <span class="text-green-600 text-sm font-medium">↓ 8.1%</span>
+                <span class="text-gray-500 text-sm ml-1">vs last month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border rounded-lg p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-600 mb-1">Carbon Intensity</p>
+                <p class="text-2xl font-bold text-gray-900">0.34</p>
+                <p class="text-xs text-gray-500">kgCO2e/£ revenue</p>
+              </div>
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center">
+                <span class="text-green-600 text-sm font-medium">↓ 15.7%</span>
+                <span class="text-gray-500 text-sm ml-1">vs target</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border rounded-lg p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-600 mb-1">Renewable %</p>
+                <p class="text-2xl font-bold text-gray-900">73%</p>
+                <p class="text-xs text-gray-500">of total energy</p>
+              </div>
+              <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
+                </svg>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center">
+                <span class="text-green-600 text-sm font-medium">↑ 23.4%</span>
+                <span class="text-gray-500 text-sm ml-1">vs last year</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emissions Breakdown Chart -->
+        <div class="bg-white border rounded-lg shadow-sm p-8 mb-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-6">Emissions by Scope (2025)</h3>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <div class="relative h-64 flex items-center justify-center">
+                <!-- Donut Chart Representation -->
+                <div class="relative w-48 h-48">
+                  <div class="absolute inset-0 rounded-full border-8 border-red-500" style="transform: rotate(-90deg); background: conic-gradient(#ef4444 0deg 130deg, #f97316 130deg 200deg, #06b6d4 200deg 360deg);"></div>
+                  <div class="absolute inset-6 bg-white rounded-full flex items-center justify-center">
+                    <div class="text-center">
+                      <div class="text-2xl font-bold text-gray-900">1,245</div>
+                      <div class="text-sm text-gray-500">tCO2e</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col justify-center">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 bg-red-500 rounded mr-3"></div>
+                    <span class="font-medium text-gray-900">Scope 1 (Direct)</span>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-semibold text-gray-900">445 tCO2e</div>
+                    <div class="text-sm text-gray-600">35.8%</div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 bg-orange-500 rounded mr-3"></div>
+                    <span class="font-medium text-gray-900">Scope 2 (Energy)</span>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-semibold text-gray-900">278 tCO2e</div>
+                    <div class="text-sm text-gray-600">22.3%</div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-cyan-50 rounded-lg">
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 bg-cyan-500 rounded mr-3"></div>
+                    <span class="font-medium text-gray-900">Scope 3 (Indirect)</span>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-semibold text-gray-900">522 tCO2e</div>
+                    <div class="text-sm text-gray-600">41.9%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trend Analysis -->
+        <div class="bg-white border rounded-lg shadow-sm p-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-6">Monthly Emissions Trend</h3>
+          <div class="h-64 bg-gray-50 rounded-lg flex items-end px-8 py-6">
+            <div class="flex items-end space-x-4 w-full h-full">
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-blue-500 rounded-t" style="height: 60%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">Jan</span>
+              </div>
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-blue-500 rounded-t" style="height: 70%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">Feb</span>
+              </div>
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-blue-500 rounded-t" style="height: 55%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">Mar</span>
+              </div>
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-blue-500 rounded-t" style="height: 45%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">Apr</span>
+              </div>
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-green-500 rounded-t" style="height: 40%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">May</span>
+              </div>
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-green-500 rounded-t" style="height: 35%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">Jun</span>
+              </div>
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-green-500 rounded-t" style="height: 30%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">Jul</span>
+              </div>
+              <div class="flex flex-col justify-end items-center w-full">
+                <div class="bg-green-500 rounded-t" style="height: 28%; width: 100%; max-width: 40px;"></div>
+                <span class="text-xs mt-2 text-gray-600">Aug</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-between mt-4 text-sm text-gray-600">
+            <span>Baseline: 125 tCO2e/month</span>
+            <span>Target: 85 tCO2e/month (32% reduction)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Advanced Analytics Features</h2>
+          <p class="text-xl text-gray-600">Powerful insights to drive your sustainability strategy</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Real-time Monitoring</h3>
+            <p class="text-gray-600 mb-4">Live dashboards with minute-by-minute updates of your carbon footprint across all operations.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Live data streaming every 30 seconds</li>
+              <li>• Automated threshold alerts</li>
+              <li>• Mobile-responsive dashboards</li>
+              <li>• Historical trend analysis</li>
+            </ul>
+            <div class="mt-4">
+              <a href="/dashboard/analytics" class="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                View Real-time Demo →
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Industry Benchmarking</h3>
+            <p class="text-gray-600 mb-4">Compare your performance against industry peers and best-in-class organizations with percentile rankings.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Percentile performance rankings</li>
+              <li>• Multi-industry comparisons</li>
+              <li>• Gap analysis with recommendations</li>
+              <li>• Carbon intensity benchmarking</li>
+            </ul>
+            <div class="mt-4">
+              <a href="/dashboard/analytics" class="text-sm text-green-600 hover:text-green-700 font-medium">
+                See Benchmarking →
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Predictive Analytics</h3>
+            <p class="text-gray-600 mb-4">AI-powered forecasting to predict future emissions and identify optimization opportunities with confidence scoring.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• 6-12 month emission forecasts</li>
+              <li>• Multiple AI algorithms (linear, seasonal)</li>
+              <li>• Confidence scoring for predictions</li>
+              <li>• Trend reversal detection</li>
+            </ul>
+            <div class="mt-4">
+              <a href="/dashboard/analytics" class="text-sm text-purple-600 hover:text-purple-700 font-medium">
+                Try Predictions →
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+              <span class="text-2xl">🇬🇧</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">UK Energy Grid Live</h3>
+            <p class="text-gray-600 mb-4">Real-time UK electricity generation mix and carbon intensity to optimize your energy consumption timing.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Live generation mix (wind, solar, gas, nuclear)</li>
+              <li>• Real-time carbon intensity (gCO₂/kWh)</li>
+              <li>• Energy pricing and demand data</li>
+              <li>• 30-second update intervals</li>
+            </ul>
+            <div class="mt-4">
+              <a href="/features/uk-energy-grid" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+                Explore UK Grid →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-purple-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Transform Your Data into Insights?</h2>
+        <p class="text-xl text-purple-100 mb-8">Start analyzing your carbon footprint with powerful, real-time analytics</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/dashboard/analytics" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+            View Live Demo Dashboard
+          </a>
+          <a href="/sign-up" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+            Start Free Trial
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

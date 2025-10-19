@@ -1,0 +1,899 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="How to Set Up ERP System Integrations - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-700 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">ERP Integration Guide</h1>
+          <p class="text-xl text-indigo-100 max-w-3xl mx-auto">
+            Connect your enterprise systems to automatically extract carbon-relevant data from procurement, travel, facilities, and operational processes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Table of Contents -->
+        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-6 mb-12">
+          <h2 class="text-lg font-semibold text-indigo-900 mb-4">What You'll Learn</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <ul class="space-y-2 text-sm text-indigo-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  ERP system identification and access
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  API and database connection setup
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Data extraction and mapping strategies
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="space-y-2 text-sm text-indigo-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Carbon data categorization and analysis
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Automated workflow configuration
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Data governance and compliance
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisites -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Prerequisites</h2>
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Before you start, ensure you have:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">System Access Requirements</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Administrative access to your ERP system
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    API access permissions or database connectivity
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    IT department approval and support
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Information Needed</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    ERP system version and deployment type
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Database schema and table structures
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Data governance and security policies
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 1: Identify Your ERP System -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-indigo-600">1</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Identify Your ERP System</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              We support 15+ major ERP systems with specialized connectors for carbon-relevant data extraction.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div class="border rounded-lg p-4 hover:border-indigo-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-blue-600">SAP</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">SAP S/4HANA</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Materials Management (MM)</li>
+                  <li>• Travel & Expense (TRIP)</li>
+                  <li>• Plant Maintenance (PM)</li>
+                  <li>• Financial Accounting (FI)</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    OData API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-indigo-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-red-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-red-600">ORA</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Oracle Cloud ERP</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Procurement Cloud</li>
+                  <li>• Expense Management</li>
+                  <li>• Supply Chain Management</li>
+                  <li>• Project Portfolio Management</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    REST API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-indigo-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-blue-600">MS</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Microsoft Dynamics 365</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Finance & Operations</li>
+                  <li>• Supply Chain Management</li>
+                  <li>• Project Operations</li>
+                  <li>• Business Central</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Web API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-indigo-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-orange-600">NS</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">NetSuite</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Procurement Management</li>
+                  <li>• Expense Management</li>
+                  <li>• Manufacturing</li>
+                  <li>• CRM & Sales</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    SuiteTalk API
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional ERP Systems -->
+            <div class="border-t border-gray-200 pt-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Additional ERP Systems</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Workday</h5>
+                  <p class="text-xs text-gray-600 mt-1">HCM, Financials, Planning</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Salesforce</h5>
+                  <p class="text-xs text-gray-600 mt-1">CRM, Sales Cloud, Service</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Infor CloudSuite</h5>
+                  <p class="text-xs text-gray-600 mt-1">Manufacturing, Distribution</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Epicor ERP</h5>
+                  <p class="text-xs text-gray-600 mt-1">Manufacturing, Supply Chain</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mt-6">
+              <div class="flex">
+                <svg class="w-5 h-5 text-indigo-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-sm text-indigo-800">
+                    <strong>Custom or legacy ERP?</strong> We can create custom connectors for proprietary systems. 
+                    <a href="/contact" class="underline">Contact us</a> to discuss your specific requirements.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2: Authentication & Access Setup -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-indigo-600">2</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up Authentication & Access</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <!-- SAP Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-blue-600">SAP</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">SAP S/4HANA Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create Technical User & Assign Roles</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Access SAP GUI or SAP Fiori Launchpad as administrator</li>
+                  <li>Navigate to <strong>User Management (SU01)</strong></li>
+                  <li>Create technical user: <code class="bg-gray-200 px-1 rounded">CARBON_API</code></li>
+                  <li>Assign the following roles:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- SAP_BC_WEBSERVICE_CONSUMER
+- SAP_GATEWAY_BC_SEC_API_READ
+- Z_CARBON_DATA_READ (custom role)
+- SAP_BC_DWB_ODATA_CONSUMPTION</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Enable OData Services</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Go to <strong>Transaction SICF</strong> (Service Activation)</li>
+                  <li>Activate the following services:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>/sap/opu/odata/sap/API_BUSINESS_PARTNER/
+/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/
+/sap/opu/odata/sap/API_PURCHASING_DOCUMENT_SRV/
+/sap/opu/odata/sap/API_EXPENSE_REPORT_SRV/</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Oracle Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-red-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-red-600">ORA</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Oracle Cloud ERP Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create Integration User</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Log into Oracle Identity Cloud Service (IDCS)</li>
+                  <li>Create application user: <code class="bg-gray-200 px-1 rounded">carbon-integration</code></li>
+                  <li>Generate client credentials (ID and secret)</li>
+                  <li>Assign job roles and data access privileges:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Procurement Operations Analyst
+- Expense Report User
+- Supply Chain Data Steward
+- Project Portfolio Analyst</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Configure REST API Access</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Enable REST services in Setup and Maintenance</li>
+                  <li>• Configure OAuth 2.0 scopes for carbon data</li>
+                  <li>• Set up rate limiting and monitoring</li>
+                  <li>• Test API endpoints with Postman or curl</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Dynamics 365 Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-blue-600">MS</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Microsoft Dynamics 365 Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Register Application in Azure AD</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Go to Azure Active Directory → App registrations</li>
+                  <li>Create new application: <code class="bg-gray-200 px-1 rounded">Carbon Recycling Connector</code></li>
+                  <li>Configure API permissions for Dynamics 365:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Dynamics CRM.user_impersonation
+- Microsoft Graph.User.Read
+- PowerBI.Dataset.Read.All (if needed)</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create System User in D365</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Navigate to <strong>Settings → Security → Users</strong></li>
+                  <li>Create application user linked to Azure AD app</li>
+                  <li>Assign security roles: <strong>System Administrator</strong> or custom role</li>
+                  <li>Enable API access in user settings</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Data Mapping & Extraction Strategy -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-indigo-600">3</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Configure Data Mapping & Extraction</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              Map ERP data fields to carbon accounting categories for comprehensive emissions tracking.
+            </p>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      ERP Module
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Data Points Extracted
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Carbon Category
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Emission Scope
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Procurement
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Purchase orders, vendor data, material types, quantities, delivery methods
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Purchased goods & services
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 1
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Travel & Expense
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Trip reports, mileage claims, hotel bookings, flight details, car rentals
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Business travel
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Category 6
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Facilities Management
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Utility invoices, lease agreements, maintenance contracts, space allocation
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Energy consumption
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 & 2
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Manufacturing
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Production orders, material consumption, energy usage, waste generation
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Direct operations
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 & 3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Fleet Management
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Vehicle registrations, fuel purchases, maintenance records, mileage logs
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Company vehicles
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 & 3
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Project Management
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Project costs, resource allocation, contractor expenses, site locations
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Project emissions
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 - Various
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Data Quality Framework -->
+            <div class="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+              <h4 class="font-semibold text-indigo-900 mb-3">Data Quality & Validation Framework</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <div class="font-medium text-indigo-900 mb-2">Completeness Checks</div>
+                  <ul class="text-indigo-700 space-y-1">
+                    <li>• Missing mandatory fields</li>
+                    <li>• Data coverage percentage</li>
+                    <li>• Historical data gaps</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-indigo-900 mb-2">Accuracy Validation</div>
+                  <ul class="text-indigo-700 space-y-1">
+                    <li>• Cross-reference validation</li>
+                    <li>• Range and format checks</li>
+                    <li>• Business rule compliance</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-indigo-900 mb-2">Consistency Monitoring</div>
+                  <ul class="text-indigo-700 space-y-1">
+                    <li>• Duplicate record detection</li>
+                    <li>• Unit standardization</li>
+                    <li>• Currency conversion</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4: Testing & Validation -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-indigo-600">4</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Test & Validate Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Integration Testing Checklist</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Technical Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">API authentication successful</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Data extraction working correctly</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Field mapping accuracy verified</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Error handling functional</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Performance benchmarks met</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Business Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Sample data matches ERP reports</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Carbon calculations reasonable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Business stakeholder approval</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Compliance requirements met</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Data governance policies followed</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results Example -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Sample Integration Test Results</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <pre class="text-sm text-gray-600"><code>ERP Integration Test Results: SAP S/4HANA Production
+✅ Authentication: SUCCESS (Technical user CARBON_API active)
+✅ API Connectivity: SUCCESS (OData services responding)
+✅ Data Extraction: SUCCESS (247,891 records in last 12 months)
+✅ Field Mapping: SUCCESS (96% field coverage achieved)
+⚠️  Data Quality: WARNING (3.2% records missing cost center info)
+
+Module Coverage:
+- Procurement (MM): 98,432 purchase orders
+- Travel & Expense: 1,247 trip reports  
+- Facilities (RE): 156 utility invoices
+- Manufacturing (PP): 12,087 production orders
+- Fleet Management: 234 vehicles tracked
+
+Carbon Footprint Summary:
+- Scope 1 Emissions: 1,847.3 tCO2e
+- Scope 2 Emissions: 2,156.8 tCO2e
+- Scope 3 Emissions: 8,923.1 tCO2e
+- Data Quality Score: 94.3/100</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 5: Automation & Governance -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-indigo-600">5</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up Automation & Governance</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Automated Data Processing</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Configure daily incremental data sync
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Set up automatic data quality checks
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Enable intelligent exception handling
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Implement automated carbon calculations
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Schedule monthly reconciliation reports
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Governance & Compliance</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Establish data lineage tracking
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Configure access controls and audit logs
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Set up data retention policies
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Implement GDPR/privacy compliance
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Enable business continuity planning
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Integration Dashboard Preview -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border">
+              <h4 class="font-semibold text-gray-900 mb-2">Your ERP Carbon Dashboard Will Show:</h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Total Emissions</div>
+                  <div class="text-2xl font-bold text-indigo-600">12,927</div>
+                  <div class="text-gray-600">tCO2e annually</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Data Coverage</div>
+                  <div class="text-2xl font-bold text-green-600">94.3%</div>
+                  <div class="text-gray-600">completeness score</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Top Category</div>
+                  <div class="text-2xl font-bold text-purple-600">Scope 3</div>
+                  <div class="text-gray-600">procurement (68%)</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Cost Impact</div>
+                  <div class="text-2xl font-bold text-blue-600">£1.2M</div>
+                  <div class="text-gray-600">carbon cost/year</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Common Issues & Solutions</h2>
+          
+          <div class="space-y-4">
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                ERP API authentication keeps failing
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Technical user account locked or expired</li>
+                    <li>Insufficient API permissions or role assignments</li>
+                    <li>Network firewall blocking API endpoints</li>
+                    <li>OAuth token expiration not handled properly</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Verify technical user status and reset if needed</li>
+                    <li>Check and reassign required security roles</li>
+                    <li>Whitelist our IP addresses in firewall rules</li>
+                    <li>Implement automatic token refresh mechanism</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Data extraction returns incomplete records
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Database view restrictions or row-level security</li>
+                    <li>Missing joins in data extraction queries</li>
+                    <li>Field-level access permissions not granted</li>
+                    <li>Data archival policies affecting historical records</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Review and adjust database access permissions</li>
+                    <li>Optimize SQL queries with proper table joins</li>
+                    <li>Grant field-level read access for carbon data</li>
+                    <li>Configure access to archived data tables</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Performance issues with large data volumes
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Extracting too much data in single API calls</li>
+                    <li>Missing database indexes on query fields</li>
+                    <li>ERP system under heavy load during business hours</li>
+                    <li>Network latency between systems</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Implement pagination and incremental data loads</li>
+                    <li>Create database indexes on frequently queried fields</li>
+                    <li>Schedule data extraction during off-peak hours</li>
+                    <li>Use compression and optimize network connections</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Carbon calculations don't match expectations
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Incorrect emission factor assignments</li>
+                    <li>Missing or wrong unit conversions</li>
+                    <li>Data duplication across multiple modules</li>
+                    <li>Currency conversion errors in cost-based calculations</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Review and validate emission factor database</li>
+                    <li>Standardize units and implement conversion functions</li>
+                    <li>Create data deduplication rules and processes</li>
+                    <li>Implement accurate currency conversion with historical rates</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-r from-indigo-600 to-purple-700 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Need Help?</h2>
+            <p class="text-indigo-100 mb-6">
+              Our ERP integration specialists have deep experience with enterprise systems and carbon accounting requirements.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors">
+                Contact Support
+              </a>
+              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+                View Documentation
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

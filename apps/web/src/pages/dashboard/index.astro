@@ -1,0 +1,345 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EmissionsSummaryCard from '../../components/EmissionsSummaryCard.tsx';
+import ScopeBreakdownChart from '../../components/ScopeBreakdownChart.tsx';
+import TriggerCalculationButton from '../../components/TriggerCalculationButton.tsx';
+import MockDataHelper from '../../components/MockDataHelper.tsx';
+
+// For now, we'll handle auth on the client side
+// In production, this would use Clerk's server-side auth
+
+// Server-side data fetching
+let emissionsSummary = {
+  totalCo2e: 0,
+  byScope: {
+    scope_1: 0,
+    scope_2: 0,
+    scope_3: 0,
+  },
+  period: {
+    start: new Date().getFullYear() + '-01-01',
+    end: new Date().getFullYear() + '-12-31',
+  },
+};
+
+try {
+  // In production, this would use proper API base URL and authentication
+  const response = await fetch('http://localhost:8787/api/v1/emissions/summary', {
+    headers: {
+      'Authorization': 'Bearer mock-token',
+      'Content-Type': 'application/json',
+    },
+  });
+  
+  if (response.ok) {
+    emissionsSummary = await response.json();
+  }
+} catch (error) {
+  // Fallback to default values if API is not available
+  console.warn('Failed to fetch emissions summary:', error);
+}
+---
+
+<Layout title="Dashboard Overview - CarbonRecycling.co.uk">
+  <div class="min-h-screen bg-gray-50">
+    {/* Header */}
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-6">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
+            <p class="mt-2 text-sm text-gray-600">
+              Carbon emissions tracking and calculation for {emissionsSummary.period.start.split('-')[0]}
+            </p>
+          </div>
+          <nav class="flex space-x-4">
+            <a 
+              href="/dashboard/ingestion" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Data Ingestion
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard" 
+              class="text-sm font-medium text-green-600"
+            >
+              Overview
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard/analytics" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Analytics
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard/planner" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Planner
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard/reports" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Reports
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard/suppliers" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Suppliers
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    {/* Main Content */}
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div class="space-y-8">
+        
+        {/* Testing Helper Section */}
+        <MockDataHelper client:load />
+        
+        {/* Calculation Trigger Section */}
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <TriggerCalculationButton client:load />
+        </div>
+
+        {/* Summary Cards Grid */}
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <EmissionsSummaryCard
+            client:load
+            title="Total Emissions"
+            value={emissionsSummary.totalCo2e}
+            unit="tCO₂e"
+            icon="🌍"
+          />
+          <EmissionsSummaryCard
+            client:load
+            title="Scope 1"
+            value={emissionsSummary.byScope.scope_1}
+            unit="tCO₂e"
+            icon="🔥"
+          />
+          <EmissionsSummaryCard
+            client:load
+            title="Scope 2"
+            value={emissionsSummary.byScope.scope_2}
+            unit="tCO₂e"
+            icon="⚡"
+          />
+          <EmissionsSummaryCard
+            client:load
+            title="Scope 3"
+            value={emissionsSummary.byScope.scope_3}
+            unit="tCO₂e"
+            icon="🚛"
+          />
+        </div>
+
+        {/* Charts Section */}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Scope Breakdown Chart */}
+          <ScopeBreakdownChart
+            client:load
+            data={emissionsSummary.byScope}
+          />
+          
+          {/* Quick Actions Card */}
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <div class="space-y-4">
+              <a 
+                href="/dashboard/ingestion"
+                class="block w-full text-left p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors"
+              >
+                <div class="flex items-center">
+                  <span class="text-2xl mr-3">📊</span>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-900">Manage Data Sources</h4>
+                    <p class="text-xs text-gray-600">Connect and configure data sources for emissions tracking</p>
+                  </div>
+                </div>
+              </a>
+              
+              <a 
+                href="/dashboard/analytics"
+                class="block w-full text-left p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors"
+              >
+                <div class="flex items-center">
+                  <span class="text-2xl mr-3">📈</span>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-900">Analytics Dashboard</h4>
+                    <p class="text-xs text-gray-600">Explore detailed insights and trends in your emissions data</p>
+                  </div>
+                </div>
+              </a>
+
+              <a 
+                href="/dashboard/planner"
+                class="block w-full text-left p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors"
+              >
+                <div class="flex items-center">
+                  <span class="text-2xl mr-3">🎯</span>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-900">Decarbonisation Planner</h4>
+                    <p class="text-xs text-gray-600">Create and track emission reduction initiatives and projects</p>
+                  </div>
+                </div>
+              </a>
+              
+              <a 
+                href="/dashboard/reports"
+                class="block w-full text-left p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors"
+              >
+                <div class="flex items-center">
+                  <span class="text-2xl mr-3">📊</span>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-900">Reporting & Compliance Suite</h4>
+                    <p class="text-xs text-gray-600">Generate professional sustainability reports for stakeholders</p>
+                  </div>
+                </div>
+              </a>
+              
+              <a 
+                href="/dashboard/suppliers"
+                class="block w-full text-left p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors"
+              >
+                <div class="flex items-center">
+                  <span class="text-2xl mr-3">🤝</span>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-900">Supplier Portal</h4>
+                    <p class="text-xs text-gray-600">Manage suppliers and collect Scope 3 emissions data collaboratively</p>
+                  </div>
+                </div>
+              </a>
+              
+              <button
+                onclick="window.location.reload()"
+                class="block w-full text-left p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors"
+              >
+                <div class="flex items-center">
+                  <span class="text-2xl mr-3">🔄</span>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-900">Refresh Data</h4>
+                    <p class="text-xs text-gray-600">Reload the latest emissions calculations and data</p>
+                  </div>
+                </div>
+              </button>
+              
+              <div class="p-4 rounded-lg bg-gray-50 border border-gray-200">
+                <div class="flex items-center">
+                  <span class="text-2xl mr-3">📈</span>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-600">Reporting Suite</h4>
+                    <p class="text-xs text-gray-500">Coming in Module 5: Compliance reporting and stakeholder communications</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Information Cards */}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Calculation Methodology */}
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Calculation Methodology</h3>
+            <div class="space-y-3 text-sm text-gray-600">
+              <div class="flex items-start">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full mt-2 mr-3"></span>
+                <div>
+                  <p class="font-medium text-gray-900">Scope 1: Direct Emissions</p>
+                  <p>Direct GHG emissions from sources owned or controlled by the company</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="inline-block w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3"></span>
+                <div>
+                  <p class="font-medium text-gray-900">Scope 2: Electricity Indirect</p>
+                  <p>Indirect GHG emissions from purchased electricity, steam, heating and cooling</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="inline-block w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3"></span>
+                <div>
+                  <p class="font-medium text-gray-900">Scope 3: Other Indirect</p>
+                  <p>All other indirect GHG emissions in the value chain</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+              <p class="text-xs text-gray-500">
+                Calculations use UK DEFRA 2024 emission factors and follow GHG Protocol standards.
+              </p>
+            </div>
+          </div>
+
+          {/* Recent Activity */}
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Module Progress</h3>
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">Module 1: Data Ingestion Hub</p>
+                  <p class="text-xs text-gray-600">Completed - Connect and manage data sources</p>
+                </div>
+                <span class="text-green-600 text-sm">✓</span>
+              </div>
+              
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">Module 2: Emissions Calculation</p>
+                  <p class="text-xs text-gray-600">Completed - Calculate carbon footprint</p>
+                </div>
+                <span class="text-green-600 text-sm">✓</span>
+              </div>
+              
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-600">Module 3: Analytics Dashboard</p>
+                  <p class="text-xs text-gray-500">Coming soon - Advanced visualizations</p>
+                </div>
+                <span class="text-gray-400 text-sm">○</span>
+              </div>
+              
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-600">Module 4-6: Advanced Features</p>
+                  <p class="text-xs text-gray-500">Planning, reporting, and supplier collaboration</p>
+                </div>
+                <span class="text-gray-400 text-sm">○</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Auto-refresh emissions summary when calculations are triggered
+    window.addEventListener('calculationComplete', () => {
+      // Refresh the page to get updated data
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
+
+    // Dispatch event when page loads to update any listening components
+    document.addEventListener('DOMContentLoaded', () => {
+      window.dispatchEvent(new CustomEvent('dashboardLoaded'));
+    });
+  </script>
+</Layout>

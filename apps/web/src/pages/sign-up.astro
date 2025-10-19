@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sign Up - Carbon Recycling Platform">
+  <main class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-gray-900">
+          Carbon Recycling Platform
+        </h2>
+        <p class="mt-2 text-sm text-gray-600">
+          Create your account
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <!-- Clerk SignUp component will be inserted here -->
+        <div id="sign-up"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    import { Clerk } from '@clerk/clerk-js';
+    
+    // Initialize Clerk
+    const clerkPublishableKey = 'pk_test_Y2hhbXBpb24tc2VhaG9yc2UtNTMuY2xlcmsuYWNjb3VudHMuZGV2JA';
+    
+    if (clerkPublishableKey) {
+      const clerk = new Clerk(clerkPublishableKey);
+      clerk.load().then(() => {
+        clerk.mountSignUp(document.getElementById('sign-up'), {
+          signInUrl: '/sign-in',
+          afterSignUpUrl: '/dashboard',
+        });
+      });
+    }
+  </script>
+</Layout>

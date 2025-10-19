@@ -1,0 +1,894 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Integration FAQs - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-600 to-teal-600 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Integration FAQs</h1>
+          <p class="text-xl text-green-100 max-w-3xl mx-auto">
+            Find answers to common questions about setting up and managing data integrations for carbon accounting and sustainability reporting.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Search and Categories -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-12">
+          <div class="mb-6">
+            <label for="search" class="block text-sm font-medium text-gray-700 mb-2">Search FAQs</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
+              <input type="text" id="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500" placeholder="Search for answers...">
+            </div>
+          </div>
+          
+          <!-- Category Filters -->
+          <div class="flex flex-wrap gap-3">
+            <button class="filter-btn active px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium hover:bg-green-200 transition-colors" data-category="all">
+              All Questions
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors" data-category="authentication">
+              Authentication
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors" data-category="data-mapping">
+              Data Mapping
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors" data-category="troubleshooting">
+              Troubleshooting
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors" data-category="billing">
+              Billing & Limits
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors" data-category="security">
+              Security
+            </button>
+          </div>
+        </div>
+
+        <!-- General Integration Questions -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">General Integration Questions</h2>
+          
+          <div class="space-y-4">
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="all">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>How many integrations can I set up on my account?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">The number of integrations depends on your subscription plan:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                      <li><strong>Starter Plan:</strong> Up to 5 integrations</li>
+                      <li><strong>Professional Plan:</strong> Up to 25 integrations</li>
+                      <li><strong>Enterprise Plan:</strong> Unlimited integrations</li>
+                    </ul>
+                    <p class="mt-4">Each integration includes unlimited data sources within the same system (e.g., multiple utility accounts from the same provider count as one integration).</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="all">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>How long does it take to set up an integration?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Setup times vary by integration type and complexity:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                      <li><strong>Utility & Energy:</strong> 5-15 minutes (OAuth-based)</li>
+                      <li><strong>Cloud Services:</strong> 10-30 minutes (API key setup)</li>
+                      <li><strong>ERP Systems:</strong> 30 minutes - 2 hours (complex permissions)</li>
+                      <li><strong>Manufacturing/IoT:</strong> 1-4 hours (custom protocols)</li>
+                      <li><strong>Finance Systems:</strong> 15-45 minutes (OAuth + data mapping)</li>
+                    </ul>
+                    <p class="mt-4">Initial data synchronization can take 2-24 hours depending on historical data volume.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="all">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>Can I import historical data from my existing systems?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Yes, we support historical data import for most integration types:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                      <li><strong>API-based integrations:</strong> Typically 2-5 years of historical data</li>
+                      <li><strong>Utility providers:</strong> Usually 12-24 months available via API</li>
+                      <li><strong>Finance systems:</strong> 7+ years for major platforms like QuickBooks, Xero</li>
+                      <li><strong>Manufacturing systems:</strong> Varies by system, typically 1-3 years</li>
+                    </ul>
+                    <p class="mt-4">For systems with limited API history, we also support CSV/Excel bulk imports with data validation and carbon calculation services.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="billing">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>Are there additional costs for API usage or data volume?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Our pricing is transparent with generous usage allowances:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                      <li><strong>Starter Plan:</strong> Up to 10,000 data records/month included</li>
+                      <li><strong>Professional Plan:</strong> Up to 100,000 data records/month included</li>
+                      <li><strong>Enterprise Plan:</strong> Up to 1,000,000 data records/month included</li>
+                    </ul>
+                    <p class="mt-4">Overage fees apply at £0.001 per additional record. API rate limits are automatically managed, and we absorb any third-party API costs for supported integrations.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Authentication & Setup -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Authentication & Setup</h2>
+          
+          <div class="space-y-4">
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="authentication">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>My OAuth authentication keeps failing. What should I check?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">OAuth failures are usually caused by one of these common issues:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">1. Check Browser Settings</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Disable popup blockers for our domain</li>
+                          <li>Enable third-party cookies temporarily</li>
+                          <li>Clear browser cache and cookies for the provider</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">2. Verify Account Permissions</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Ensure you have admin access to the connected system</li>
+                          <li>Check if your organization has API access restrictions</li>
+                          <li>Verify the account hasn't expired or been suspended</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">3. Regional & Network Issues</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Some providers have regional API restrictions</li>
+                          <li>Corporate firewalls may block OAuth redirects</li>
+                          <li>Try from a different network or device</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded">
+                      <p class="text-sm text-green-800"><strong>Quick Fix:</strong> Try the authentication process in an incognito/private browser window first.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="authentication">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>How do I find my API keys for cloud service integrations?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">API key locations vary by provider. Here are the most common paths:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">AWS</h4>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                          <li>Go to AWS IAM Console</li>
+                          <li>Click "Users" → Select your user</li>
+                          <li>Click "Security Credentials" tab</li>
+                          <li>Create "Access Key" if none exist</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">Google Cloud</h4>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                          <li>Open Google Cloud Console</li>
+                          <li>Go to "APIs & Services" → "Credentials"</li>
+                          <li>Click "Create Credentials" → "Service Account Key"</li>
+                          <li>Download JSON file with credentials</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">Microsoft Azure</h4>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                          <li>Visit Azure Portal</li>
+                          <li>Go to "App Registrations"</li>
+                          <li>Create new app or select existing</li>
+                          <li>Go to "Certificates & Secrets"</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-3">Cloudflare</h4>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                          <li>Log into Cloudflare Dashboard</li>
+                          <li>Go to "My Profile" → "API Tokens"</li>
+                          <li>Click "Create Token"</li>
+                          <li>Use "Global API Key" for full access</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="authentication">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>What permissions do I need to grant for each integration type?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">We follow the principle of least privilege, requesting only necessary permissions:</p>
+                    <div class="overflow-x-auto">
+                      <table class="min-w-full text-sm">
+                        <thead class="bg-gray-50">
+                          <tr>
+                            <th class="px-4 py-2 text-left font-semibold">Integration Type</th>
+                            <th class="px-4 py-2 text-left font-semibold">Required Permissions</th>
+                            <th class="px-4 py-2 text-left font-semibold">Purpose</th>
+                          </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                          <tr>
+                            <td class="px-4 py-2 font-medium">Utility/Energy</td>
+                            <td class="px-4 py-2">Read billing data, usage data</td>
+                            <td class="px-4 py-2">Extract kWh consumption and costs</td>
+                          </tr>
+                          <tr class="bg-gray-50">
+                            <td class="px-4 py-2 font-medium">Finance Systems</td>
+                            <td class="px-4 py-2">Read transactions, vendors, accounts</td>
+                            <td class="px-4 py-2">Analyze spend-based emissions</td>
+                          </tr>
+                          <tr>
+                            <td class="px-4 py-2 font-medium">Cloud Services</td>
+                            <td class="px-4 py-2">Read billing, usage metrics, resource lists</td>
+                            <td class="px-4 py-2">Calculate infrastructure emissions</td>
+                          </tr>
+                          <tr class="bg-gray-50">
+                            <td class="px-4 py-2 font-medium">ERP Systems</td>
+                            <td class="px-4 py-2">Read purchase orders, inventory, production</td>
+                            <td class="px-4 py-2">Track supply chain emissions</td>
+                          </tr>
+                          <tr>
+                            <td class="px-4 py-2 font-medium">Fleet/Transport</td>
+                            <td class="px-4 py-2">Read vehicle data, fuel usage, routes</td>
+                            <td class="px-4 py-2">Monitor transport emissions</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                      <p class="text-sm text-blue-800"><strong>Security Note:</strong> We never request write permissions unless explicitly needed for two-way synchronization features.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Data Mapping & Quality -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Data Mapping & Quality</h2>
+          
+          <div class="space-y-4">
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="data-mapping">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>Why are my carbon calculations different from my internal estimates?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Differences in carbon calculations can occur for several reasons:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">1. Emission Factor Sources</h4>
+                        <p class="text-sm mb-2">We use the most current official emission factors:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>UK DEFRA conversion factors (updated annually)</li>
+                          <li>Grid emission factors by region and time</li>
+                          <li>IEA country-specific factors for international operations</li>
+                          <li>EXIOBASE sectoral factors for spend-based calculations</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">2. Data Completeness & Granularity</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>We capture all data sources automatically vs. manual sampling</li>
+                          <li>Hourly/daily granularity vs. monthly averages</li>
+                          <li>Include Scope 3 categories often missed in manual calculations</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">3. Methodology Differences</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Market-based vs. location-based electricity factors</li>
+                          <li>Cradle-to-gate vs. cradle-to-grave calculations</li>
+                          <li>Different global warming potential (GWP) values</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+                      <p class="text-sm text-yellow-800"><strong>Recommendation:</strong> Review our calculation methodology in the platform settings. We can also provide a detailed reconciliation report comparing methodologies.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="data-mapping">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>Can I customize how data is categorized and mapped?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Yes! We provide flexible data mapping and categorization options:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Category Mapping</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Create custom Scope 1, 2, 3 category rules</li>
+                          <li>Map suppliers/vendors to specific emission factors</li>
+                          <li>Override default categorization with business logic</li>
+                          <li>Set up department/cost center allocations</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Data Transformation</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Unit conversions (kWh, MJ, Therms, etc.)</li>
+                          <li>Currency and regional adjustments</li>
+                          <li>Custom allocation methods (by revenue, headcount, etc.)</li>
+                          <li>Data quality flags and confidence scores</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Advanced Features</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Machine learning-assisted categorization</li>
+                          <li>Custom emission factor databases</li>
+                          <li>Supplier-specific carbon intensity data</li>
+                          <li>Real-time data validation rules</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p class="mt-4 text-sm">Access these features through the "Data Mapping" section in your integration settings.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="data-mapping">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>Some of my data seems to be missing or incomplete. How do I fix this?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Data completeness issues can usually be resolved by checking these areas:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">1. API Access & Permissions</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Verify all required permissions are still granted</li>
+                          <li>Check if your source system has API rate limits</li>
+                          <li>Ensure your account hasn't expired or been downgraded</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">2. Data Range & Filters</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Check date range settings in integration configuration</li>
+                          <li>Review any filters applied during setup</li>
+                          <li>Some systems only provide data after connection date</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">3. Source Data Quality</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Missing fields in your source system (e.g., empty categories)</li>
+                          <li>Data processing delays in provider systems</li>
+                          <li>Regional availability differences for certain data types</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                      <p class="text-sm text-blue-800"><strong>Diagnosis Tool:</strong> Use the "Data Quality Report" in your integration dashboard to identify specific gaps and get recommended fixes.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Troubleshooting</h2>
+          
+          <div class="space-y-4">
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="troubleshooting">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>My integration was working but stopped syncing. What happened?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Integration sync failures typically fall into these categories:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Authentication Issues (70% of cases)</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>OAuth tokens expired (typically after 3-6 months)</li>
+                          <li>Password changed on source system</li>
+                          <li>Account permissions modified by admin</li>
+                          <li>Two-factor authentication enabled on source account</li>
+                        </ul>
+                        <p class="text-sm mt-2"><strong>Fix:</strong> Go to integration settings and re-authenticate</p>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Provider Changes (20% of cases)</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>API endpoint updates by provider</li>
+                          <li>New API versioning requirements</li>
+                          <li>Changed data formats or field names</li>
+                          <li>New rate limiting policies</li>
+                        </ul>
+                        <p class="text-sm mt-2"><strong>Fix:</strong> Usually resolved automatically; check our status page for updates</p>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Data/Network Issues (10% of cases)</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Temporary API outages from provider</li>
+                          <li>Network connectivity problems</li>
+                          <li>Malformed data causing processing errors</li>
+                          <li>Rate limit exceeded due to high volume</li>
+                        </ul>
+                        <p class="text-sm mt-2"><strong>Fix:</strong> Usually recovers automatically; manually retry if needed</p>
+                      </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded">
+                      <p class="text-sm text-green-800"><strong>Quick Check:</strong> Look for a red "Needs Attention" status on your integration dashboard, which will show the specific error and recommended action.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="troubleshooting">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>I'm getting rate limit errors. How do I resolve this?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Rate limiting protects provider APIs from overload. Here's how we handle it:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Automatic Rate Limit Management</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Intelligent backoff and retry mechanisms</li>
+                          <li>Distributed API calls across time windows</li>
+                          <li>Priority queuing for time-sensitive data</li>
+                          <li>Dynamic adjustment based on provider response</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Common Rate Limit Triggers</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Initial historical data sync (large volume)</li>
+                          <li>Multiple integrations from same provider</li>
+                          <li>Peak usage periods (end of month billing cycles)</li>
+                          <li>Provider maintenance windows</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">How to Minimize Rate Limiting</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Stagger setup of multiple similar integrations</li>
+                          <li>Use shorter historical data ranges for initial sync</li>
+                          <li>Schedule less frequent syncs for historical data</li>
+                          <li>Consider Premium API tiers for high-volume providers</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+                      <p class="text-sm text-yellow-800"><strong>Status:</strong> Rate limited integrations show "Queued" status and will auto-resume when limits reset. No action required from you.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="troubleshooting">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>Data is syncing but the carbon calculations seem wrong. How do I verify accuracy?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Carbon calculation accuracy can be verified through several validation steps:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">1. Data Source Verification</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Check "Raw Data" view to see actual values pulled from APIs</li>
+                          <li>Compare with source system values for same period</li>
+                          <li>Verify units are correctly identified (kWh vs MWh, etc.)</li>
+                          <li>Check for any data gaps or missing periods</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">2. Emission Factor Validation</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Review emission factors used in "Calculation Details"</li>
+                          <li>Verify regional/supplier-specific factors are correct</li>
+                          <li>Check if market-based or location-based factors apply</li>
+                          <li>Confirm scope categorization (1, 2, or 3)</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">3. Manual Spot Checks</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Calculate a few data points manually using our factors</li>
+                          <li>Use our "Calculation Wizard" for verification</li>
+                          <li>Compare against industry benchmarks for your sector</li>
+                          <li>Cross-reference with annual sustainability reports</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                      <p class="text-sm text-blue-800"><strong>Audit Trail:</strong> Every calculation includes a full audit trail showing data source, transformation steps, and emission factors applied.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Security & Privacy -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Security & Privacy</h2>
+          
+          <div class="space-y-4">
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="security">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>How is my sensitive business data protected during integrations?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">We implement enterprise-grade security measures to protect your data:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Encryption & Transport</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>TLS 1.3 encryption for all API communications</li>
+                          <li>AES-256 encryption for data at rest</li>
+                          <li>End-to-end encryption for sensitive credentials</li>
+                          <li>Zero-trust network architecture</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Access Control</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Role-based access control (RBAC) for your team</li>
+                          <li>Multi-factor authentication (MFA) required</li>
+                          <li>API tokens with limited scope and expiration</li>
+                          <li>Audit logs for all data access and changes</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Compliance & Standards</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>SOC 2 Type II certified</li>
+                          <li>GDPR and CCPA compliant data processing</li>
+                          <li>ISO 27001 information security management</li>
+                          <li>Regular third-party security audits</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Data Minimization</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Only collect data necessary for carbon calculations</li>
+                          <li>Automatic anonymization of personally identifiable information</li>
+                          <li>Configurable data retention policies</li>
+                          <li>Secure data deletion upon request</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="security">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>Can I control which team members have access to different integrations?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">Yes! We provide granular access controls for team collaboration:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Role-Based Permissions</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li><strong>Admin:</strong> Full access to all integrations and settings</li>
+                          <li><strong>Manager:</strong> View all data, configure integrations, no billing access</li>
+                          <li><strong>Analyst:</strong> View carbon data and reports, no configuration access</li>
+                          <li><strong>Viewer:</strong> Read-only access to assigned projects only</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Integration-Specific Access</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Assign specific integrations to team members</li>
+                          <li>Department-based access (Finance team sees finance data only)</li>
+                          <li>Regional restrictions for multinational organizations</li>
+                          <li>Temporary access grants for contractors/auditors</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Audit & Monitoring</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Complete audit trail of who accessed what data when</li>
+                          <li>Real-time notifications for sensitive data access</li>
+                          <li>Regular access reviews and recommendations</li>
+                          <li>Automatic deactivation for inactive users</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p class="mt-4 text-sm">Configure team access through the "Team Management" section in your account settings.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-item bg-white border rounded-lg shadow-sm" data-category="security">
+              <details class="group">
+                <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50 flex items-center justify-between">
+                  <span>What happens to my data if I cancel my subscription?</span>
+                  <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 border-t border-gray-200">
+                  <div class="pt-4 text-gray-600">
+                    <p class="mb-4">We provide transparent data retention and deletion policies:</p>
+                    <div class="space-y-4">
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Data Export Options</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Full data export available in CSV, Excel, and JSON formats</li>
+                          <li>Includes raw data, calculations, and configuration settings</li>
+                          <li>Self-service export available up to 90 days after cancellation</li>
+                          <li>Assisted export service available for Enterprise customers</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Grace Period</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>30-day grace period for paid plans (read-only access)</li>
+                          <li>90-day retention for Enterprise customers</li>
+                          <li>Immediate cessation of new data collection</li>
+                          <li>Integrations automatically disabled but configuration preserved</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Secure Deletion</h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                          <li>Complete data deletion after grace period expires</li>
+                          <li>Multi-pass secure deletion for sensitive information</li>
+                          <li>Deletion certificate provided upon request</li>
+                          <li>Backup systems purged within 180 days</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+                      <p class="text-sm text-yellow-800"><strong>Important:</strong> We recommend exporting your data before cancellation. Deleted data cannot be recovered after the grace period.</p>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Need More Help -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-r from-green-600 to-teal-600 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Still Need Help?</h2>
+            <p class="text-green-100 mb-6">
+              Our integration specialists are here to help you get the most out of your carbon data connections.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors">
+                Contact Support
+              </a>
+              <a href="/book-demo" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+                Book 1-on-1 Setup Help
+              </a>
+              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+                View Full Documentation
+              </a>
+            </div>
+            
+            <!-- Support Stats -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div class="text-2xl font-bold">< 2 hours</div>
+                <div class="text-sm text-green-100">Average response time</div>
+              </div>
+              <div>
+                <div class="text-2xl font-bold">98.5%</div>
+                <div class="text-sm text-green-100">Customer satisfaction</div>
+              </div>
+              <div>
+                <div class="text-2xl font-bold">24/7</div>
+                <div class="text-sm text-green-100">Documentation & self-help</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+      // FAQ Search Functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('search');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase();
+          
+          faqItems.forEach(item => {
+            const question = item.querySelector('summary').textContent.toLowerCase();
+            const answer = item.querySelector('.pt-4').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+        
+        // Category filter functionality
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Update active state
+            filterBtns.forEach(b => {
+              b.classList.remove('active', 'bg-green-100', 'text-green-800');
+              b.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            this.classList.add('active', 'bg-green-100', 'text-green-800');
+            this.classList.remove('bg-gray-100', 'text-gray-700');
+            
+            const category = this.dataset.category;
+            
+            faqItems.forEach(item => {
+              if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+            
+            // Clear search when filtering
+            searchInput.value = '';
+          });
+        });
+      });
+    </script>
+  </main>
+</Layout>

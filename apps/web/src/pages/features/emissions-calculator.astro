@@ -1,0 +1,951 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Emissions Calculator - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-600 to-green-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Emissions Calculator</h1>
+          <p class="text-xl text-green-100 max-w-3xl mx-auto mb-8">
+            Automated Scope 1, 2, and 3 emissions calculations using verified UK DEFRA 2025 methodologies. Transform your activity data into accurate CO2e measurements instantly.
+          </p>
+          <a href="/sign-up" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors inline-flex items-center">
+            Start Calculating
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Calculator Demo -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Live Emissions Calculator</h2>
+          <p class="text-xl text-gray-600">See how your activity data transforms into emissions in real-time</p>
+        </div>
+
+        <!-- Calculator Mode Toggle -->
+        <div class="flex justify-center mb-8">
+          <div class="bg-gray-100 p-1 rounded-lg inline-flex">
+            <button 
+              id="basic-mode" 
+              class="px-4 py-2 text-sm font-medium rounded-md transition-colors bg-green-600 text-white"
+              onclick="toggleCalculatorMode('basic')"
+            >
+              Basic Calculator
+            </button>
+            <button 
+              id="advanced-mode" 
+              class="px-4 py-2 text-sm font-medium rounded-md transition-colors text-gray-700 hover:text-gray-900"
+              onclick="toggleCalculatorMode('advanced')"
+            >
+              Advanced Calculator
+            </button>
+          </div>
+        </div>
+
+        <!-- Industry Presets Section -->
+        <div id="industry-presets" class="mb-16">
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Quick Start Templates</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Choose your industry to start with typical emission values
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              <button onclick="applyPreset('tech')" class="preset-btn p-3 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors text-center">
+                <div class="text-2xl mb-1">💻</div>
+                <div class="text-xs font-medium text-gray-900">Tech</div>
+                <div class="text-xs text-gray-500">~50 staff</div>
+              </button>
+              <button onclick="applyPreset('manufacturing')" class="preset-btn p-3 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors text-center">
+                <div class="text-2xl mb-1">🏭</div>
+                <div class="text-xs font-medium text-gray-900">Manufacturing</div>
+                <div class="text-xs text-gray-500">~150 staff</div>
+              </button>
+              <button onclick="applyPreset('services')" class="preset-btn p-3 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors text-center">
+                <div class="text-2xl mb-1">🏢</div>
+                <div class="text-xs font-medium text-gray-900">Services</div>
+                <div class="text-xs text-gray-500">~80 staff</div>
+              </button>
+              <button onclick="applyPreset('retail')" class="preset-btn p-3 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors text-center">
+                <div class="text-2xl mb-1">🛍️</div>
+                <div class="text-xs font-medium text-gray-900">Retail</div>
+                <div class="text-xs text-gray-500">~200 staff</div>
+              </button>
+              <button onclick="applyPreset('healthcare')" class="preset-btn p-3 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors text-center">
+                <div class="text-2xl mb-1">🏥</div>
+                <div class="text-xs font-medium text-gray-900">Healthcare</div>
+                <div class="text-xs text-gray-500">~40 staff</div>
+              </button>
+              <button onclick="applyPreset('education')" class="preset-btn p-3 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors text-center">
+                <div class="text-2xl mb-1">🎓</div>
+                <div class="text-xs font-medium text-gray-900">Education</div>
+                <div class="text-xs text-gray-500">~120 staff</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculator Demo -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <!-- Input Section -->
+          <div class="bg-white border rounded-lg shadow-sm p-8">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-xl font-semibold text-gray-900">Activity Data Input</h3>
+              <div id="calculation-status" class="hidden flex items-center text-sm text-gray-500">
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Calculating...
+              </div>
+            </div>
+            
+            <div class="space-y-6">
+              <!-- Basic Inputs -->
+              <div class="space-y-6">
+                <!-- Electricity Input -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Electricity Consumption</label>
+                  <div class="flex space-x-2">
+                    <input 
+                      type="number" 
+                      id="electricity" 
+                      value="12500" 
+                      class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      oninput="calculateEmissions()"
+                      placeholder="Enter value"
+                    />
+                    <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <option>kWh</option>
+                      <option>MWh</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">UK Grid Average 2025: 0.193 kgCO₂e/kWh</p>
+                </div>
+
+                <!-- Natural Gas Input -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Natural Gas Consumption</label>
+                  <div class="flex space-x-2">
+                    <input 
+                      type="number" 
+                      id="gas" 
+                      value="8750" 
+                      class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      oninput="calculateEmissions()"
+                      placeholder="Enter value"
+                    />
+                    <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <option>kWh</option>
+                      <option>m³</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">Natural Gas: 0.184 kgCO₂e/kWh</p>
+                </div>
+
+                <!-- Fuel Input -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Fleet Fuel Consumption</label>
+                  <div class="flex space-x-2">
+                    <input 
+                      type="number" 
+                      id="fuel" 
+                      value="2150" 
+                      class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      oninput="calculateEmissions()"
+                      placeholder="Enter value"
+                    />
+                    <select id="fuel-type" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" onchange="calculateEmissions()">
+                      <option value="diesel">Diesel</option>
+                      <option value="petrol">Petrol</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1" id="fuel-factor">Diesel: 2.687 kgCO₂e/litre</p>
+                </div>
+
+                <!-- Business Travel -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Business Travel (Air)</label>
+                  <div class="flex space-x-2">
+                    <input 
+                      type="number" 
+                      id="flights" 
+                      value="45000" 
+                      class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      oninput="calculateEmissions()"
+                      placeholder="Enter value"
+                    />
+                    <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <option>km</option>
+                      <option>miles</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">Domestic Flights: 0.246 kgCO₂e/km</p>
+                </div>
+              </div>
+
+              <!-- Advanced Inputs (Hidden by default) -->
+              <div id="advanced-inputs" class="pt-6 border-t border-gray-200 space-y-6" style="display: none;">
+                <h4 class="text-lg font-medium text-gray-900 mb-4">Additional Emission Sources</h4>
+                
+                <!-- Waste -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">General Waste</label>
+                  <div class="flex space-x-2">
+                    <input 
+                      type="number" 
+                      id="waste" 
+                      value="25" 
+                      class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      oninput="calculateEmissions()"
+                      placeholder="Enter value"
+                    />
+                    <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <option>tonnes</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">General Waste: 0.594 kgCO₂e/tonne</p>
+                </div>
+
+                <!-- Water -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Water Consumption</label>
+                  <div class="flex space-x-2">
+                    <input 
+                      type="number" 
+                      id="water" 
+                      value="1200" 
+                      class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      oninput="calculateEmissions()"
+                      placeholder="Enter value"
+                    />
+                    <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <option>m³</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">Water Supply & Treatment: 0.344 kgCO₂e/m³</p>
+                </div>
+
+                <!-- Commuting -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Employee Commuting</label>
+                  <div class="flex space-x-2">
+                    <input 
+                      type="number" 
+                      id="commuting" 
+                      value="180000" 
+                      class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      oninput="calculateEmissions()"
+                      placeholder="Enter value"
+                    />
+                    <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <option>km</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">Average Car: 0.171 kgCO₂e/km</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Section -->
+          <div class="bg-white border rounded-lg shadow-sm p-8">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">Calculated Emissions</h3>
+            <div class="space-y-6">
+              <!-- Scope 1 -->
+              <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-medium text-gray-900">Scope 1 (Direct Emissions)</span>
+                  <span id="scope1-total" class="font-bold text-red-700">7.386 tCO₂e</span>
+                </div>
+                <div class="text-sm text-gray-600 space-y-1">
+                  <div class="flex justify-between">
+                    <span>Natural Gas:</span>
+                    <span id="gas-emissions">1.610 tCO₂e</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span id="fuel-label">Diesel Fuel:</span>
+                    <span id="fuel-emissions">5.777 tCO₂e</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Scope 2 -->
+              <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-medium text-gray-900">Scope 2 (Indirect Energy)</span>
+                  <span id="scope2-total" class="font-bold text-orange-700">2.413 tCO₂e</span>
+                </div>
+                <div class="text-sm text-gray-600 space-y-1">
+                  <div class="flex justify-between">
+                    <span>Electricity:</span>
+                    <span id="electricity-emissions">2.413 tCO₂e</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Scope 3 -->
+              <div class="bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-medium text-gray-900">Scope 3 (Indirect Other)</span>
+                  <span id="scope3-total" class="font-bold text-cyan-700">11.070 tCO₂e</span>
+                </div>
+                <div class="text-sm text-gray-600 space-y-1">
+                  <div class="flex justify-between">
+                    <span>Business Travel:</span>
+                    <span id="travel-emissions">11.070 tCO₂e</span>
+                  </div>
+                  <div id="waste-row" class="flex justify-between" style="display: none;">
+                    <span>Waste:</span>
+                    <span id="waste-emissions">0.000 tCO₂e</span>
+                  </div>
+                  <div id="water-row" class="flex justify-between" style="display: none;">
+                    <span>Water:</span>
+                    <span id="water-emissions">0.000 tCO₂e</span>
+                  </div>
+                  <div id="commuting-row" class="flex justify-between" style="display: none;">
+                    <span>Commuting:</span>
+                    <span id="commuting-emissions">0.000 tCO₂e</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Total -->
+              <div class="bg-gray-900 rounded-lg p-4 text-white">
+                <div class="flex items-center justify-between">
+                  <span class="font-semibold">Total Carbon Footprint</span>
+                  <span id="total-emissions" class="text-2xl font-bold">20.869 tCO₂e</span>
+                </div>
+                <p class="text-sm text-gray-300 mt-1">Annual emissions calculated</p>
+              </div>
+
+              <!-- Context Information -->
+              <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 class="font-medium text-blue-900 mb-2">Emissions Context</h4>
+                <div class="text-sm text-blue-800 space-y-1">
+                  <p id="context-cars">• Equivalent to 45,371 miles driven by an average car</p>
+                  <p id="context-homes">• Equal to 8.3 homes' energy use for one year</p>
+                  <p id="context-trees">• Offsets 960 tree seedlings grown for 10 years</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Export Section -->
+        <div id="export-section" class="bg-white border border-gray-200 rounded-lg p-6 mb-16">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Export Results</h3>
+              <p class="text-sm text-gray-600">Download or share your carbon footprint calculation</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-green-600" id="export-total">20.869 tCO₂e</div>
+              <div class="text-xs text-gray-500">Total Emissions</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <button onclick="downloadCSV()" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              CSV Data
+            </button>
+
+            <button onclick="printReport()" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              Print
+            </button>
+
+            <button onclick="shareResults()" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+              </svg>
+              Share
+            </button>
+
+            <a href="/sign-up" class="flex items-center justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md text-sm font-medium text-white hover:bg-green-700 transition-colors">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              Get Started
+            </a>
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-gray-200">
+            <div class="text-xs text-gray-500 space-y-1">
+              <p>• Results calculated using UK DEFRA 2025 emission factors and GHG Protocol standards</p>
+              <p>• CSV export suitable for further analysis and custom reporting</p>
+              <p>• Sign up for automated calculations, API access, and compliance reporting</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Methodology Section -->
+        <div class="bg-white border rounded-lg shadow-sm p-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-6">UK DEFRA 2025 Emission Factors</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+              <div class="text-2xl font-bold text-green-600 mb-2">0.193</div>
+              <div class="text-sm text-gray-600">kgCO2e/kWh</div>
+              <div class="text-xs text-gray-500 mt-1">UK Electricity Grid</div>
+            </div>
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+              <div class="text-2xl font-bold text-green-600 mb-2">0.184</div>
+              <div class="text-sm text-gray-600">kgCO2e/kWh</div>
+              <div class="text-xs text-gray-500 mt-1">Natural Gas</div>
+            </div>
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+              <div class="text-2xl font-bold text-green-600 mb-2">2.687</div>
+              <div class="text-sm text-gray-600">kgCO2e/litre</div>
+              <div class="text-xs text-gray-500 mt-1">Diesel Fuel</div>
+            </div>
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+              <div class="text-2xl font-bold text-green-600 mb-2">0.246</div>
+              <div class="text-sm text-gray-600">kgCO2e/km</div>
+              <div class="text-xs text-gray-500 mt-1">Domestic Flights</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Advanced Calculation Features</h2>
+          <p class="text-xl text-gray-600">Comprehensive emissions tracking across all GHG Protocol scopes</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 1-4 4-4 2.5 0 4 1.5 4 4 0 .5 0 1 0 1l2-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Scope 1 Direct</h3>
+            <p class="text-gray-600 mb-4">Direct emissions from sources owned or controlled by your organization.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Fuel combustion</li>
+              <li>• Company vehicles</li>
+              <li>• Process emissions</li>
+              <li>• Refrigerant leaks</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibent text-gray-900 mb-3">Scope 2 Energy</h3>
+            <p class="text-gray-600 mb-4">Indirect emissions from purchased electricity, steam, heating and cooling.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Grid electricity</li>
+              <li>• Purchased steam</li>
+              <li>• District heating</li>
+              <li>• Location & market-based</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Scope 3 Value Chain</h3>
+            <p class="text-gray-600 mb-4">All other indirect emissions in your value chain.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Business travel</li>
+              <li>• Employee commuting</li>
+              <li>• Supply chain</li>
+              <li>• Waste & water</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">DEFRA Verified</h3>
+            <p class="text-gray-600 mb-4">All calculations use latest UK Government emission factors.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• 2025 DEFRA factors</li>
+              <li>• Annually updated</li>
+              <li>• GHG Protocol aligned</li>
+              <li>• Audit-ready results</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Real-time Processing</h3>
+            <p class="text-gray-600 mb-4">Instant calculations as data is ingested from your systems.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Automated processing</li>
+              <li>• Live updates</li>
+              <li>• Bulk calculations</li>
+              <li>• API integration</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Custom Factors</h3>
+            <p class="text-gray-600 mb-4">Support for organization-specific emission factors when needed.</p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>• Supplier-specific data</li>
+              <li>• Regional factors</li>
+              <li>• Custom methodologies</li>
+              <li>• Override capability</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-green-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Calculate Your Carbon Footprint?</h2>
+        <p class="text-xl text-green-100 mb-8">Start with automated calculations using the latest UK 2025 emission factors</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors">
+            Start Calculating
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Interactive Calculator Script -->
+  <script>
+    // Global state
+    let isAdvancedMode = false;
+    let calculationTimeout = null;
+
+    // Industry presets
+    const INDUSTRY_PRESETS = {
+      tech: {
+        electricity: 85000, gas: 15000, fuel: 800, flights: 25000,
+        waste: 8, water: 400, commuting: 85000
+      },
+      manufacturing: {
+        electricity: 450000, gas: 180000, fuel: 4500, flights: 15000,
+        waste: 120, water: 2800, commuting: 320000
+      },
+      services: {
+        electricity: 120000, gas: 35000, fuel: 1200, flights: 85000,
+        waste: 15, water: 650, commuting: 280000
+      },
+      retail: {
+        electricity: 280000, gas: 85000, fuel: 8500, flights: 12000,
+        waste: 45, water: 850, commuting: 380000
+      },
+      healthcare: {
+        electricity: 95000, gas: 28000, fuel: 2500, flights: 8000,
+        waste: 18, water: 1200, commuting: 125000
+      },
+      education: {
+        electricity: 180000, gas: 95000, fuel: 3200, flights: 18000,
+        waste: 35, water: 1800, commuting: 195000
+      }
+    };
+
+    // UK DEFRA 2025 emission factors
+    const EMISSION_FACTORS = {
+      electricity: 0.193,    // kgCO2e/kWh
+      gas: 0.184,           // kgCO2e/kWh
+      diesel: 2.687,        // kgCO2e/litre
+      petrol: 2.392,        // kgCO2e/litre
+      domesticFlight: 0.246, // kgCO2e/km
+      generalWaste: 0.594,   // kgCO2e/tonne
+      water: 0.344,         // kgCO2e/m3
+      carCommuting: 0.171   // kgCO2e/km
+    };
+
+    function toggleCalculatorMode(mode) {
+      isAdvancedMode = mode === 'advanced';
+      
+      // Update button styles
+      const basicBtn = document.getElementById('basic-mode');
+      const advancedBtn = document.getElementById('advanced-mode');
+      
+      if (isAdvancedMode) {
+        basicBtn.className = 'px-4 py-2 text-sm font-medium rounded-md transition-colors text-gray-700 hover:text-gray-900';
+        advancedBtn.className = 'px-4 py-2 text-sm font-medium rounded-md transition-colors bg-green-600 text-white';
+        document.getElementById('advanced-inputs').style.display = 'block';
+        // Show advanced result rows
+        document.getElementById('waste-row').style.display = 'flex';
+        document.getElementById('water-row').style.display = 'flex';
+        document.getElementById('commuting-row').style.display = 'flex';
+      } else {
+        basicBtn.className = 'px-4 py-2 text-sm font-medium rounded-md transition-colors bg-green-600 text-white';
+        advancedBtn.className = 'px-4 py-2 text-sm font-medium rounded-md transition-colors text-gray-700 hover:text-gray-900';
+        document.getElementById('advanced-inputs').style.display = 'none';
+        // Hide advanced result rows
+        document.getElementById('waste-row').style.display = 'none';
+        document.getElementById('water-row').style.display = 'none';
+        document.getElementById('commuting-row').style.display = 'none';
+      }
+      
+      calculateEmissions();
+    }
+
+    function applyPreset(industryType) {
+      const preset = INDUSTRY_PRESETS[industryType];
+      if (!preset) return;
+
+      // Apply basic values
+      document.getElementById('electricity').value = preset.electricity;
+      document.getElementById('gas').value = preset.gas;
+      document.getElementById('fuel').value = preset.fuel;
+      document.getElementById('flights').value = preset.flights;
+
+      // Apply advanced values if in advanced mode
+      if (isAdvancedMode) {
+        document.getElementById('waste').value = preset.waste;
+        document.getElementById('water').value = preset.water;
+        document.getElementById('commuting').value = preset.commuting;
+      }
+
+      // Visual feedback
+      const buttons = document.querySelectorAll('.preset-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('border-green-500', 'bg-green-100');
+        btn.classList.add('border-gray-200');
+      });
+      
+      event.target.closest('.preset-btn').classList.add('border-green-500', 'bg-green-100');
+      event.target.closest('.preset-btn').classList.remove('border-gray-200');
+      
+      calculateEmissions();
+    }
+
+    function calculateEmissions() {
+      // Show calculation status
+      const statusEl = document.getElementById('calculation-status');
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+      }
+
+      // Clear previous timeout
+      if (calculationTimeout) {
+        clearTimeout(calculationTimeout);
+      }
+
+      // Simulate calculation delay for better UX
+      calculationTimeout = setTimeout(() => {
+        performCalculation();
+        if (statusEl) {
+          statusEl.classList.add('hidden');
+        }
+      }, 300);
+    }
+
+    function performCalculation() {
+      // Get input values
+      const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+      const gas = parseFloat(document.getElementById('gas').value) || 0;
+      const fuel = parseFloat(document.getElementById('fuel').value) || 0;
+      const flights = parseFloat(document.getElementById('flights').value) || 0;
+      
+      // Get fuel type
+      const fuelType = document.getElementById('fuel-type').value;
+      const fuelFactor = EMISSION_FACTORS[fuelType];
+      
+      // Update fuel factor display
+      const fuelFactorEl = document.getElementById('fuel-factor');
+      const fuelLabelEl = document.getElementById('fuel-label');
+      if (fuelType === 'diesel') {
+        fuelFactorEl.textContent = 'Diesel: 2.687 kgCO₂e/litre';
+        fuelLabelEl.textContent = 'Diesel Fuel:';
+      } else {
+        fuelFactorEl.textContent = 'Petrol: 2.392 kgCO₂e/litre';
+        fuelLabelEl.textContent = 'Petrol Fuel:';
+      }
+
+      // Calculate basic emissions (convert to tonnes)
+      const electricityEmissions = (electricity * EMISSION_FACTORS.electricity) / 1000;
+      const gasEmissions = (gas * EMISSION_FACTORS.gas) / 1000;
+      const fuelEmissions = (fuel * fuelFactor) / 1000;
+      const travelEmissions = (flights * EMISSION_FACTORS.domesticFlight) / 1000;
+
+      // Advanced emissions (only if in advanced mode)
+      let wasteEmissions = 0;
+      let waterEmissions = 0;
+      let commutingEmissions = 0;
+
+      if (isAdvancedMode) {
+        const waste = parseFloat(document.getElementById('waste').value) || 0;
+        const water = parseFloat(document.getElementById('water').value) || 0;
+        const commuting = parseFloat(document.getElementById('commuting').value) || 0;
+        
+        wasteEmissions = (waste * EMISSION_FACTORS.generalWaste) / 1000;
+        waterEmissions = (water * EMISSION_FACTORS.water) / 1000;
+        commutingEmissions = (commuting * EMISSION_FACTORS.carCommuting) / 1000;
+      }
+
+      // Calculate scope totals
+      const scope1 = gasEmissions + fuelEmissions;
+      const scope2 = electricityEmissions;
+      const scope3 = travelEmissions + wasteEmissions + waterEmissions + commutingEmissions;
+      const total = scope1 + scope2 + scope3;
+
+      // Update displays
+      const formatEmissions = (value) => {
+        if (value === 0) return '0.000 tCO₂e';
+        if (value < 0.001) return '<0.001 tCO₂e';
+        return value.toFixed(3) + ' tCO₂e';
+      };
+
+      document.getElementById('electricity-emissions').textContent = formatEmissions(electricityEmissions);
+      document.getElementById('gas-emissions').textContent = formatEmissions(gasEmissions);
+      document.getElementById('fuel-emissions').textContent = formatEmissions(fuelEmissions);
+      document.getElementById('travel-emissions').textContent = formatEmissions(travelEmissions);
+      
+      if (isAdvancedMode) {
+        document.getElementById('waste-emissions').textContent = formatEmissions(wasteEmissions);
+        document.getElementById('water-emissions').textContent = formatEmissions(waterEmissions);
+        document.getElementById('commuting-emissions').textContent = formatEmissions(commutingEmissions);
+      }
+
+      document.getElementById('scope1-total').textContent = formatEmissions(scope1);
+      document.getElementById('scope2-total').textContent = formatEmissions(scope2);
+      document.getElementById('scope3-total').textContent = formatEmissions(scope3);
+      document.getElementById('total-emissions').textContent = formatEmissions(total);
+      document.getElementById('export-total').textContent = formatEmissions(total);
+
+      // Update context information
+      updateContextInfo(total);
+    }
+
+    function updateContextInfo(totalTonnes) {
+      const carMiles = Math.round(totalTonnes * 2174);
+      const homes = (totalTonnes * 0.4).toFixed(1);
+      const trees = Math.round(totalTonnes * 46);
+      
+      document.getElementById('context-cars').textContent = `• Equivalent to ${carMiles.toLocaleString()} miles driven by an average car`;
+      document.getElementById('context-homes').textContent = `• Equal to ${homes} homes' energy use for one year`;
+      document.getElementById('context-trees').textContent = `• Offsets ${trees} tree seedlings grown for 10 years`;
+    }
+
+    // Export functions
+    function getCurrentData() {
+      const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+      const gas = parseFloat(document.getElementById('gas').value) || 0;
+      const fuel = parseFloat(document.getElementById('fuel').value) || 0;
+      const flights = parseFloat(document.getElementById('flights').value) || 0;
+      const fuelType = document.getElementById('fuel-type').value;
+      
+      const data = {
+        electricity: { value: electricity, unit: 'kWh', emissions: (electricity * EMISSION_FACTORS.electricity) / 1000 },
+        gas: { value: gas, unit: 'kWh', emissions: (gas * EMISSION_FACTORS.gas) / 1000 },
+        fuel: { value: fuel, unit: 'litres', type: fuelType, emissions: (fuel * EMISSION_FACTORS[fuelType]) / 1000 },
+        flights: { value: flights, unit: 'km', emissions: (flights * EMISSION_FACTORS.domesticFlight) / 1000 }
+      };
+
+      if (isAdvancedMode) {
+        const waste = parseFloat(document.getElementById('waste').value) || 0;
+        const water = parseFloat(document.getElementById('water').value) || 0;
+        const commuting = parseFloat(document.getElementById('commuting').value) || 0;
+        
+        data.waste = { value: waste, unit: 'tonnes', emissions: (waste * EMISSION_FACTORS.generalWaste) / 1000 };
+        data.water = { value: water, unit: 'm³', emissions: (water * EMISSION_FACTORS.water) / 1000 };
+        data.commuting = { value: commuting, unit: 'km', emissions: (commuting * EMISSION_FACTORS.carCommuting) / 1000 };
+      }
+
+      return data;
+    }
+
+    function downloadCSV() {
+      const data = getCurrentData();
+      const total = Object.values(data).reduce((sum, item) => sum + item.emissions, 0);
+      
+      const headers = ['Category', 'Activity', 'Value', 'Unit', 'Emissions (tCO₂e)', 'Scope'];
+      const rows = [];
+      
+      // Add data rows
+      Object.entries(data).forEach(([key, item]) => {
+        const scope = ['gas', 'fuel'].includes(key) ? 'Scope 1' :
+                     key === 'electricity' ? 'Scope 2' : 'Scope 3';
+        const activityName = {
+          electricity: 'Electricity Consumption',
+          gas: 'Natural Gas',
+          fuel: `${item.type ? item.type.charAt(0).toUpperCase() + item.type.slice(1) : 'Fuel'} Consumption`,
+          flights: 'Business Travel (Air)',
+          waste: 'General Waste',
+          water: 'Water Consumption',
+          commuting: 'Employee Commuting'
+        }[key] || key;
+        
+        rows.push([key, activityName, item.value, item.unit, item.emissions.toFixed(3), scope]);
+      });
+      
+      // Add total
+      rows.push(['Summary', 'TOTAL EMISSIONS', '', '', total.toFixed(3), 'All Scopes']);
+      
+      const csvContent = [headers, ...rows]
+        .map(row => row.map(field => `"${field}"`).join(','))
+        .join('\n');
+      
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `carbon-emissions-${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function printReport() {
+      const data = getCurrentData();
+      const total = Object.values(data).reduce((sum, item) => sum + item.emissions, 0);
+      const date = new Date().toLocaleDateString('en-GB');
+      
+      const htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Carbon Emissions Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+            .header { text-align: center; border-bottom: 3px solid #059669; padding-bottom: 20px; margin-bottom: 30px; }
+            .total { font-size: 36px; font-weight: bold; color: #1f2937; text-align: center; margin: 20px 0; }
+            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+            th { background: #f3f4f6; font-weight: bold; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Carbon Emissions Calculation Report</h1>
+            <p>Generated on ${date}</p>
+          </div>
+          <div class="total">${total.toFixed(3)} tCO₂e</div>
+          <p style="text-align: center; color: #6b7280;">Total Annual Carbon Footprint</p>
+          <table>
+            <thead>
+              <tr><th>Activity</th><th>Value</th><th>Unit</th><th>Emissions (tCO₂e)</th><th>Scope</th></tr>
+            </thead>
+            <tbody>
+              ${Object.entries(data).map(([key, item]) => {
+                const scope = ['gas', 'fuel'].includes(key) ? 'Scope 1' :
+                             key === 'electricity' ? 'Scope 2' : 'Scope 3';
+                return `<tr>
+                  <td>${key.charAt(0).toUpperCase() + key.slice(1)}</td>
+                  <td>${item.value.toLocaleString()}</td>
+                  <td>${item.unit}</td>
+                  <td>${item.emissions.toFixed(3)}</td>
+                  <td>${scope}</td>
+                </tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+          <p style="margin-top: 40px; font-size: 12px; color: #6b7280; text-align: center;">
+            Report generated by CarbonRecycling.co.uk using UK DEFRA 2025 emission factors
+          </p>
+        </body>
+        </html>`;
+      
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(htmlContent);
+      printWindow.document.close();
+      printWindow.onload = () => {
+        printWindow.print();
+        printWindow.close();
+      };
+    }
+
+    function shareResults() {
+      const total = document.getElementById('total-emissions').textContent;
+      const text = `I just calculated my organization's carbon footprint: ${total} annual CO2 equivalent emissions using CarbonRecycling.co.uk's calculator.`;
+      const url = window.location.href;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'My Carbon Footprint Calculation',
+          text: text,
+          url: url
+        });
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(`${text} ${url}`).then(() => {
+          alert('Results copied to clipboard!');
+        });
+      } else {
+        // Fallback: select text
+        const textArea = document.createElement('textarea');
+        textArea.value = `${text} ${url}`;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Results copied to clipboard!');
+      }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      calculateEmissions();
+      
+      // Add fuel type change handler
+      document.getElementById('fuel-type').addEventListener('change', calculateEmissions);
+    });
+  </script>
+</Layout>

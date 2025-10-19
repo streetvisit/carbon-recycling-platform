@@ -1,0 +1,550 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { 
+  getAllIntegrations, 
+  ukUtilityProviders, 
+  erpIntegrations, 
+  cloudIntegrations, 
+  transportIntegrations, 
+  manufacturingIntegrations, 
+  financeIntegrations 
+} from '../../data/uk-utility-integrations.ts';
+
+export async function getStaticPaths() {
+  const allIntegrations = getAllIntegrations();
+  const paths = [];
+  
+  // Add utility providers
+  allIntegrations.utilities.forEach(provider => {
+    paths.push({
+      params: { integration: provider.id },
+      props: { 
+        integration: provider, 
+        type: 'utility',
+        category: 'UK Utility Provider' 
+      }
+    });
+  });
+  
+  // Add ERP systems
+  allIntegrations.erp.forEach(erp => {
+    paths.push({
+      params: { integration: erp.id },
+      props: { 
+        integration: erp, 
+        type: 'erp',
+        category: 'ERP System' 
+      }
+    });
+  });
+  
+  // Add cloud services
+  allIntegrations.cloud.forEach(cloud => {
+    paths.push({
+      params: { integration: cloud.id },
+      props: { 
+        integration: cloud, 
+        type: 'cloud',
+        category: 'Cloud Service' 
+      }
+    });
+  });
+  
+  // Add transport integrations
+  allIntegrations.transport.forEach(transport => {
+    paths.push({
+      params: { integration: transport.id },
+      props: { 
+        integration: transport, 
+        type: 'transport',
+        category: 'Transport & Fleet' 
+      }
+    });
+  });
+  
+  // Add manufacturing integrations
+  allIntegrations.manufacturing.forEach(manufacturing => {
+    paths.push({
+      params: { integration: manufacturing.id },
+      props: { 
+        integration: manufacturing, 
+        type: 'manufacturing',
+        category: 'Manufacturing System' 
+      }
+    });
+  });
+  
+  // Add finance integrations
+  allIntegrations.finance.forEach(finance => {
+    paths.push({
+      params: { integration: finance.id },
+      props: { 
+        integration: finance, 
+        type: 'finance',
+        category: 'Finance & Accounting' 
+      }
+    });
+  });
+  
+  return paths;
+}
+
+const { integration, type, category } = Astro.props;
+---
+
+<Layout title={`${integration.name} Integration - CarbonRecycling.co.uk`}>
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-800 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="flex items-center justify-center mb-6">
+            <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mr-4">
+              {type === 'utility' && (
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              )}
+              {type === 'erp' && (
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+              )}
+              {type === 'cloud' && (
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                </svg>
+              )}
+              {type === 'transport' && (
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
+                </svg>
+              )}
+              {type === 'manufacturing' && (
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              )}
+              {type === 'finance' && (
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              )}
+            </div>
+          </div>
+          <span class="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full font-medium mb-4">
+            {category}
+          </span>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{integration.name}</h1>
+          <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            Automated carbon data ingestion with real-time monitoring and comprehensive emissions tracking.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/sign-up" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+              Start Integration
+            </a>
+            <a href={integration.website} target="_blank" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+              View Official Site
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integration Details -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Main Content -->
+          <div class="lg:col-span-2">
+            <div class="bg-white border rounded-lg shadow-sm p-8 mb-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">Integration Overview</h2>
+              
+              {type === 'utility' && (
+                <div class="space-y-6">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Energy Supply Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Supply Type</div>
+                        <div class="font-semibold capitalize">{integration.type}</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Coverage Area</div>
+                        <div class="font-semibold capitalize">{integration.region}</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Business Types</div>
+                        <div class="font-semibold">{integration.businessTypes?.join(', ')}</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Tariff Types</div>
+                        <div class="font-semibold">{integration.tariffTypes?.length || 0} Available</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {integration.fuelMix && (
+                    <div>
+                      <h3 class="text-lg font-semibold text-gray-900 mb-3">Fuel Mix & Emissions</h3>
+                      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {integration.fuelMix.renewable && (
+                          <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">{integration.fuelMix.renewable}%</div>
+                            <div class="text-sm text-gray-600">Renewable</div>
+                          </div>
+                        )}
+                        {integration.fuelMix.nuclear && (
+                          <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-blue-600">{integration.fuelMix.nuclear}%</div>
+                            <div class="text-sm text-gray-600">Nuclear</div>
+                          </div>
+                        )}
+                        {integration.fuelMix.gas && (
+                          <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-yellow-600">{integration.fuelMix.gas}%</div>
+                            <div class="text-sm text-gray-600">Gas</div>
+                          </div>
+                        )}
+                        {integration.fuelMix.coal && (
+                          <div class="bg-gray-100 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-gray-600">{integration.fuelMix.coal}%</div>
+                            <div class="text-sm text-gray-600">Coal</div>
+                          </div>
+                        )}
+                      </div>
+                      <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-2">Carbon Intensity</div>
+                        <div class="text-lg font-semibold text-gray-900">
+                          {integration.emissionFactors?.electricity} kgCO2e/kWh
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              {type === 'erp' && (
+                <div class="space-y-6">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">System Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Vendor</div>
+                        <div class="font-semibold">{integration.vendor}</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Category</div>
+                        <div class="font-semibold capitalize">{integration.category}</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Deployment</div>
+                        <div class="font-semibold">{integration.deploymentTypes?.join(', ')}</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Available Data Points</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {integration.dataPoints?.energyConsumption && (
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                          <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                          </svg>
+                          <span class="text-sm">Energy Consumption</span>
+                        </div>
+                      )}
+                      {integration.dataPoints?.fuelUsage && (
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                          <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                          </svg>
+                          <span class="text-sm">Fuel Usage</span>
+                        </div>
+                      )}
+                      {integration.dataPoints?.travel && (
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                          <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                          </svg>
+                          <span class="text-sm">Travel & Transport</span>
+                        </div>
+                      )}
+                      {integration.dataPoints?.procurement && (
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                          <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                          </svg>
+                          <span class="text-sm">Procurement</span>
+                        </div>
+                      )}
+                      {integration.dataPoints?.facilities && (
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                          <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                          </svg>
+                          <span class="text-sm">Facilities</span>
+                        </div>
+                      )}
+                      {integration.dataPoints?.waste && (
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                          <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                          </svg>
+                          <span class="text-sm">Waste Management</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {type === 'cloud' && (
+                <div class="space-y-6">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Service Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Provider</div>
+                        <div class="font-semibold">{integration.provider}</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Category</div>
+                        <div class="font-semibold capitalize">{integration.category}</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Regions</div>
+                        <div class="font-semibold">{integration.regions?.length || 0} Available</div>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 mb-1">Billing Integration</div>
+                        <div class="font-semibold">{integration.apiIntegration?.billing_integration ? 'Yes' : 'No'}</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Emission Factors</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div class="bg-blue-50 p-4 rounded-lg text-center">
+                        <div class="text-lg font-bold text-blue-600">{integration.emissionFactors?.compute_per_hour}</div>
+                        <div class="text-sm text-gray-600">kgCO2e/hour<br/>Compute</div>
+                      </div>
+                      <div class="bg-green-50 p-4 rounded-lg text-center">
+                        <div class="text-lg font-bold text-green-600">{integration.emissionFactors?.storage_per_gb}</div>
+                        <div class="text-sm text-gray-600">kgCO2e/GB<br/>Storage</div>
+                      </div>
+                      <div class="bg-purple-50 p-4 rounded-lg text-center">
+                        <div class="text-lg font-bold text-purple-600">{integration.emissionFactors?.transfer_per_gb}</div>
+                        <div class="text-sm text-gray-600">kgCO2e/GB<br/>Transfer</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <!-- API Documentation -->
+            <div class="bg-white border rounded-lg shadow-sm p-8 mb-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">API Integration</h2>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="text-sm text-gray-600 mb-1">Method</div>
+                  <div class="font-semibold capitalize">{integration.apiIntegration?.method || 'N/A'}</div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="text-sm text-gray-600 mb-1">Authentication</div>
+                  <div class="font-semibold capitalize">{integration.apiIntegration?.authentication || 'N/A'}</div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="text-sm text-gray-600 mb-1">Data Frequency</div>
+                  <div class="font-semibold capitalize">{integration.apiIntegration?.frequency || integration.apiIntegration?.real_time ? 'Real-time' : 'Batch'}</div>
+                </div>
+              </div>
+
+              {integration.apiIntegration?.available && (
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-3">Setup Guide</h3>
+                  <div class="space-y-4">
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-sm font-semibold text-blue-600">1</span>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-1">Authentication Setup</h4>
+                        <p class="text-gray-600">Configure {integration.apiIntegration.authentication} credentials in your Carbon Recycling Platform account.</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-sm font-semibold text-blue-600">2</span>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-1">Data Mapping</h4>
+                        <p class="text-gray-600">Map your {integration.name} data fields to our carbon accounting categories.</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-sm font-semibold text-blue-600">3</span>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-1">Validation & Testing</h4>
+                        <p class="text-gray-600">Test the connection and validate data accuracy with our built-in verification tools.</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-sm font-semibold text-blue-600">4</span>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-1">Go Live</h4>
+                        <p class="text-gray-600">Enable automatic data synchronization and monitoring.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {!integration.apiIntegration?.available && (
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                  <div class="flex items-center">
+                    <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16c-.77.833.192 2.5 1.732 2.5z"/>
+                    </svg>
+                    <div>
+                      <div class="font-semibold text-yellow-800">Manual Integration Required</div>
+                      <div class="text-yellow-700">This provider requires manual data upload via CSV or file import. API integration coming soon.</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <!-- Code Example -->
+            {integration.apiIntegration?.available && (
+              <div class="bg-white border rounded-lg shadow-sm p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Code Example</h2>
+                
+                <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                  <pre class="text-sm text-gray-100"><code>{`// Carbon Recycling Platform - ${integration.name} Integration
+import { CarbonRecyclingAPI } from '@carbon-recycling/sdk';
+
+const carbonAPI = new CarbonRecyclingAPI({
+  apiKey: process.env.CARBON_RECYCLING_API_KEY
+});
+
+// Configure ${integration.name} integration
+const integration = await carbonAPI.integrations.configure({
+  provider: '${integration.id}',
+  credentials: {
+    ${integration.apiIntegration.authentication === 'oauth' ? `
+    clientId: process.env.${integration.name.toUpperCase().replace(/[^A-Z0-9]/g, '_')}_CLIENT_ID,
+    clientSecret: process.env.${integration.name.toUpperCase().replace(/[^A-Z0-9]/g, '_')}_CLIENT_SECRET,` : ''}${integration.apiIntegration.authentication === 'api-key' ? `
+    apiKey: process.env.${integration.name.toUpperCase().replace(/[^A-Z0-9]/g, '_')}_API_KEY,` : ''}${integration.apiIntegration.authentication === 'basic' ? `
+    username: process.env.${integration.name.toUpperCase().replace(/[^A-Z0-9]/g, '_')}_USERNAME,
+    password: process.env.${integration.name.toUpperCase().replace(/[^A-Z0-9]/g, '_')}_PASSWORD,` : ''}
+  },
+  dataMapping: {
+    ${type === 'utility' ? `
+    electricityUsage: 'monthly_kwh',
+    gasUsage: 'monthly_kwh_gas',
+    costs: 'total_cost',` : ''}${type === 'cloud' ? `
+    computeHours: 'instance_hours',
+    storageGB: 'storage_gb',
+    transferGB: 'bandwidth_gb',` : ''}${type === 'transport' ? `
+    fuelConsumption: 'fuel_litres',
+    mileage: 'total_miles',
+    vehicleTypes: 'vehicle_class',` : ''}
+  },
+  frequency: '${integration.apiIntegration.frequency || 'daily'}'
+});
+
+// Start data synchronization
+await integration.startSync();
+
+// Get latest emissions data
+const emissions = await integration.getEmissions({
+  startDate: '2025-01-01',
+  endDate: '2025-01-31'
+});
+
+console.log('Total CO2e:', emissions.totalCO2e);`}</code></pre>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Sidebar -->
+          <div class="lg:col-span-1">
+            <!-- Quick Stats -->
+            <div class="bg-white border rounded-lg shadow-sm p-6 mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Integration Type</span>
+                  <span class="font-semibold capitalize">{category}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">API Available</span>
+                  <span class={`font-semibold ${integration.apiIntegration?.available ? 'text-green-600' : 'text-yellow-600'}`}>
+                    {integration.apiIntegration?.available ? 'Yes' : 'Manual Only'}
+                  </span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Real-time Data</span>
+                  <span class={`font-semibold ${integration.apiIntegration?.frequency === 'real-time' || integration.apiIntegration?.real_time ? 'text-green-600' : 'text-gray-600'}`}>
+                    {integration.apiIntegration?.frequency === 'real-time' || integration.apiIntegration?.real_time ? 'Yes' : 'Batch'}
+                  </span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Data Formats</span>
+                  <span class="font-semibold">
+                    {integration.apiIntegration?.dataFormats?.join(', ') || integration.apiIntegration?.formats?.join(', ') || 'JSON'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+              <h3 class="text-lg font-semibold mb-2">Ready to Connect?</h3>
+              <p class="text-green-100 mb-4">
+                Start integrating {integration.name} data into your carbon management workflow.
+              </p>
+              <a href="/sign-up" class="block w-full bg-white text-green-600 py-2 px-4 rounded-lg font-semibold text-center hover:bg-green-50 transition-colors">
+                Start Free Trial
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

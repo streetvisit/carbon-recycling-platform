@@ -1,0 +1,536 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Real-time Processing - Data Ingestion Hub - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <!-- Breadcrumb -->
+            <nav class="flex" aria-label="Breadcrumb">
+              <ol class="flex items-center space-x-2 text-sm text-gray-500">
+                <li><a href="/features/data-ingestion" class="hover:text-gray-700">Data Ingestion</a></li>
+                <li class="flex items-center"><span class="mx-2">/</span>Real-time Processing</li>
+              </ol>
+            </nav>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-purple-600 to-purple-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Real-time Processing</h1>
+          <p class="text-xl text-purple-100 max-w-3xl mx-auto mb-8">
+            Process and standardize data in real-time for immediate insights. Transform raw activity data into standardized formats as soon as it arrives.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview Section -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Instant Data Processing</h2>
+            <p class="text-lg text-gray-600 mb-6">
+              Our real-time processing engine transforms raw activity data into standardized, calculation-ready formats 
+              within seconds of ingestion, enabling immediate carbon footprint insights.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Stream Processing</h3>
+                  <p class="text-gray-600">Handle thousands of data points per second with low-latency processing</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Data Transformation</h3>
+                  <p class="text-gray-600">Automatically convert units, standardize formats, and enrich data</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Immediate Availability</h3>
+                  <p class="text-gray-600">Processed data available for calculations and reporting instantly</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-lg">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Processing Pipeline</h3>
+            <div class="space-y-4">
+              <!-- Stage 1 -->
+              <div class="flex items-center p-4 bg-white border-l-4 border-blue-500 rounded shadow-sm">
+                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-blue-600 font-semibold text-sm">1</span>
+                </div>
+                <div>
+                  <div class="font-medium text-gray-900">Data Ingestion</div>
+                  <div class="text-sm text-gray-600">Raw data received from sources</div>
+                  <div class="text-xs text-blue-600 mt-1">Processing: 15ms avg</div>
+                </div>
+              </div>
+
+              <!-- Stage 2 -->
+              <div class="flex items-center p-4 bg-white border-l-4 border-yellow-500 rounded shadow-sm">
+                <div class="flex-shrink-0 w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-yellow-600 font-semibold text-sm">2</span>
+                </div>
+                <div>
+                  <div class="font-medium text-gray-900">Validation & Cleaning</div>
+                  <div class="text-sm text-gray-600">Quality checks and data cleaning</div>
+                  <div class="text-xs text-yellow-600 mt-1">Processing: 45ms avg</div>
+                </div>
+              </div>
+
+              <!-- Stage 3 -->
+              <div class="flex items-center p-4 bg-white border-l-4 border-purple-500 rounded shadow-sm">
+                <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-purple-600 font-semibold text-sm">3</span>
+                </div>
+                <div>
+                  <div class="font-medium text-gray-900">Transformation</div>
+                  <div class="text-sm text-gray-600">Unit conversion and standardization</div>
+                  <div class="text-xs text-purple-600 mt-1">Processing: 30ms avg</div>
+                </div>
+              </div>
+
+              <!-- Stage 4 -->
+              <div class="flex items-center p-4 bg-white border-l-4 border-green-500 rounded shadow-sm">
+                <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-green-600 font-semibold text-sm">4</span>
+                </div>
+                <div>
+                  <div class="font-medium text-gray-900">Storage & Indexing</div>
+                  <div class="text-sm text-gray-600">Data stored and indexed for analysis</div>
+                  <div class="text-xs text-green-600 mt-1">Processing: 25ms avg</div>
+                </div>
+              </div>
+
+              <div class="text-center pt-4 border-t">
+                <div class="text-sm font-medium text-gray-900">Total Processing Time</div>
+                <div class="text-lg font-bold text-purple-600">115ms average</div>
+                <div class="text-xs text-gray-500">Sub-second processing guaranteed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Processing Capabilities -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Processing Capabilities</h2>
+          <p class="text-xl text-gray-600">Comprehensive data transformation and enrichment</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Unit Conversion -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Unit Conversion</h3>
+            <p class="text-gray-600 mb-4">Automatically convert between measurement units and standards</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Energy: kWh, MWh, GJ, BTU
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Distance: km, miles, nautical miles
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Weight: kg, tonnes, lbs, short tons
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Volume: litres, gallons, m³, ft³
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Enrichment -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Data Enrichment</h3>
+            <p class="text-gray-600 mb-4">Enhance raw data with additional context and metadata</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                GHG scope classification
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Emission factor matching
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Geographic tagging
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Temporal context addition
+              </div>
+            </div>
+          </div>
+
+          <!-- Format Standardization -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 1.79 4 4 4h8c0 2.21 1.79 4 4 4h8c0-2.21-1.79-4-4-4V7c0-2.21-1.79-4-4-4H8c-2.21 0-4 1.79-4 4z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Format Standardization</h3>
+            <p class="text-gray-600 mb-4">Normalize data formats and structures for consistency</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Date/time standardization
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Currency normalization
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Text field cleansing
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Schema harmonization
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-time Examples -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Real-time Processing in Action</h2>
+          <p class="text-xl text-gray-600">See how raw data transforms into calculation-ready formats</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Energy Data Processing -->
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Energy Consumption Processing</h3>
+            <div class="space-y-6">
+              <!-- Raw Input -->
+              <div>
+                <h4 class="text-sm font-medium text-gray-900 mb-3">Raw Input Data</h4>
+                <div class="bg-gray-900 rounded-lg p-4 text-green-400 font-mono text-sm">
+                  <pre>{
+  "meter_id": "BG123456",
+  "reading": "15432.7",
+  "unit": "therms",
+  "timestamp": "2025-10-18T14:30:00+0000",
+  "fuel_type": "natural_gas"
+}</pre>
+                </div>
+              </div>
+
+              <!-- Arrow -->
+              <div class="flex justify-center">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+              </div>
+
+              <!-- Processed Output -->
+              <div>
+                <h4 class="text-sm font-medium text-gray-900 mb-3">Processed Output</h4>
+                <div class="bg-gray-900 rounded-lg p-4 text-green-400 font-mono text-sm">
+                  <pre>{
+  "activity_id": "act_2025_10_18_bg123456_gas",
+  "consumption_kwh": 452.4,
+  "consumption_mj": 1628.6,
+  "fuel_type": "natural_gas",
+  "ghg_scope": "scope_1",
+  "emission_factor": 0.184,
+  "geographic_region": "uk_national_grid",
+  "processed_timestamp": "2025-10-18T14:30:15.123Z",
+  "processing_time_ms": 89
+}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Travel Data Processing -->
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Travel Expense Processing</h3>
+            <div class="space-y-6">
+              <!-- Raw Input -->
+              <div>
+                <h4 class="text-sm font-medium text-gray-900 mb-3">Raw Expense Data</h4>
+                <div class="bg-gray-900 rounded-lg p-4 text-green-400 font-mono text-sm">
+                  <pre>{
+  "expense_id": "EXP-2025-001234",
+  "description": "Flight LHR to JFK return",
+  "amount": 847.50,
+  "currency": "GBP",
+  "date": "2025-10-15",
+  "category": "travel"
+}</pre>
+                </div>
+              </div>
+
+              <!-- Arrow -->
+              <div class="flex justify-center">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+              </div>
+
+              <!-- Processed Output -->
+              <div>
+                <h4 class="text-sm font-medium text-gray-900 mb-3">Processed Travel Data</h4>
+                <div class="bg-gray-900 rounded-lg p-4 text-green-400 font-mono text-sm">
+                  <pre>{
+  "activity_id": "act_2025_10_15_flight_lhr_jfk",
+  "travel_type": "air_international",
+  "distance_km": 11136,
+  "passenger_count": 1,
+  "trip_type": "return",
+  "ghg_scope": "scope_3",
+  "emission_factor": 0.257,
+  "route": {"origin": "LHR", "destination": "JFK"},
+  "processed_timestamp": "2025-10-18T14:32:07.456Z",
+  "processing_time_ms": 156
+}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Processing Architecture -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">High-Performance Architecture</h2>
+          <p class="text-xl text-gray-600">Built for scale with enterprise-grade reliability</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Throughput -->
+          <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div class="text-2xl font-bold text-purple-600 mb-2">50K+</div>
+            <div class="text-sm text-gray-600">Records/second</div>
+            <div class="text-xs text-gray-500 mt-1">Peak throughput</div>
+          </div>
+
+          <!-- Latency -->
+          <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="text-2xl font-bold text-blue-600 mb-2">&lt;100ms</div>
+            <div class="text-sm text-gray-600">Average latency</div>
+            <div class="text-xs text-gray-500 mt-1">99th percentile</div>
+          </div>
+
+          <!-- Availability -->
+          <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <div class="text-2xl font-bold text-green-600 mb-2">99.99%</div>
+            <div class="text-sm text-gray-600">Uptime SLA</div>
+            <div class="text-xs text-gray-500 mt-1">Guaranteed</div>
+          </div>
+
+          <!-- Scalability -->
+          <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+              </svg>
+            </div>
+            <div class="text-2xl font-bold text-yellow-600 mb-2">Auto</div>
+            <div class="text-sm text-gray-600">Scaling</div>
+            <div class="text-xs text-gray-500 mt-1">Dynamic capacity</div>
+          </div>
+        </div>
+
+        <!-- Architecture Diagram -->
+        <div class="mt-16">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-8 text-center">Processing Flow Architecture</h3>
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+              <!-- Input -->
+              <div class="text-center">
+                <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                  </svg>
+                </div>
+                <div class="text-sm font-medium text-gray-900">Data Input</div>
+                <div class="text-xs text-gray-500">APIs, Files, Streams</div>
+              </div>
+
+              <!-- Arrow -->
+              <div class="hidden md:flex justify-center">
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+
+              <!-- Processing -->
+              <div class="text-center">
+                <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                </div>
+                <div class="text-sm font-medium text-gray-900">Real-time Processing</div>
+                <div class="text-xs text-gray-500">Transform & Enrich</div>
+              </div>
+
+              <!-- Arrow -->
+              <div class="hidden md:flex justify-center">
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+
+              <!-- Output -->
+              <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 1.79 4 4 4h8c0 2.21 1.79 4 4 4h8c0-2.21-1.79-4-4-4V7c0-2.21-1.79-4-4-4H8c-2.21 0-4 1.79-4 4z"/>
+                  </svg>
+                </div>
+                <div class="text-sm font-medium text-gray-900">Calculation Ready</div>
+                <div class="text-xs text-gray-500">Standardized Data</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Real-time Processing Benefits</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Instant Insights</h3>
+            <p class="text-gray-600">See your carbon footprint update in real-time as new data arrives</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Always Current</h3>
+            <p class="text-gray-600">Reports and dashboards reflect the most up-to-date data available</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Faster Decisions</h3>
+            <p class="text-gray-600">Make informed sustainability decisions based on current, not historical data</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-purple-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Experience Real-time Carbon Intelligence</h2>
+        <p class="text-xl text-purple-100 mb-8">Transform your data into actionable insights in milliseconds, not hours</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+            Start Processing
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+            View Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

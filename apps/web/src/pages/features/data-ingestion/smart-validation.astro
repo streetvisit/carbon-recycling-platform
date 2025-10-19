@@ -1,0 +1,451 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Smart Validation - Data Ingestion Hub - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <!-- Breadcrumb -->
+            <nav class="flex" aria-label="Breadcrumb">
+              <ol class="flex items-center space-x-2 text-sm text-gray-500">
+                <li><a href="/features/data-ingestion" class="hover:text-gray-700">Data Ingestion</a></li>
+                <li class="flex items-center"><span class="mx-2">/</span>Smart Validation</li>
+              </ol>
+            </nav>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-yellow-600 to-yellow-800 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Smart Validation</h1>
+          <p class="text-xl text-yellow-100 max-w-3xl mx-auto mb-8">
+            AI-powered data validation catches errors and anomalies automatically, ensuring your carbon data is accurate and reliable before calculations.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview Section -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">AI-Powered Data Quality</h2>
+            <p class="text-lg text-gray-600 mb-6">
+              Our smart validation system uses machine learning to automatically detect data quality issues, 
+              anomalies, and inconsistencies that could impact your carbon calculations.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Anomaly Detection</h3>
+                  <p class="text-gray-600">ML algorithms identify unusual patterns and outliers in your data</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Data Completeness</h3>
+                  <p class="text-gray-600">Ensure all required fields are present and properly formatted</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">Business Logic Checks</h3>
+                  <p class="text-gray-600">Validate data against carbon accounting rules and constraints</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-lg">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Validation Dashboard</h3>
+            <div class="space-y-4">
+              <!-- High Severity Issue -->
+              <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">High Severity</h3>
+                    <div class="text-sm text-red-700 mt-2">
+                      Electricity consumption 500% above normal for HQ Building
+                    </div>
+                    <div class="text-xs text-red-600 mt-1">Requires immediate attention</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Medium Severity Issue -->
+              <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-yellow-800">Medium Severity</h3>
+                    <div class="text-sm text-yellow-700 mt-2">
+                      Missing fuel type data for 12 fleet vehicles
+                    </div>
+                    <div class="text-xs text-yellow-600 mt-1">Auto-filled with default values</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Success -->
+              <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-green-800">Validated Successfully</h3>
+                    <div class="text-sm text-green-700 mt-2">
+                      Travel expenses data - 1,247 records processed
+                    </div>
+                    <div class="text-xs text-green-600 mt-1">Ready for emissions calculation</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation Types -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Comprehensive Validation Types</h2>
+          <p class="text-xl text-gray-600">Multiple layers of validation ensure your data quality</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Schema Validation -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Schema Validation</h3>
+            <p class="text-gray-600 mb-4">Ensure data conforms to expected structure and types</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Required field validation
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Data type verification
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Format compliance checks
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Value range constraints
+              </div>
+            </div>
+          </div>
+
+          <!-- Business Rules -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Business Rules</h3>
+            <p class="text-gray-600 mb-4">Validate against carbon accounting and industry standards</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                GHG Protocol compliance
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Scope classification rules
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Unit conversion validation
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Emission factor compatibility
+              </div>
+            </div>
+          </div>
+
+          <!-- Anomaly Detection -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Anomaly Detection</h3>
+            <p class="text-gray-600 mb-4">ML-powered detection of unusual patterns and outliers</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Statistical outlier detection
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Time series anomalies
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Seasonal pattern validation
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                Cross-reference checks
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation Examples -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Real-World Validation Examples</h2>
+          <p class="text-xl text-gray-600">See how smart validation catches common data issues</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Example 1: Energy Data -->
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Energy Consumption Validation</h3>
+            <div class="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm overflow-x-auto">
+              <div class="text-gray-400 mb-2">// Input data validation</div>
+              <pre class="text-red-400">✗ FAILED: Electricity consumption: 50,000 kWh/day
+  Reason: 500% above historical average
+  Expected: 8,000-12,000 kWh/day
+  Action: Flagged for manual review
+
+✗ FAILED: Gas consumption: -150 kWh
+  Reason: Negative value not allowed
+  Action: Record rejected
+
+✓ PASSED: Electricity: 9,234 kWh
+  Validation: Within expected range
+  Action: Approved for calculation</pre>
+            </div>
+          </div>
+
+          <!-- Example 2: Travel Data -->
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Business Travel Validation</h3>
+            <div class="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm overflow-x-auto">
+              <div class="text-gray-400 mb-2">// Travel expense validation</div>
+              <pre class="text-yellow-400">⚠ WARNING: Flight distance: 15,000km
+  Route: London to Sydney
+  Reason: Unusual for single trip
+  Action: Auto-corrected to round-trip
+
+✗ FAILED: Train journey: 2,000km
+  Route: London to Paris  
+  Reason: Distance exceeds maximum
+  Expected: ~500km
+  Action: Record flagged
+
+✓ PASSED: Car rental: 450km
+  Validation: Reasonable distance
+  Action: Approved with diesel assumption</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation Rules Configuration -->
+    <div class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Configurable Validation Rules</h2>
+          <p class="text-xl text-gray-600">Customize validation to match your organization's specific needs</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Rule Configuration -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Energy Consumption Rules</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-3 border rounded">
+                <div>
+                  <div class="font-medium">Maximum daily consumption</div>
+                  <div class="text-sm text-gray-500">Electricity usage limits</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold">15,000 kWh</div>
+                  <div class="text-xs text-green-600">Active</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 border rounded">
+                <div>
+                  <div class="font-medium">Negative value detection</div>
+                  <div class="text-sm text-gray-500">Reject negative consumption</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold">Enabled</div>
+                  <div class="text-xs text-green-600">Active</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 border rounded">
+                <div>
+                  <div class="font-medium">Seasonal variance threshold</div>
+                  <div class="text-sm text-gray-500">Expected seasonal fluctuation</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-semibold">±200%</div>
+                  <div class="text-xs text-green-600">Active</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Validation Actions -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Automated Actions</h3>
+            <div class="space-y-4">
+              <div class="border-l-4 border-red-500 pl-4">
+                <div class="font-medium text-red-800">High Severity Issues</div>
+                <div class="text-sm text-gray-600 mt-1">
+                  • Reject record immediately<br/>
+                  • Send alert notification<br/>
+                  • Log for manual review
+                </div>
+              </div>
+              <div class="border-l-4 border-yellow-500 pl-4">
+                <div class="font-medium text-yellow-800">Medium Severity Issues</div>
+                <div class="text-sm text-gray-600 mt-1">
+                  • Apply default corrections<br/>
+                  • Flag for review<br/>
+                  • Continue processing
+                </div>
+              </div>
+              <div class="border-l-4 border-green-500 pl-4">
+                <div class="font-medium text-green-800">Low Severity Issues</div>
+                <div class="text-sm text-gray-600 mt-1">
+                  • Auto-correct values<br/>
+                  • Log corrections made<br/>
+                  • Process normally
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Validation Benefits</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">99.5% Data Accuracy</h3>
+            <p class="text-gray-600">Ensure your carbon calculations are based on reliable, validated data</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Early Error Detection</h3>
+            <p class="text-gray-600">Catch and correct issues before they impact your reporting and compliance</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Automated Corrections</h3>
+            <p class="text-gray-600">Reduce manual work with intelligent auto-correction of common issues</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-yellow-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ensure Your Data Quality with Smart Validation</h2>
+        <p class="text-xl text-yellow-100 mb-8">Never worry about data accuracy impacting your carbon reporting again</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-yellow-600 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors">
+            Start Validation
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-yellow-600 transition-colors">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

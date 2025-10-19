@@ -1,0 +1,209 @@
+---
+// pages/portal/accept-invite/[inviteId].astro - Accept supplier invitation
+import Layout from '../../../layouts/Layout.astro'
+
+export async function getStaticPaths() {
+  return []
+}
+
+const { inviteId } = Astro.params
+---
+
+<Layout title="Accept Invitation | Carbon Recycling Supplier Portal">
+  <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="flex justify-center">
+        <div class="h-12 w-12 bg-green-600 rounded-lg flex items-center justify-center">
+          <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+      </div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Welcome to the Supplier Portal
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        You've been invited to collaborate on sustainability reporting
+      </p>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div id="inviteContainer">
+          <!-- Loading state -->
+          <div id="loadingState" class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p class="text-gray-500">Validating invitation...</p>
+          </div>
+
+          <!-- Error state -->
+          <div id="errorState" class="hidden">
+            <div class="text-center">
+              <svg class="mx-auto h-12 w-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 class="mt-2 text-lg font-medium text-gray-900">Invalid Invitation</h3>
+              <p class="mt-2 text-sm text-gray-500" id="errorMessage">
+                This invitation link is invalid or has expired.
+              </p>
+              <div class="mt-6">
+                <a
+                  href="/"
+                  class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                >
+                  Go to Homepage
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Valid invitation state -->
+          <div id="validInviteState" class="hidden">
+            <div class="space-y-6">
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="text-sm font-medium text-gray-900 mb-2">Invitation Details</h4>
+                <dl class="grid grid-cols-1 gap-3 text-sm">
+                  <div>
+                    <dt class="font-medium text-gray-500">Your Organization:</dt>
+                    <dd class="text-gray-900" id="supplierName">-</dd>
+                  </div>
+                  <div>
+                    <dt class="font-medium text-gray-500">Reporting to:</dt>
+                    <dd class="text-gray-900" id="hostOrgName">-</dd>
+                  </div>
+                  <div>
+                    <dt class="font-medium text-gray-500">Contact Email:</dt>
+                    <dd class="text-gray-900" id="contactEmail">-</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div>
+                <button
+                  id="acceptInviteBtn"
+                  type="button"
+                  class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                >
+                  <span id="acceptBtnText">Accept Invitation & Access Portal</span>
+                  <svg id="acceptBtnSpinner" class="hidden animate-spin -mr-1 ml-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"></circle>
+                    <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" class="opacity-75"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+                <div class="text-sm text-blue-800">
+                  <h4 class="font-medium mb-2">What happens next?</h4>
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>You'll gain access to the supplier portal</li>
+                    <li>View and respond to data requests from the host company</li>
+                    <li>Submit sustainability and emissions data securely</li>
+                    <li>Track your submission status and history</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success state -->
+          <div id="successState" class="hidden">
+            <div class="text-center">
+              <svg class="mx-auto h-12 w-12 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 class="mt-2 text-lg font-medium text-gray-900">Welcome Aboard!</h3>
+              <p class="mt-2 text-sm text-gray-500">
+                Your invitation has been accepted successfully.
+              </p>
+              <div class="mt-6">
+                <a
+                  id="portalLink"
+                  href="/portal/dashboard"
+                  class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                >
+                  Access Supplier Portal
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const inviteId = window.location.pathname.split('/').pop()
+    
+    async function validateAndAcceptInvite() {
+      try {
+        // Validate invite
+        const response = await fetch(`/portal/api/v1/invite/${inviteId}`)
+        
+        if (!response.ok) {
+          throw new Error('Invalid or expired invitation')
+        }
+        
+        const data = await response.json()
+        
+        // Show invite details
+        document.getElementById('supplierName').textContent = data.supplier.name
+        document.getElementById('contactEmail').textContent = data.supplier.contactEmail
+        document.getElementById('hostOrgName').textContent = 'Carbon Recycling Host Company' // TODO: Get actual host org name
+        
+        // Show valid invite state
+        document.getElementById('loadingState').classList.add('hidden')
+        document.getElementById('validInviteState').classList.remove('hidden')
+        
+        // Set up accept button
+        document.getElementById('acceptInviteBtn').addEventListener('click', async () => {
+          const btn = document.getElementById('acceptInviteBtn')
+          const btnText = document.getElementById('acceptBtnText')
+          const btnSpinner = document.getElementById('acceptBtnSpinner')
+          
+          // Show loading state
+          btn.disabled = true
+          btnText.textContent = 'Accepting...'
+          btnSpinner.classList.remove('hidden')
+          
+          try {
+            const acceptResponse = await fetch(`/portal/api/v1/invite/${inviteId}/accept`, {
+              method: 'POST'
+            })
+            
+            if (!acceptResponse.ok) {
+              throw new Error('Failed to accept invitation')
+            }
+            
+            const acceptData = await acceptResponse.json()
+            
+            // Store the supplier token for portal access
+            localStorage.setItem('supplierToken', acceptData.token)
+            localStorage.setItem('supplierInfo', JSON.stringify(acceptData.supplier))
+            
+            // Show success state
+            document.getElementById('validInviteState').classList.add('hidden')
+            document.getElementById('successState').classList.remove('hidden')
+            
+          } catch (error) {
+            // Reset button state
+            btn.disabled = false
+            btnText.textContent = 'Accept Invitation & Access Portal'
+            btnSpinner.classList.add('hidden')
+            
+            alert('Failed to accept invitation: ' + error.message)
+          }
+        })
+        
+      } catch (error) {
+        // Show error state
+        document.getElementById('loadingState').classList.add('hidden')
+        document.getElementById('errorState').classList.remove('hidden')
+        document.getElementById('errorMessage').textContent = error.message
+      }
+    }
+    
+    // Initialize
+    validateAndAcceptInvite()
+  </script>
+</Layout>

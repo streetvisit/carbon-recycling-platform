@@ -1,0 +1,924 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="How to Set Up Transport & Fleet Integrations - CarbonRecycling.co.uk">
+  <main class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/public-home" class="flex items-center">
+              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/features/data-ingestion" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">← Back to Integrations</a>
+            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-orange-500 to-red-600 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Transport & Fleet Integration Guide</h1>
+          <p class="text-xl text-orange-100 max-w-3xl mx-auto">
+            Connect your fleet management and transport systems to automatically track vehicle emissions, fuel consumption, and route optimization data.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Table of Contents -->
+        <div class="bg-orange-50 border border-orange-200 rounded-lg p-6 mb-12">
+          <h2 class="text-lg font-semibold text-orange-900 mb-4">What You'll Learn</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <ul class="space-y-2 text-sm text-orange-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Fleet management system identification
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  API and telematics integration setup
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Vehicle and fuel data extraction
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="space-y-2 text-sm text-orange-800">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Emissions calculation by vehicle type
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Route optimization and efficiency tracking
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  Fleet carbon reduction strategies
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisites -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Prerequisites</h2>
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Before you start, ensure you have:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Fleet Management Requirements</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Active fleet management software account
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Telematics devices installed in vehicles
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Admin access to fleet management system
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Vehicle Information Needed</h4>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Vehicle registrations and specifications
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Fuel types and engine specifications
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Historical fuel consumption data
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 1: Identify Your Fleet Management System -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-orange-600">1</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Identify Your Fleet Management System</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              We support 20+ leading fleet management and transport systems with specialized connectors for carbon tracking.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div class="border rounded-lg p-4 hover:border-orange-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-orange-600">VZ</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Verizon Connect</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Vehicle tracking & telematics</li>
+                  <li>• Fuel monitoring & reporting</li>
+                  <li>• Driver behavior analytics</li>
+                  <li>• Maintenance scheduling</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    REST API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-orange-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-blue-600">SM</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Samsara</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• AI-powered fleet insights</li>
+                  <li>• Real-time GPS tracking</li>
+                  <li>• Engine diagnostics (OBD-II)</li>
+                  <li>• Compliance reporting (ELD)</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    GraphQL API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-orange-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-green-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-green-600">GT</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Geotab</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• MyGeotab fleet management</li>
+                  <li>• Fuel usage optimization</li>
+                  <li>• Route planning & dispatch</li>
+                  <li>• Environmental reporting</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    REST API
+                  </span>
+                </div>
+              </div>
+              
+              <div class="border rounded-lg p-4 hover:border-orange-300 transition-colors">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-purple-100 rounded flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold text-purple-600">TT</span>
+                  </div>
+                  <h4 class="font-semibold text-gray-900">Teletrac Navman</h4>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• DIRECTOR fleet software</li>
+                  <li>• Fuel card integration</li>
+                  <li>• Driver safety scoring</li>
+                  <li>• Asset utilization tracking</li>
+                </ul>
+                <div class="mt-3 flex items-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    REST API
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Fleet Systems -->
+            <div class="border-t border-gray-200 pt-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Additional Fleet Management Systems</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Fleet Complete</h5>
+                  <p class="text-xs text-gray-600 mt-1">GPS tracking, safety</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Fleetio</h5>
+                  <p class="text-xs text-gray-600 mt-1">Maintenance, fuel cards</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Donlen</h5>
+                  <p class="text-xs text-gray-600 mt-1">Fleet leasing, analytics</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Azuga</h5>
+                  <p class="text-xs text-gray-600 mt-1">Telematics, safety</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Omnitracs</h5>
+                  <p class="text-xs text-gray-600 mt-1">Trucking, compliance</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">Motive</h5>
+                  <p class="text-xs text-gray-600 mt-1">ELD, fleet management</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">GPS Insight</h5>
+                  <p class="text-xs text-gray-600 mt-1">Fleet tracking, reports</p>
+                </div>
+                <div class="text-center p-3 bg-gray-50 rounded-lg">
+                  <h5 class="font-medium text-gray-900 text-sm">CalAmp</h5>
+                  <p class="text-xs text-gray-600 mt-1">Telematics platform</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mt-6">
+              <div class="flex">
+                <svg class="w-5 h-5 text-orange-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-sm text-orange-800">
+                    <strong>Using multiple systems?</strong> We can consolidate data from different telematics providers and fuel card systems. 
+                    <a href="/contact" class="underline">Contact us</a> for multi-system integration support.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2: API Integration Setup -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-orange-600">2</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up API Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <!-- Verizon Connect Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-orange-600">VZ</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Verizon Connect Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Generate API Credentials</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Log into Verizon Connect Reveal dashboard</li>
+                  <li>Navigate to <strong>Account → API Access</strong></li>
+                  <li>Create new API application: <code class="bg-gray-200 px-1 rounded">Carbon Tracking</code></li>
+                  <li>Select the following scopes:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- vehicle:read (vehicle data access)
+- trip:read (trip and mileage data)
+- fuel:read (fuel consumption data)
+- driver:read (driver information)
+- report:read (reporting data access)</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Configure Webhook Endpoints</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Enable real-time data push for fuel events</li>
+                  <li>• Set up trip completion notifications</li>
+                  <li>• Configure vehicle diagnostic alerts</li>
+                  <li>• Test webhook delivery with sample events</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Samsara Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-blue-600">SM</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Samsara Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Create API Token</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Access Samsara Cloud dashboard</li>
+                  <li>Go to <strong>Settings → API Tokens</strong></li>
+                  <li>Create new token: <code class="bg-gray-200 px-1 rounded">carbon-integration-token</code></li>
+                  <li>Assign permissions for carbon tracking:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- Fleet: Read (vehicle and driver data)
+- Trips: Read (trip data and routes)
+- Engine Data: Read (diagnostic data)
+- Fuel: Read (fuel consumption data)
+- Contacts: Read (driver information)</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Configure Data Streams</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Enable streaming for fuel consumption events</li>
+                  <li>Set up trip data synchronization (hourly)</li>
+                  <li>Configure vehicle diagnostic data collection</li>
+                  <li>Test GraphQL queries for data validation</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Geotab Setup -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-green-100 rounded flex items-center justify-center mr-3">
+                  <span class="text-xs font-bold text-green-600">GT</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Geotab Setup</h3>
+              </div>
+              
+              <div class="bg-gray-50 border rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-2">MyGeotab API Access</h4>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                  <li>Log into MyGeotab portal with admin account</li>
+                  <li>Navigate to <strong>Administration → Users</strong></li>
+                  <li>Create API user: <code class="bg-gray-200 px-1 rounded">carbon_api_user</code></li>
+                  <li>Assign security groups with appropriate access:</li>
+                </ol>
+                <div class="mt-3 bg-gray-100 rounded p-3">
+                  <pre class="text-xs text-gray-700"><code>- ViewDevice (vehicle information)
+- ViewTrip (trip data access)
+- ViewFuelTransaction (fuel data)
+- ViewDriverChange (driver assignments)
+- ViewDiagnostic (engine diagnostics)</code></pre>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">Configure Data Feeds</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Set up automated daily fuel transaction exports</li>
+                  <li>• Configure trip data extraction (routes, distances)</li>
+                  <li>• Enable engine hour tracking for idle time monitoring</li>
+                  <li>• Test API authentication and data retrieval</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Vehicle Data Configuration -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-orange-600">3</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Configure Vehicle Data & Mapping</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <p class="text-gray-600 mb-6">
+              Map your fleet data to carbon accounting categories based on vehicle types, fuel consumption, and operational patterns.
+            </p>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Vehicle Category
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Data Points Tracked
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Emission Factors
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Carbon Scope
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Light Commercial Vehicles
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Fuel consumption, mileage, engine hours, vehicle weight, route efficiency
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      2.31 kg CO₂/L (petrol)<br>
+                      2.68 kg CO₂/L (diesel)
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 (Direct)
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Heavy Goods Vehicles
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Diesel consumption, payload weight, distance traveled, engine efficiency
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      2.68 kg CO₂/L (diesel)<br>
+                      3.15 kg CO₂/L (biodiesel)
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 (Direct)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Electric Vehicles
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Energy consumption (kWh), charging patterns, battery efficiency, range
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      0.193 kg CO₂/kWh (UK grid)<br>
+                      Variable by region
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 2 (Indirect)
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Company Cars
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Business vs personal mileage, fuel cards, maintenance records
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Based on vehicle type<br>
+                      and fuel efficiency
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 1 / Scope 3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Leased Vehicles
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Contract terms, usage patterns, fuel responsibility, maintenance
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Standard emission factors<br>
+                      by vehicle classification
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 (Category 8)
+                    </td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      Third-party Transport
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Subcontractor invoices, delivery routes, cargo weight, distances
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">
+                      Activity-based factors<br>
+                      (tonne-km, revenue-km)
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      Scope 3 (Category 9)
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Fleet Optimization Framework -->
+            <div class="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <h4 class="font-semibold text-orange-900 mb-3">Fleet Carbon Optimization Framework</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <div class="font-medium text-orange-900 mb-2">Route Optimization</div>
+                  <ul class="text-orange-700 space-y-1">
+                    <li>• Real-time traffic analysis</li>
+                    <li>• Multi-drop route planning</li>
+                    <li>• Fuel-efficient routing</li>
+                    <li>• Delivery consolidation</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-orange-900 mb-2">Driver Behavior</div>
+                  <ul class="text-orange-700 space-y-1">
+                    <li>• Eco-driving scoring</li>
+                    <li>• Idle time reduction</li>
+                    <li>• Speed optimization</li>
+                    <li>• Acceleration patterns</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="font-medium text-orange-900 mb-2">Vehicle Maintenance</div>
+                  <ul class="text-orange-700 space-y-1">
+                    <li>• Predictive maintenance</li>
+                    <li>• Tire pressure monitoring</li>
+                    <li>• Engine performance tracking</li>
+                    <li>• Fuel system optimization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4: Testing & Validation -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-orange-600">4</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Test & Validate Fleet Integration</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Fleet Integration Testing Checklist</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Technical Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Fleet management API responding</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Vehicle data extraction working</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Fuel consumption data accurate</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Trip data synchronization functional</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Real-time updates operational</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-3">Data Quality Validation</h4>
+                  <ul class="space-y-2">
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Vehicle registrations match fleet records</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Fuel data reconciles with receipts</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Mileage calculations reasonable</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Carbon emissions within expected range</span>
+                    </li>
+                    <li class="flex items-center">
+                      <input type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mr-2">
+                      <span class="text-sm text-gray-600">Fleet manager approval obtained</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results Example -->
+            <div class="bg-white border rounded-lg shadow-sm p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Sample Fleet Integration Test Results</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <pre class="text-sm text-gray-600"><code>Fleet Integration Test Results: Verizon Connect Fleet (145 vehicles)
+✅ API Connectivity: SUCCESS (OAuth 2.0 authentication active)
+✅ Vehicle Data: SUCCESS (145/145 vehicles successfully imported)
+✅ Fuel Monitoring: SUCCESS (3,247 fuel events in last 30 days)
+✅ Trip Tracking: SUCCESS (12,891 trips recorded and analyzed)
+⚠️  Data Quality: WARNING (2.1% of trips missing end locations)
+
+Fleet Carbon Summary (Last 30 Days):
+- Total Distance: 487,234 km
+- Total Fuel Consumed: 52,847 L (diesel: 48,123L, petrol: 4,724L)
+- Total CO₂ Emissions: 136.4 tonnes
+- Average Fuel Efficiency: 9.2 L/100km
+- Top Emitter: Heavy goods vehicles (67% of total emissions)
+
+Optimization Opportunities:
+- Route optimization could save 8.3% fuel consumption
+- Driver training could reduce idle time by 15 minutes/day per vehicle
+- 12 vehicles eligible for electric replacement (ROI: 18 months)</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 5: Fleet Optimization & Reporting -->
+        <section class="mb-12">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+              <span class="text-lg font-bold text-orange-600">5</span>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900">Set Up Fleet Optimization & Reporting</h2>
+          </div>
+          
+          <div class="bg-white border rounded-lg shadow-sm p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Automated Fleet Analytics</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Daily fuel consumption monitoring
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Real-time carbon footprint tracking
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Driver performance benchmarking
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Predictive maintenance scheduling
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Route optimization recommendations
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Compliance & Reporting</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    SECR (Streamlined Energy & Carbon) reporting
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    ISO 14064 GHG inventory compliance
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    CDP (Carbon Disclosure Project) submissions
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Fleet audit trail maintenance
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Automated monthly carbon reports
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Fleet Dashboard Preview -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg border">
+              <h4 class="font-semibold text-gray-900 mb-2">Your Fleet Carbon Dashboard Will Show:</h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Fleet Emissions</div>
+                  <div class="text-2xl font-bold text-orange-600">2,847</div>
+                  <div class="text-gray-600">tCO2e annually</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Fuel Efficiency</div>
+                  <div class="text-2xl font-bold text-green-600">8.7</div>
+                  <div class="text-gray-600">L/100km average</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Fleet Utilization</div>
+                  <div class="text-2xl font-bold text-blue-600">87.3%</div>
+                  <div class="text-gray-600">active vehicle time</div>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                  <div class="font-medium text-gray-900">Carbon Savings</div>
+                  <div class="text-2xl font-bold text-purple-600">£47K</div>
+                  <div class="text-gray-600">optimization/year</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Common Issues & Solutions</h2>
+          
+          <div class="space-y-4">
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Fleet management API connection timeouts
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Telematics system experiencing high load or downtime</li>
+                    <li>Network connectivity issues between systems</li>
+                    <li>API rate limits exceeded during peak hours</li>
+                    <li>Incorrect endpoint URLs or authentication tokens</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Implement exponential backoff retry mechanisms</li>
+                    <li>Check API status pages and service availability</li>
+                    <li>Distribute API calls across time periods to avoid rate limits</li>
+                    <li>Verify and refresh API tokens regularly</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Inconsistent fuel consumption readings
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Faulty or uncalibrated fuel sensors in vehicles</li>
+                    <li>Manual fuel receipts not captured in system</li>
+                    <li>Different fuel measurement standards (litres vs gallons)</li>
+                    <li>Time zone differences in fuel transaction timestamps</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Cross-reference telematics data with fuel card transactions</li>
+                    <li>Implement fuel sensor calibration schedules</li>
+                    <li>Standardize all measurements to consistent units</li>
+                    <li>Set up data validation rules for outlier detection</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Missing vehicle trip or mileage data
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>GPS signal loss in certain areas (tunnels, parking garages)</li>
+                    <li>Telematics device power issues or disconnection</li>
+                    <li>Driver not following check-in/check-out procedures</li>
+                    <li>System maintenance windows affecting data collection</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Enable offline data storage on telematics devices</li>
+                    <li>Set up driver alerts for device connectivity issues</li>
+                    <li>Implement trip interpolation for short data gaps</li>
+                    <li>Create manual trip entry process for missing data</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="bg-white border rounded-lg shadow-sm">
+              <summary class="p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                Carbon calculations seem too high or low
+              </summary>
+              <div class="px-6 pb-6 border-t border-gray-200">
+                <div class="pt-4 space-y-2 text-sm text-gray-600">
+                  <p><strong>Possible causes:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Incorrect emission factors for specific vehicle types</li>
+                    <li>Personal vs business mileage not properly segregated</li>
+                    <li>Electric vehicle charging data using wrong grid factors</li>
+                    <li>Biofuel blends not accounted for in calculations</li>
+                  </ul>
+                  <p class="pt-2"><strong>Solutions:</strong></p>
+                  <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Verify emission factors match actual vehicle specifications</li>
+                    <li>Implement business/personal trip classification</li>
+                    <li>Use region-specific electricity grid emission factors</li>
+                    <li>Account for renewable fuel certificates and offsets</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-r from-orange-500 to-red-600 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Need Help?</h2>
+            <p class="text-orange-100 mb-6">
+              Our fleet carbon specialists understand the complexities of transport emissions and can help optimize your fleet's environmental performance.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors">
+                Contact Support
+              </a>
+              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-colors">
+                View Documentation
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

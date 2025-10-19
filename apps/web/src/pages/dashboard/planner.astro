@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InitiativeList from '../../components/InitiativeList.tsx';
+import InitiativeDetailView from '../../components/InitiativeDetailView.tsx';
+import CreateInitiativeModal from '../../components/CreateInitiativeModal.tsx';
+
+// For now, we'll handle auth on the client side
+// In production, this would use Clerk's server-side auth
+---
+
+<Layout title="Decarbonisation Planner - CarbonRecycling.co.uk">
+  <div class="min-h-screen bg-gray-50">
+    {/* Header */}
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-6">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">Decarbonisation Planner</h1>
+            <p class="mt-2 text-sm text-gray-600">
+              Create, model, and track emission reduction initiatives to achieve your net-zero goals
+            </p>
+          </div>
+          <nav class="flex space-x-4">
+            <a 
+              href="/dashboard/analytics" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Analytics
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard/ingestion" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Data Ingestion
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard" 
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Overview
+            </a>
+            <span class="text-gray-400">|</span>
+            <a 
+              href="/dashboard/planner" 
+              class="text-sm font-medium text-green-600"
+            >
+              Planner
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    {/* Main Content - Master Detail Layout */}
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        
+        {/* Left Panel - Initiative List (Master) */}
+        <div class="xl:col-span-1">
+          <InitiativeList client:only="preact" />
+        </div>
+
+        {/* Right Panel - Initiative Detail (Detail) */}
+        <div class="xl:col-span-1">
+          <InitiativeDetailView client:only="preact" />
+        </div>
+
+      </div>
+
+      {/* Getting Started Guide */}
+      <div class="mt-12 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">🎯 Getting Started with Decarbonisation Planning</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="text-center">
+            <div class="text-3xl mb-3">1️⃣</div>
+            <h4 class="font-medium text-gray-900 mb-2">Identify Opportunities</h4>
+            <p class="text-sm text-gray-600">
+              Use data from the Analytics Dashboard to identify your highest-impact emission categories. Focus on areas with significant reduction potential.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="text-3xl mb-3">2️⃣</div>
+            <h4 class="font-medium text-gray-900 mb-2">Create Initiatives</h4>
+            <p class="text-sm text-gray-600">
+              Click "New Initiative" to create reduction projects. Set realistic targets (15-30% reduction) and include estimated costs for proper planning.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="text-3xl mb-3">3️⃣</div>
+            <h4 class="font-medium text-gray-900 mb-2">Track Progress</h4>
+            <p class="text-sm text-gray-600">
+              Monitor initiative status and use the forecast charts to visualize impact. Update project statuses as you implement changes.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-gray-200">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-medium text-gray-900 mb-1">💡 Pro Tips</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• Start with quick wins: LED upgrades, waste reduction, and energy efficiency</li>
+                <li>• Set realistic timelines: most initiatives take 6-18 months to implement</li>
+                <li>• Consider cost per tonne CO₂e saved when prioritizing projects</li>
+              </ul>
+            </div>
+            <div class="text-right">
+              <div class="text-sm text-gray-500 mb-1">Module Progress</div>
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-sm font-medium text-green-600">Module 4 Active</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Future Modules Preview */}
+      <div class="mt-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-blue-200 p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">🚀 Coming Next</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2 flex items-center">
+              <span class="text-blue-600 mr-2">📊</span>
+              Module 5: Reporting Suite
+            </h4>
+            <p class="text-sm text-gray-600">
+              Generate compliance reports (GRI, CDP, TCFD) using your actual data and planned initiatives. Export professional reports for stakeholders and regulatory submissions.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2 flex items-center">
+              <span class="text-purple-600 mr-2">🤝</span>
+              Module 6: Supplier Portal
+            </h4>
+            <p class="text-sm text-gray-600">
+              Engage your supply chain in decarbonisation efforts. Request supplier emissions data, set reduction targets, and collaborate on Scope 3 initiatives.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    {/* Create Initiative Modal */}
+    <CreateInitiativeModal client:only="preact" />
+  </div>
+
+  <script>
+    // Planner page specific scripts
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Decarbonisation Planner loaded');
+      
+      // Dispatch event to notify components
+      window.dispatchEvent(new CustomEvent('plannerPageLoaded'));
+    });
+
+    // Handle initiative selection events from components
+    window.addEventListener('initiativeSelected', (event) => {
+      console.log('Initiative selected:', event.detail);
+    });
+
+    // Handle initiative created events
+    window.addEventListener('initiativeCreated', (event) => {
+      console.log('New initiative created:', event.detail);
+    });
+  </script>
+</Layout>
