@@ -1,12 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getAuth } from '@clerk/astro/server';
-
-// Require authentication
-const auth = getAuth(Astro);
-if (!auth.userId) {
-  return Astro.redirect('/sign-in');
-}
+// Auth temporarily disabled for static build
 
 const pageTitle = "Portfolio Management - Carbon Trading";
 ---

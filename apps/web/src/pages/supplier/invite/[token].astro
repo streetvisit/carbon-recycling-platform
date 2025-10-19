@@ -2,6 +2,13 @@
 // pages/supplier/invite/[token].astro - Supplier invitation acceptance page
 import Layout from '../../../layouts/Layout.astro';
 
+// For static generation, we need to define getStaticPaths
+// Since tokens are generated dynamically, we return empty array for build-time
+// This allows the page to be accessible at runtime with dynamic tokens
+export async function getStaticPaths() {
+  return [];
+}
+
 // Get the token from URL params
 const token = Astro.params.token;
 

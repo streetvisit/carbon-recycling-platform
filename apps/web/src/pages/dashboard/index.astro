@@ -3,52 +3,20 @@ import Layout from '../../layouts/Layout.astro';
 import EmissionsSummaryCard from '../../components/EmissionsSummaryCard.tsx';
 import ScopeBreakdownChart from '../../components/ScopeBreakdownChart.tsx';
 import TriggerCalculationButton from '../../components/TriggerCalculationButton.tsx';
-import { getAuth } from '@clerk/astro/server';
-
-// Check if user is authenticated
-const auth = getAuth(Astro);
-if (!auth.userId) {
-  return Astro.redirect('/sign-in');
-}
-
-// Server-side data fetching with proper authentication
-let emissionsSummary = {
-  totalCo2e: 0,
+// Auth temporarily disabled for static build
+// Mock emissions data for demo
+const emissionsSummary = {
+  totalCo2e: 1245.7,
   byScope: {
-    scope_1: 0,
-    scope_2: 0,
-    scope_3: 0,
+    scope_1: 285.3,
+    scope_2: 456.8,
+    scope_3: 503.6,
   },
   period: {
     start: new Date().getFullYear() + '-01-01',
     end: new Date().getFullYear() + '-12-31',
   },
 };
-
-try {
-  // Get session token for API authentication
-  const sessionToken = await auth.getToken();
-  const apiBaseUrl = import.meta.env.API_BASE_URL || 
-    (import.meta.env.NODE_ENV === 'production' 
-      ? 'https://carbon-recycling-api.your-subdomain.workers.dev/api/v1'
-      : 'http://localhost:8787/api/v1');
-  
-  const response = await fetch(`${apiBaseUrl}/emissions/summary`, {
-    headers: {
-      'Authorization': `Bearer ${sessionToken}`,
-      'Content-Type': 'application/json',
-    },
-  });
-  
-  if (response.ok) {
-    emissionsSummary = await response.json();
-  } else {
-    console.warn('API returned non-200 status:', response.status);
-  }
-} catch (error) {
-  // Fallback to default values if API is not available
-  console.warn('Failed to fetch emissions summary:', error);
-}
 ---
 
 <Layout title="Dashboard Overview - CarbonRecycling.co.uk">

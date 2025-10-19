@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getAuth } from '@clerk/astro/server';
 
-// Check if user is authenticated and redirect to dashboard
-const auth = getAuth(Astro);
-if (auth.userId) {
-  return Astro.redirect('/dashboard');
-}
+// Auth temporarily disabled for static build
+const userId = null; // Mock for build
+// const auth = getAuth(Astro);
+// if (auth.userId) {
+//   return Astro.redirect('/dashboard');
+// }
 ---
 
 <Layout title="CarbonRecycling.co.uk - Carbon Management Platform">

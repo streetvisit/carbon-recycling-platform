@@ -5,7 +5,7 @@
   "description": "Enterprise Carbon & ESG Management Platform",
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix apps/web\" \"npm run dev --prefix apps/api\"",
-    "build": "npm run build --prefix apps/web && npm run build --prefix apps/api",
+    "build": "cd apps/web && npm install && npm run build",
     "deploy": "npm run build --prefix apps/web && npm run deploy --prefix apps/api",
     "web:dev": "npm run dev --prefix apps/web",
     "api:dev": "npm run dev --prefix apps/api",

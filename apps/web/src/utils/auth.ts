@@ -1,7 +1,7 @@
 // Authentication utility for API calls
 // Replaces mock tokens with real Clerk authentication
 
-import { useAuth as useClerkAuth } from '@clerk/clerk-preact';
+// Clerk import removed for static build compatibility
 
 export interface AuthHeaders {
   'Authorization': string;

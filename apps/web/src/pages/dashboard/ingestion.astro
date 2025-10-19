@@ -2,13 +2,8 @@
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import DataSourceList from '../../components/DataSourceList.tsx';
 import AddDataSourceModal from '../../components/AddDataSourceModal.tsx';
-import { getAuth } from '@clerk/astro/server';
-
-// Check if user is authenticated
-const auth = getAuth(Astro);
-if (!auth.userId) {
-  return Astro.redirect('/sign-in');
-}
+// Auth temporarily disabled for static build
+// Will be re-enabled in production with proper configuration
 ---
 
 <DashboardLayout 

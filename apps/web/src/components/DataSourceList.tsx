@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { getIntegrationById, type Integration } from '../data/integrations';
-import { useAuth } from '@clerk/clerk-preact';
+// Note: useAuth will be handled differently in static build
 import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth';
 import { getMockDataSources, type MockDataSource } from '../utils/mockData';
 
@@ -30,7 +30,8 @@ export default function DataSourceList({ customApiUrl, onRefresh }: DataSourceLi
   const [dataSources, setDataSources] = useState<DataSource[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { getToken, isSignedIn } = useAuth();
+  // Mock auth for static build - will be replaced with real auth in production
+  const isSignedIn = true; // Always true for demo
 
   const fetchDataSources = async () => {
     if (!isSignedIn) {

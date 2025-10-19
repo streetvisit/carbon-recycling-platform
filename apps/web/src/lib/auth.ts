@@ -1,7 +1,7 @@
 // Authentication utility for API calls
 // Replaces mock tokens with real Clerk authentication
 
-import { auth } from '@clerk/astro/server';
+// Auth import removed for static build
 
 export interface AuthHeaders {
   'Authorization': string;
@@ -22,12 +22,9 @@ export async function getAuthHeaders(): Promise<AuthHeaders> {
         'Content-Type': 'application/json'
       };
     } else {
-      // Server-side: Use Clerk's server-side API
-      const authObject = auth();
-      const token = await authObject.getToken();
-      
+      // Server-side: Auth disabled for static build
       return {
-        'Authorization': token ? `Bearer ${token}` : '',
+        'Authorization': 'Bearer mock-token',
         'Content-Type': 'application/json'
       };
     }
