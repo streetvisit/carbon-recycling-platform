@@ -1,0 +1,237 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllIntegrations } from '../../data/uk-utility-integrations.ts';
+
+const integrations = getAllIntegrations();
+
+// Calculate statistics
+const totalIntegrations = Object.values(integrations).reduce((sum, category) => sum + category.length, 0);
+const categoriesData = [
+  { 
+    name: 'Utilities', 
+    count: integrations.utilities.length, 
+    description: 'UK energy suppliers including the Big Six and green energy providers',
+    href: '/guides/utility-integration',
+    icon: '⚡',
+    color: 'green'
+  },
+  { 
+    name: 'ERP Systems', 
+    count: integrations.erp.length, 
+    description: 'Enterprise resource planning systems like SAP, Oracle, and Microsoft Dynamics',
+    href: '/guides/erp-integration',
+    icon: '🏢',
+    color: 'blue'
+  },
+  { 
+    name: 'Cloud Platforms', 
+    count: integrations.cloud.length, 
+    description: 'AWS, Azure, GCP and other cloud infrastructure providers',
+    href: '/guides/cloud-integration',
+    icon: '☁️',
+    color: 'purple'
+  },
+  { 
+    name: 'Transport & Fleet', 
+    count: integrations.transport.length, 
+    description: 'Fleet management, delivery services, and business travel platforms',
+    href: '/guides/transport-integration',
+    icon: '🚛',
+    color: 'emerald'
+  },
+  { 
+    name: 'Manufacturing', 
+    count: integrations.manufacturing.length, 
+    description: 'MES, SCADA, and industrial systems for production tracking',
+    href: '/guides/manufacturing-integration',
+    icon: '🏭',
+    color: 'orange'
+  },
+  { 
+    name: 'Finance & Accounting', 
+    count: integrations.finance.length, 
+    description: 'Financial systems for expense tracking and procurement data',
+    href: '/guides/finance-integration',
+    icon: '💰',
+    color: 'yellow'
+  }
+];
+---
+
+<Layout 
+  title="Integration Guides - CarbonRecycling.co.uk"
+  currentPage="/guides"
+  authenticated={false}
+>
+  <main class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Integration Guides</h1>
+          <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            Step-by-step guides to connect your business systems and start tracking carbon emissions automatically. 
+            Choose your integration type to get started.
+          </p>
+          <div class="bg-white/10 backdrop-blur rounded-lg p-4 inline-block">
+            <div class="text-3xl font-bold text-white">{totalIntegrations}+</div>
+            <div class="text-blue-100">Pre-built Integrations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integration Categories -->
+    <div class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Choose Your Integration Type</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Each guide provides detailed instructions, best practices, and troubleshooting tips specific to that platform type.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {categoriesData.map((category) => (
+            <a 
+              href={category.href}
+              class={`bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 p-8 group`}
+            >
+              <div class={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 bg-${category.color}-100`}>
+                <span class="text-3xl">{category.icon}</span>
+              </div>
+              
+              <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center group-hover:text-blue-600 transition-colors">
+                {category.name}
+              </h3>
+              
+              <p class="text-gray-600 text-center mb-4 text-sm leading-relaxed">
+                {category.description}
+              </p>
+              
+              <div class="flex items-center justify-between">
+                <span class={`text-sm font-medium px-3 py-1 rounded-full bg-${category.color}-100 text-${category.color}-800`}>
+                  {category.count} integrations
+                </span>
+                <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <!-- Getting Started Section -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-16">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">🚀 Getting Started</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              New to carbon tracking? Follow these steps to set up your first integration and start monitoring emissions.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl font-bold text-blue-600">1</span>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Choose Your Platform</h3>
+              <p class="text-gray-600 text-sm">
+                Select the business system you want to connect - start with your biggest emission sources
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl font-bold text-green-600">2</span>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Follow the Guide</h3>
+              <p class="text-gray-600 text-sm">
+                Each guide includes prerequisites, setup steps, and testing procedures
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl font-bold text-purple-600">3</span>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Start Tracking</h3>
+              <p class="text-gray-600 text-sm">
+                Monitor your carbon footprint automatically with real-time data sync
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Popular Guides -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Most Popular Guides</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/guides/utility-integration" class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow group">
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                  <span class="text-lg">⚡</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                    UK Utility Integration
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-2">
+                    Connect British Gas, EDF, Octopus Energy, and 50+ other UK energy suppliers
+                  </p>
+                  <div class="flex items-center text-xs text-gray-500">
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Most Used</span>
+                    <span class="ml-2">• 15 min setup</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="/guides/cloud-integration" class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow group">
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                  <span class="text-lg">☁️</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                    Cloud Platform Integration
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-2">
+                    Track emissions from AWS, Azure, GCP, and other cloud infrastructure
+                  </p>
+                  <div class="flex items-center text-xs text-gray-500">
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">Popular</span>
+                    <span class="ml-2">• 20 min setup</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Need Help Section -->
+        <div class="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-8 text-white text-center">
+          <h2 class="text-2xl font-bold mb-4">Need Help Getting Started?</h2>
+          <p class="text-green-100 mb-6 max-w-2xl mx-auto">
+            Our expert team can help you choose the right integrations and get set up quickly. 
+            We offer free setup consultations and technical support.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/contact" 
+              class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors"
+            >
+              Book Free Consultation
+            </a>
+            <a 
+              href="/features/data-ingestion" 
+              class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors"
+            >
+              View All Integrations
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

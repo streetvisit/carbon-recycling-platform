@@ -155,31 +155,31 @@ import Layout from '../../layouts/Layout.astro';
               <div class="border rounded-lg p-4">
                 <h4 class="font-semibold text-gray-900 mb-2">Major Suppliers</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• British Gas</li>
-                  <li>• EDF Energy</li>
-                  <li>• E.ON Next</li>
-                  <li>• SSE Energy Services</li>
-                  <li>• ScottishPower</li>
+                  <li>• <a href="/integrations/british-gas" class="hover:text-blue-600">British Gas</a></li>
+                  <li>• <a href="/integrations/edf-energy" class="hover:text-blue-600">EDF Energy</a></li>
+                  <li>• <a href="/integrations/eon-next" class="hover:text-blue-600">E.ON Next</a></li>
+                  <li>• <a href="/integrations/sse-energy-services" class="hover:text-blue-600">SSE Energy Services</a></li>
+                  <li>• <a href="/integrations/scottish-power" class="hover:text-blue-600">ScottishPower</a></li>
                 </ul>
               </div>
               <div class="border rounded-lg p-4">
                 <h4 class="font-semibold text-gray-900 mb-2">Green Suppliers</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Octopus Energy</li>
-                  <li>• Bulb Energy</li>
-                  <li>• Good Energy</li>
-                  <li>• Ecotricity</li>
-                  <li>• OVO Energy</li>
+                  <li>• <a href="/integrations/octopus-energy" class="hover:text-blue-600">Octopus Energy</a></li>
+                  <li>• <a href="/integrations/bulb-energy" class="hover:text-blue-600">Bulb Energy</a></li>
+                  <li>• <a href="/integrations/good-energy" class="hover:text-blue-600">Good Energy</a></li>
+                  <li>• <a href="/integrations/ecotricity" class="hover:text-blue-600">Ecotricity</a></li>
+                  <li>• <a href="/integrations/ovo-energy" class="hover:text-blue-600">OVO Energy</a></li>
                 </ul>
               </div>
               <div class="border rounded-lg p-4">
                 <h4 class="font-semibold text-gray-900 mb-2">Challenger Brands</h4>
                 <ul class="text-sm text-gray-600 space-y-1">
-                  <li>• Together Energy</li>
-                  <li>• Utilita</li>
-                  <li>• Co-op Energy</li>
-                  <li>• Igloo Energy</li>
-                  <li>• So Energy</li>
+                  <li>• <a href="/integrations/together-energy" class="hover:text-blue-600">Together Energy</a></li>
+                  <li>• <a href="/integrations/utilita" class="hover:text-blue-600">Utilita</a></li>
+                  <li>• <a href="/integrations/co-op-energy" class="hover:text-blue-600">Co-op Energy</a></li>
+                  <li>• <a href="/integrations/igloo-energy" class="hover:text-blue-600">Igloo Energy</a></li>
+                  <li>• <a href="/integrations/so-energy" class="hover:text-blue-600">So Energy</a></li>
                 </ul>
               </div>
             </div>
@@ -192,7 +192,8 @@ import Layout from '../../layouts/Layout.astro';
                 <div>
                   <p class="text-sm text-blue-800">
                     <strong>Don't see your provider?</strong> We're constantly adding new integrations. 
-                    <a href="/contact" class="underline">Contact us</a> to request your utility provider.
+                    <a href="/integrations/utilities" class="underline">View all 50+ providers</a> or 
+                    <a href="/contact" class="underline">contact us</a> to request your utility provider.
                   </p>
                 </div>
               </div>
@@ -220,8 +221,8 @@ import Layout from '../../layouts/Layout.astro';
               <div class="bg-gray-50 border rounded-lg p-4 mb-4">
                 <h4 class="font-semibold text-gray-900 mb-2">OAuth Setup (Most Providers)</h4>
                 <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
-                  <li>Log into your Carbon Recycling Platform dashboard</li>
-                  <li>Navigate to <strong>Integrations → Add New Integration</strong></li>
+                  <li>Log into your <a href="/dashboard" class="text-blue-600 hover:underline">Carbon Recycling Platform dashboard</a></li>
+                  <li>Navigate to <strong><a href="/dashboard/ingestion" class="text-blue-600 hover:underline">Data Ingestion</a> → Add New Integration</strong></li>
                   <li>Select your utility provider from the list</li>
                   <li>Click <strong>"Connect via API"</strong></li>
                   <li>You'll be redirected to your utility provider's authorization page</li>
@@ -590,8 +591,8 @@ Data Quality Score: 94/100</code></pre>
               <a href="/contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
                 Contact Support
               </a>
-              <a href="/docs" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                View Documentation
+              <a href="/dashboard/analytics" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                View Analytics Dashboard
               </a>
             </div>
           </div>
