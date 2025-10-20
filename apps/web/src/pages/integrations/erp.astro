@@ -1,0 +1,201 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllIntegrations } from '../../data/uk-utility-integrations.ts';
+
+const integrations = getAllIntegrations();
+const erpSystems = integrations.erp;
+---
+
+<Layout 
+  title="ERP System Integrations - CarbonRecycling.co.uk"
+  currentPage="/integrations/erp"
+  authenticated={false}
+>
+  <main class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">ERP System Integrations</h1>
+          <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            Connect your Enterprise Resource Planning systems to automatically extract energy, travel, procurement, and facility data from {erpSystems.length} major ERP platforms.
+          </p>
+          <a href="/sign-up" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center">
+            Start Free Trial
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERP Systems Grid -->
+    <div class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Major ERP Platforms -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Major ERP Platforms</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {erpSystems.map(erp => (
+              <a href={`/integrations/${erp.id}`} class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-gray-900">{erp.name}</h3>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{erp.vendor}</span>
+                    <div class={`w-3 h-3 rounded-full ${erp.apiIntegration.available ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                  </div>
+                </div>
+                
+                <div class="space-y-2 text-sm text-gray-600 mb-4">
+                  <div class="flex justify-between">
+                    <span>Integration Method:</span>
+                    <span class="font-medium uppercase">{erp.apiIntegration.method}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Authentication:</span>
+                    <span class="font-medium capitalize">{erp.apiIntegration.authentication}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Deployment:</span>
+                    <span class="font-medium">{erp.deploymentTypes.join(', ')}</span>
+                  </div>
+                </div>
+
+                <!-- Data Points Available -->
+                <div class="border-t pt-4">
+                  <h4 class="text-sm font-medium text-gray-900 mb-2">Available Data Points:</h4>
+                  <div class="grid grid-cols-2 gap-1 text-xs">
+                    {erp.dataPoints.energyConsumption && (
+                      <div class="flex items-center text-green-600">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Energy
+                      </div>
+                    )}
+                    {erp.dataPoints.travel && (
+                      <div class="flex items-center text-green-600">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Travel
+                      </div>
+                    )}
+                    {erp.dataPoints.procurement && (
+                      <div class="flex items-center text-green-600">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Procurement
+                      </div>
+                    )}
+                    {erp.dataPoints.facilities && (
+                      <div class="flex items-center text-green-600">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Facilities
+                      </div>
+                    )}
+                    {erp.dataPoints.waste && (
+                      <div class="flex items-center text-green-600">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Waste
+                      </div>
+                    )}
+                    {erp.dataPoints.fuelUsage && (
+                      <div class="flex items-center text-green-600">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Fuel Usage
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Integration Benefits -->
+        <div class="bg-white p-8 rounded-lg shadow-sm mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">ERP Integration Benefits</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Automated Data Flow</h3>
+              <p class="text-gray-600">Eliminate manual data entry with direct connections to your ERP system</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Real-time Updates</h3>
+              <p class="text-gray-600">Get immediate updates when new transactions are processed</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Enterprise Security</h3>
+              <p class="text-gray-600">Bank-level security with OAuth 2.0 and enterprise authentication</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Integration Overview</h2>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-blue-600">{erpSystems.length}</div>
+              <div class="text-gray-600">ERP Systems</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600">{erpSystems.filter(e => e.apiIntegration.available).length}</div>
+              <div class="text-gray-600">API Integrations</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-purple-600">{erpSystems.filter(e => e.deploymentTypes.includes('cloud')).length}</div>
+              <div class="text-gray-600">Cloud-based</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-yellow-600">{erpSystems.filter(e => e.dataPoints.energyConsumption).length}</div>
+              <div class="text-gray-600">Energy Data</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-blue-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Connect Your ERP System?</h2>
+        <p class="text-xl text-blue-100 mb-8">Start extracting carbon data from your ERP system today</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            Start Free Trial
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

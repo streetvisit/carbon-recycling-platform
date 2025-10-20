@@ -1,0 +1,159 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllIntegrations } from '../../data/uk-utility-integrations.ts';
+
+const integrations = getAllIntegrations();
+const utilities = integrations.utilities;
+---
+
+<Layout 
+  title="Utility Provider Integrations - CarbonRecycling.co.uk"
+  currentPage="/integrations/utilities"
+  authenticated={false}
+>
+  <main class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-600 to-blue-600 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">UK Utility Provider Integrations</h1>
+          <p class="text-xl text-green-100 max-w-3xl mx-auto mb-8">
+            Connect to all major UK energy suppliers. Automatically import consumption data, bills, and emission factors from {utilities.length} utility providers.
+          </p>
+          <a href="/sign-up" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors inline-flex items-center">
+            Start Free Trial
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Utilities Grid -->
+    <div class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- The Big Six -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">The Big Six Energy Suppliers</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {utilities.filter(u => u.category === 'major').map(utility => (
+              <a href={`/integrations/${utility.id}`} class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-gray-900">{utility.name}</h3>
+                  <div class={`w-3 h-3 rounded-full ${utility.apiIntegration.available ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                </div>
+                <div class="space-y-2 text-sm text-gray-600">
+                  <div class="flex justify-between">
+                    <span>Integration:</span>
+                    <span class="font-medium">{utility.apiIntegration.available ? 'API Available' : 'File Import'}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Update Frequency:</span>
+                    <span class="font-medium capitalize">{utility.apiIntegration.frequency}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Business Types:</span>
+                    <span class="font-medium">{utility.businessTypes.join(', ')}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Renewable %:</span>
+                    <span class="font-medium">{utility.fuelMix.renewable || 0}%</span>
+                  </div>
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                  <span class="text-xs text-gray-500">Emission Factor: {utility.emissionFactors.electricity} kgCO₂e/kWh</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Challenger Brands -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Challenger & Independent Suppliers</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {utilities.filter(u => u.category === 'challenger').map(utility => (
+              <a href={`/integrations/${utility.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-md font-semibold text-gray-900">{utility.name}</h3>
+                  <div class={`w-2 h-2 rounded-full ${utility.apiIntegration.available ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                </div>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <div>{utility.apiIntegration.available ? 'API' : 'File Import'}</div>
+                  <div class="text-green-600">Renewable: {utility.fuelMix.renewable || 0}%</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Green Energy Specialists -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">100% Renewable Energy Suppliers</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {utilities.filter(u => u.category === 'green').map(utility => (
+              <a href={`/integrations/${utility.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-green-200">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-md font-semibold text-gray-900">{utility.name}</h3>
+                  <div class="flex items-center">
+                    <svg class="w-4 h-4 text-green-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class={`w-2 h-2 rounded-full ${utility.apiIntegration.available ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                  </div>
+                </div>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <div>{utility.apiIntegration.available ? 'API' : 'File Import'}</div>
+                  <div class="text-green-600 font-medium">100% Renewable</div>
+                  <div>CO₂: {utility.emissionFactors.electricity} kg/kWh</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Integration Statistics -->
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Integration Overview</h2>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-blue-600">{utilities.length}</div>
+              <div class="text-gray-600">Total Providers</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600">{utilities.filter(u => u.apiIntegration.available).length}</div>
+              <div class="text-gray-600">API Integrations</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-yellow-600">{utilities.filter(u => u.apiIntegration.frequency === 'real-time').length}</div>
+              <div class="text-gray-600">Real-time Updates</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-purple-600">{utilities.filter(u => u.fuelMix.renewable === 100).length}</div>
+              <div class="text-gray-600">100% Renewable</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-green-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Connect Your Utility Data?</h2>
+        <p class="text-xl text-green-100 mb-8">Start importing consumption data from your utility providers today</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors">
+            Start Free Trial
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
