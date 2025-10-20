@@ -43,7 +43,7 @@ const transportServices = integrations.transport;
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="text-lg font-semibold text-gray-900">{transport.name}</h3>
                   <div class="flex items-center space-x-2">
-                    <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded">{transport.provider}</span>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded">{transport.type.toUpperCase()}</span>
                     <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
                 </div>
@@ -58,26 +58,26 @@ const transportServices = integrations.transport;
                     <span class="font-medium capitalize">{transport.apiIntegration.authentication}</span>
                   </div>
                   <div class="flex justify-between">
-                    <span>Route Optimization:</span>
-                    <span class="font-medium">{transport.apiIntegration.route_optimization ? 'Yes' : 'No'}</span>
+                    <span>Real-time Data:</span>
+                    <span class="font-medium">{transport.apiIntegration.real_time ? 'Yes' : 'No'}</span>
                   </div>
                 </div>
 
-                <!-- Emission Factors -->
+                <!-- Data Types -->
                 <div class="border-t pt-4">
-                  <h4 class="text-sm font-medium text-gray-900 mb-2">Carbon Factors:</h4>
+                  <h4 class="text-sm font-medium text-gray-900 mb-2">Data Collection:</h4>
                   <div class="grid grid-cols-1 gap-1 text-xs">
                     <div class="flex justify-between">
-                      <span>Diesel:</span>
-                      <span class="text-green-600">{transport.emissionFactors.diesel_per_litre} kgCO₂e/L</span>
+                      <span>Fuel:</span>
+                      <span class="text-green-600">{transport.dataTypes.fuel_consumption ? 'Yes' : 'No'}</span>
                     </div>
                     <div class="flex justify-between">
-                      <span>Petrol:</span>
-                      <span class="text-green-600">{transport.emissionFactors.petrol_per_litre} kgCO₂e/L</span>
+                      <span>Mileage:</span>
+                      <span class="text-green-600">{transport.dataTypes.mileage ? 'Yes' : 'No'}</span>
                     </div>
                     <div class="flex justify-between">
-                      <span>Electric:</span>
-                      <span class="text-green-600">{transport.emissionFactors.electric_per_kwh} kgCO₂e/kWh</span>
+                      <span>Emissions:</span>
+                      <span class="text-green-600">{transport.dataTypes.emissions ? 'Yes' : 'No'}</span>
                     </div>
                   </div>
                 </div>
@@ -97,8 +97,8 @@ const transportServices = integrations.transport;
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                 </div>
                 <div class="text-xs text-gray-600 space-y-1">
-                  <div>Provider: {transport.provider}</div>
-                  <div class="text-green-600">CO₂: {transport.emissionFactors.diesel_per_litre} kg/L</div>
+                  <div>Type: {transport.type.toUpperCase()}</div>
+                  <div class="text-green-600">Real-time: {transport.apiIntegration.real_time ? 'Yes' : 'No'}</div>
                 </div>
               </a>
             ))}
@@ -116,8 +116,8 @@ const transportServices = integrations.transport;
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                 </div>
                 <div class="text-xs text-gray-600 space-y-1">
-                  <div>Category: {transport.category}</div>
-                  <div class="text-green-600">Diesel: {transport.emissionFactors.diesel_per_litre} kg/L</div>
+                  <div>Type: {transport.type.toUpperCase()}</div>
+                  <div class="text-green-600">Real-time: {transport.apiIntegration.real_time ? 'Yes' : 'No'}</div>
                 </div>
               </a>
             ))}
@@ -135,8 +135,8 @@ const transportServices = integrations.transport;
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                 </div>
                 <div class="text-xs text-gray-600 space-y-1">
-                  <div>Category: {transport.category}</div>
-                  <div class="text-green-600">CO₂: {transport.emissionFactors.diesel_per_litre} kg/L</div>
+                  <div>Type: {transport.type.toUpperCase()}</div>
+                  <div class="text-green-600">Real-time: {transport.apiIntegration.real_time ? 'Yes' : 'No'}</div>
                 </div>
               </a>
             ))}
@@ -187,16 +187,16 @@ const transportServices = integrations.transport;
               <div class="text-gray-600">Transport Services</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl font-bold text-green-600">{transportServices.filter(c => c.apiIntegration.route_optimization).length}</div>
-              <div class="text-gray-600">Route Optimized</div>
+              <div class="text-3xl font-bold text-green-600">{transportServices.filter(c => c.apiIntegration.real_time).length}</div>
+              <div class="text-gray-600">Real-time Data</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl font-bold text-blue-600">{transportServices.filter(c => c.category === 'fleet').length}</div>
+              <div class="text-3xl font-bold text-blue-600">{transportServices.filter(c => c.type === 'fleet-management').length}</div>
               <div class="text-gray-600">Fleet Systems</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl font-bold text-yellow-600">{transportServices.filter(c => c.emissionFactors.electric_per_kwh < 0.5).length}</div>
-              <div class="text-gray-600">EV Compatible</div>
+              <div class="text-3xl font-bold text-yellow-600">{transportServices.filter(c => c.dataTypes.emissions).length}</div>
+              <div class="text-gray-600">Emission Tracking</div>
             </div>
           </div>
         </div>

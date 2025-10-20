@@ -43,7 +43,7 @@ const manufacturingSystems = integrations.manufacturing;
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="text-lg font-semibold text-gray-900">{system.name}</h3>
                   <div class="flex items-center space-x-2">
-                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">{system.provider}</span>
+                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">{system.type.toUpperCase()}</span>
                     <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
                 </div>
@@ -55,29 +55,29 @@ const manufacturingSystems = integrations.manufacturing;
                   </div>
                   <div class="flex justify-between">
                     <span>Real-time Data:</span>
-                    <span class="font-medium">{system.apiIntegration.real_time_data ? 'Yes' : 'No'}</span>
+                    <span class="font-medium">{system.apiIntegration.real_time ? 'Yes' : 'No'}</span>
                   </div>
                   <div class="flex justify-between">
-                    <span>Process Monitoring:</span>
-                    <span class="font-medium">{system.apiIntegration.process_monitoring ? 'Yes' : 'No'}</span>
+                    <span>Industries:</span>
+                    <span class="font-medium">{system.industry.join(', ')}</span>
                   </div>
                 </div>
 
-                <!-- Emission Factors -->
+                <!-- Data Types -->
                 <div class="border-t pt-4">
-                  <h4 class="text-sm font-medium text-gray-900 mb-2">Carbon Factors:</h4>
+                  <h4 class="text-sm font-medium text-gray-900 mb-2">Data Collection:</h4>
                   <div class="grid grid-cols-1 gap-1 text-xs">
                     <div class="flex justify-between">
-                      <span>Energy:</span>
-                      <span class="text-green-600">{system.emissionFactors.energy_per_mwh} kgCO₂e/MWh</span>
+                      <span>Energy Usage:</span>
+                      <span class="text-green-600">{system.dataTypes.energy_usage ? 'Yes' : 'No'}</span>
                     </div>
                     <div class="flex justify-between">
-                      <span>Process:</span>
-                      <span class="text-green-600">{system.emissionFactors.process_per_unit} kgCO₂e/unit</span>
+                      <span>Production:</span>
+                      <span class="text-green-600">{system.dataTypes.production_volumes ? 'Yes' : 'No'}</span>
                     </div>
                     <div class="flex justify-between">
-                      <span>Waste:</span>
-                      <span class="text-green-600">{system.emissionFactors.waste_per_kg} kgCO₂e/kg</span>
+                      <span>Waste Output:</span>
+                      <span class="text-green-600">{system.dataTypes.waste_output ? 'Yes' : 'No'}</span>
                     </div>
                   </div>
                 </div>
@@ -97,8 +97,8 @@ const manufacturingSystems = integrations.manufacturing;
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                 </div>
                 <div class="text-xs text-gray-600 space-y-1">
-                  <div>Provider: {system.provider}</div>
-                  <div class="text-green-600">Energy: {system.emissionFactors.energy_per_mwh} kg/MWh</div>
+                  <div>Type: {system.type.toUpperCase()}</div>
+                  <div class="text-green-600">Real-time: {system.apiIntegration.real_time ? 'Yes' : 'No'}</div>
                 </div>
               </a>
             ))}
@@ -116,8 +116,8 @@ const manufacturingSystems = integrations.manufacturing;
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                 </div>
                 <div class="text-xs text-gray-600 space-y-1">
-                  <div>Category: {system.category}</div>
-                  <div class="text-green-600">Process: {system.emissionFactors.process_per_unit} kg/unit</div>
+                  <div>Type: {system.type.toUpperCase()}</div>
+                  <div class="text-green-600">Industries: {system.industry.slice(0,2).join(', ')}</div>
                 </div>
               </a>
             ))}
@@ -135,8 +135,8 @@ const manufacturingSystems = integrations.manufacturing;
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                 </div>
                 <div class="text-xs text-gray-600 space-y-1">
-                  <div>Category: {system.category}</div>
-                  <div class="text-green-600">Energy: {system.emissionFactors.energy_per_mwh} kg/MWh</div>
+                  <div>Type: {system.type.toUpperCase()}</div>
+                  <div class="text-green-600">Real-time: {system.apiIntegration.real_time ? 'Yes' : 'No'}</div>
                 </div>
               </a>
             ))}
@@ -186,16 +186,16 @@ const manufacturingSystems = integrations.manufacturing;
               <div class="text-gray-600">Manufacturing Systems</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl font-bold text-green-600">{manufacturingSystems.filter(c => c.apiIntegration.real_time_data).length}</div>
+              <div class="text-3xl font-bold text-green-600">{manufacturingSystems.filter(c => c.apiIntegration.real_time).length}</div>
               <div class="text-gray-600">Real-time Data</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl font-bold text-blue-600">{manufacturingSystems.filter(c => c.category === 'mes').length}</div>
+              <div class="text-3xl font-bold text-blue-600">{manufacturingSystems.filter(c => c.type === 'mes').length}</div>
               <div class="text-gray-600">MES Systems</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl font-bold text-yellow-600">{manufacturingSystems.filter(c => c.emissionFactors.energy_per_mwh < 400).length}</div>
-              <div class="text-gray-600">Low Energy</div>
+              <div class="text-3xl font-bold text-yellow-600">{manufacturingSystems.filter(c => c.dataTypes.energy_usage).length}</div>
+              <div class="text-gray-600">Energy Tracking</div>
             </div>
           </div>
         </div>
