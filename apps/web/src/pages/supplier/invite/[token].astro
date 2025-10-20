@@ -1,7 +1,6 @@
 ---
 // pages/supplier/invite/[token].astro - Supplier invitation acceptance page
 import Layout from '../../../layouts/Layout.astro';
-import NavigationMenu from '../../../components/NavigationMenu.tsx';
 
 // For static generation, we need to define getStaticPaths
 // Since tokens are generated dynamically, we return empty array for build-time
@@ -19,7 +18,6 @@ if (!token) {
 ---
 
 <Layout title="Accept Supplier Invitation - CarbonRecycling.co.uk">
-  <NavigationMenu client:load />
   <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <!-- Loading State -->
     <div id="loading-state" class="text-center">

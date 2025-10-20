@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import NavigationMenu from '../../components/NavigationMenu.tsx';
 
 const pageTitle = "Carbon Market News & Analysis | Blog";
 
@@ -101,7 +100,6 @@ function formatDate(dateString: string) {
 ---
 
 <Layout title={pageTitle}>
-  <NavigationMenu client:load />
   <!-- Hero Section with Featured Post -->
   <div class="bg-gradient-to-r from-green-600 to-blue-600 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

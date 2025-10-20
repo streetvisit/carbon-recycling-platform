@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import NavigationMenu from '../../components/NavigationMenu.tsx';
 import EmissionsSummaryCard from '../../components/EmissionsSummaryCard.tsx';
 import ScopeBreakdownChart from '../../components/ScopeBreakdownChart.tsx';
 import TriggerCalculationButton from '../../components/TriggerCalculationButton.tsx';
@@ -25,7 +24,6 @@ const emissionsSummary = {
   currentPage="/dashboard"
   authenticated={true}
 >
-  <NavigationMenu client:load />
   <div class="bg-gray-50">
     {/* Page Header */}
     <div class="bg-white border-b border-gray-200">

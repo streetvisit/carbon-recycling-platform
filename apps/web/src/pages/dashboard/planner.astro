@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import NavigationMenu from '../../components/NavigationMenu.tsx';
 import InitiativeList from '../../components/InitiativeList.tsx';
 import InitiativeDetailView from '../../components/InitiativeDetailView.tsx';
 import CreateInitiativeModal from '../../components/CreateInitiativeModal.tsx';
@@ -14,7 +13,6 @@ import CreateInitiativeModal from '../../components/CreateInitiativeModal.tsx';
   currentPage="/dashboard/planner"
   authenticated={true}
 >
-  <NavigationMenu client:load />
   <div class="bg-gray-50">
     {/* Page Header */}
     <div class="bg-white border-b border-gray-200">

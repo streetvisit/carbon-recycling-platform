@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import NavigationMenu from '../../components/NavigationMenu.tsx';
 import ReportGeneratorForm from '../../components/ReportGeneratorForm.tsx';
 import ReportList from '../../components/ReportList.tsx';
 
@@ -13,7 +12,6 @@ import ReportList from '../../components/ReportList.tsx';
   currentPage="/dashboard/reports"
   authenticated={true}
 >
-  <NavigationMenu client:load />
   <div class="bg-gray-50">
     {/* Page Header */}
     <div class="bg-white border-b border-gray-200">
