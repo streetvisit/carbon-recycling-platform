@@ -1,9 +1,11 @@
 ---
 // pages/portal/dashboard.astro - Supplier portal main dashboard
 import Layout from '../../layouts/Layout.astro'
+import NavigationMenu from '../../components/NavigationMenu.tsx'
 ---
 
 <Layout title="Supplier Portal | Carbon Recycling Platform">
+  <NavigationMenu client:load />
   <div id="portalApp" class="min-h-screen bg-gray-50">
     <!-- Loading state -->
     <div id="loadingState" class="min-h-screen flex items-center justify-center">

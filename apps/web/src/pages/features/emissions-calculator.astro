@@ -2,29 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Emissions Calculator - CarbonRecycling.co.uk">
-  <main class="min-h-screen bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <div class="flex items-center">
-            <a href="/public-home" class="flex items-center">
-              <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                </svg>
-              </div>
-              <span class="text-xl font-bold text-gray-900">CarbonRecycling.co.uk</span>
-            </a>
-          </div>
-          <div class="flex items-center space-x-4">
-            <a href="/sign-in" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
-            <a href="/sign-up" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">Get Started</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+<Layout 
+  title="Emissions Calculator - CarbonRecycling.co.uk"
+  currentPage="/features/emissions-calculator"
+  authenticated={false}
+>
+  <main class="bg-gray-50">
 
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-green-600 to-green-800 py-20">

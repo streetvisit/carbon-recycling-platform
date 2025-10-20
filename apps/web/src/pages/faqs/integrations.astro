@@ -1,8 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import NavigationMenu from '../../components/NavigationMenu.tsx';
 ---
 
 <Layout title="Integration FAQs - CarbonRecycling.co.uk">
+  <NavigationMenu client:load />
   <main class="min-h-screen bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm">

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import NavigationMenu from '../../components/NavigationMenu.tsx';
 import ReportGeneratorForm from '../../components/ReportGeneratorForm.tsx';
 import ReportList from '../../components/ReportList.tsx';
 
@@ -7,57 +8,22 @@ import ReportList from '../../components/ReportList.tsx';
 // In production, this would use Clerk's server-side auth
 ---
 
-<Layout title="Reporting & Compliance Suite - CarbonRecycling.co.uk">
-  <div class="min-h-screen bg-gray-50">
-    {/* Header */}
-    <header class="bg-white shadow-sm border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-6">
-          <div>
-            <h1 class="text-3xl font-bold text-gray-900">Reporting & Compliance Suite</h1>
-            <p class="mt-2 text-sm text-gray-600">
-              Generate professional sustainability reports for stakeholders, boards, and regulatory compliance
-            </p>
-          </div>
-          <nav class="flex space-x-4">
-            <a 
-              href="/dashboard/planner" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Planner
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/analytics" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Analytics
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/ingestion" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Data Ingestion
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard" 
-              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Overview
-            </a>
-            <span class="text-gray-400">|</span>
-            <a 
-              href="/dashboard/reports" 
-              class="text-sm font-medium text-green-600"
-            >
-              Reports
-            </a>
-          </nav>
-        </div>
+<Layout 
+  title="Reporting & Compliance Suite - CarbonRecycling.co.uk"
+  currentPage="/dashboard/reports"
+  authenticated={true}
+>
+  <NavigationMenu client:load />
+  <div class="bg-gray-50">
+    {/* Page Header */}
+    <div class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <h1 class="text-3xl font-bold text-gray-900">Reporting & Compliance Suite</h1>
+        <p class="mt-2 text-sm text-gray-600">
+          Generate professional sustainability reports for stakeholders, boards, and regulatory compliance
+        </p>
       </div>
-    </header>
+    </div>
 
     {/* Main Content */}
     <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
