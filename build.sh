@@ -19,9 +19,10 @@ if [ -f "apps/web/package.json" ]; then
     npm install
     npm run build
     
-    # Copy build output to root for Cloudflare Pages
-    echo "📦 Copying dist to root..."
-    cp -r dist/* ../..
+    # Copy build output to root dist directory for Cloudflare Pages
+    echo "📦 Copying dist to root dist directory..."
+    mkdir -p ../../dist
+    cp -r dist/* ../../dist/
     
 elif [ -f "package.json" ] && [ -f "astro.config.mjs" ]; then
     echo "✅ Found web app, building directly"
@@ -37,4 +38,5 @@ fi
 
 echo "✅ Build completed successfully!"
 echo "📦 Output directory contents:"
-ls -la dist/ || ls -la
+cd ../..
+ls -la dist/ 2>/dev/null || ls -la
