@@ -9,7 +9,7 @@
     "deploy": "npm run build --prefix apps/web && npm run deploy --prefix apps/api",
     "web:dev": "npm run dev --prefix apps/web",
     "api:dev": "npm run dev --prefix apps/api",
-    "web:build": "npm run build --prefix apps/web",
+    "web:build": "cd apps/web && npm install && npm run build",
     "api:deploy": "npm run deploy --prefix apps/api"
   },
   "devDependencies": {
