@@ -11,6 +11,15 @@ export default function UKEnergyDashboard() {
   const [previousData, setPreviousData] = useState<GridData | null>(null);
   const [isLive, setIsLive] = useState(true);
 
+  // Debug logging
+  useEffect(() => {
+    console.group('🇬🇧 UK Energy Dashboard - Component Debug');
+    console.log('📦 Component Version: v2024.10.20-18:19-critical-fixes');
+    console.log('🔧 Update Frequency: 30 seconds (FIXED from 5 seconds)');
+    console.log('⚡ Component Mounted:', new Date().toISOString());
+    console.groupEnd();
+  }, []);
+
   // Fetch real UK grid data from Carbon Intensity API
   const fetchRealGridData = async (): Promise<GridData> => {
     try {

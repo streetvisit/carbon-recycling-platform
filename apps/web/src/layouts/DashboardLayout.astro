@@ -54,4 +54,15 @@ const pages = [
       <slot />
     </main>
   </div>
+
+  <!-- Dashboard Layout Debug Script -->
+  <script>
+    console.group('🗺️ Dashboard Layout - Debug Info');
+    console.log('📦 Layout Version: v2024.10.20-18:19-critical-fixes');
+    console.log('🔧 Navigation Fix: APPLIED - Now uses unified Layout.astro');
+    console.log('🔐 Authentication State: true');
+    console.log('🌐 Current URL:', window.location.href);
+    console.log('🧭 Main Navigation Present:', !!document.querySelector('[class*="MainNavigation"], nav'));
+    console.groupEnd();
+  </script>
 </Layout>

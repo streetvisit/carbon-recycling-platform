@@ -27,6 +27,9 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <!-- Version Debug Info -->
+    <meta name="platform-version" content="v2024.10.20-18:19-critical-fixes" />
+    <meta name="build-timestamp" content="2024-10-20T18:19:26Z" />
   </head>
   <body class="bg-gray-50">
     <div class="min-h-screen">
@@ -39,5 +42,18 @@ const {
       )}
       <slot />
     </div>
+
+    <!-- Version Debug Script -->
+    <script>
+      // Log version info to console for debugging
+      console.group('🔧 Carbon Recycling Platform - Debug Info');
+      console.log('📦 Platform Version: v2024.10.20-18:19-critical-fixes');
+      console.log('🕒 Build Timestamp: 2024-10-20T18:19:26Z');
+      console.log('📄 Page Title:', document.title);
+      console.log('🌐 Current URL:', window.location.href);
+      console.log('⏰ Page Load Time:', new Date().toISOString());
+      console.log('🧭 Navigation Available:', !!document.querySelector('nav'));
+      console.groupEnd();
+    </script>
   </body>
 </html>
