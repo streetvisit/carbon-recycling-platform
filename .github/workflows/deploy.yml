@@ -1,48 +1,38 @@
-name: Deploy to Cloudflare Pages and Workers
+name: Build and Test
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Test
-
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build frontend using build script
-        run: ./build.sh
-        env:
-          PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_placeholder_for_ci' }}
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY || 'sk_test_placeholder_for_ci' }}
-
-      - name: Verify build output
-        run: |
-          echo "✅ Build completed, checking output..."
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install root dependencies
+      run: npm install
+      
+    - name: Run build script
+      run: |
+        chmod +x build.sh
+        ./build.sh
+        
+    - name: Check build success
+      run: |
+        if [ -f "dist/index.html" ]; then
+          echo "✅ Build successful - index.html found"
+          echo "📂 Build output:"
           ls -la dist/
-          echo "📊 Build statistics:"
-          echo "Total files: $(find dist -type f | wc -l)"
-          echo "Index.html exists: $([ -f dist/index.html ] && echo 'YES' || echo 'NO')"
-          
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output
-          path: dist/
-          retention-days: 7
+        else
+          echo "❌ Build failed - no index.html in dist/"
+          exit 1
+        fi
