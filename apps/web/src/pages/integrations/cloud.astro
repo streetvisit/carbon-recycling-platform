@@ -1,0 +1,203 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllIntegrations } from '../../data/uk-utility-integrations.ts';
+
+const integrations = getAllIntegrations();
+const cloudServices = integrations.cloud;
+---
+
+<Layout 
+  title="Cloud Platform Integrations - CarbonRecycling.co.uk"
+  currentPage="/integrations/cloud"
+  authenticated={false}
+>
+  <main class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-purple-600 to-indigo-600 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Cloud Platform Integrations</h1>
+          <p class="text-xl text-purple-100 max-w-3xl mx-auto mb-8">
+            Monitor carbon emissions from your cloud infrastructure. Connect to {cloudServices.length} major cloud platforms to track compute, storage, and data transfer emissions.
+          </p>
+          <a href="/sign-up" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors inline-flex items-center">
+            Start Free Trial
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cloud Services Grid -->
+    <div class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Major Cloud Providers -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Major Cloud Providers</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cloudServices.filter(cloud => ['aws', 'azure', 'gcp', 'ibm-cloud', 'oracle-cloud'].includes(cloud.id)).map(cloud => (
+              <a href={`/integrations/${cloud.id}`} class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-gray-900">{cloud.name}</h3>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">{cloud.provider}</span>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                </div>
+                
+                <div class="space-y-2 text-sm text-gray-600 mb-4">
+                  <div class="flex justify-between">
+                    <span>Integration Method:</span>
+                    <span class="font-medium uppercase">{cloud.apiIntegration.method}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Authentication:</span>
+                    <span class="font-medium capitalize">{cloud.apiIntegration.authentication}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Billing Integration:</span>
+                    <span class="font-medium">{cloud.apiIntegration.billing_integration ? 'Yes' : 'No'}</span>
+                  </div>
+                </div>
+
+                <!-- Emission Factors -->
+                <div class="border-t pt-4">
+                  <h4 class="text-sm font-medium text-gray-900 mb-2">Carbon Footprint:</h4>
+                  <div class="grid grid-cols-1 gap-1 text-xs">
+                    <div class="flex justify-between">
+                      <span>Compute:</span>
+                      <span class="text-green-600">{cloud.emissionFactors.compute_per_hour} kgCO₂e/hr</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Storage:</span>
+                      <span class="text-green-600">{cloud.emissionFactors.storage_per_gb} kgCO₂e/GB</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Transfer:</span>
+                      <span class="text-green-600">{cloud.emissionFactors.transfer_per_gb} kgCO₂e/GB</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Platform as a Service -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Platform as a Service (PaaS)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cloudServices.filter(cloud => ['heroku', 'vercel', 'netlify', 'render', 'railway'].includes(cloud.id)).map(cloud => (
+              <a href={`/integrations/${cloud.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-md font-semibold text-gray-900">{cloud.name}</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <div>Provider: {cloud.provider}</div>
+                  <div class="text-green-600">CO₂: {cloud.emissionFactors.compute_per_hour} kg/hr</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Specialized Services -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Specialized Cloud Services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cloudServices.filter(cloud => !['aws', 'azure', 'gcp', 'ibm-cloud', 'oracle-cloud', 'heroku', 'vercel', 'netlify', 'render', 'railway'].includes(cloud.id)).map(cloud => (
+              <a href={`/integrations/${cloud.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-md font-semibold text-gray-900">{cloud.name}</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <div>Category: {cloud.category}</div>
+                  <div class="text-green-600">CO₂: {cloud.emissionFactors.compute_per_hour} kg/hr</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Integration Benefits -->
+        <div class="bg-white p-8 rounded-lg shadow-sm mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Cloud Carbon Tracking Benefits</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Usage-Based Tracking</h3>
+              <p class="text-gray-600">Monitor actual compute hours, storage usage, and data transfer</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Cost Optimization</h3>
+              <p class="text-gray-600">Identify carbon-intensive services and optimize your cloud spending</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Region Optimization</h3>
+              <p class="text-gray-600">Choose lower-carbon regions and green energy zones</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Integration Overview</h2>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-purple-600">{cloudServices.length}</div>
+              <div class="text-gray-600">Cloud Services</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600">{cloudServices.filter(c => c.apiIntegration.billing_integration).length}</div>
+              <div class="text-gray-600">Billing APIs</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-blue-600">{cloudServices.filter(c => c.category === 'platform').length}</div>
+              <div class="text-gray-600">Full Platforms</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-yellow-600">{cloudServices.filter(c => c.emissionFactors.compute_per_hour < 0.00005).length}</div>
+              <div class="text-gray-600">Low Carbon</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-purple-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Track Your Cloud Emissions?</h2>
+        <p class="text-xl text-purple-100 mb-8">Start monitoring your cloud infrastructure's carbon footprint today</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+            Start Free Trial
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

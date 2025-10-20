@@ -1,0 +1,223 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllIntegrations } from '../../data/uk-utility-integrations.ts';
+
+const integrations = getAllIntegrations();
+const transportServices = integrations.transport;
+---
+
+<Layout 
+  title="Transport & Logistics Integrations - CarbonRecycling.co.uk"
+  currentPage="/integrations/transport"
+  authenticated={false}
+>
+  <main class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-600 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Transport & Logistics Integrations</h1>
+          <p class="text-xl text-emerald-100 max-w-3xl mx-auto mb-8">
+            Track emissions from your fleet, deliveries, and logistics operations. Connect to {transportServices.length} transport platforms to monitor fuel consumption, delivery routes, and vehicle emissions.
+          </p>
+          <a href="/sign-up" class="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition-colors inline-flex items-center">
+            Start Free Trial
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transport Services Grid -->
+    <div class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Fleet Management -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Fleet Management Systems</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {transportServices.filter(transport => ['fleet-complete', 'verizon-connect', 'samsara', 'geotab', 'teletrac-navman'].includes(transport.id)).map(transport => (
+              <a href={`/integrations/${transport.id}`} class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-gray-900">{transport.name}</h3>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded">{transport.provider}</span>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                </div>
+                
+                <div class="space-y-2 text-sm text-gray-600 mb-4">
+                  <div class="flex justify-between">
+                    <span>Integration Method:</span>
+                    <span class="font-medium uppercase">{transport.apiIntegration.method}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Authentication:</span>
+                    <span class="font-medium capitalize">{transport.apiIntegration.authentication}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Route Optimization:</span>
+                    <span class="font-medium">{transport.apiIntegration.route_optimization ? 'Yes' : 'No'}</span>
+                  </div>
+                </div>
+
+                <!-- Emission Factors -->
+                <div class="border-t pt-4">
+                  <h4 class="text-sm font-medium text-gray-900 mb-2">Carbon Factors:</h4>
+                  <div class="grid grid-cols-1 gap-1 text-xs">
+                    <div class="flex justify-between">
+                      <span>Diesel:</span>
+                      <span class="text-green-600">{transport.emissionFactors.diesel_per_litre} kgCO₂e/L</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Petrol:</span>
+                      <span class="text-green-600">{transport.emissionFactors.petrol_per_litre} kgCO₂e/L</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Electric:</span>
+                      <span class="text-green-600">{transport.emissionFactors.electric_per_kwh} kgCO₂e/kWh</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Delivery & Logistics -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Delivery & Last-Mile Logistics</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {transportServices.filter(transport => ['royal-mail', 'dhl', 'ups', 'fedex', 'yodel', 'dpd', 'hermes'].includes(transport.id)).map(transport => (
+              <a href={`/integrations/${transport.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-md font-semibold text-gray-900">{transport.name}</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <div>Provider: {transport.provider}</div>
+                  <div class="text-green-600">CO₂: {transport.emissionFactors.diesel_per_litre} kg/L</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Public Transport & Travel -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Public Transport & Business Travel</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {transportServices.filter(transport => ['tfl', 'trainline', 'national-rail', 'megabus', 'national-express'].includes(transport.id)).map(transport => (
+              <a href={`/integrations/${transport.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-md font-semibold text-gray-900">{transport.name}</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <div>Category: {transport.category}</div>
+                  <div class="text-green-600">Diesel: {transport.emissionFactors.diesel_per_litre} kg/L</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Specialized Transport -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Specialized Transport Services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {transportServices.filter(transport => !['fleet-complete', 'verizon-connect', 'samsara', 'geotab', 'teletrac-navman', 'royal-mail', 'dhl', 'ups', 'fedex', 'yodel', 'dpd', 'hermes', 'tfl', 'trainline', 'national-rail', 'megabus', 'national-express'].includes(transport.id)).map(transport => (
+              <a href={`/integrations/${transport.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-md font-semibold text-gray-900">{transport.name}</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <div>Category: {transport.category}</div>
+                  <div class="text-green-600">CO₂: {transport.emissionFactors.diesel_per_litre} kg/L</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Integration Benefits -->
+        <div class="bg-white p-8 rounded-lg shadow-sm mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Transport Carbon Tracking Benefits</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Route Optimization</h3>
+              <p class="text-gray-600">Optimize delivery routes to reduce fuel consumption and emissions</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Fleet Analytics</h3>
+              <p class="text-gray-600">Monitor vehicle performance and identify opportunities for electric vehicle adoption</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Real-time Tracking</h3>
+              <p class="text-gray-600">Track emissions in real-time across your entire logistics network</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Integration Overview</h2>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-emerald-600">{transportServices.length}</div>
+              <div class="text-gray-600">Transport Services</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600">{transportServices.filter(c => c.apiIntegration.route_optimization).length}</div>
+              <div class="text-gray-600">Route Optimized</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-blue-600">{transportServices.filter(c => c.category === 'fleet').length}</div>
+              <div class="text-gray-600">Fleet Systems</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-yellow-600">{transportServices.filter(c => c.emissionFactors.electric_per_kwh < 0.5).length}</div>
+              <div class="text-gray-600">EV Compatible</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-emerald-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Optimize Your Transport Emissions?</h2>
+        <p class="text-xl text-emerald-100 mb-8">Start tracking and reducing your logistics carbon footprint today</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sign-up" class="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition-colors">
+            Start Free Trial
+          </a>
+          <a href="mailto:info@carbonrecycling.co.uk" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-emerald-600 transition-colors">
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
