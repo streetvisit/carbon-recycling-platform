@@ -1,42 +1,41 @@
 #!/bin/bash
+set -e  # Exit on any error
 
 # Cloudflare Pages Build Script
-# This script ensures builds work correctly regardless of directory structure
-
 echo "🔧 Starting Carbon Recycling Platform build..."
-echo "📦 Version: v2024.10.20-18:19-critical-fixes"
+echo "📦 Version: v2024.10.20-19:17-final-fix"
 echo "🕒 Build Time: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-
-# Print debug information
 echo "📂 Current directory: $(pwd)"
-echo "📋 Directory contents:"
-ls -la
 
-# Check if we're in the right place
+# Check if we're in monorepo structure
 if [ -f "apps/web/package.json" ]; then
-    echo "✅ Found monorepo structure, building from apps/web"
+    echo "✅ Found monorepo structure"
+    
+    # Build the web app
     cd apps/web
+    echo "📦 Installing dependencies in apps/web..."
     npm install
+    echo "🏗️ Building web app..."
     npm run build
     
-    # Copy build output to root dist directory for Cloudflare Pages
-    echo "📦 Copying dist to root dist directory..."
-    mkdir -p ../../dist
-    cp -r dist/* ../../dist/
+    # Move back to root and ensure clean dist setup
+    cd ../..
+    echo "📦 Setting up output directory..."
     
-elif [ -f "package.json" ] && [ -f "astro.config.mjs" ]; then
-    echo "✅ Found web app, building directly"
-    npm install
-    npm run build
+    # Remove any existing dist and create fresh one
+    rm -rf dist
+    mkdir -p dist
+    
+    # Copy all files from apps/web/dist to root/dist
+    cp -r apps/web/dist/* dist/
+    
+    echo "✅ Build completed successfully!"
+    echo "📦 Final output in dist/:"
+    ls -la dist/
+    
 else
-    echo "❌ Cannot find valid build configuration"
-    echo "📋 Looking for package.json and astro.config.mjs"
-    find . -name "package.json" -type f
-    find . -name "astro.config.mjs" -type f
+    echo "❌ Cannot find apps/web/package.json"
+    echo "📋 Current structure:"
+    ls -la
     exit 1
 fi
-
-echo "✅ Build completed successfully!"
-echo "📦 Output directory contents:"
-cd ../..
-ls -la dist/ 2>/dev/null || ls -la
