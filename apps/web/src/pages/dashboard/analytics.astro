@@ -47,14 +47,35 @@ import UKEnergyMap from '../../components/UKEnergyMap.tsx';
           <PredictiveAnalytics client:only="preact" />
         </div>
 
-        {/* UK Energy Grid Live */}
-        <div class="mb-8">
-          <UKEnergyDashboard client:only="preact" />
-        </div>
+        {/* Secondary Analytics */}
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
+          {/* UK Energy Grid Live - Less Prominent */}
+          <div class="xl:col-span-1">
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-lg font-medium text-gray-900">UK Grid Context</h3>
+                <a href="/features/uk-energy-grid" class="text-sm text-blue-600 hover:text-blue-700">View Full →</a>
+              </div>
+              <div class="text-sm text-gray-600 mb-4">
+                Current UK electricity generation mix and carbon intensity
+              </div>
+              <UKEnergyDashboard client:only="preact" />
+            </div>
+          </div>
 
-        {/* UK Regional Energy Map */}
-        <div class="mb-8">
-          <UKEnergyMap client:only="preact" />
+          {/* UK Regional Energy Map - Smaller */}
+          <div class="xl:col-span-1">
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-lg font-medium text-gray-900">Regional Breakdown</h3>
+                <a href="/features/uk-energy-grid#regional" class="text-sm text-blue-600 hover:text-blue-700">Explore →</a>
+              </div>
+              <div class="text-sm text-gray-600 mb-4">
+                UK energy generation by region
+              </div>
+              <UKEnergyMap client:only="preact" />
+            </div>
+          </div>
         </div>
 
         {/* Breakdown Table */}

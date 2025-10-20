@@ -11,13 +11,9 @@ export default function UKEnergyDashboard() {
   const [previousData, setPreviousData] = useState<GridData | null>(null);
   const [isLive, setIsLive] = useState(true);
 
-  // Debug logging
+  // Component initialization
   useEffect(() => {
-    console.group('🇬🇧 UK Energy Dashboard - Component Debug');
-    console.log('📦 Component Version: v2024.10.20-18:19-critical-fixes');
-    console.log('🔧 Update Frequency: 30 seconds (FIXED from 5 seconds)');
-    console.log('⚡ Component Mounted:', new Date().toISOString());
-    console.groupEnd();
+    // Component initialized - ready for live updates
   }, []);
 
   // Fetch real UK grid data from Carbon Intensity API
@@ -54,12 +50,12 @@ export default function UKEnergyDashboard() {
     // Initial load
     updateData();
     
-    // Update every 30 seconds to reduce glitchiness
+    // Update every 2 seconds for responsive live data
     const updateInterval = setInterval(() => {
       if (isLive) {
         updateData();
       }
-    }, 30000); // 30 seconds - much more reasonable
+    }, 2000); // 2 seconds - responsive live updates
     
     return () => {
       clearInterval(updateInterval);
@@ -130,248 +126,158 @@ export default function UKEnergyDashboard() {
   }
 
   return (
-    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-      {/* Header */}
-      <div class="bg-gradient-to-r from-blue-600 to-green-600 p-6 text-white">
+    <div class="bg-white rounded-lg overflow-hidden">
+      {/* Compact Header */}
+      <div class="bg-gradient-to-r from-blue-500 to-green-500 p-3 text-white">
         <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-2xl font-bold mb-2 flex items-center">
-              🇬🇧 UK Energy Grid Live
-              {isLive && (
-                <div class="ml-3 w-2 h-2 bg-green-300 rounded-full"></div>
-              )}
-            </h3>
-            <p class="text-blue-100">Real-time electricity generation and carbon intensity</p>
+          <div class="flex items-center">
+            <span class="text-lg font-semibold">🇬🇧 Live Grid</span>
+            {isLive && (
+              <div class="ml-2 w-1.5 h-1.5 bg-green-300 rounded-full"></div>
+            )}
           </div>
-          <div class="text-right">
-            <div class="text-sm opacity-90">Last updated</div>
-            <div class="text-lg font-mono">{formatTime(lastUpdated)}</div>
+          <div class="text-right text-sm">
+            <div class="opacity-90">{formatTime(lastUpdated)}</div>
           </div>
         </div>
       </div>
 
-      <div class="p-6">
+      <div class="p-4">
         {/* Key Metrics */}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div class="bg-blue-50 rounded-lg p-4 text-center">
-            <div class="text-2xl mb-2">⚡</div>
-            <div class="text-2xl font-bold text-gray-900">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <div class="bg-blue-50 rounded-lg p-3 text-center">
+            <div class="text-lg mb-1">⚡</div>
+            <div class="text-lg font-bold text-gray-900">
               {gridData.demand} GW
             </div>
-            <div class="text-sm text-gray-600">Demand</div>
+            <div class="text-xs text-gray-600">Demand</div>
           </div>
 
-          <div class="bg-green-50 rounded-lg p-4 text-center">
-            <div class="text-2xl mb-2">🔋</div>
-            <div class="text-2xl font-bold text-gray-900">
+          <div class="bg-green-50 rounded-lg p-3 text-center">
+            <div class="text-lg mb-1">🔋</div>
+            <div class="text-lg font-bold text-gray-900">
               {gridData.generation} GW
             </div>
-            <div class="text-sm text-gray-600">Generation</div>
+            <div class="text-xs text-gray-600">Generation</div>
           </div>
 
-          <div class={`rounded-lg p-4 text-center ${
+          <div class={`rounded-lg p-3 text-center ${
             getCarbonIntensityColor(gridData.carbonIntensity).includes('bg-green') ? 'bg-green-50' : 
             getCarbonIntensityColor(gridData.carbonIntensity).includes('bg-yellow') ? 'bg-yellow-50' : 
             getCarbonIntensityColor(gridData.carbonIntensity).includes('bg-orange') ? 'bg-orange-50' : 'bg-red-50'
           }`}>
-            <div class="text-2xl mb-2">🌍</div>
-            <div class="text-2xl font-bold text-gray-900">
+            <div class="text-lg mb-1">🌍</div>
+            <div class="text-lg font-bold text-gray-900">
               {gridData.carbonIntensity}g
             </div>
-            <div class="text-sm text-gray-600">CO₂/kWh</div>
+            <div class="text-xs text-gray-600">CO₂/kWh</div>
           </div>
 
-          <div class="bg-purple-50 rounded-lg p-4 text-center">
-            <div class="text-2xl mb-2">💰</div>
-            <div class="text-2xl font-bold text-gray-900">
+          <div class="bg-purple-50 rounded-lg p-3 text-center">
+            <div class="text-lg mb-1">💰</div>
+            <div class="text-lg font-bold text-gray-900">
               £{gridData.price}
             </div>
-            <div class="text-sm text-gray-600">/MWh</div>
+            <div class="text-xs text-gray-600">/MWh</div>
           </div>
         </div>
 
-        {/* Energy Mix Visualization */}
-        <div class="mb-8">
-          <h4 class="text-lg font-semibold text-gray-900 mb-4">Energy Generation Mix</h4>
+        {/* Energy Mix - Compact */}
+        <div class="mb-4">
+          <h4 class="text-sm font-medium text-gray-900 mb-2">Generation Mix</h4>
           
-          {/* Stacked Bar */}
-          <div class="w-full h-8 bg-gray-200 rounded-lg overflow-hidden mb-4 flex">
+          {/* Compact Stacked Bar */}
+          <div class="w-full h-4 bg-gray-200 rounded overflow-hidden mb-3 flex">
             {Object.entries(gridData.generationMix).map(([source, value], index) => {
               const percentage = (value / gridData.generation) * 100;
               
               return percentage > 0 ? (
                 <div
                   key={source}
-                  class={`${getSourceColor(source)} flex items-center justify-center text-white text-xs font-bold`}
+                  class={`${getSourceColor(source)}`}
                   style={{ width: `${percentage}%` }}
                   title={`${source}: ${value} GW (${percentage.toFixed(1)}%)`}
-                >
-                  {percentage > 8 && (
-                    <span>
-                      {getSourceIcon(source)}
-                    </span>
-                  )}
-                </div>
+                ></div>
               ) : null;
             })}
           </div>
 
-          {/* Legend */}
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 text-sm">
-            {Object.entries(gridData.generationMix).map(([source, value]) => {
-              const percentage = (value / gridData.generation) * 100;
-              return value > 0 ? (
-                <div key={source} class="flex items-center space-x-2">
-                  <div class={`w-3 h-3 rounded ${getSourceColor(source)}`}></div>
-                  <span class="capitalize">{source}</span>
-                  <span class="font-medium">{percentage.toFixed(1)}%</span>
-                </div>
-              ) : null;
-            })}
+          {/* Compact Legend - Show top 4 sources only */}
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            {Object.entries(gridData.generationMix)
+              .sort(([,a], [,b]) => b - a)
+              .slice(0, 4)
+              .map(([source, value]) => {
+                const percentage = (value / gridData.generation) * 100;
+                return value > 0 ? (
+                  <div key={source} class="flex items-center space-x-1">
+                    <div class={`w-2 h-2 rounded ${getSourceColor(source)}`}></div>
+                    <span class="capitalize">{source}</span>
+                    <span class="font-medium">{percentage.toFixed(1)}%</span>
+                  </div>
+                ) : null;
+              })
+            }
           </div>
         </div>
 
-        {/* Category Breakdown */}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div class="bg-green-50 rounded-lg p-4">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-green-700 font-medium">🌱 Renewables</span>
-              <span class="text-green-900 font-bold">
-                {gridData.percentages.renewables}%
-              </span>
-            </div>
-            <div class="text-sm text-green-600">Wind + Solar + Hydro</div>
-            <div class="w-full bg-green-200 rounded-full h-1.5 mt-2">
-              <div 
-                class="bg-green-600 h-1.5 rounded-full" 
-                style={{ width: `${Math.min(100, gridData.percentages.renewables)}%` }}
-              ></div>
-            </div>
-          </div>
 
-          <div class="bg-gray-50 rounded-lg p-4">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-gray-700 font-medium">🔥 Fossil Fuels</span>
-              <span class="text-gray-900 font-bold">
-                {gridData.percentages.fossil}%
-              </span>
-            </div>
-            <div class="text-sm text-gray-600">Gas + Coal</div>
-            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
-              <div 
-                class="bg-gray-600 h-1.5 rounded-full" 
-                style={{ width: `${Math.min(100, gridData.percentages.fossil)}%` }}
-              ></div>
-            </div>
-          </div>
-
-          <div class="bg-purple-50 rounded-lg p-4">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-purple-700 font-medium">⚙️ Nuclear</span>
-              <span class="text-purple-900 font-bold">
-                {gridData.percentages.nuclear}%
-              </span>
-            </div>
-            <div class="text-sm text-purple-600">Low Carbon</div>
-            <div class="w-full bg-purple-200 rounded-full h-1.5 mt-2">
-              <div 
-                class="bg-purple-600 h-1.5 rounded-full" 
-                style={{ width: `${Math.min(100, gridData.percentages.nuclear)}%` }}
-              ></div>
-            </div>
-          </div>
-
-          <div class="bg-blue-50 rounded-lg p-4">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-blue-700 font-medium">🔌 Imports</span>
-              <span class="text-blue-900 font-bold">
-                {gridData.percentages.imports}%
-              </span>
-            </div>
-            <div class="text-sm text-blue-600">Interconnectors</div>
-            <div class="w-full bg-blue-200 rounded-full h-1.5 mt-2">
-              <div 
-                class="bg-blue-600 h-1.5 rounded-full" 
-                style={{ width: `${Math.min(100, gridData.percentages.imports)}%` }}
-              ></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Grid Status Indicators */}
-        <div class="bg-gray-50 rounded-lg p-4">
-          <h5 class="font-medium text-gray-900 mb-3">Grid Status</h5>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+        {/* Grid Status Indicators - Compact */}
+        <div class="bg-gray-50 rounded p-3">
+          <h5 class="text-sm font-medium text-gray-900 mb-2">Grid Status</h5>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
             <div class="flex items-center justify-between">
-              <span class="text-gray-600">Renewable Share:</span>
-              <span class={`font-medium px-2 py-1 rounded ${
+              <span class="text-gray-600">Renewables</span>
+              <span class={`font-medium px-2 py-0.5 rounded ${
                 gridData.percentages.renewables > 50 
                   ? 'bg-green-100 text-green-800' 
                   : gridData.percentages.renewables > 30 
                   ? 'bg-yellow-100 text-yellow-800'
                   : 'bg-red-100 text-red-800'
               }`}>
-                {gridData.percentages.renewables > 50 ? '🟢 High' : gridData.percentages.renewables > 30 ? '🟡 Medium' : '🔴 Low'}
+                {gridData.percentages.renewables > 50 ? 'High' : gridData.percentages.renewables > 30 ? 'Medium' : 'Low'}
               </span>
             </div>
 
             <div class="flex items-center justify-between">
-              <span class="text-gray-600">Carbon Intensity:</span>
-              <span class={`font-medium px-2 py-1 rounded ${getCarbonIntensityColor(gridData.carbonIntensity)}`}>
-                {gridData.carbonIntensity < 100 ? '🟢 Low' : gridData.carbonIntensity < 200 ? '🟡 Medium' : gridData.carbonIntensity < 300 ? '🟠 High' : '🔴 Very High'}
+              <span class="text-gray-600">Intensity</span>
+              <span class={`font-medium px-2 py-0.5 rounded ${getCarbonIntensityColor(gridData.carbonIntensity)}`}>
+                {gridData.carbonIntensity < 100 ? 'Low' : gridData.carbonIntensity < 200 ? 'Medium' : gridData.carbonIntensity < 300 ? 'High' : 'Very High'}
               </span>
             </div>
 
             <div class="flex items-center justify-between">
-              <span class="text-gray-600">Supply Balance:</span>
-              <span class={`font-medium px-2 py-1 rounded ${
+              <span class="text-gray-600">Balance</span>
+              <span class={`font-medium px-2 py-0.5 rounded ${
                 gridData.generation > gridData.demand 
                   ? 'bg-green-100 text-green-800' 
                   : 'bg-blue-100 text-blue-800'
               }`}>
-                {gridData.generation > gridData.demand ? '🟢 Surplus' : '🔵 Balanced'}
+                {gridData.generation > gridData.demand ? 'Surplus' : 'Balanced'}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Connection to Platform */}
-        <div class="mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
-          <h5 class="font-medium text-gray-900 mb-2">💡 Context for Your Carbon Journey</h5>
-          <div class="text-sm text-gray-700 space-y-1">
-            <p>• Current grid intensity: <strong>{gridData.carbonIntensity}g CO₂/kWh</strong> - Factor this into your energy consumption planning</p>
-            <p>• Renewables at <strong>{gridData.percentages.renewables}%</strong> - {gridData.percentages.renewables > 40 ? 'Great time for energy-intensive activities' : 'Consider timing energy use for cleaner periods'}</p>
-            <p>• Use our <a href="/dashboard/analytics" class="text-purple-600 hover:text-purple-700 font-medium">Analytics Dashboard</a> to track how grid changes affect your carbon footprint</p>
-          </div>
-        </div>
       </div>
 
-      {/* Footer */}
-      <div class="bg-gray-50 px-6 py-3 border-t border-gray-200">
+      {/* Compact Footer */}
+      <div class="bg-gray-50 px-4 py-2 border-t border-gray-200">
         <div class="flex items-center justify-between text-xs text-gray-500">
-          <div class="flex items-center space-x-3">
-            <span>Live simulation based on National Grid ESO patterns</span>
-            <span class="text-gray-300">•</span>
-            <span>Updates every 30 seconds</span>
-          </div>
-          <div class="flex items-center space-x-3">
-            <button 
-              onClick={() => setIsLive(!isLive)}
-              class={`flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                isLive 
-                  ? 'bg-green-100 text-green-700 hover:bg-green-200' 
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              <div class={`w-2 h-2 rounded-full ${
-                isLive ? 'bg-green-500' : 'bg-gray-400'
-              }`}></div>
-              <span>{isLive ? 'Live' : 'Paused'}</span>
-            </button>
-            <div class="text-gray-400 text-xs">
-              Last: {formatTime(lastUpdated)}
-            </div>
-          </div>
+          <span>Live simulation • Updates every 2s</span>
+          <button 
+            onClick={() => setIsLive(!isLive)}
+            class={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+              isLive 
+                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            <div class={`w-1.5 h-1.5 rounded-full ${
+              isLive ? 'bg-green-500' : 'bg-gray-400'
+            }`}></div>
+            <span>{isLive ? 'Live' : 'Paused'}</span>
+          </button>
         </div>
       </div>
     </div>
