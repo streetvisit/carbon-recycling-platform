@@ -38,7 +38,7 @@ const manufacturingSystems = integrations.manufacturing;
         <div class="mb-16">
           <h2 class="text-2xl font-bold text-gray-900 mb-8">Manufacturing Execution Systems (MES)</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {manufacturingSystems.filter(system => ['siemens-opcenter', 'rockwell-factorytalk', 'wonderware-mes', 'ge-proficy', 'aveva-mes'].includes(system.id)).map(system => (
+            {manufacturingSystems.filter(system => system.type === 'mes').map(system => (
               <a href={`/integrations/${system.id}`} class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="text-lg font-semibold text-gray-900">{system.name}</h3>
@@ -90,7 +90,7 @@ const manufacturingSystems = integrations.manufacturing;
         <div class="mb-16">
           <h2 class="text-2xl font-bold text-gray-900 mb-8">SCADA & Process Control</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {manufacturingSystems.filter(system => ['schneider-citect', 'honeywell-experion', 'emerson-deltav', 'abb-system800xa', 'yokogawa-centum'].includes(system.id)).map(system => (
+            {manufacturingSystems.filter(system => system.type === 'scada').map(system => (
               <a href={`/integrations/${system.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-3">
                   <h3 class="text-md font-semibold text-gray-900">{system.name}</h3>
@@ -105,11 +105,11 @@ const manufacturingSystems = integrations.manufacturing;
           </div>
         </div>
 
-        <!-- Quality & Lab Systems -->
+        <!-- IoT & Maintenance Systems -->
         <div class="mb-16">
-          <h2 class="text-2xl font-bold text-gray-900 mb-8">Quality & Laboratory Management</h2>
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">IoT & Maintenance Management</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {manufacturingSystems.filter(system => ['thermo-samplemanager', 'waters-nugenesis', 'abbott-starlims', 'perkinelmer-elements', 'labware-lims'].includes(system.id)).map(system => (
+            {manufacturingSystems.filter(system => system.type === 'iot').map(system => (
               <a href={`/integrations/${system.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-3">
                   <h3 class="text-md font-semibold text-gray-900">{system.name}</h3>
@@ -124,11 +124,11 @@ const manufacturingSystems = integrations.manufacturing;
           </div>
         </div>
 
-        <!-- Specialized Manufacturing -->
+        <!-- Quality & Maintenance Systems -->
         <div class="mb-16">
-          <h2 class="text-2xl font-bold text-gray-900 mb-8">Specialized Manufacturing Systems</h2>
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Quality & Maintenance Systems</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {manufacturingSystems.filter(system => !['siemens-opcenter', 'rockwell-factorytalk', 'wonderware-mes', 'ge-proficy', 'aveva-mes', 'schneider-citect', 'honeywell-experion', 'emerson-deltav', 'abb-system800xa', 'yokogawa-centum', 'thermo-samplemanager', 'waters-nugenesis', 'abbott-starlims', 'perkinelmer-elements', 'labware-lims'].includes(system.id)).map(system => (
+            {manufacturingSystems.filter(system => ['quality', 'maintenance'].includes(system.type)).map(system => (
               <a href={`/integrations/${system.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-3">
                   <h3 class="text-md font-semibold text-gray-900">{system.name}</h3>

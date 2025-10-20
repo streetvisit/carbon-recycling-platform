@@ -38,7 +38,7 @@ const transportServices = integrations.transport;
         <div class="mb-16">
           <h2 class="text-2xl font-bold text-gray-900 mb-8">Fleet Management Systems</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {transportServices.filter(transport => ['fleet-complete', 'verizon-connect', 'samsara', 'geotab', 'teletrac-navman'].includes(transport.id)).map(transport => (
+            {transportServices.filter(transport => transport.type === 'fleet-management').map(transport => (
               <a href={`/integrations/${transport.id}`} class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="text-lg font-semibold text-gray-900">{transport.name}</h3>
@@ -86,11 +86,11 @@ const transportServices = integrations.transport;
           </div>
         </div>
 
-        <!-- Delivery & Logistics -->
+        <!-- Expense Management -->
         <div class="mb-16">
-          <h2 class="text-2xl font-bold text-gray-900 mb-8">Delivery & Last-Mile Logistics</h2>
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Expense & Travel Management</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {transportServices.filter(transport => ['royal-mail', 'dhl', 'ups', 'fedex', 'yodel', 'dpd', 'hermes'].includes(transport.id)).map(transport => (
+            {transportServices.filter(transport => transport.type === 'expense-management').map(transport => (
               <a href={`/integrations/${transport.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-3">
                   <h3 class="text-md font-semibold text-gray-900">{transport.name}</h3>
@@ -105,11 +105,11 @@ const transportServices = integrations.transport;
           </div>
         </div>
 
-        <!-- Public Transport & Travel -->
+        <!-- Booking Platforms -->
         <div class="mb-16">
-          <h2 class="text-2xl font-bold text-gray-900 mb-8">Public Transport & Business Travel</h2>
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Booking Platforms & Ride Services</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {transportServices.filter(transport => ['tfl', 'trainline', 'national-rail', 'megabus', 'national-express'].includes(transport.id)).map(transport => (
+            {transportServices.filter(transport => transport.type === 'booking-platform').map(transport => (
               <a href={`/integrations/${transport.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-3">
                   <h3 class="text-md font-semibold text-gray-900">{transport.name}</h3>
@@ -124,11 +124,11 @@ const transportServices = integrations.transport;
           </div>
         </div>
 
-        <!-- Specialized Transport -->
+        <!-- Logistics Platforms -->
         <div class="mb-16">
-          <h2 class="text-2xl font-bold text-gray-900 mb-8">Specialized Transport Services</h2>
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Logistics & Supply Chain</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {transportServices.filter(transport => !['fleet-complete', 'verizon-connect', 'samsara', 'geotab', 'teletrac-navman', 'royal-mail', 'dhl', 'ups', 'fedex', 'yodel', 'dpd', 'hermes', 'tfl', 'trainline', 'national-rail', 'megabus', 'national-express'].includes(transport.id)).map(transport => (
+            {transportServices.filter(transport => transport.type === 'logistics').map(transport => (
               <a href={`/integrations/${transport.id}`} class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
                 <div class="flex items-center justify-between mb-3">
                   <h3 class="text-md font-semibold text-gray-900">{transport.name}</h3>
