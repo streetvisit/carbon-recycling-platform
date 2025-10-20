@@ -24,7 +24,10 @@ export default function UKEnergyDashboard() {
   useEffect(() => {
     const updateData = async () => {
       try {
-        setLoading(true);
+        // Don't show loading state for updates, only initial load
+        if (!gridData) {
+          setLoading(true);
+        }
         setPreviousData(gridData);
         const newData = await fetchRealGridData();
         setGridData(newData);
@@ -33,24 +36,26 @@ export default function UKEnergyDashboard() {
         console.error('Error updating grid data:', error);
         // Keep previous data if update fails
       } finally {
-        setLoading(false);
+        if (!gridData) {
+          setLoading(false);
+        }
       }
     };
 
     // Initial load
     updateData();
     
-    // Update every 5 seconds as requested for demo purposes
+    // Update every 30 seconds to reduce glitchiness
     const updateInterval = setInterval(() => {
       if (isLive) {
         updateData();
       }
-    }, 5000); // 5 seconds
+    }, 30000); // 30 seconds - much more reasonable
     
     return () => {
       clearInterval(updateInterval);
     };
-  }, [isLive]); // Removed gridData dependency to prevent infinite loops
+  }, [isLive]); // Keep dependency array clean
 
   const getSourceColor = (source: string) => {
     const colors: { [key: string]: string } = {
@@ -338,7 +343,7 @@ export default function UKEnergyDashboard() {
           <div class="flex items-center space-x-3">
             <span>Live simulation based on National Grid ESO patterns</span>
             <span class="text-gray-300">•</span>
-            <span>Updates every 5 seconds</span>
+            <span>Updates every 30 seconds</span>
           </div>
           <div class="flex items-center space-x-3">
             <button 
