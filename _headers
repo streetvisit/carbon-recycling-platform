@@ -1,0 +1,10 @@
+# Cloudflare Pages Headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Debug headers to verify deployment
+/*
+  X-Platform-Version: v2024.10.20-18:19-critical-fixes
+  X-Build-Timestamp: 2024-10-20T18:19:26Z
