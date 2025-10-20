@@ -1,12 +1,13 @@
 name: Deploy to Cloudflare Pages and Workers
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# Temporarily disabled - using direct Cloudflare Pages integration
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
 jobs:
   deploy:
