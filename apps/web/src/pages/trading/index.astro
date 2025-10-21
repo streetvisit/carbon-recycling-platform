@@ -1,12 +1,12 @@
 ---
-import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 // Auth temporarily disabled for static build
 ---
 
-<DashboardLayout 
-  title="Carbon Trading Platform" 
-  description="Trade carbon credits and offset certificates"
-  currentPage="trading"
+<Layout 
+  title="Carbon Trading Platform | CarbonRecycling.co.uk" 
+  authenticated={true}
+  currentPage="/trading"
 >
   <div id="trading-app" class="bg-gray-900 text-white rounded-lg overflow-hidden">
     <!-- Trading Sub-Navigation -->
@@ -417,4 +417,4 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
       }, 5000); // Update every 5 seconds
     }
   </script>
-</DashboardLayout>
+</Layout>
