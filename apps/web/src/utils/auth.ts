@@ -42,10 +42,9 @@ export async function authenticatedFetch(
   
   try {
     // Try to get token from Clerk
-    if (typeof window !== 'undefined') {
-      // Client-side: Use Clerk's client-side API
-      const { Clerk } = await import('@clerk/clerk-js');
-      const clerk = Clerk.getInstance();
+    if (typeof window !== 'undefined' && (window as any).Clerk) {
+      // Client-side: Use Clerk's client-side API from window
+      const clerk = (window as any).Clerk;
       if (clerk && clerk.user) {
         token = await clerk.session?.getToken();
       }
@@ -73,8 +72,7 @@ export async function authenticatedFetch(
         
         try {
           // Try to refresh the token
-          const { Clerk } = await import('@clerk/clerk-js');
-          const clerk = Clerk.getInstance();
+          const clerk = (window as any).Clerk;
           if (clerk && clerk.session) {
             const newToken = await clerk.session.getToken({ skipCache: true });
             if (newToken) {
@@ -220,9 +218,8 @@ function showAuthNotification(message: string, type: 'error' | 'warning' | 'info
 // Check if user is authenticated
 export function isAuthenticated(): boolean {
   try {
-    if (typeof window !== 'undefined') {
-      const { Clerk } = require('@clerk/clerk-js');
-      const clerk = Clerk.getInstance();
+    if (typeof window !== 'undefined' && (window as any).Clerk) {
+      const clerk = (window as any).Clerk;
       return !!(clerk && clerk.user);
     }
     return false;
