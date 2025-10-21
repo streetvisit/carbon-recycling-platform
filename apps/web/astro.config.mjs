@@ -39,6 +39,24 @@ export default defineConfig({
       afterSignUpUrl: '/dashboard',
       signInUrl: '/sign-in',
       signUpUrl: '/sign-up',
+      publicRoutes: [
+        '/',
+        '/features/*',
+        '/pricing',
+        '/about',
+        '/contact',
+        '/blog',
+        '/blog/*',
+        '/guides',
+        '/guides/*',
+        '/faqs',
+        '/faqs/*',
+        '/integrations',
+        '/integrations/*',
+        '/trading',
+        '/trading/*',
+        '/api/*'
+      ]
     })
   ],
 
