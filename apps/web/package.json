@@ -12,6 +12,7 @@
     "@astrojs/preact": "^4.1.1",
     "@clerk/astro": "^2.14.0",
     "@clerk/clerk-js": "^5.102.0",
+    "@google/generative-ai": "^0.24.1",
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.14.1",
     "chart.js": "^4.5.0",

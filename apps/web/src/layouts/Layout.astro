@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import MainNavigation from '../components/MainNavigation.astro';
+import ChatWidget from '../components/ChatWidget.tsx';
 
 export interface Props {
   title: string;
@@ -39,6 +40,9 @@ const {
       )}
       <slot />
     </div>
+
+    <!-- AI Chat Widget -->
+    <ChatWidget client:only="preact" />
 
   </body>
 </html>
