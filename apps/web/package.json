@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.10",
+    "@astrojs/node": "^9.5.0",
     "@astrojs/preact": "^4.1.1",
     "@clerk/astro": "^2.14.0",
     "@clerk/clerk-js": "^5.102.0",

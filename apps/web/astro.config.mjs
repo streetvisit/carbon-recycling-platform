@@ -4,6 +4,7 @@ import { defineConfig, envField } from 'astro/config';
 import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
 import clerk from '@clerk/astro';
+import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,6 +29,11 @@ export default defineConfig({
         context: 'client',
         access: 'public', 
         default: 'production'
+      }),
+      GEMINI_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: false
       })
     }
   },
@@ -46,5 +52,6 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  output: 'static', // Changed to static for now
+  output: 'server', // Server mode for API routes
+  adapter: node({ mode: 'standalone' }),
 });
