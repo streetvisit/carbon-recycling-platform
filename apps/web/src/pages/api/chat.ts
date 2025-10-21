@@ -63,7 +63,17 @@ export const POST: APIRoute = async ({ request }) => {
     // Send user message with system context
     const result = await chat.sendMessage(`${CHAT_SYSTEM_PROMPT}\n\nUser Question: ${message}`);
     const response = result.response;
+    
+    // Check if response is valid
+    if (!response) {
+      throw new Error('No response from Gemini API');
+    }
+    
     const text = response.text();
+    
+    if (!text) {
+      throw new Error('Empty response from Gemini API');
+    }
 
     return new Response(
       JSON.stringify({ 
@@ -82,10 +92,16 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error('Chat API error:', error);
     
+    // Provide more detailed error information
+    const errorDetails = error instanceof Error ? error.message : 'Unknown error';
+    const errorName = error instanceof Error ? error.name : 'Error';
+    
     return new Response(
       JSON.stringify({ 
         error: 'Failed to process chat message',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: errorDetails,
+        type: errorName,
+        hint: 'Check that GEMINI_API_KEY is set in Cloudflare Pages environment variables'
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
