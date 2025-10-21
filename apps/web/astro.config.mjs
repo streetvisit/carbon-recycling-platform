@@ -34,29 +34,14 @@ export default defineConfig({
 
   integrations: [
     preact(),
-    clerk({
+clerk({
       afterSignInUrl: '/dashboard',
       afterSignUpUrl: '/dashboard',
       signInUrl: '/sign-in',
       signUpUrl: '/sign-up',
-      publicRoutes: [
-        '/',
-        '/features/*',
-        '/pricing',
-        '/about',
-        '/contact',
-        '/blog',
-        '/blog/*',
-        '/guides',
-        '/guides/*',
-        '/faqs',
-        '/faqs/*',
-        '/integrations',
-        '/integrations/*',
-        '/trading',
-        '/trading/*',
-        '/api/*'
-      ]
+      appearance: {
+        baseTheme: undefined
+      }
     })
   ],
 
