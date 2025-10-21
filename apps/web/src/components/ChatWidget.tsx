@@ -42,7 +42,7 @@ export default function ChatWidget() {
 
     try {
       // Use worker endpoint (local dev on 8787, production on workers.dev or custom domain)
-      const apiUrl = import.meta.env.DEV ? 'http://localhost:8787' : 'https://carbon-platform-chat.YOUR_SUBDOMAIN.workers.dev';
+      const apiUrl = import.meta.env.DEV ? 'http://localhost:8787' : 'https://carbon-platform-chat.charles-39b.workers.dev';
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
