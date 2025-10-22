@@ -4,8 +4,11 @@ import { CHAT_SYSTEM_PROMPT } from '../../data/platform-knowledge';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    console.log('[CHAT API] Request received');
+    
     // Get API key from environment
     const apiKey = import.meta.env.GEMINI_API_KEY;
+    console.log('[CHAT API] API key present:', !!apiKey, 'length:', apiKey?.length || 0);
     
     if (!apiKey) {
       return new Response(
@@ -17,7 +20,9 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Parse request body
+    console.log('[CHAT API] Parsing request body');
     const { message, conversationHistory = [] } = await request.json();
+    console.log('[CHAT API] Message:', message?.substring(0, 50), 'History length:', conversationHistory.length);
 
     if (!message || typeof message !== 'string') {
       return new Response(
@@ -27,10 +32,12 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Initialize Gemini AI
+    console.log('[CHAT API] Initializing Gemini AI');
     const genAI = new GoogleGenerativeAI(apiKey);
     
     // Use Flash model (cheapest, fastest)
-    const model = genAI.getGenerativeModel({ 
+    console.log('[CHAT API] Getting model');
+    const model = genAI.getGenerativeModel({
       model: 'gemini-1.5-flash',
       generationConfig: {
         temperature: 0.7,
@@ -61,7 +68,9 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // Send user message with system context
+    console.log('[CHAT API] Sending message to Gemini...');
     const result = await chat.sendMessage(`${CHAT_SYSTEM_PROMPT}\n\nUser Question: ${message}`);
+    console.log('[CHAT API] Received response from Gemini');
     const response = result.response;
     
     // Check if response is valid
