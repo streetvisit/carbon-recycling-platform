@@ -14,11 +14,23 @@ export default function UKEnergyMap() {
   // Fetch real UK regional data from Carbon Intensity API
   const fetchRegionalData = async (): Promise<UKRegionMap> => {
     try {
-      return await getUKRegionalData();
+      const apiData = await getUKRegionalData();
+      // Verify we got valid data
+      if (!apiData || Object.keys(apiData).length === 0) {
+        throw new Error('Empty regional data returned from API');
+      }
+      console.log('Successfully loaded regional data from API');
+      return apiData;
     } catch (error) {
       console.warn('Failed to fetch real UK regional data, using fallback:', error);
       // Return fallback data based on realistic UK regional patterns
-      return {
+      return getFallbackRegionalData();
+    }
+  };
+  
+  // Fallback regional data generator
+  const getFallbackRegionalData = (): UKRegionMap => {
+    return {
         scotland: {
           name: 'Scotland',
           regionId: 1,
@@ -92,7 +104,6 @@ export default function UKEnergyMap() {
           dominantSource: 'wind',
         },
       };
-    }
   };
 
   useEffect(() => {
@@ -100,9 +111,16 @@ export default function UKEnergyMap() {
       try {
         setLoading(true);
         const data = await fetchRegionalData();
-        setRegionData(data);
+        // Ensure data has all required regions
+        if (data && Object.keys(data).length > 0) {
+          setRegionData(data);
+        } else {
+          console.warn('No regional data available, loading fallback');
+          setRegionData(getFallbackRegionalData());
+        }
       } catch (error) {
-        console.error('Error updating regional data:', error);
+        console.error('Error updating regional data, using fallback:', error);
+        setRegionData(getFallbackRegionalData());
       } finally {
         setLoading(false);
       }

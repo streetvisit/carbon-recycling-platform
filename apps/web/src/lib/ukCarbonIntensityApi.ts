@@ -101,6 +101,12 @@ export async function getCurrentGenerationMix(): Promise<GenerationMixData> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log('Generation mix API response:', data); // Debug log
+    
+    if (!data || !data.data || !Array.isArray(data.data) || data.data.length === 0) {
+      throw new Error('Invalid generation mix data structure');
+    }
+    
     return data.data[0];
   } catch (error) {
     console.error('Error fetching generation mix:', error);
@@ -210,7 +216,13 @@ export async function getUKGridData(): Promise<UKGridData> {
 
     // Check if we have valid generation mix data
     if (!generationMix || !generationMix.generationmix || !Array.isArray(generationMix.generationmix)) {
-      console.warn('Invalid generation mix data, using fallback');
+      console.warn('Invalid generation mix data structure, using fallback');
+      console.warn('Received generationMix:', generationMix);
+      return getFallbackGridData();
+    }
+    
+    if (generationMix.generationmix.length === 0) {
+      console.warn('Empty generation mix array, using fallback');
       return getFallbackGridData();
     }
 
