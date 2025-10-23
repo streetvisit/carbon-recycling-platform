@@ -1,0 +1,380 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Data Sources & Attribution - CarbonRecycling.co.uk" currentPage="/data-sources">
+  <main class="min-h-screen bg-gray-50 py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Data Sources & Attribution</h1>
+        <p class="text-lg text-gray-600">
+          Our platform provides real-time and historical data on UK electricity generation, carbon intensity, 
+          and energy market information. All data is sourced from official UK energy authorities and is 
+          updated in real-time or near real-time.
+        </p>
+      </div>
+
+      <!-- Last Updated -->
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        <p class="text-sm text-blue-800">
+          <strong>Last Updated:</strong> January 2025 • 
+          <strong>Data Refresh:</strong> Every 5-30 minutes depending on source
+        </p>
+      </div>
+
+      <!-- Primary Data Sources -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Primary Data Sources</h2>
+        
+        <!-- Carbon Intensity API -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4 flex-1">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">Carbon Intensity API</h3>
+              <p class="text-gray-600 mb-3">
+                Official carbon intensity data for Great Britain provided by National Energy System Operator (NESO).
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span class="font-medium text-gray-700">Provider:</span>
+                  <span class="text-gray-600"> National Grid ESO / NESO</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">Update Frequency:</span>
+                  <span class="text-gray-600"> Every 30 minutes</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">Data Coverage:</span>
+                  <span class="text-gray-600"> Great Britain (England, Scotland, Wales)</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">License:</span>
+                  <span class="text-gray-600"> Open Government Licence v3.0</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="text-sm text-gray-700 mb-2"><strong>Data Provided:</strong></p>
+                <ul class="text-sm text-gray-600 space-y-1 ml-4">
+                  <li>• Current and forecast carbon intensity (gCO₂/kWh)</li>
+                  <li>• Generation mix percentages by fuel type</li>
+                  <li>• Regional carbon intensity across 17 GB regions</li>
+                  <li>• Historical carbon intensity data</li>
+                </ul>
+              </div>
+              <div class="mt-4 flex items-center space-x-4 text-sm">
+                <a href="https://carbonintensity.org.uk/" target="_blank" rel="noopener" 
+                   class="text-blue-600 hover:text-blue-700 font-medium">
+                  Visit Website →
+                </a>
+                <a href="https://carbon-intensity.github.io/api-definitions/" target="_blank" rel="noopener"
+                   class="text-blue-600 hover:text-blue-700 font-medium">
+                  API Documentation →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elexon BMRS -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4 flex-1">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">Elexon BMRS (Balancing Mechanism Reporting Service)</h3>
+              <p class="text-gray-600 mb-3">
+                Official electricity market and balancing mechanism data for Great Britain.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                <div>
+                  <span class="font-medium text-gray-700">Provider:</span>
+                  <span class="text-gray-600"> Elexon Limited</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">Update Frequency:</span>
+                  <span class="text-gray-600"> 5-30 minutes (varies by dataset)</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">Data Coverage:</span>
+                  <span class="text-gray-600"> Great Britain electricity market</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">License:</span>
+                  <span class="text-gray-600"> Open Data License</span>
+                </div>
+              </div>
+              
+              <!-- Important Attribution -->
+              <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                <p class="text-sm font-semibold text-yellow-900 mb-1">⚠️ Required Attribution:</p>
+                <p class="text-sm text-yellow-800">
+                  Contains BMRS data © Elexon Limited copyright and database right 2025
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-gray-200">
+                <p class="text-sm text-gray-700 mb-2"><strong>Data Provided:</strong></p>
+                <ul class="text-sm text-gray-600 space-y-1 ml-4">
+                  <li>• Real-time electricity demand (MW)</li>
+                  <li>• Instantaneous generation by fuel type (MW)</li>
+                  <li>• System buy and sell prices (£/MWh)</li>
+                  <li>• Individual power station output</li>
+                  <li>• Interconnector flows</li>
+                  <li>• Balancing mechanism data</li>
+                  <li>• Settlement and imbalance data</li>
+                </ul>
+              </div>
+              <div class="mt-4 flex items-center space-x-4 text-sm">
+                <a href="https://bmrs.elexon.co.uk/" target="_blank" rel="noopener" 
+                   class="text-blue-600 hover:text-blue-700 font-medium">
+                  Visit BMRS →
+                </a>
+                <a href="https://developer.data.elexon.co.uk/" target="_blank" rel="noopener"
+                   class="text-blue-600 hover:text-blue-700 font-medium">
+                  API Documentation →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NESO Data Portal -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4 flex-1">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">NESO Data Portal</h3>
+              <p class="text-gray-600 mb-3">
+                National Energy System Operator's comprehensive energy data portal.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span class="font-medium text-gray-700">Provider:</span>
+                  <span class="text-gray-600"> National Energy System Operator</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">Update Frequency:</span>
+                  <span class="text-gray-600"> Varies by dataset</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">Data Coverage:</span>
+                  <span class="text-gray-600"> GB energy system</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700">License:</span>
+                  <span class="text-gray-600"> Open Data</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="text-sm text-gray-700 mb-2"><strong>Data Provided:</strong></p>
+                <ul class="text-sm text-gray-600 space-y-1 ml-4">
+                  <li>• Grid frequency data</li>
+                  <li>• Wind and solar generation forecasts</li>
+                  <li>• Long-term energy outlooks</li>
+                  <li>• Network capacity information</li>
+                </ul>
+              </div>
+              <div class="mt-4 flex items-center space-x-4 text-sm">
+                <a href="https://www.neso.energy/data-portal" target="_blank" rel="noopener" 
+                   class="text-blue-600 hover:text-blue-700 font-medium">
+                  Visit Data Portal →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Data Processing & Calculations -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Data Processing & Calculations</h2>
+        
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div class="space-y-4 text-gray-600">
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Generation Mix Calculations</h4>
+              <p class="text-sm">
+                Generation percentages are calculated relative to total demand. When GB is exporting power, 
+                the sum of generation percentages will exceed 100%. Individual fuel type contributions are 
+                calculated from instantaneous generation data (FUELINST) and demand data (INDO) from Elexon BMRS.
+              </p>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Carbon Intensity Aggregation</h4>
+              <p class="text-sm">
+                Regional carbon intensity is provided directly by the Carbon Intensity API. National averages 
+                are calculated as weighted means based on regional demand.
+              </p>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Price Data</h4>
+              <p class="text-sm">
+                System prices (buy and sell) are sourced from Elexon BMRS Market Index Data (MID). 
+                Historical price trends are calculated from settlement period data.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Unit Conversions</h4>
+              <p class="text-sm">
+                • Power: Megawatts (MW) converted to Gigawatts (GW) where appropriate<br>
+                • Energy: Megawatt-hours (MWh) and Gigawatt-hours (GWh)<br>
+                • Carbon: grams CO₂ per kilowatt-hour (gCO₂/kWh)<br>
+                • Price: Pounds sterling per megawatt-hour (£/MWh)
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Important Disclaimers -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Important Disclaimers</h2>
+        
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 space-y-4">
+          <div>
+            <h4 class="font-semibold text-amber-900 mb-2">⚠️ Data Accuracy</h4>
+            <p class="text-sm text-amber-800">
+              All data is sourced from official UK energy authorities. While we strive for accuracy, 
+              data may be subject to revisions, delays, or errors from source providers. Settlement 
+              data may be updated retrospectively.
+            </p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-amber-900 mb-2">⚠️ Data Coverage</h4>
+            <p class="text-sm text-amber-800">
+              Data covers Great Britain (England, Scotland, Wales) only. Northern Ireland has a separate 
+              electricity system and is not included in this data.
+            </p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-amber-900 mb-2">⚠️ Not for Trading</h4>
+            <p class="text-sm text-amber-800">
+              This data is for informational purposes only and should not be used for electricity 
+              trading, financial decisions, or operational control of energy systems.
+            </p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-amber-900 mb-2">⚠️ API Availability</h4>
+            <p class="text-sm text-amber-800">
+              Data availability depends on third-party APIs. Service interruptions or rate limits may 
+              affect data updates. Historical data completeness may vary.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Copyright & Licenses -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Copyright & Licenses</h2>
+        
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-4 text-sm">
+          <div class="pb-4 border-b border-gray-200">
+            <p class="font-semibold text-gray-900 mb-2">BMRS Data Attribution:</p>
+            <p class="text-gray-600">
+              Contains BMRS data © Elexon Limited copyright and database right 2025. 
+              This attribution must be included with any use or redistribution of Elexon BMRS data.
+            </p>
+          </div>
+          
+          <div class="pb-4 border-b border-gray-200">
+            <p class="font-semibold text-gray-900 mb-2">Carbon Intensity API:</p>
+            <p class="text-gray-600">
+              Data provided by National Grid ESO / NESO under the 
+              <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" 
+                 target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">
+                Open Government Licence v3.0
+              </a>
+            </p>
+          </div>
+          
+          <div>
+            <p class="font-semibold text-gray-900 mb-2">Platform Content:</p>
+            <p class="text-gray-600">
+              © 2025 CarbonRecycling.co.uk. Platform design, visualizations, and derived analytics 
+              are our own work. Source data attribution as specified above.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Information -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Technical Information</h2>
+        
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-3">API Endpoints Used:</h4>
+              <ul class="space-y-2 text-gray-600">
+                <li class="font-mono text-xs bg-gray-50 p-2 rounded">
+                  api.carbonintensity.org.uk
+                </li>
+                <li class="font-mono text-xs bg-gray-50 p-2 rounded">
+                  data.elexon.co.uk/bmrs/api/v1
+                </li>
+                <li class="font-mono text-xs bg-gray-50 p-2 rounded">
+                  www.neso.energy/data-portal
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-3">Update Schedule:</h4>
+              <ul class="space-y-2 text-gray-600">
+                <li>• <strong>Dashboard:</strong> Every 2 seconds (polling)</li>
+                <li>• <strong>Carbon Intensity:</strong> Every 30 minutes</li>
+                <li>• <strong>Generation Data:</strong> Every 5 minutes</li>
+                <li>• <strong>Demand Data:</strong> Every 30 minutes</li>
+                <li>• <strong>Price Data:</strong> Every 30 minutes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact & Support -->
+      <section class="bg-gray-900 text-white rounded-lg p-8 text-center">
+        <h2 class="text-2xl font-bold mb-4">Questions About Our Data?</h2>
+        <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
+          If you have questions about our data sources, methodologies, or would like to report 
+          an issue with the data, please get in touch.
+        </p>
+        <a href="mailto:data@carbonrecycling.co.uk" 
+           class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
+          Contact Data Team
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </section>
+
+    </div>
+  </main>
+</Layout>
