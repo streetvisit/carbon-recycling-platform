@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import EnhancedEnergyDashboard from '../../components/EnhancedEnergyDashboard.tsx';
 import UKEnergyMap from '../../components/UKEnergyMap.tsx';
-import InteractivePowerMap from '../../components/InteractivePowerMap.tsx';
+import EnhancedUKPowerMap from '../../components/EnhancedUKPowerMap.tsx';
 
 const breadcrumbs = [
   { label: 'Platform', href: '/features' },
@@ -82,7 +82,7 @@ const breadcrumbs = [
           </p>
         </div>
         
-        <InteractivePowerMap client:load />
+        <EnhancedUKPowerMap client:load />
       </div>
     </section>
     
