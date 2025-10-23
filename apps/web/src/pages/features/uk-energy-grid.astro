@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EnhancedEnergyDashboard from '../../components/EnhancedEnergyDashboard.tsx';
-import UKEnergyMap from '../../components/UKEnergyMap.tsx';
+import EnhancedUKRegionalMap from '../../components/EnhancedUKRegionalMap.tsx';
 import EnhancedUKPowerMap from '../../components/EnhancedUKPowerMap.tsx';
 
 const breadcrumbs = [
@@ -90,13 +90,14 @@ const breadcrumbs = [
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Regional Carbon Intensity</h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Regional Carbon Intensity Map</h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Regional breakdown showing carbon intensity and renewable generation by area.
+            Interactive map showing real-time carbon intensity and renewable generation by UK region. 
+            Click regions for detailed information and toggle between light/dark modes.
           </p>
         </div>
         
-        <UKEnergyMap client:load />
+        <EnhancedUKRegionalMap client:load />
       </div>
     </section>
 
