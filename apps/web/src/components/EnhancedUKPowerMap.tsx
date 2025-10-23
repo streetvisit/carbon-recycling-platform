@@ -479,7 +479,6 @@ export default function EnhancedUKPowerMap() {
               <span>Show heat map</span>
             </label>
             <label class={`flex items-center text-sm cursor-pointer ${hasTouch ? 'touch-manipulation' : ''}`}>
-manipulation' : ''}`}>
               <input
                 type="checkbox"
                 checked={accessibilityMode}
