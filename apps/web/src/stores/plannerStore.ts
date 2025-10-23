@@ -26,6 +26,9 @@ export interface EmissionForecast {
   createdAt: string;
 }
 
+// Explicitly export for external use
+export type { EmissionForecast };
+
 export interface InitiativeWithForecasts extends Initiative {
   forecasts: EmissionForecast[];
 }

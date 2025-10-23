@@ -78,33 +78,14 @@ export async function getCurrentDemand(): Promise<ElexonDemandData[]> {
 }
 
 /**
- * Fetch system prices (MID - Market Index Data)
- * Returns market index data including buy/sell prices
- * Endpoint: /datasets/MID/latest
+ * NOTE: MID (Market Index Data) endpoint does not exist in BMRS API v1
+ * System prices are not available through this API
+ * For price data, alternative sources should be used
  */
 export async function getSystemPrices(): Promise<ElexonSystemPriceData[]> {
-  try {
-    // Try without /latest first
-    let url = `${ELEXON_API_BASE}/datasets/MID`;
-    let response = await fetch(url);
-    
-    // If that fails, try with /latest
-    if (!response.ok) {
-      url = `${ELEXON_API_BASE}/datasets/MID/latest`;
-      response = await fetch(url);
-    }
-    
-    if (!response.ok) {
-      throw new Error(`Elexon API error: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    return data.data || [];
-  } catch (error) {
-    console.error('Error fetching Elexon price data:', error);
-    // Return empty array to allow fallback logic
-    return [];
-  }
+  // MID endpoint doesn't exist - return empty array
+  console.warn('MID endpoint not available in BMRS API - returning empty data');
+  return [];
 }
 
 /**
@@ -117,13 +98,13 @@ export async function getLiveGridData(): Promise<{
   prices: ElexonSystemPriceData[];
 }> {
   try {
-    const [generation, demand, prices] = await Promise.all([
+    const [generation, demand] = await Promise.all([
       getCurrentGeneration(),
-      getCurrentDemand(),
-      getSystemPrices()
+      getCurrentDemand()
     ]);
 
-    return { generation, demand, prices };
+    // Prices not available from BMRS API
+    return { generation, demand, prices: [] };
   } catch (error) {
     console.error('Error fetching live grid data:', error);
     throw error;

@@ -115,7 +115,8 @@ export default function UKEnergyMap() {
     return () => clearInterval(interval);
   }, []);
 
-  const getRegionColor = (region: RegionData) => {
+  const getRegionColor = (region: RegionData | undefined) => {
+    if (!region || typeof region.carbonIntensity !== 'number') return '#9ca3af'; // Gray fallback
     const intensity = region.carbonIntensity;
     if (intensity < 100) return '#10b981'; // Green
     if (intensity < 150) return '#f59e0b'; // Yellow
@@ -134,7 +135,7 @@ export default function UKEnergyMap() {
     return icons[source as keyof typeof icons] || '⚡';
   };
 
-  if (loading) {
+  if (loading || Object.keys(regionData).length === 0) {
     return (
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <div class="animate-pulse">
@@ -325,7 +326,7 @@ export default function UKEnergyMap() {
               </div>
 
               {/* Hover tooltip */}
-              {hoveredRegion && (
+              {hoveredRegion && regionData[hoveredRegion] && (
                 <div class="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-4 max-w-xs">
                   <div class="text-sm">
                     <h4 class="font-semibold text-gray-900">{regionData[hoveredRegion].name}</h4>
@@ -345,7 +346,7 @@ export default function UKEnergyMap() {
             <div class="bg-gray-50 rounded-lg p-4">
               <h4 class="text-lg font-semibold text-gray-900 mb-4">Regional Breakdown</h4>
               
-              {selectedRegion ? (
+              {selectedRegion && regionData[selectedRegion] ? (
                 <div class="space-y-4">
                   <div class="bg-white rounded-lg p-4">
                     <h5 class="font-medium text-gray-900 flex items-center">

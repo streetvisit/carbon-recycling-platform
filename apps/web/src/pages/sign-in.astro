@@ -34,7 +34,7 @@ import Layout from '../layouts/Layout.astro';
       clerk.load().then(() => {
         clerk.mountSignIn(document.getElementById('sign-in'), {
           signUpUrl: '/sign-up',
-          afterSignInUrl: '/dashboard',
+          fallbackRedirectUrl: '/dashboard',
         });
       });
     }
