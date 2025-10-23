@@ -42,20 +42,28 @@ export async function getCurrentGeneration(): Promise<ElexonGenerationData[]> {
     return data.data || [];
   } catch (error) {
     console.error('Error fetching Elexon generation data:', error);
-    throw error;
+    // Return empty array to allow fallback logic
+    return [];
   }
 }
 
 /**
  * Fetch current system demand (INDO - Initial Demand Outturn)
  * Returns national demand in MW
- * Endpoint: /datasets/INDO/latest
+ * Endpoint: /datasets/INDO (without /latest as it may not be supported)
  */
 export async function getCurrentDemand(): Promise<ElexonDemandData[]> {
   try {
-    const url = `${ELEXON_API_BASE}/datasets/INDO/latest`;
+    // Try without /latest first
+    let url = `${ELEXON_API_BASE}/datasets/INDO`;
+    let response = await fetch(url);
     
-    const response = await fetch(url);
+    // If that fails, try with /latest
+    if (!response.ok) {
+      url = `${ELEXON_API_BASE}/datasets/INDO/latest`;
+      response = await fetch(url);
+    }
+    
     if (!response.ok) {
       throw new Error(`Elexon API error: ${response.status}`);
     }
@@ -64,7 +72,8 @@ export async function getCurrentDemand(): Promise<ElexonDemandData[]> {
     return data.data || [];
   } catch (error) {
     console.error('Error fetching Elexon demand data:', error);
-    throw error;
+    // Return empty array to allow fallback logic
+    return [];
   }
 }
 
@@ -75,9 +84,16 @@ export async function getCurrentDemand(): Promise<ElexonDemandData[]> {
  */
 export async function getSystemPrices(): Promise<ElexonSystemPriceData[]> {
   try {
-    const url = `${ELEXON_API_BASE}/datasets/MID/latest`;
+    // Try without /latest first
+    let url = `${ELEXON_API_BASE}/datasets/MID`;
+    let response = await fetch(url);
     
-    const response = await fetch(url);
+    // If that fails, try with /latest
+    if (!response.ok) {
+      url = `${ELEXON_API_BASE}/datasets/MID/latest`;
+      response = await fetch(url);
+    }
+    
     if (!response.ok) {
       throw new Error(`Elexon API error: ${response.status}`);
     }
@@ -86,7 +102,8 @@ export async function getSystemPrices(): Promise<ElexonSystemPriceData[]> {
     return data.data || [];
   } catch (error) {
     console.error('Error fetching Elexon price data:', error);
-    throw error;
+    // Return empty array to allow fallback logic
+    return [];
   }
 }
 

@@ -172,12 +172,18 @@ export async function getEnergyPrice(carbonIntensity: number, generationMix: Gen
   const carbonFactor = carbonIntensity / 200;
   basePrice *= (1 + carbonFactor * 0.5);
   
+  // Add null checks
+  if (!generationMix || !generationMix.generationmix || !Array.isArray(generationMix.generationmix)) {
+    console.warn('Invalid generation mix for price calculation, using base price');
+    return Math.round(basePrice);
+  }
+
   const renewablePercentage = generationMix.generationmix
-    .filter(g => ['wind', 'solar', 'hydro'].includes(g.fuel.toLowerCase()))
+    .filter(g => g && g.fuel && ['wind', 'solar', 'hydro'].includes(g.fuel.toLowerCase()))
     .reduce((sum, g) => sum + g.perc, 0);
   
   const gasPercentage = generationMix.generationmix
-    .find(g => g.fuel.toLowerCase() === 'gas')?.perc || 0;
+    .find(g => g && g.fuel && g.fuel.toLowerCase() === 'gas')?.perc || 0;
   
   if (renewablePercentage > 50) {
     basePrice *= 0.8;
@@ -201,6 +207,12 @@ export async function getUKGridData(): Promise<UKGridData> {
       getCurrentGenerationMix(),
       getGridStatistics()
     ]);
+
+    // Check if we have valid generation mix data
+    if (!generationMix || !generationMix.generationmix || !Array.isArray(generationMix.generationmix)) {
+      console.warn('Invalid generation mix data, using fallback');
+      return getFallbackGridData();
+    }
 
     // Map generation mix to our format
     const generationData = {
