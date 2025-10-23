@@ -8,28 +8,62 @@ export interface AuthHeaders {
   'Content-Type': string;
 }
 
+// Clerk instance singleton
+let clerkInstance: any = null;
+
+// Initialize Clerk if not already done
+async function getClerkInstance() {
+  if (typeof window === 'undefined') return null;
+  
+  if (clerkInstance) return clerkInstance;
+  
+  try {
+    const Clerk = (await import('@clerk/clerk-js')).default;
+    const publishableKey = (window as any).__CLERK_PUBLISHABLE_KEY || 
+                          import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY;
+    
+    if (!publishableKey) {
+      console.warn('Clerk publishable key not found');
+      return null;
+    }
+    
+    clerkInstance = new Clerk(publishableKey);
+    await clerkInstance.load();
+    return clerkInstance;
+  } catch (error) {
+    console.error('Failed to initialize Clerk:', error);
+    return null;
+  }
+}
+
 // Get authentication headers for API calls
 export async function getAuthHeaders(): Promise<AuthHeaders> {
   try {
-    // In client-side components, we'll need to get the token differently
+    // Client-side: Use Clerk to get token
     if (typeof window !== 'undefined') {
-      // Client-side: Use Clerk's client-side API
-      const { getToken } = await import('@clerk/clerk-js');
-      const token = await getToken();
+      const clerk = await getClerkInstance();
+      
+      if (clerk?.session) {
+        const token = await clerk.session.getToken();
+        return {
+          'Authorization': token ? `Bearer ${token}` : '',
+          'Content-Type': 'application/json'
+        };
+      }
       
       return {
-        'Authorization': token ? `Bearer ${token}` : '',
+        'Authorization': '',
         'Content-Type': 'application/json'
       };
     } else {
       // Server-side: Auth disabled for static build
       return {
-        'Authorization': 'Bearer mock-token',
+        'Authorization': '',
         'Content-Type': 'application/json'
       };
     }
   } catch (error) {
-    console.warn('Failed to get auth token, using empty auth:', error);
+    console.warn('Failed to get auth token:', error);
     return {
       'Authorization': '',
       'Content-Type': 'application/json'

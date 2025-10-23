@@ -35,7 +35,8 @@ export default defineConfig({
   integrations: [
     preact(),
 clerk({
-      fallbackRedirectUrl: '/dashboard',
+      signInFallbackRedirectUrl: '/dashboard',
+      signUpFallbackRedirectUrl: '/dashboard',
       signInUrl: '/sign-in',
       signUpUrl: '/sign-up',
       appearance: {

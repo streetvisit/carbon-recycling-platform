@@ -1,6 +1,57 @@
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { allIntegrations, getIntegrationsByCategory, type Integration } from '../data/integrations';
-import { useAuth } from '@clerk/clerk-preact';
+import Clerk from '@clerk/clerk-js';
+
+// Initialize Clerk instance
+let clerkInstance: Clerk | null = null;
+
+function useAuth() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function initClerk() {
+      if (typeof window === 'undefined') return;
+      
+      try {
+        // Get publishable key from env or window
+        const publishableKey = (window as any).__CLERK_PUBLISHABLE_KEY || 
+                              import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY;
+        
+        if (!publishableKey) {
+          console.warn('Clerk publishable key not found');
+          setIsLoaded(true);
+          return;
+        }
+
+        if (!clerkInstance) {
+          clerkInstance = new Clerk(publishableKey);
+          await clerkInstance.load();
+        }
+        
+        setIsSignedIn(!!clerkInstance.user);
+        setIsLoaded(true);
+
+        // Listen for auth changes
+        clerkInstance.addListener((event) => {
+          setIsSignedIn(!!clerkInstance?.user);
+        });
+      } catch (error) {
+        console.error('Failed to initialize Clerk:', error);
+        setIsLoaded(true);
+      }
+    }
+
+    initClerk();
+  }, []);
+
+  const getToken = async () => {
+    if (!clerkInstance?.session) return null;
+    return clerkInstance.session.getToken();
+  };
+
+  return { isSignedIn, isLoaded, getToken };
+}
 import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth';
 
 interface AddDataSourceModalProps {

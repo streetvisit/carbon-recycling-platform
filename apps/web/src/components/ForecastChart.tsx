@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'preact/hooks';
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { EmissionForecast } from '../stores/plannerStore';
+import type { EmissionForecast } from '../stores/plannerStore';
 
 // Register Chart.js components
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);

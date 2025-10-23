@@ -138,7 +138,10 @@ export default function EmissionsTrendChart() {
               beginAtZero: true,
               grid: {
                 color: '#F3F4F6',
-                drawBorder: false,
+                drawOnChartArea: true,
+              },
+              border: {
+                display: false,
               },
               ticks: {
                 color: '#6B7280',
@@ -162,7 +165,10 @@ export default function EmissionsTrendChart() {
             x: {
               grid: {
                 display: false,
-                drawBorder: false,
+                drawOnChartArea: false,
+              },
+              border: {
+                display: false,
               },
               ticks: {
                 color: '#6B7280',

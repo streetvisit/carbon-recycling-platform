@@ -1,7 +1,71 @@
 // Custom authentication hooks for Preact components
 import { useState, useEffect } from 'preact/hooks';
-import { useAuth as useClerkAuth } from '@clerk/clerk-preact';
 import { authenticatedFetch, getApiBaseUrl, handleAuthError } from '../utils/auth';
+import Clerk from '@clerk/clerk-js';
+
+// Minimal auth state interface
+interface AuthState {
+  isSignedIn: boolean;
+  isLoaded: boolean;
+  getToken: () => Promise<string | null>;
+}
+
+// Initialize Clerk instance (singleton)
+let clerkInstance: Clerk | null = null;
+
+// Clerk auth hook for client-side Preact components
+function useClerkAuth(): AuthState {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function initClerk() {
+      if (typeof window === 'undefined') return;
+      
+      try {
+        // Get publishable key from window or env
+        const publishableKey = (window as any).__CLERK_PUBLISHABLE_KEY || 
+                              import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY;
+        
+        if (!publishableKey) {
+          console.warn('Clerk publishable key not found');
+          setIsLoaded(true);
+          return;
+        }
+
+        if (!clerkInstance) {
+          clerkInstance = new Clerk(publishableKey);
+          await clerkInstance.load();
+        }
+        
+        setIsSignedIn(!!clerkInstance.user);
+        setIsLoaded(true);
+
+        // Listen for auth state changes
+        clerkInstance.addListener(() => {
+          setIsSignedIn(!!clerkInstance?.user);
+        });
+      } catch (error) {
+        console.error('Failed to initialize Clerk:', error);
+        setIsLoaded(true);
+      }
+    }
+
+    initClerk();
+  }, []);
+
+  const getToken = async () => {
+    if (!clerkInstance?.session) return null;
+    try {
+      return await clerkInstance.session.getToken();
+    } catch (error) {
+      console.error('Failed to get token:', error);
+      return null;
+    }
+  };
+
+  return { isSignedIn, isLoaded, getToken };
+}
 
 // Hook for authenticated API calls with loading state
 export function useAuthenticatedApi<T = any>(

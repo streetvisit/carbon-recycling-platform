@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks';
-import { useAnalyticsStore, BreakdownDataPoint } from '../stores/analyticsStore';
+import { useAnalyticsStore } from '../stores/analyticsStore';
+import type { BreakdownDataPoint } from '../stores/analyticsStore';
 
 type SortField = 'category' | 'scope' | 'totalCo2e' | 'percentage';
 type SortDirection = 'asc' | 'desc';
