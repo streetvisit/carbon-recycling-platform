@@ -123,10 +123,23 @@ export async function getRegionalIntensity(): Promise<RegionalIntensityData[]> {
   }
 }
 
-// Fetch statistics for demand estimation (using external data source if needed)
+// Fetch statistics for demand estimation using Elexon BMRS
 export async function getGridStatistics(): Promise<{ demand: number }> {
-  // For now, estimate demand based on typical UK patterns
-  // In production, this could be enhanced with additional APIs like Elexon BMRS
+  try {
+    // Try to fetch real demand data from Elexon BMRS
+    const { getCurrentDemand } = await import('./bmrsApi');
+    const demandData = await getCurrentDemand();
+    
+    if (demandData && demandData.length > 0) {
+      // Get the most recent demand value and convert MW to GW
+      const latestDemand = demandData[0].demand / 1000;
+      return { demand: latestDemand };
+    }
+  } catch (error) {
+    console.warn('Could not fetch real demand data, using estimate:', error);
+  }
+  
+  // Fallback: estimate demand based on typical UK patterns
   const hour = new Date().getHours();
   const baseDemand = 32; // Average UK demand in GW
   const timeVariation = Math.sin((hour - 6) * Math.PI / 12) * 6; // Daily pattern
@@ -137,16 +150,28 @@ export async function getGridStatistics(): Promise<{ demand: number }> {
   };
 }
 
-// Estimate energy price based on carbon intensity and generation mix
-export function estimateEnergyPrice(carbonIntensity: number, generationMix: GenerationMixData): number {
-  // Base price in £/MWh
+// Get energy price from Elexon BMRS or estimate
+export async function getEnergyPrice(carbonIntensity: number, generationMix: GenerationMixData): Promise<number> {
+  try {
+    // Try to fetch real price data from Elexon BMRS
+    const { getSystemPrices } = await import('./bmrsApi');
+    const priceData = await getSystemPrices();
+    
+    if (priceData && priceData.length > 0) {
+      // Use the system sell price (or average of buy/sell)
+      const latestPrice = priceData[0];
+      return Math.round((latestPrice.systemSellPrice + latestPrice.systemBuyPrice) / 2);
+    }
+  } catch (error) {
+    console.warn('Could not fetch real price data, using estimate:', error);
+  }
+  
+  // Fallback: estimate based on carbon intensity and generation mix
   let basePrice = 45;
   
-  // Carbon intensity factor (higher CI = higher price)
-  const carbonFactor = carbonIntensity / 200; // Normalize around 200g CO2/kWh
+  const carbonFactor = carbonIntensity / 200;
   basePrice *= (1 + carbonFactor * 0.5);
   
-  // Generation mix factors
   const renewablePercentage = generationMix.generationmix
     .filter(g => ['wind', 'solar', 'hydro'].includes(g.fuel.toLowerCase()))
     .reduce((sum, g) => sum + g.perc, 0);
@@ -154,14 +179,12 @@ export function estimateEnergyPrice(carbonIntensity: number, generationMix: Gene
   const gasPercentage = generationMix.generationmix
     .find(g => g.fuel.toLowerCase() === 'gas')?.perc || 0;
   
-  // Lower price when renewables are high
   if (renewablePercentage > 50) {
     basePrice *= 0.8;
   } else if (renewablePercentage < 30) {
     basePrice *= 1.2;
   }
   
-  // Higher price when gas is dominant (gas prices are volatile)
   if (gasPercentage > 40) {
     basePrice *= 1.1;
   }
@@ -249,12 +272,17 @@ export async function getUKGridData(): Promise<UKGridData> {
     const nuclear = generationData.nuclear;
     const imports = generationData.imports;
 
+    const price = await getEnergyPrice(
+      intensity.intensity.actual || intensity.intensity.forecast, 
+      generationMix
+    );
+
     return {
       timestamp: new Date().toISOString(),
       demand: Math.round(stats.demand * 10) / 10,
       generation: Math.round(totalGeneration * 10) / 10,
       carbonIntensity: intensity.intensity.actual || intensity.intensity.forecast,
-      price: estimateEnergyPrice(intensity.intensity.actual || intensity.intensity.forecast, generationMix),
+      price: price,
       generationMix: actualGeneration,
       percentages: {
         renewables: Math.round(renewables * 10) / 10,
