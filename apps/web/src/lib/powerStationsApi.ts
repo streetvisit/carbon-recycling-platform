@@ -127,33 +127,79 @@ const UK_POWER_STATIONS: Record<string, { lat: number; lng: number; capacity: nu
 
 /**
  * Get all power stations with their current generation
+ * Now fetches full BMRS BM Unit list with 3000+ generation units
  */
 export async function getAllPowerStations(): Promise<PowerStation[]> {
   try {
-    // For now, return our curated list
-    // In production, this would be enhanced with real-time BMRS data
-    const stations: PowerStation[] = [];
+    // First try to get real BMRS physical data
+    let bmrsStations: PowerStation[] = [];
     
-    for (const [name, data] of Object.entries(UK_POWER_STATIONS)) {
-      const fuelType = determineFuelType(name);
+    try {
+      const physicalData = await getBMUnitPhysicalData();
       
-      stations.push({
-        id: name.toLowerCase().replace(/\s+/g, '-'),
-        name: name,
-        fuelType: fuelType,
-        registeredCapacity: data.capacity,
-        currentGeneration: 0, // Will be updated with real-time data
-        latitude: data.lat,
-        longitude: data.lng,
-        status: 'online',
-        operator: data.operator,
-      });
+      // Convert BMRS data to our format
+      bmrsStations = physicalData
+        .filter((unit: any) => unit.nationalGridBmUnit && unit.registeredCapacity > 0)
+        .map((unit: any) => {
+          // Try to geocode based on location name or use approximate coordinates
+          const coords = approximateCoordinates(unit.bmUnit, unit.fuelType);
+          
+          return {
+            id: unit.bmUnit || unit.nationalGridBmUnit,
+            name: unit.bmUnit || unit.nationalGridBmUnit,
+            fuelType: mapBMRSFuelType(unit.fuelType || unit.psrType),
+            registeredCapacity: unit.registeredCapacity || 0,
+            currentGeneration: 0, // Will be updated with real-time data
+            latitude: coords.lat,
+            longitude: coords.lng,
+            status: 'online',
+            operator: unit.leadPartyName || 'Unknown',
+            bmUnitId: unit.bmUnit,
+          };
+        })
+        .filter(s => s.latitude !== 0 && s.longitude !== 0);
+    } catch (error) {
+      console.warn('Could not fetch BMRS data, using curated list:', error);
     }
     
-    return stations;
+    // If BMRS fetch failed or returned no data, use our curated major stations
+    if (bmrsStations.length === 0) {
+      const stations: PowerStation[] = [];
+      
+      for (const [name, data] of Object.entries(UK_POWER_STATIONS)) {
+        const fuelType = determineFuelType(name);
+        
+        stations.push({
+          id: name.toLowerCase().replace(/\s+/g, '-'),
+          name: name,
+          fuelType: fuelType,
+          registeredCapacity: data.capacity,
+          currentGeneration: 0,
+          latitude: data.lat,
+          longitude: data.lng,
+          status: 'online',
+          operator: data.operator,
+        });
+      }
+      
+      return stations;
+    }
+    
+    return bmrsStations;
   } catch (error) {
     console.error('Error getting power stations:', error);
-    return [];
+    // Return curated list as fallback
+    return Object.entries(UK_POWER_STATIONS).map(([name, data]) => ({
+      id: name.toLowerCase().replace(/\s+/g, '-'),
+      name: name,
+      fuelType: determineFuelType(name),
+      registeredCapacity: data.capacity,
+      currentGeneration: 0,
+      latitude: data.lat,
+      longitude: data.lng,
+      status: 'online',
+      operator: data.operator,
+    }));
   }
 }
 
@@ -225,4 +271,76 @@ export function getFuelIcon(fuelType: string): string {
   };
   
   return icons[fuelType] || icons.other;
+}
+
+/**
+ * Map BMRS fuel type codes to our standardized types
+ */
+function mapBMRSFuelType(bmrsFuelType: string): string {
+  if (!bmrsFuelType) return 'other';
+  
+  const type = bmrsFuelType.toLowerCase();
+  
+  if (type.includes('nuclear')) return 'nuclear';
+  if (type.includes('ccgt') || type.includes('ocgt') || type.includes('gas')) return 'gas';
+  if (type.includes('wind')) return 'wind';
+  if (type.includes('solar') || type.includes('pv')) return 'solar';
+  if (type.includes('hydro') || type.includes('ps')) return 'hydro';
+  if (type.includes('biomass') || type.includes('bio')) return 'biomass';
+  if (type.includes('coal')) return 'coal';
+  if (type.includes('interconnector') || type.includes('intfr') || type.includes('intned') ||
+      type.includes('intirl') || type.includes('intew')) return 'interconnector';
+  
+  return 'other';
+}
+
+/**
+ * Approximate coordinates for BM Units based on known locations
+ * This is a simplified geocoding - in production, would use actual grid locations
+ */
+function approximateCoordinates(bmUnitName: string, fuelType: string): { lat: number; lng: number } {
+  if (!bmUnitName) return { lat: 0, lng: 0 };
+  
+  const name = bmUnitName.toLowerCase();
+  
+  // Check against our known stations first
+  for (const [stationName, data] of Object.entries(UK_POWER_STATIONS)) {
+    if (name.includes(stationName.toLowerCase().replace(/\s+/g, ''))) {
+      // Add slight offset for multiple units at same location
+      const offset = Math.random() * 0.01 - 0.005;
+      return { 
+        lat: data.lat + offset, 
+        lng: data.lng + offset 
+      };
+    }
+  }
+  
+  // Distribute solar farms across southern England
+  if (fuelType?.toLowerCase().includes('solar')) {
+    return {
+      lat: 51.5 + (Math.random() * 2 - 1),
+      lng: -1.5 + (Math.random() * 3 - 1.5)
+    };
+  }
+  
+  // Distribute wind farms around UK coast
+  if (fuelType?.toLowerCase().includes('wind')) {
+    const locations = [
+      { lat: 54.5, lng: 0.5 }, // East England offshore
+      { lat: 53.5, lng: -3.5 }, // Irish Sea
+      { lat: 56.5, lng: -2.0 }, // Scotland East
+      { lat: 55.5, lng: -4.5 }, // Scotland West
+    ];
+    const base = locations[Math.floor(Math.random() * locations.length)];
+    return {
+      lat: base.lat + (Math.random() * 1 - 0.5),
+      lng: base.lng + (Math.random() * 1 - 0.5)
+    };
+  }
+  
+  // Default: scatter across GB
+  return {
+    lat: 52.0 + (Math.random() * 6 - 3),
+    lng: -2.0 + (Math.random() * 4 - 2)
+  };
 }
