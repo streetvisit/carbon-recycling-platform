@@ -20,6 +20,31 @@ export default function EnhancedUKPowerMap() {
   const [showClustering, setShowClustering] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentHour, setCurrentHour] = useState(new Date().getHours());
+  const [accessibilityMode, setAccessibilityMode] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [hasTouch, setHasTouch] = useState(false);
+
+  // Detect mobile and touch on mount
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 1024; // lg breakpoint
+      setIsMobile(mobile);
+      // Auto-open menu on desktop, closed on mobile
+      setShowMobileMenu(!mobile);
+    };
+    
+    const checkTouch = () => {
+      const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setHasTouch(touch);
+    };
+    
+    checkMobile();
+    checkTouch();
+    
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Load Leaflet and plugins
   useEffect(() => {
@@ -344,7 +369,11 @@ export default function EnhancedUKPowerMap() {
   ];
 
   return (
-    <div class="relative w-full h-screen bg-gray-900">
+    <div 
+      class="relative w-full h-screen bg-gray-900"
+      role={accessibilityMode ? "application" : undefined}
+      aria-label={accessibilityMode ? "Interactive UK Power Generation Map" : undefined}
+    >
       <div ref={mapContainer} class="absolute inset-0"></div>
 
       {loading && (
@@ -356,37 +385,68 @@ export default function EnhancedUKPowerMap() {
         </div>
       )}
 
+      {/* Mobile Menu Toggle */}
+      <button
+        onClick={() => setShowMobileMenu(!showMobileMenu)}
+        class={`lg:hidden absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 z-[1001] ${hasTouch ? 'touch-manipulation' : ''}`}
+        aria-label="Toggle controls menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {showMobileMenu ? (
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          )}
+        </svg>
+      </button>
+
       {/* Search & Filter Panel */}
-      <div class="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-xs space-y-4">
+      <div 
+        class={`absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-xs space-y-4 transition-transform ${
+          showMobileMenu ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
+      >
         {/* Search Box */}
         <div>
+          <label for="station-search" class={accessibilityMode ? 'text-sm font-medium mb-1 block' : 'sr-only'}>
+            Search Power Stations
+          </label>
           <input
+            id="station-search"
             type="text"
             placeholder="Search stations, operators..."
             value={searchQuery}
             onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
-            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+            class={`w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 ${hasTouch ? 'touch-manipulation' : ''}`}
+            aria-describedby={accessibilityMode ? 'search-results' : undefined}
           />
           {searchQuery && (
-            <div class="mt-2 text-xs text-gray-600">
+            <div 
+              id="search-results" 
+              class="mt-2 text-xs text-gray-600"
+              role={accessibilityMode ? 'status' : undefined}
+              aria-live={accessibilityMode ? 'polite' : undefined}
+            >
               Found {filteredStations.length} station{filteredStations.length !== 1 ? 's' : ''}
             </div>
           )}
         </div>
 
         {/* Fuel Type Filters */}
-        <div>
+        <div role={accessibilityMode ? 'group' : undefined} aria-label={accessibilityMode ? 'Filter by fuel type' : undefined}>
           <h3 class="text-sm font-semibold mb-2">Filter by Type</h3>
           <div class="flex flex-wrap gap-2">
             {fuelTypes.map(({ key, label, icon }) => (
               <button
                 key={key}
                 onClick={() => toggleFuelType(key)}
-                class={`px-2 py-1 rounded-full text-xs font-medium transition-all ${
+                class={`px-2 py-1 rounded-full text-xs font-medium transition-all ${hasTouch ? 'touch-manipulation' : ''} ${
                   selectedFuelTypes.has(key)
                     ? 'bg-green-600 text-white shadow-md'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
+                aria-pressed={accessibilityMode ? selectedFuelTypes.has(key) : undefined}
+                aria-label={accessibilityMode ? `Filter ${label} stations` : undefined}
               >
                 {icon} {label}
               </button>
@@ -397,39 +457,53 @@ export default function EnhancedUKPowerMap() {
         {/* Map Options */}
         <div class="pt-3 border-t border-gray-200">
           <h3 class="text-sm font-semibold mb-2">View Options</h3>
-          <div class="space-y-2">
-            <label class="flex items-center text-sm cursor-pointer">
+          <div class="space-y-2" role={accessibilityMode ? 'group' : undefined} aria-label={accessibilityMode ? 'Map display options' : undefined}>
+            <label class="flex items-center text-sm cursor-pointer touch-manipulation">
               <input
                 type="checkbox"
                 checked={showClustering}
                 onChange={(e) => setShowClustering((e.target as HTMLInputElement).checked)}
-                class="mr-2"
+                class="mr-2 w-4 h-4"
+                aria-label={accessibilityMode ? 'Toggle marker clustering' : undefined}
               />
               <span>Cluster markers</span>
             </label>
-            <label class="flex items-center text-sm cursor-pointer">
+            <label class={`flex items-center text-sm cursor-pointer ${hasTouch ? 'touch-manipulation' : ''}`}>
               <input
                 type="checkbox"
                 checked={showHeatmap}
                 onChange={(e) => setShowHeatmap((e.target as HTMLInputElement).checked)}
-                class="mr-2"
+                class="mr-2 w-4 h-4"
+                aria-label={accessibilityMode ? 'Toggle heat map overlay' : undefined}
               />
               <span>Show heat map</span>
+            </label>
+            <label class={`flex items-center text-sm cursor-pointer ${hasTouch ? 'touch-manipulation' : ''}`}>
+manipulation' : ''}`}>
+              <input
+                type="checkbox"
+                checked={accessibilityMode}
+                onChange={(e) => setAccessibilityMode((e.target as HTMLInputElement).checked)}
+                class="mr-2 w-4 h-4"
+              />
+              <span>♿ Accessibility mode</span>
             </label>
           </div>
         </div>
 
         {/* Time Animation */}
-        <div class="pt-3 border-t border-gray-200">
+        <div class="pt-3 border-t border-gray-200" role={accessibilityMode ? 'region' : undefined} aria-label={accessibilityMode ? 'Time animation controls' : undefined}>
           <h3 class="text-sm font-semibold mb-2">Time Animation</h3>
           <div class="flex items-center justify-between">
             <button
               onClick={() => setIsAnimating(!isAnimating)}
-              class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+              class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${hasTouch ? 'touch-manipulation' : ''} ${
                 isAnimating
                   ? 'bg-red-600 text-white hover:bg-red-700'
                   : 'bg-green-600 text-white hover:bg-green-700'
               }`}
+              aria-label={accessibilityMode ? (isAnimating ? 'Pause animation' : 'Play 24-hour animation') : undefined}
+              aria-pressed={accessibilityMode ? isAnimating : undefined}
             >
               {isAnimating ? '⏸ Pause' : '▶️ Play 24h'}
             </button>
@@ -437,19 +511,32 @@ export default function EnhancedUKPowerMap() {
               {String(currentHour).padStart(2, '0')}:00
             </span>
           </div>
+          <label for="hour-slider" class={accessibilityMode ? 'text-xs mt-2 block' : 'sr-only'}>
+            Time of day slider
+          </label>
           <input
+            id="hour-slider"
             type="range"
             min="0"
             max="23"
             value={currentHour}
             onChange={(e) => setCurrentHour(parseInt((e.target as HTMLInputElement).value))}
-            class="w-full mt-2"
+            class={`w-full mt-2 ${hasTouch ? 'touch-manipulation' : ''}`}
+            aria-label={accessibilityMode ? `Hour: ${currentHour}:00` : undefined}
+            aria-valuemin={accessibilityMode ? 0 : undefined}
+            aria-valuemax={accessibilityMode ? 23 : undefined}
+            aria-valuenow={accessibilityMode ? currentHour : undefined}
+            aria-valuetext={accessibilityMode ? `${String(currentHour).padStart(2, '0')}:00` : undefined}
           />
         </div>
       </div>
 
       {/* Stats Panel */}
-      <div class="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-sm">
+      <div 
+        class="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-sm hidden md:block"
+        role={accessibilityMode ? 'region' : undefined}
+        aria-label={accessibilityMode ? 'Live statistics' : undefined}
+      >
         <h3 class="text-lg font-semibold mb-3">Live Statistics</h3>
         <div class="grid grid-cols-2 gap-3 text-sm">
           <div class="bg-gray-50 rounded p-2">

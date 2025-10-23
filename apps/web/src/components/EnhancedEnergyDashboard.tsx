@@ -26,6 +26,14 @@ export default function EnhancedEnergyDashboard() {
   const [historicalData, setHistoricalData] = useState<HistoricalDataPoint[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedView, setSelectedView] = useState<'overview' | 'trends' | 'regional' | 'comparison'>('overview');
+  const [accessibilityMode, setAccessibilityMode] = useState(false);
+  const [hasTouch, setHasTouch] = useState(false);
+
+  // Detect touch on mount
+  useEffect(() => {
+    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setHasTouch(touch);
+  }, []);
 
   useEffect(() => {
     fetchAllData();
@@ -81,15 +89,36 @@ export default function EnhancedEnergyDashboard() {
   }
 
   return (
-    <div class="min-h-screen bg-gray-900 text-white p-6">
+    <div 
+      class="min-h-screen bg-gray-900 text-white p-4 md:p-6"
+      role={accessibilityMode ? "main" : undefined}
+      aria-label={accessibilityMode ? "UK Energy Grid Dashboard" : undefined}
+    >
       {/* Header */}
-      <header class="mb-8">
-        <h1 class="text-4xl font-bold mb-2">UK Energy Grid Dashboard</h1>
-        <p class="text-gray-400">Live data from National Grid ESO & Elexon BMRS</p>
+      <header class="mb-6 md:mb-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">UK Energy Grid Dashboard</h1>
+            <p class="text-gray-400 text-sm md:text-base">Live data from National Grid ESO & Elexon BMRS</p>
+          </div>
+          <label class={`flex items-center text-sm cursor-pointer ${hasTouch ? 'touch-manipulation' : ''} bg-gray-800 rounded-lg px-4 py-2`}>
+            <input
+              type="checkbox"
+              checked={accessibilityMode}
+              onChange={(e) => setAccessibilityMode((e.target as HTMLInputElement).checked)}
+              class="mr-2 w-4 h-4"
+            />
+            <span>♿ Accessibility</span>
+          </label>
+        </div>
       </header>
 
       {/* View Tabs */}
-      <div class="flex gap-2 mb-6 overflow-x-auto">
+      <nav 
+        role={accessibilityMode ? "navigation" : undefined}
+        aria-label={accessibilityMode ? "Dashboard views" : undefined}
+      >
+        <div class="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-thin">
         {[
           { key: 'overview', label: '📊 Overview', icon: '📊' },
           { key: 'trends', label: '📈 Trends', icon: '📈' },
@@ -99,20 +128,28 @@ export default function EnhancedEnergyDashboard() {
           <button
             key={key}
             onClick={() => setSelectedView(key as any)}
-            class={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+            class={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${hasTouch ? 'touch-manipulation' : ''} ${
               selectedView === key
                 ? 'bg-green-600 text-white shadow-lg'
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
+            role={accessibilityMode ? "tab" : undefined}
+            aria-selected={accessibilityMode ? selectedView === key : undefined}
+            aria-label={accessibilityMode ? `View ${label}` : undefined}
           >
             {label}
           </button>
         ))}
-      </div>
+        </div>
+      </nav>
 
       {/* Overview View */}
       {selectedView === 'overview' && (
-        <div class="space-y-6">
+        <div 
+          class="space-y-6"
+          role={accessibilityMode ? "tabpanel" : undefined}
+          aria-label={accessibilityMode ? "Overview dashboard" : undefined}
+        >
           {/* Key Metrics */}
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <MetricCard
@@ -168,7 +205,11 @@ export default function EnhancedEnergyDashboard() {
 
       {/* Trends View */}
       {selectedView === 'trends' && (
-        <div class="space-y-6">
+        <div 
+          class="space-y-6"
+          role={accessibilityMode ? "tabpanel" : undefined}
+          aria-label={accessibilityMode ? "Trends analysis" : undefined}
+        >
           <div class="bg-gray-800 rounded-lg p-6">
             <h2 class="text-2xl font-bold mb-4">24-Hour Trends</h2>
             {historicalData.length > 0 ? (
@@ -195,7 +236,11 @@ export default function EnhancedEnergyDashboard() {
 
       {/* Regional View */}
       {selectedView === 'regional' && (
-        <div class="space-y-6">
+        <div 
+          class="space-y-6"
+          role={accessibilityMode ? "tabpanel" : undefined}
+          aria-label={accessibilityMode ? "Regional breakdown" : undefined}
+        >
           <div class="bg-gray-800 rounded-lg p-6">
             <h2 class="text-2xl font-bold mb-4">Regional Breakdown</h2>
             <RegionalBreakdown generationMix={generationMix} />
@@ -210,7 +255,11 @@ export default function EnhancedEnergyDashboard() {
 
       {/* Comparison View */}
       {selectedView === 'comparison' && (
-        <div class="space-y-6">
+        <div 
+          class="space-y-6"
+          role={accessibilityMode ? "tabpanel" : undefined}
+          aria-label={accessibilityMode ? "Historical comparison" : undefined}
+        >
           <div class="bg-gray-800 rounded-lg p-6">
             <h2 class="text-2xl font-bold mb-4">Historical Comparison</h2>
             <HistoricalComparison
@@ -253,10 +302,14 @@ function MetricCard({ title, value, subtitle, color }: {
   };
 
   return (
-    <div class={`bg-gradient-to-br ${colors[color]} rounded-lg p-6 shadow-lg`}>
-      <h3 class="text-sm font-medium text-white/80 mb-2">{title}</h3>
-      <div class="text-3xl font-bold mb-1">{value}</div>
-      <p class="text-sm text-white/70">{subtitle}</p>
+    <div 
+      class={`bg-gradient-to-br ${colors[color]} rounded-lg p-4 md:p-6 shadow-lg`}
+      role="region"
+      aria-label={`${title}: ${value}`}
+    >
+      <h3 class="text-xs md:text-sm font-medium text-white/80 mb-2">{title}</h3>
+      <div class="text-2xl md:text-3xl font-bold mb-1">{value}</div>
+      <p class="text-xs md:text-sm text-white/70">{subtitle}</p>
     </div>
   );
 }
@@ -280,7 +333,11 @@ function GenerationMixChart({ mix }: { mix: GenerationMix }) {
     .sort(([, a], [, b]) => b - a);
 
   return (
-    <div class="space-y-4">
+    <div 
+      class="space-y-4"
+      role="img"
+      aria-label="Generation mix chart showing power sources and their contributions"
+    >
       {data.map(([fuel, mw]) => {
         const percentage = (mw / mix.total) * 100;
         return (
