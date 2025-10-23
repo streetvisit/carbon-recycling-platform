@@ -263,21 +263,27 @@ export default function UKEnergyDashboard() {
 
       {/* Compact Footer */}
       <div class="bg-gray-50 px-4 py-2 border-t border-gray-200">
-        <div class="flex items-center justify-between text-xs text-gray-500">
-          <span>Live simulation • Updates every 2s</span>
-          <button 
-            onClick={() => setIsLive(!isLive)}
-            class={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-              isLive 
-                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            <div class={`w-1.5 h-1.5 rounded-full ${
-              isLive ? 'bg-green-500' : 'bg-gray-400'
-            }`}></div>
-            <span>{isLive ? 'Live' : 'Paused'}</span>
-          </button>
+        <div class="flex flex-col space-y-1">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-gray-500">Updates every 2s</span>
+            <button 
+              onClick={() => setIsLive(!isLive)}
+              class={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+                isLive 
+                  ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <div class={`w-1.5 h-1.5 rounded-full ${
+                isLive ? 'bg-green-500' : 'bg-gray-400'
+              }`}></div>
+              <span>{isLive ? 'Live' : 'Paused'}</span>
+            </button>
+          </div>
+          <div class="text-[10px] text-gray-400">
+            Data: <a href="https://carbonintensity.org.uk/" target="_blank" rel="noopener" class="underline hover:text-gray-600">Carbon Intensity API</a> • 
+            Contains BMRS data © Elexon Limited copyright and database right 2025
+          </div>
         </div>
       </div>
     </div>
