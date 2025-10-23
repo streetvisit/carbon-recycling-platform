@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import EnhancedEnergyDashboard from '../../components/EnhancedEnergyDashboard.tsx';
 import UKEnergyMap from '../../components/UKEnergyMap.tsx';
+import InteractivePowerMap from '../../components/InteractivePowerMap.tsx';
 
 const breadcrumbs = [
   { label: 'Platform', href: '/features' },
@@ -71,13 +72,27 @@ const breadcrumbs = [
       </div>
     </section>
 
+    {/* Interactive Power Station Map */}
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Live Power Station Map</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Interactive map showing all UK power stations by location, capacity, and fuel type. Click stations for detailed information.
+          </p>
+        </div>
+        
+        <InteractivePowerMap client:load />
+      </div>
+    </section>
+    
     {/* Regional Map */}
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Regional Energy Breakdown</h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Regional Carbon Intensity</h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore energy generation and carbon intensity across different regions of the UK with our interactive map.
+            Regional breakdown showing carbon intensity and renewable generation by area.
           </p>
         </div>
         

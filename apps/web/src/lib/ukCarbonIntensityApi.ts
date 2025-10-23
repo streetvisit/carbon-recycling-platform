@@ -103,11 +103,19 @@ export async function getCurrentGenerationMix(): Promise<GenerationMixData> {
     const data = await response.json();
     console.log('Generation mix API response:', data); // Debug log
     
-    if (!data || !data.data || !Array.isArray(data.data) || data.data.length === 0) {
-      throw new Error('Invalid generation mix data structure');
+    // Handle both array format (data.data) and object format (data)
+    if (data && data.data) {
+      // If data.data is an array, return first element
+      if (Array.isArray(data.data) && data.data.length > 0) {
+        return data.data[0];
+      }
+      // If data.data is an object with generationmix, return it directly
+      if (data.data.generationmix) {
+        return data.data;
+      }
     }
     
-    return data.data[0];
+    throw new Error('Invalid generation mix data structure');
   } catch (error) {
     console.error('Error fetching generation mix:', error);
     throw error;
