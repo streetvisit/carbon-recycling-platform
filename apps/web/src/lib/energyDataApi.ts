@@ -4,7 +4,7 @@
  */
 
 import { getUKGridData, getFallbackGridData } from './ukCarbonIntensityApi';
-import { getCurrentGeneration, getCurrentDemand, getCurrentPrices } from './bmrsApi';
+import { getCurrentGeneration, getCurrentDemand, getSystemPrices as getBMRSSystemPrices } from './bmrsApi';
 
 export interface GenerationMix {
   total: number;
@@ -78,9 +78,10 @@ export async function getGenerationMix(): Promise<GenerationMix> {
  */
 export async function getDemandData(): Promise<DemandData> {
   try {
-    const demand = await getCurrentDemand();
+    const demandData = await getCurrentDemand();
+    const latest = demandData[0];
     return {
-      demand: demand || 35000,
+      demand: latest?.demand || 35000,
       timestamp: new Date().toISOString()
     };
   } catch (error) {
@@ -97,9 +98,10 @@ export async function getDemandData(): Promise<DemandData> {
  */
 export async function getSystemPrices(): Promise<SystemPrices> {
   try {
-    const prices = await getCurrentPrices();
+    const pricesData = await getBMRSSystemPrices();
+    const latest = pricesData[0];
     return {
-      imbalancePrice: prices.imbalancePrice || 75,
+      imbalancePrice: latest?.systemBuyPrice || 75,
       timestamp: new Date().toISOString()
     };
   } catch (error) {
