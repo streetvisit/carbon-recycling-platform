@@ -29,17 +29,19 @@ Your UK Energy Dashboard currently uses the **Carbon Intensity API** which provi
   - Regional breakdowns
   - Historical data
 
-### 2. BMRS (Balancing Mechanism Reporting Service) 
-- **URL:** https://bmrs.elexon.co.uk/
-- **Portal:** https://www.elexonportal.co.uk/
-- **Signup:** **Required** (free account)
+### 2. Elexon Insights Solution API
+- **URL:** https://developer.data.elexon.co.uk/
+- **API Base:** https://data.elexon.co.uk/bmrs/api/v1
+- **Signup:** **NOT Required!** 🎉
 - **Cost:** Free
 - **What it provides:**
   - Real-time demand (MW)
-  - Actual generation by fuel type (MW)
-  - System prices
+  - Instantaneous generation by fuel type (MW)
+  - System buy/sell prices
   - Balancing mechanism data
   - Settlement data
+  - Wind and demand forecasts
+  - And much more!
 
 **⚠️ Important:** You MUST include this attribution when using BMRS data:
 > Contains BMRS data © Elexon Limited copyright and database right 2025
@@ -57,83 +59,72 @@ Your UK Energy Dashboard currently uses the **Carbon Intensity API** which provi
 
 ## How to Enable Full Live Data
 
-### Step 1: Register for BMRS API Access
+**Good news: No signup or API key required!** 🎉
 
-1. Go to https://www.elexonportal.co.uk/
-2. Click "Register" and create a free account
-3. Once logged in, navigate to API Access
-4. Request an API key (usually instant)
-5. Copy your API key
+The Elexon Insights Solution API is completely open and free. Just integrate it!
 
-### Step 2: Add API Key to Environment
+### Step 1: Update the Integration
 
-Add to your `.env` file:
+The Elexon API client at `src/lib/bmrsApi.ts` is already updated with:
+- Real-time generation data (FUELINST endpoint)
+- Real-time demand data (INDO endpoint)  
+- System prices (MID endpoint)
+- All using JSON responses (no XML parsing needed)
 
-```bash
-PUBLIC_BMRS_API_KEY=your_api_key_here
+### Step 2: Integrate with Dashboard
+
+Update `ukCarbonIntensityApi.ts` to use real Elexon data:
+
+```typescript
+import { getLiveGridData } from './bmrsApi';
+
+// In getUKGridData() function:
+const elexonData = await getLiveGridData();
+// Use elexonData.demand, elexonData.generation, elexonData.prices
 ```
 
-Add to Cloudflare Pages environment variables:
-1. Go to Cloudflare dashboard
-2. Navigate to Pages > Your Project > Settings > Environment variables
-3. Add: `PUBLIC_BMRS_API_KEY` with your key
+### Step 3: Test
 
-### Step 3: Install XML Parser (BMRS uses XML responses)
-
-```bash
-npm install fast-xml-parser
-```
-
-### Step 4: Complete BMRS Integration
-
-The skeleton BMRS API client is ready at `src/lib/bmrsApi.ts`. To complete it:
-
-1. Implement XML parsing for the responses
-2. Add proper error handling
-3. Integrate into `ukCarbonIntensityApi.ts`
-4. Test with live API calls
+The API returns JSON and works immediately - no registration needed!
 
 ## Current Behavior
 
-**Without BMRS API key:**
+**Current (after integration is complete):**
 - Uses Carbon Intensity API for carbon data and mix percentages ✅
-- **Simulates** demand/generation using realistic time-of-day patterns
-- **Estimates** prices based on carbon intensity
-
-**With BMRS API key (once fully implemented):**
-- Uses Carbon Intensity API for carbon data ✅
-- Uses **real** BMRS demand data in GW
-- Uses **real** BMRS generation data by fuel type in MW
-- Uses **real** BMRS system prices in £/MWh
+- Uses **real** Elexon demand data in MW (converted to GW)
+- Uses **real** Elexon generation data by fuel type in MW (converted to GW)
+- Uses **real** Elexon system buy/sell prices in £/MWh
+- **No API key required** ✅
 
 ## API Rate Limits
 
 | API | Rate Limit | Notes |
 |-----|------------|-------|
 | Carbon Intensity | None specified | Reasonable use expected |
-| BMRS | 100 requests/minute | Per API key |
+| Elexon Insights | None specified | Public API, reasonable use expected |
 | NESO | Varies by endpoint | Check documentation |
 
 ## Updates Frequency
 
 Your dashboard updates every **2 seconds**. The actual APIs update:
 - Carbon Intensity: Every 30 minutes (half-hourly settlements)
-- BMRS: Real-time (some data every 5 minutes, others every settlement period)
+- Elexon Instantaneous Generation (FUELINST): Every 5 minutes
+- Elexon Demand (INDO): Every settlement period (30 minutes)
+- Elexon Prices (MID): Every settlement period (30 minutes)
 
-So even with live APIs, you won't see changes every 2 seconds - the data updates at the settlement period boundaries.
+So even with live APIs, you won't see changes every 2 seconds - the data updates at the API's refresh intervals.
 
 ## Next Steps
 
-1. **Register for BMRS API** (5 minutes)
-2. **Add XML parser** library
-3. **Complete BMRS integration** in `bmrsApi.ts`
-4. **Test with live data**
-5. **Optional:** Add NESO data for frequency/interconnector flows
+1. ✅ **Elexon API is ready** - No signup needed!
+2. **Integrate with dashboard** - Update `ukCarbonIntensityApi.ts` to use real Elexon data
+3. **Test with live data** - Should work immediately
+4. **Optional:** Add NESO data for frequency/interconnector flows
 
 ## Need Help?
 
 - Carbon Intensity API docs: https://carbon-intensity.github.io/api-definitions/
-- BMRS API docs: https://www.elexon.co.uk/operations-settlement/bsc-and-codes/bmrs-governance/
+- Elexon Insights API docs: https://developer.data.elexon.co.uk/
 - NESO Portal: https://www.neso.energy/data-portal
 
 ## License Requirements

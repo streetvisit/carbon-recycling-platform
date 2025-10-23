@@ -1,121 +1,121 @@
-// BMRS (Balancing Mechanism Reporting Service) API
-// Official Elexon API: https://bmrs.elexon.co.uk/
-// Documentation: https://www.elexonportal.co.uk/
+// Elexon Insights Solution API
+// Official Developer Portal: https://developer.data.elexon.co.uk/
+// Documentation: https://developer.data.elexon.co.uk/
 //
 // License: Contains BMRS data © Elexon Limited copyright and database right 2025
+// No API key required - completely free and open!
 
-const BMRS_API_BASE = 'https://api.bmreports.com/BMRS';
-// You'll need to register for a free API key at: https://www.elexonportal.co.uk/
-const BMRS_API_KEY = import.meta.env.PUBLIC_BMRS_API_KEY || '';
+const ELEXON_API_BASE = 'https://data.elexon.co.uk/bmrs/api/v1';
 
-export interface BMRSGenerationData {
-  recordType: string;
-  businessType: string;
-  quantity: number;
-  settlementDate: string;
-  settlementPeriod: number;
-  powerSystemResourceType: string;
+export interface ElexonGenerationData {
+  startTime: string;
+  fuelType: string;
+  generation: number; // MW
 }
 
-export interface BMRSDemandData {
-  recordType: string;
-  businessType: string;
-  settlementDate: string;
-  settlementPeriod: number;
-  quantity: number;
+export interface ElexonDemandData {
+  startTime: string;
+  demand: number; // MW
+}
+
+export interface ElexonSystemPriceData {
+  startTime: string;
+  systemBuyPrice: number;
+  systemSellPrice: number;
 }
 
 /**
- * Fetch current generation by fuel type (B1620)
+ * Fetch current generation by fuel type (FUELINST - Instantaneous Generation)
  * Returns actual generation in MW for each fuel type
+ * Endpoint: /datasets/FUELINST
  */
-export async function getCurrentGeneration(): Promise<BMRSGenerationData[]> {
-  if (!BMRS_API_KEY) {
-    console.warn('BMRS API key not configured - using fallback data');
-    throw new Error('BMRS API key not configured');
-  }
-
+export async function getCurrentGeneration(): Promise<ElexonGenerationData[]> {
   try {
-    const now = new Date();
-    const fromDate = now.toISOString().split('T')[0].replace(/-/g, '');
-    const toDate = fromDate;
-    
-    const url = `${BMRS_API_BASE}/B1620/v1?APIKey=${BMRS_API_KEY}&SettlementDate=${fromDate}&Period=*&ServiceType=xml`;
+    const url = `${ELEXON_API_BASE}/datasets/FUELINST`;
     
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`BMRS API error: ${response.status}`);
+      throw new Error(`Elexon API error: ${response.status}`);
     }
     
-    const text = await response.text();
-    // Parse XML response - you may need to add XML parsing library
-    // For now, throw to use fallback
-    throw new Error('XML parsing not implemented yet');
+    const data = await response.json();
+    return data.data || [];
   } catch (error) {
-    console.error('Error fetching BMRS generation data:', error);
+    console.error('Error fetching Elexon generation data:', error);
     throw error;
   }
 }
 
 /**
- * Fetch current system demand (INDOD)
+ * Fetch current system demand (INDO - Initial Demand Outturn)
  * Returns national demand in MW
+ * Endpoint: /datasets/INDO/latest
  */
-export async function getCurrentDemand(): Promise<number> {
-  if (!BMRS_API_KEY) {
-    console.warn('BMRS API key not configured - using fallback data');
-    throw new Error('BMRS API key not configured');
-  }
-
+export async function getCurrentDemand(): Promise<ElexonDemandData[]> {
   try {
-    const now = new Date();
-    const fromDate = now.toISOString().split('T')[0].replace(/-/g, '');
-    
-    const url = `${BMRS_API_BASE}/INDOD/v1?APIKey=${BMRS_API_KEY}&FromDate=${fromDate}&ServiceType=xml`;
+    const url = `${ELEXON_API_BASE}/datasets/INDO/latest`;
     
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`BMRS API error: ${response.status}`);
+      throw new Error(`Elexon API error: ${response.status}`);
     }
     
-    const text = await response.text();
-    // Parse XML response
-    throw new Error('XML parsing not implemented yet');
+    const data = await response.json();
+    return data.data || [];
   } catch (error) {
-    console.error('Error fetching BMRS demand data:', error);
+    console.error('Error fetching Elexon demand data:', error);
     throw error;
   }
 }
 
 /**
- * Fetch system prices (MID)
- * Returns market index data including prices
+ * Fetch system prices (MID - Market Index Data)
+ * Returns market index data including buy/sell prices
+ * Endpoint: /datasets/MID/latest
  */
-export async function getSystemPrices(): Promise<number> {
-  if (!BMRS_API_KEY) {
-    throw new Error('BMRS API key not configured');
-  }
-
+export async function getSystemPrices(): Promise<ElexonSystemPriceData[]> {
   try {
-    const now = new Date();
-    const fromDate = now.toISOString().split('T')[0].replace(/-/g, '');
-    
-    const url = `${BMRS_API_BASE}/MID/v1?APIKey=${BMRS_API_KEY}&FromDate=${fromDate}&ServiceType=xml`;
+    const url = `${ELEXON_API_BASE}/datasets/MID/latest`;
     
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`BMRS API error: ${response.status}`);
+      throw new Error(`Elexon API error: ${response.status}`);
     }
     
-    const text = await response.text();
-    throw new Error('XML parsing not implemented yet');
+    const data = await response.json();
+    return data.data || [];
   } catch (error) {
-    console.error('Error fetching BMRS price data:', error);
+    console.error('Error fetching Elexon price data:', error);
     throw error;
   }
 }
 
-// Helper function to check if BMRS is configured
-export function isBMRSConfigured(): boolean {
-  return Boolean(BMRS_API_KEY && BMRS_API_KEY.length > 0);
+/**
+ * Get live UK grid data combining generation and demand
+ * This combines FUELINST (instantaneous generation) with INDO (demand)
+ */
+export async function getLiveGridData(): Promise<{
+  generation: ElexonGenerationData[];
+  demand: ElexonDemandData[];
+  prices: ElexonSystemPriceData[];
+}> {
+  try {
+    const [generation, demand, prices] = await Promise.all([
+      getCurrentGeneration(),
+      getCurrentDemand(),
+      getSystemPrices()
+    ]);
+
+    return { generation, demand, prices };
+  } catch (error) {
+    console.error('Error fetching live grid data:', error);
+    throw error;
+  }
+}
+
+/**
+ * Check if Elexon API is available (it always is - no key needed!)
+ */
+export function isElexonAvailable(): boolean {
+  return true; // No API key required!
 }
