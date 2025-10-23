@@ -1,11 +1,7 @@
 # Cloudflare Pages redirects and routing
 
-# SPA fallback for client-side routing
-/*    /index.html   200
-
 # API proxy to Workers
 /api/*  https://carbon-recycling-api.charles-39b.workers.dev/:splat  200
 
-# Redirect root to dashboard if authenticated, otherwise to landing page
-/  /dashboard  302  Role=authenticated
-/  /features/uk-energy-grid  302
+# SPA fallback for client-side routing - must be last
+/*    /index.html   200
