@@ -36,14 +36,15 @@ export async function getBMUnitPhysicalData(): Promise<any[]> {
     
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Elexon API error: ${response.status}`);
+      // PHYBMDATA endpoint no longer exists - return empty array for graceful fallback
+      return [];
     }
     
     const data = await response.json();
     return data.data || [];
   } catch (error) {
-    console.error('Error fetching BM Unit physical data:', error);
-    throw error;
+    // Silently return empty array - the curated list will be used instead
+    return [];
   }
 }
 
@@ -178,29 +179,32 @@ export async function getAllPowerStations(): Promise<PowerStation[]> {
     try {
       const physicalData = await getBMUnitPhysicalData();
       
-      // Convert BMRS data to our format
-      bmrsStations = physicalData
-        .filter((unit: any) => unit.nationalGridBmUnit && unit.registeredCapacity > 0)
-        .map((unit: any) => {
-          // Try to geocode based on location name or use approximate coordinates
-          const coords = approximateCoordinates(unit.bmUnit, unit.fuelType);
-          
-          return {
-            id: unit.bmUnit || unit.nationalGridBmUnit,
-            name: unit.bmUnit || unit.nationalGridBmUnit,
-            fuelType: mapBMRSFuelType(unit.fuelType || unit.psrType),
-            registeredCapacity: unit.registeredCapacity || 0,
-            currentGeneration: 0, // Will be updated with real-time data
-            latitude: coords.lat,
-            longitude: coords.lng,
-            status: 'online',
-            operator: unit.leadPartyName || 'Unknown',
-            bmUnitId: unit.bmUnit,
-          };
-        })
+      // Only process if we got data
+      if (physicalData && physicalData.length > 0) {
+        // Convert BMRS data to our format
+        bmrsStations = physicalData
+          .filter((unit: any) => unit.nationalGridBmUnit && unit.registeredCapacity > 0)
+          .map((unit: any) => {
+            // Try to geocode based on location name or use approximate coordinates
+            const coords = approximateCoordinates(unit.bmUnit, unit.fuelType);
+            
+            return {
+              id: unit.bmUnit || unit.nationalGridBmUnit,
+              name: unit.bmUnit || unit.nationalGridBmUnit,
+              fuelType: mapBMRSFuelType(unit.fuelType || unit.psrType),
+              registeredCapacity: unit.registeredCapacity || 0,
+              currentGeneration: 0, // Will be updated with real-time data
+              latitude: coords.lat,
+              longitude: coords.lng,
+              status: 'online',
+              operator: unit.leadPartyName || 'Unknown',
+              bmUnitId: unit.bmUnit,
+            };
+          });
+      }
         .filter(s => s.latitude !== 0 && s.longitude !== 0);
     } catch (error) {
-      console.warn('Could not fetch BMRS data, using curated list:', error);
+      // Silently fall back to curated list - no need to log as this is expected
     }
     
     // If BMRS fetch failed or returned no data, use our curated major stations

@@ -83,8 +83,7 @@ export async function getCurrentDemand(): Promise<ElexonDemandData[]> {
  * For price data, alternative sources should be used
  */
 export async function getSystemPrices(): Promise<ElexonSystemPriceData[]> {
-  // MID endpoint doesn't exist - return empty array
-  console.warn('MID endpoint not available in BMRS API - returning empty data');
+  // MID endpoint doesn't exist in BMRS API v1 - silently return empty array
   return [];
 }
 
