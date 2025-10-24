@@ -127,7 +127,7 @@ export default function PredictiveAnalytics() {
         <div class="flex space-x-3">
           <select
             value={selectedMonths}
-            onChange={(e) => setSelectedMonths(parseInt(e.target.value))}
+            onChange={(e: Event) => setSelectedMonths(parseInt((e.target as HTMLSelectElement).value))}
             class="text-sm border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value={3}>3 months</option>
@@ -137,7 +137,7 @@ export default function PredictiveAnalytics() {
           
           <select
             value={selectedAlgorithm}
-            onChange={(e) => setSelectedAlgorithm(e.target.value)}
+            onChange={(e: Event) => setSelectedAlgorithm((e.target as HTMLSelectElement).value)}
             class="text-sm border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="linear_trend">Linear Trend</option>

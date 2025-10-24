@@ -177,7 +177,7 @@ export default function CreateInitiativeModal() {
               <input
                 type="text"
                 value={formData.name}
-                onChange={(e) => handleInputChange('name', (e.target as HTMLInputElement).value)}
+                onChange={(e: Event) => handleInputChange('name', (e.target as HTMLInputElement).value)}
                 class={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 ${
                   formErrors.name ? 'border-red-300' : 'border-gray-300'
                 }`}
@@ -195,7 +195,7 @@ export default function CreateInitiativeModal() {
               </label>
               <textarea
                 value={formData.description}
-                onChange={(e) => handleInputChange('description', (e.target as HTMLTextAreaElement).value)}
+                onChange={(e: Event) => handleInputChange('description', (e.target as HTMLTextAreaElement).value)}
                 rows={3}
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Brief description of the initiative..."
@@ -209,7 +209,7 @@ export default function CreateInitiativeModal() {
               </label>
               <select
                 value={formData.reductionTarget.category}
-                onChange={(e) => handleInputChange('reductionTarget.category', (e.target as HTMLSelectElement).value)}
+                onChange={(e: Event) => handleInputChange('reductionTarget.category', (e.target as HTMLSelectElement).value)}
                 class={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 ${
                   formErrors['reductionTarget.category'] ? 'border-red-300' : 'border-gray-300'
                 }`}
@@ -237,7 +237,7 @@ export default function CreateInitiativeModal() {
                 max="100"
                 step="0.1"
                 value={formData.reductionTarget.percentage}
-                onChange={(e) => handleInputChange('reductionTarget.percentage', (e.target as HTMLInputElement).value)}
+                onChange={(e: Event) => handleInputChange('reductionTarget.percentage', (e.target as HTMLInputElement).value)}
                 class={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 ${
                   formErrors['reductionTarget.percentage'] ? 'border-red-300' : 'border-gray-300'
                 }`}
@@ -257,7 +257,7 @@ export default function CreateInitiativeModal() {
                 <input
                   type="date"
                   value={formData.startDate}
-                  onChange={(e) => handleInputChange('startDate', (e.target as HTMLInputElement).value)}
+                  onChange={(e: Event) => handleInputChange('startDate', (e.target as HTMLInputElement).value)}
                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
@@ -268,7 +268,7 @@ export default function CreateInitiativeModal() {
                 <input
                   type="date"
                   value={formData.endDate}
-                  onChange={(e) => handleInputChange('endDate', (e.target as HTMLInputElement).value)}
+                  onChange={(e: Event) => handleInputChange('endDate', (e.target as HTMLInputElement).value)}
                   class={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 ${
                     formErrors.endDate ? 'border-red-300' : 'border-gray-300'
                   }`}
@@ -289,7 +289,7 @@ export default function CreateInitiativeModal() {
                 min="0"
                 step="0.01"
                 value={formData.estimatedCost}
-                onChange={(e) => handleInputChange('estimatedCost', (e.target as HTMLInputElement).value)}
+                onChange={(e: Event) => handleInputChange('estimatedCost', (e.target as HTMLInputElement).value)}
                 class={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 ${
                   formErrors.estimatedCost ? 'border-red-300' : 'border-gray-300'
                 }`}

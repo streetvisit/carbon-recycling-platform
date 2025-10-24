@@ -199,7 +199,7 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess, customAp
                 </label>
                 <select
                   value={formData.supplierId}
-                  onChange={(e) => handleInputChange('supplierId', e.target.value)}
+                  onChange={(e: Event) => handleInputChange('supplierId', (e.target as HTMLSelectElement).value)}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   <option value="">Choose a supplier...</option>
@@ -218,7 +218,7 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess, customAp
                 <input
                   type="text"
                   value={formData.title}
-                  onChange={(e) => handleInputChange('title', e.target.value)}
+                  onChange={(e: Event) => handleInputChange('title', (e.target as HTMLInputElement).value)}
                   placeholder="e.g., Q3 2024 Electricity Usage Data"
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -230,7 +230,7 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess, customAp
                 </label>
                 <textarea
                   value={formData.description}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
+                  onChange={(e: Event) => handleInputChange('description', (e.target as HTMLTextAreaElement).value)}
                   placeholder="Additional context or instructions for the supplier..."
                   rows={3}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -247,7 +247,7 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess, customAp
                 </label>
                 <select
                   value={formData.requestedDataType}
-                  onChange={(e) => handleInputChange('requestedDataType', e.target.value)}
+                  onChange={(e: Event) => handleInputChange('requestedDataType', (e.target as HTMLSelectElement).value)}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   <option value="">Select data type...</option>
@@ -275,7 +275,7 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess, customAp
                   <input
                     type="date"
                     value={formData.periodStart}
-                    onChange={(e) => handleInputChange('periodStart', e.target.value)}
+                    onChange={(e: Event) => handleInputChange('periodStart', (e.target as HTMLInputElement).value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -287,7 +287,7 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess, customAp
                   <input
                     type="date"
                     value={formData.periodEnd}
-                    onChange={(e) => handleInputChange('periodEnd', e.target.value)}
+                    onChange={(e: Event) => handleInputChange('periodEnd', (e.target as HTMLInputElement).value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -300,7 +300,7 @@ export default function DataRequestWizard({ isOpen, onClose, onSuccess, customAp
                 <input
                   type="date"
                   value={formData.dueDate}
-                  onChange={(e) => handleInputChange('dueDate', e.target.value)}
+                  onChange={(e: Event) => handleInputChange('dueDate', (e.target as HTMLInputElement).value)}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>

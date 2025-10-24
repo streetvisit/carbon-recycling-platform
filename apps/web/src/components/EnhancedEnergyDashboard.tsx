@@ -105,7 +105,7 @@ export default function EnhancedEnergyDashboard() {
             <input
               type="checkbox"
               checked={accessibilityMode}
-              onChange={(e) => setAccessibilityMode((e.target as HTMLInputElement).checked)}
+              onChange={(e: Event) => setAccessibilityMode((e.target as HTMLInputElement).checked)}
               class="mr-2 w-4 h-4"
             />
             <span>♿ Accessibility</span>

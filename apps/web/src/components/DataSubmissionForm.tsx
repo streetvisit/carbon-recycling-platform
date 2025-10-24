@@ -95,7 +95,7 @@ export default function DataSubmissionForm({ request, supplierToken, onSubmitted
               type="number"
               step="any"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e: Event) => setValue((e.target as HTMLInputElement).value)}
               className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter value"
             />
@@ -105,7 +105,7 @@ export default function DataSubmissionForm({ request, supplierToken, onSubmitted
             <input
               type="text"
               value={unit}
-              onChange={(e) => setUnit(e.target.value)}
+              onChange={(e: Event) => setUnit((e.target as HTMLInputElement).value)}
               className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="e.g., kWh, litres, tonnes"
             />
@@ -117,7 +117,7 @@ export default function DataSubmissionForm({ request, supplierToken, onSubmitted
           <textarea
             rows={4}
             value={notes}
-            onChange={(e) => setNotes(e.target.value)}
+            onChange={(e: Event) => setNotes((e.target as HTMLTextAreaElement).value)}
             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Any additional information about this data..."
           />

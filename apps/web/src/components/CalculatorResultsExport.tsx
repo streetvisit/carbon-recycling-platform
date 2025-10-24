@@ -348,7 +348,7 @@ export default function CalculatorResultsExport({
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
+                    onChange={(e: Event) => setEmail((e.target as HTMLInputElement).value)}
                     placeholder="your.email@company.com"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                   />

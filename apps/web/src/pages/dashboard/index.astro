@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import EmissionsSummaryCard from '../../components/EmissionsSummaryCard.tsx';
 import ScopeBreakdownChart from '../../components/ScopeBreakdownChart.tsx';
 import TriggerCalculationButton from '../../components/TriggerCalculationButton.tsx';
+import { WidgetErrorBoundary } from '../../components/ErrorBoundary.tsx';
 // Auth temporarily disabled for static build
 // Mock emissions data for demo
 const emissionsSummary = {
@@ -41,48 +42,60 @@ const emissionsSummary = {
         
         {/* Calculation Trigger Section */}
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <TriggerCalculationButton client:load />
+          <WidgetErrorBoundary client:load widgetName="Calculation Trigger">
+            <TriggerCalculationButton client:load />
+          </WidgetErrorBoundary>
         </div>
 
         {/* Summary Cards Grid */}
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <EmissionsSummaryCard
-            client:load
-            title="Total Emissions"
-            value={emissionsSummary.totalCo2e}
-            unit="tCO₂e"
-            icon="🌍"
-          />
-          <EmissionsSummaryCard
-            client:load
-            title="Scope 1"
-            value={emissionsSummary.byScope.scope_1}
-            unit="tCO₂e"
-            icon="🔥"
-          />
-          <EmissionsSummaryCard
-            client:load
-            title="Scope 2"
-            value={emissionsSummary.byScope.scope_2}
-            unit="tCO₂e"
-            icon="⚡"
-          />
-          <EmissionsSummaryCard
-            client:load
-            title="Scope 3"
-            value={emissionsSummary.byScope.scope_3}
-            unit="tCO₂e"
-            icon="🚛"
-          />
+          <WidgetErrorBoundary client:load widgetName="Total Emissions">
+            <EmissionsSummaryCard
+              client:load
+              title="Total Emissions"
+              value={emissionsSummary.totalCo2e}
+              unit="tCO₂e"
+              icon="🌍"
+            />
+          </WidgetErrorBoundary>
+          <WidgetErrorBoundary client:load widgetName="Scope 1">
+            <EmissionsSummaryCard
+              client:load
+              title="Scope 1"
+              value={emissionsSummary.byScope.scope_1}
+              unit="tCO₂e"
+              icon="🔥"
+            />
+          </WidgetErrorBoundary>
+          <WidgetErrorBoundary client:load widgetName="Scope 2">
+            <EmissionsSummaryCard
+              client:load
+              title="Scope 2"
+              value={emissionsSummary.byScope.scope_2}
+              unit="tCO₂e"
+              icon="⚡"
+            />
+          </WidgetErrorBoundary>
+          <WidgetErrorBoundary client:load widgetName="Scope 3">
+            <EmissionsSummaryCard
+              client:load
+              title="Scope 3"
+              value={emissionsSummary.byScope.scope_3}
+              unit="tCO₂e"
+              icon="🚛"
+            />
+          </WidgetErrorBoundary>
         </div>
 
         {/* Charts Section */}
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Scope Breakdown Chart */}
-          <ScopeBreakdownChart
-            client:load
-            data={emissionsSummary.byScope}
-          />
+          <WidgetErrorBoundary client:load widgetName="Scope Breakdown Chart">
+            <ScopeBreakdownChart
+              client:load
+              data={emissionsSummary.byScope}
+            />
+          </WidgetErrorBoundary>
           
           {/* Quick Actions Card */}
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">

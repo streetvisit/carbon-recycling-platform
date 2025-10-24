@@ -200,8 +200,9 @@ export default function AddDataSourceModal({
       complex: 'bg-red-50 text-red-700 border-red-200'
     };
     
+    const colorClass = complexityColors[complexity as keyof typeof complexityColors] || complexityColors.medium;
     return (
-      <span class={`inline-flex items-center px-2 py-1 rounded border text-xs font-medium ${complexityColors[complexity]}`}>
+      <span class={`inline-flex items-center px-2 py-1 rounded border text-xs font-medium ${colorClass}`}>
         {complexity}
       </span>
     );
@@ -254,7 +255,7 @@ export default function AddDataSourceModal({
                     type="text"
                     placeholder="Search integrations..."
                     value={searchQuery}
-                    onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
+                    onInput={(e: Event) => setSearchQuery((e.target as HTMLInputElement).value)}
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
                 </div>
@@ -262,7 +263,7 @@ export default function AddDataSourceModal({
                 <div class="sm:w-64">
                   <select
                     value={selectedCategory}
-                    onChange={(e) => setSelectedCategory((e.target as HTMLSelectElement).value)}
+                    onChange={(e: Event) => setSelectedCategory((e.target as HTMLSelectElement).value)}
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   >
                     {categories.map(category => (

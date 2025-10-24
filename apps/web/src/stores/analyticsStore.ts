@@ -19,9 +19,6 @@ export interface BreakdownDataPoint {
   percentage: number;
 }
 
-// Explicitly export for external use
-export type { BreakdownDataPoint };
-
 export interface BenchmarkData {
   industry: string;
   metric: string;

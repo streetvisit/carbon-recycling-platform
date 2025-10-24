@@ -14,20 +14,20 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@nestjs/common": "^11.1.6",
-    "@types/node": "^24.8.1",
+    "@nestjs/common": "^11.1.7",
+    "@types/node": "^24.9.1",
     "@types/papaparse": "^5.3.16",
     "axios": "^1.12.2",
     "cheerio": "^1.1.2",
     "papaparse": "^5.5.3",
-    "pdf-parse": "^2.4.3",
+    "pdf-parse": "^2.4.5",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "ts-node": "^10.9.2",
-    "wrangler": "^4.43.0",
+    "wrangler": "^4.45.0",
     "xlsx": "^0.18.5"
   }
 }

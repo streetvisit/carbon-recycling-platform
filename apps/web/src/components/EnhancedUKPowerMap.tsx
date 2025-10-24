@@ -416,7 +416,7 @@ export default function EnhancedUKPowerMap() {
             type="text"
             placeholder="Search stations, operators..."
             value={searchQuery}
-            onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
+            onInput={(e: Event) => setSearchQuery((e.target as HTMLInputElement).value)}
             class={`w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 ${hasTouch ? 'touch-manipulation' : ''}`}
             aria-describedby={accessibilityMode ? 'search-results' : undefined}
           />
@@ -462,7 +462,7 @@ export default function EnhancedUKPowerMap() {
               <input
                 type="checkbox"
                 checked={showClustering}
-                onChange={(e) => setShowClustering((e.target as HTMLInputElement).checked)}
+                onChange={(e: Event) => setShowClustering((e.target as HTMLInputElement).checked)}
                 class="mr-2 w-4 h-4"
                 aria-label={accessibilityMode ? 'Toggle marker clustering' : undefined}
               />
@@ -472,7 +472,7 @@ export default function EnhancedUKPowerMap() {
               <input
                 type="checkbox"
                 checked={showHeatmap}
-                onChange={(e) => setShowHeatmap((e.target as HTMLInputElement).checked)}
+                onChange={(e: Event) => setShowHeatmap((e.target as HTMLInputElement).checked)}
                 class="mr-2 w-4 h-4"
                 aria-label={accessibilityMode ? 'Toggle heat map overlay' : undefined}
               />
@@ -482,7 +482,7 @@ export default function EnhancedUKPowerMap() {
               <input
                 type="checkbox"
                 checked={accessibilityMode}
-                onChange={(e) => setAccessibilityMode((e.target as HTMLInputElement).checked)}
+                onChange={(e: Event) => setAccessibilityMode((e.target as HTMLInputElement).checked)}
                 class="mr-2 w-4 h-4"
               />
               <span>♿ Accessibility mode</span>
@@ -519,7 +519,7 @@ export default function EnhancedUKPowerMap() {
             min="0"
             max="23"
             value={currentHour}
-            onChange={(e) => setCurrentHour(parseInt((e.target as HTMLInputElement).value))}
+            onChange={(e: Event) => setCurrentHour(parseInt((e.target as HTMLInputElement).value))}
             class={`w-full mt-2 ${hasTouch ? 'touch-manipulation' : ''}`}
             aria-label={accessibilityMode ? `Hour: ${currentHour}:00` : undefined}
             aria-valuemin={accessibilityMode ? 0 : undefined}

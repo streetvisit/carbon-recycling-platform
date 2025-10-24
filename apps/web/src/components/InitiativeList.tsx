@@ -171,7 +171,7 @@ export default function InitiativeList() {
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right">
                     <button
-                      onClick={(e) => handleDeleteClick(e, initiative.id)}
+                      onClick={(e: Event) => handleDeleteClick(e, initiative.id)}
                       class="text-red-600 hover:text-red-900 text-sm font-medium transition-colors"
                     >
                       Delete

@@ -210,7 +210,7 @@ export default function IndustryPresets({ onPresetSelect, showAdvanced = false }
                   </div>
                 </div>
                 <button
-                  onClick={(e) => {
+                  onClick={(e: Event) => {
                     e.stopPropagation();
                     setShowDetails(showDetails === preset.id ? null : preset.id);
                   }}

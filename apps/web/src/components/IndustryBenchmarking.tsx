@@ -83,7 +83,7 @@ export default function IndustryBenchmarking({
         <div class="flex space-x-3">
           <select
             value={selectedIndustry}
-            onChange={(e) => setSelectedIndustry(e.target.value)}
+            onChange={(e: Event) => setSelectedIndustry((e.target as HTMLSelectElement).value)}
             class="text-sm border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="general">General</option>
@@ -93,7 +93,7 @@ export default function IndustryBenchmarking({
           
           <select
             value={selectedMetric}
-            onChange={(e) => setSelectedMetric(e.target.value)}
+            onChange={(e: Event) => setSelectedMetric((e.target as HTMLSelectElement).value)}
             class="text-sm border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="carbon_intensity">Carbon Intensity</option>

@@ -67,7 +67,7 @@ export default function DashboardFilterBar({ onFiltersChange }: DashboardFilterB
             <label class="text-xs font-medium text-gray-700 mb-1">Time Period</label>
             <select
               value={filters.period}
-              onChange={(e) => handleFilterChange('period', e.currentTarget.value)}
+              onChange={(e: Event) => handleFilterChange('period', (e.currentTarget as HTMLSelectElement).value)}
               disabled={isLoading}
               class={`px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 ${
                 isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
@@ -86,7 +86,7 @@ export default function DashboardFilterBar({ onFiltersChange }: DashboardFilterB
             <label class="text-xs font-medium text-gray-700 mb-1">GHG Scope</label>
             <select
               value={filters.scope || 'all'}
-              onChange={(e) => handleFilterChange('scope', e.currentTarget.value)}
+              onChange={(e: Event) => handleFilterChange('scope', (e.currentTarget as HTMLSelectElement).value)}
               disabled={isLoading}
               class={`px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 ${
                 isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
@@ -105,7 +105,7 @@ export default function DashboardFilterBar({ onFiltersChange }: DashboardFilterB
             <label class="text-xs font-medium text-gray-700 mb-1">Group By</label>
             <select
               value={filters.groupBy || 'month'}
-              onChange={(e) => handleFilterChange('groupBy', e.currentTarget.value)}
+              onChange={(e: Event) => handleFilterChange('groupBy', (e.currentTarget as HTMLSelectElement).value)}
               disabled={isLoading}
               class={`px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 ${
                 isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'

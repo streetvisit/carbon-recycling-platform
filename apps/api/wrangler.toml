@@ -5,8 +5,9 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 ENVIRONMENT = "development"
-CLERK_PUBLISHABLE_KEY = "pk_test_Y2hhbXBpb24tc2VhaG9yc2UtNTMuY2xlcmsuYWNjb3VudHMuZGV2JA"
-CLERK_SECRET_KEY = "sk_test_8u36g24UiZ0BybEdIy7A65Vx8rwrj4aF6JJs8FmUk2"
+# CLERK_PUBLISHABLE_KEY and CLERK_SECRET_KEY should be set as secrets
+# Use: wrangler secret put CLERK_PUBLISHABLE_KEY
+# Use: wrangler secret put CLERK_SECRET_KEY
 
 [[kv_namespaces]]
 binding = "CACHE"

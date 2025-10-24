@@ -41,15 +41,60 @@ export interface Env {
   R2_ACCESS_KEY_ID?: string
   R2_SECRET_ACCESS_KEY?: string
   R2_ENDPOINT?: string
+  // CORS configuration
+  ALLOWED_ORIGINS?: string
+  ENVIRONMENT?: string
 }
 
 const app = new Hono<{ Bindings: Env }>()
 
-// CORS middleware
-app.use('*', cors({
-  origin: ['http://localhost:4321', 'https://carbon-recycling.pages.dev'],
-  credentials: true
-}))
+// CORS middleware with environment-based configuration
+app.use('*', async (c, next) => {
+  try {
+    // Default allowed origins for development and production
+    const defaultOrigins = [
+      'http://localhost:4321',
+      'http://localhost:3000',
+      'https://carbon-recycling.pages.dev'
+    ]
+    
+    // Parse additional origins from environment variable
+    const envOrigins = c.env.ALLOWED_ORIGINS
+      ? c.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+      : []
+    
+    const allowedOrigins = [...defaultOrigins, ...envOrigins]
+    
+    // Get the request origin
+    const requestOrigin = c.req.header('Origin')
+    
+    // Check if origin is allowed
+    const isAllowed = requestOrigin && (
+      allowedOrigins.includes(requestOrigin) ||
+      // In development, allow all localhost origins
+      (c.env.ENVIRONMENT === 'development' && requestOrigin.startsWith('http://localhost'))
+    )
+    
+    if (isAllowed) {
+      c.header('Access-Control-Allow-Origin', requestOrigin)
+      c.header('Access-Control-Allow-Credentials', 'true')
+      c.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+      c.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+      c.header('Access-Control-Max-Age', '86400')
+    }
+    
+    // Handle preflight requests
+    if (c.req.method === 'OPTIONS') {
+      return c.body(null, 204)
+    }
+    
+    await next()
+  } catch (error) {
+    console.error('CORS middleware error:', error)
+    // Continue processing even if CORS setup fails
+    await next()
+  }
+})
 
 // Mount routes
 app.route('/api/v1/suppliers', suppliers)

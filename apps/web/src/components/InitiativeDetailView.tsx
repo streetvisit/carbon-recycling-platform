@@ -112,7 +112,7 @@ export default function InitiativeDetailView() {
                 <div class="flex items-center space-x-2">
                   <select
                     value={newStatus}
-                    onChange={(e) => setNewStatus((e.target as HTMLSelectElement).value)}
+                    onChange={(e: Event) => setNewStatus((e.target as HTMLSelectElement).value)}
                     class="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
                     {statusOptions.map(option => (
