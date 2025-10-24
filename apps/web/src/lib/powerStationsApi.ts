@@ -28,15 +28,34 @@ export interface PowerStationGeneration {
 
 /**
  * Fetch physical data for all BM Units (power stations)
- * Endpoint: /datasets/PHYBMDATA
+ * 
+ * NOTE: The PHYBMDATA dataset has been DEPRECATED/REMOVED from the Elexon BMRS API.
+ * As of 2024, this endpoint returns 404 Not Found.
+ * 
+ * Available datasets (per https://developer.data.elexon.co.uk/):
+ * - FUELINST: Instantaneous fuel generation (used in bmrsApi.ts)
+ * - FUELHH: Half-hourly fuel generation by settlement period
+ * - INDGEN: Individual BM unit generation
+ * - INDO: Initial demand outturn (used in bmrsApi.ts)
+ * - MID: Market Index Data (prices)
+ * - And 40+ other datasets for various grid metrics
+ * 
+ * Current implementation:
+ * This function attempts to fetch PHYBMDATA for backward compatibility,
+ * but gracefully returns empty array when it fails (404), triggering
+ * the fallback to our curated UK_POWER_STATIONS list.
+ * 
+ * @deprecated PHYBMDATA endpoint no longer exists
+ * @returns Empty array (triggers fallback to curated power station list)
  */
 export async function getBMUnitPhysicalData(): Promise<any[]> {
   try {
+    // PHYBMDATA has been removed from the API - this will always 404
     const url = `${ELEXON_API_BASE}/datasets/PHYBMDATA`;
     
     const response = await fetch(url);
     if (!response.ok) {
-      // PHYBMDATA endpoint no longer exists - return empty array for graceful fallback
+      // Expected 404 - PHYBMDATA endpoint no longer exists
       return [];
     }
     

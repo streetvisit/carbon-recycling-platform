@@ -1,9 +1,28 @@
-// Elexon Insights Solution API
+// Elexon Insights Solution (BMRS) API
 // Official Developer Portal: https://developer.data.elexon.co.uk/
-// Documentation: https://developer.data.elexon.co.uk/
+// API Documentation: https://developer.data.elexon.co.uk/
+// Dataset List: https://bscdocs.elexon.co.uk/data-integration-platform
 //
 // License: Contains BMRS data © Elexon Limited copyright and database right 2025
 // No API key required - completely free and open!
+//
+// AVAILABLE DATASETS (as of 2024):
+// Generation & Demand:
+//   - FUELINST: Instantaneous fuel generation (⭐ USED)
+//   - FUELHH: Half-hourly fuel generation by settlement period  
+//   - INDGEN: Individual BM unit generation
+//   - INDO: Initial demand outturn (⭐ USED)
+//   - INDDEM: Indicative demand
+// Prices:
+//   - MID: Market Index Data (system prices)
+// Forecast:
+//   - WINDFOR: Wind generation forecast
+//   - FOUT2T14D: 2-14 day ahead generation forecast
+//   - NOU2T14D: 2-14 day ahead demand forecast
+// And 40+ other datasets for balancing, constraints, frequency, etc.
+//
+// REMOVED/DEPRECATED:
+//   - PHYBMDATA: Physical BM unit data (removed ~2024)
 
 const ELEXON_API_BASE = 'https://data.elexon.co.uk/bmrs/api/v1';
 
