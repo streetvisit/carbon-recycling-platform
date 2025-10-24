@@ -24,8 +24,11 @@ import { PUBLIC_CLERK_PUBLISHABLE_KEY } from 'astro:env/client';
     </div>
   </main>
 
-  <script define:vars={{ clerkPublishableKey: PUBLIC_CLERK_PUBLISHABLE_KEY }}>
+  <script type="module">
     import { Clerk } from '@clerk/clerk-js';
+    
+    // Get Clerk key from the injected global variable
+    const clerkPublishableKey = window.__CLERK_PUBLISHABLE_KEY;
     
     // Initialize Clerk with environment variable
     if (clerkPublishableKey) {
@@ -46,4 +49,7 @@ import { PUBLIC_CLERK_PUBLISHABLE_KEY } from 'astro:env/client';
         '<div class="text-red-600 text-center p-4">Authentication not configured. Please add CLERK_PUBLISHABLE_KEY environment variable.</div>';
     }
   </script>
+  
+  <!-- Inject Clerk key as global variable -->
+  <script define:vars={{ __CLERK_PUBLISHABLE_KEY: PUBLIC_CLERK_PUBLISHABLE_KEY }}></script>
 </Layout>
