@@ -410,6 +410,72 @@ export function getFallbackRegionalData(): Record<string, RegionData> {
   };
 }
 
+// Cache key for localStorage
+const REGIONAL_DATA_CACHE_KEY = 'uk_regional_data_cache';
+const CACHE_TIMESTAMP_KEY = 'uk_regional_data_timestamp';
+const DATA_SOURCE_KEY = 'uk_regional_data_source'; // 'live', 'cached', or 'fallback'
+const CACHE_MAX_AGE = 24 * 60 * 60 * 1000; // 24 hours
+
+export type DataSource = 'live' | 'cached' | 'fallback';
+
+// Get the current data source
+export function getDataSource(): { source: DataSource; timestamp?: number } {
+  if (typeof window === 'undefined') {
+    return { source: 'fallback' };
+  }
+  
+  try {
+    const source = localStorage.getItem(DATA_SOURCE_KEY) as DataSource || 'fallback';
+    const timestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+    return {
+      source,
+      timestamp: timestamp ? parseInt(timestamp) : undefined
+    };
+  } catch (error) {
+    return { source: 'fallback' };
+  }
+}
+
+// Save data to cache
+function cacheRegionalData(data: Record<string, RegionData>, source: DataSource = 'live'): void {
+  if (typeof window === 'undefined') return;
+  
+  try {
+    localStorage.setItem(REGIONAL_DATA_CACHE_KEY, JSON.stringify(data));
+    localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
+    localStorage.setItem(DATA_SOURCE_KEY, source);
+  } catch (error) {
+    console.warn('Failed to cache regional data:', error);
+  }
+}
+
+// Get cached data if available and not too old
+function getCachedRegionalData(): { data: Record<string, RegionData> | null; isStale: boolean } {
+  if (typeof window === 'undefined') {
+    return { data: null, isStale: true };
+  }
+  
+  try {
+    const cached = localStorage.getItem(REGIONAL_DATA_CACHE_KEY);
+    const timestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+    
+    if (!cached || !timestamp) {
+      return { data: null, isStale: true };
+    }
+    
+    const age = Date.now() - parseInt(timestamp);
+    const isStale = age > CACHE_MAX_AGE;
+    
+    return {
+      data: JSON.parse(cached),
+      isStale
+    };
+  } catch (error) {
+    console.warn('Failed to get cached regional data:', error);
+    return { data: null, isStale: true };
+  }
+}
+
 // Convert regional API data to our format
 export async function getUKRegionalData(): Promise<Record<string, RegionData>> {
   try {
@@ -417,8 +483,20 @@ export async function getUKRegionalData(): Promise<Record<string, RegionData>> {
     
     // Check if we have valid data
     if (!regionalData || regionalData.length === 0) {
-      console.warn('No regional data returned from API, using fallback');
-      return getFallbackRegionalData();
+      console.warn('No regional data returned from API, checking cache');
+      const cached = getCachedRegionalData();
+      if (cached.data) {
+        console.log('Using cached regional data');
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(DATA_SOURCE_KEY, 'cached');
+        }
+        return cached.data;
+      }
+      const fallback = getFallbackRegionalData();
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(DATA_SOURCE_KEY, 'fallback');
+      }
+      return fallback;
     }
     
     const result: Record<string, RegionData> = {};
@@ -480,16 +558,43 @@ export async function getUKRegionalData(): Promise<Record<string, RegionData>> {
       }
     });
 
-    // If no regions were processed, use fallback
+    // If no regions were processed, check cache first
     if (Object.keys(result).length === 0) {
-      console.warn('No valid regional data processed, using fallback');
-      return getFallbackRegionalData();
+      console.warn('No valid regional data processed, checking cache');
+      const cached = getCachedRegionalData();
+      if (cached.data) {
+        console.log('Using cached regional data');
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(DATA_SOURCE_KEY, 'cached');
+        }
+        return cached.data;
+      }
+      const fallback = getFallbackRegionalData();
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(DATA_SOURCE_KEY, 'fallback');
+      }
+      return fallback;
     }
 
+    // Cache the successfully fetched data
+    cacheRegionalData(result, 'live');
+    
     return result;
   } catch (error) {
-    console.error('Error fetching UK regional data, using fallback:', error);
-    return getFallbackRegionalData();
+    console.error('Error fetching UK regional data, checking cache:', error);
+    const cached = getCachedRegionalData();
+    if (cached.data) {
+      console.log('Using cached regional data after error');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(DATA_SOURCE_KEY, 'cached');
+      }
+      return cached.data;
+    }
+    const fallback = getFallbackRegionalData();
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(DATA_SOURCE_KEY, 'fallback');
+    }
+    return fallback;
   }
 }
 

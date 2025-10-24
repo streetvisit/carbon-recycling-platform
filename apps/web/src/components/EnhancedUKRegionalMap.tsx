@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { getUKRegionalData, type RegionData } from '../lib/ukCarbonIntensityApi';
+import { getUKRegionalData, getDataSource, type RegionData, type DataSource } from '../lib/ukCarbonIntensityApi';
 
 // Leaflet will be loaded dynamically
 declare const L: any;
@@ -15,6 +15,8 @@ export default function EnhancedUKRegionalMap() {
   const [showLabels, setShowLabels] = useState(true);
   const [mapStyle, setMapStyle] = useState<'light' | 'dark'>('light');
   const [isMobile, setIsMobile] = useState(false);
+  const [dataSource, setDataSource] = useState<DataSource>('live');
+  const [lastUpdated, setLastUpdated] = useState<number | undefined>();
 
   // Detect mobile
   useEffect(() => {
@@ -60,6 +62,12 @@ export default function EnhancedUKRegionalMap() {
       try {
         const data = await getUKRegionalData();
         setRegionData(data);
+        
+        // Update data source status
+        const source = getDataSource();
+        setDataSource(source.source);
+        setLastUpdated(source.timestamp);
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching regional data:', error);
@@ -308,7 +316,28 @@ export default function EnhancedUKRegionalMap() {
               <span className="text-3xl">🗺️</span>
               UK Regional Carbon Intensity
             </h3>
-            <p className="text-green-100">Live carbon intensity by region</p>
+            <div className="flex items-center gap-3">
+              <p className="text-green-100">Carbon intensity by region</p>
+              {/* Live/Historical/Fallback Indicator */}
+              {dataSource === 'live' && (
+                <span className="flex items-center gap-1.5 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                  <span className="w-2 h-2 bg-white rounded-full"></span>
+                  LIVE
+                </span>
+              )}
+              {dataSource === 'cached' && lastUpdated && (
+                <span className="flex items-center gap-1.5 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  <span className="w-2 h-2 bg-white rounded-full"></span>
+                  CACHED ({new Date(lastUpdated).toLocaleTimeString()})
+                </span>
+              )}
+              {dataSource === 'fallback' && (
+                <span className="flex items-center gap-1.5 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  <span className="w-2 h-2 bg-white rounded-full"></span>
+                  SIMULATED
+                </span>
+              )}
+            </div>
           </div>
           
           {/* Controls */}
