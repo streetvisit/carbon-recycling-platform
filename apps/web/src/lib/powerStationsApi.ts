@@ -200,9 +200,9 @@ export async function getAllPowerStations(): Promise<PowerStation[]> {
               operator: unit.leadPartyName || 'Unknown',
               bmUnitId: unit.bmUnit,
             };
-          });
+          })
+          .filter(s => s.latitude !== 0 && s.longitude !== 0);
       }
-        .filter(s => s.latitude !== 0 && s.longitude !== 0);
     } catch (error) {
       // Silently fall back to curated list - no need to log as this is expected
     }
