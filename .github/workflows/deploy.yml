@@ -22,6 +22,10 @@ jobs:
       run: npm install
       
     - name: Run build script
+      env:
+        # Placeholder Clerk keys for CI build (not used in production)
+        PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_placeholder_for_ci_build_only
+        CLERK_SECRET_KEY: sk_test_placeholder_for_ci_build_only
       run: |
         chmod +x build.sh
         ./build.sh
