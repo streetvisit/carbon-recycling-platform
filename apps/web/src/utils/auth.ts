@@ -1,7 +1,5 @@
 // Authentication utility for API calls
-// Replaces mock tokens with real Clerk authentication
-
-// Clerk import removed for static build compatibility
+import { getClerkToken } from '../hooks/useClerkAuth';
 
 export interface AuthHeaders {
   'Authorization': string;
@@ -38,53 +36,8 @@ export async function authenticatedFetch(
   options: RequestInit = {},
   retryCount: number = 3
 ): Promise<Response> {
-  let token: string | null = null;
-  
-  try {
-    // Try to get token from Clerk
-    if (typeof window !== 'undefined') {
-      const clerk = (window as any).Clerk;
-      
-      if (!clerk) {
-        console.warn('❌ Clerk not found on window object for auth');
-      } else {
-        console.log('✅ Clerk found, loaded:', clerk.loaded, 'user:', !!clerk.user, 'session:', !!clerk.session);
-        
-        // Wait for Clerk to load if not ready
-        if (!clerk.loaded) {
-          console.log('⏳ Waiting for Clerk to finish loading...');
-          await new Promise((resolve) => {
-            const checkLoaded = setInterval(() => {
-              if (clerk.loaded) {
-                clearInterval(checkLoaded);
-                console.log('✅ Clerk loaded');
-                resolve(true);
-              }
-            }, 50);
-            setTimeout(() => {
-              clearInterval(checkLoaded);
-              console.warn('⚠️ Clerk load timeout');
-              resolve(false);
-            }, 3000);
-          });
-        }
-        
-        // Get token from session
-        if (clerk.session) {
-          token = await clerk.session.getToken();
-          if (token) {
-            console.log('✅ Got Clerk token:', token.substring(0, 20) + '...');
-          } else {
-            console.warn('⚠️ Clerk session exists but no token returned');
-          }
-        } else {
-          console.warn('⚠️ No Clerk session found');
-        }
-      }
-    }
-  } catch (error) {
-    console.error('❌ Failed to get auth token:', error);
-  }
+  // Get token from Clerk using centralized function
+  const token = await getClerkToken();
   
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
