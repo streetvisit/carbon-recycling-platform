@@ -1,37 +1,50 @@
 // Authentication utility for API calls
-// Replaces mock tokens with real Clerk authentication
-
-// Auth import removed for static build
+// Uses Clerk session from global window object
 
 export interface AuthHeaders {
   'Authorization': string;
   'Content-Type': string;
 }
 
-// Clerk instance singleton
-let clerkInstance: any = null;
-
-// Initialize Clerk if not already done
-async function getClerkInstance() {
+// Get Clerk session token from global Clerk instance
+async function getClerkToken(): Promise<string | null> {
   if (typeof window === 'undefined') return null;
   
-  if (clerkInstance) return clerkInstance;
-  
   try {
-    const Clerk = (await import('@clerk/clerk-js')).default;
-    const publishableKey = (window as any).__CLERK_PUBLISHABLE_KEY || 
-                          import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY;
+    // Access Clerk from global window object (injected by Clerk Astro integration)
+    const clerk = (window as any).Clerk;
     
-    if (!publishableKey) {
-      console.warn('Clerk publishable key not found');
+    if (!clerk) {
+      console.warn('Clerk not found on window object');
       return null;
     }
     
-    clerkInstance = new Clerk(publishableKey);
-    await clerkInstance.load();
-    return clerkInstance;
+    // Wait for Clerk to be loaded if not ready
+    if (!clerk.loaded) {
+      await new Promise((resolve) => {
+        const checkLoaded = setInterval(() => {
+          if (clerk.loaded) {
+            clearInterval(checkLoaded);
+            resolve(true);
+          }
+        }, 100);
+        
+        // Timeout after 5 seconds
+        setTimeout(() => {
+          clearInterval(checkLoaded);
+          resolve(false);
+        }, 5000);
+      });
+    }
+    
+    // Get session token
+    if (clerk.session) {
+      return await clerk.session.getToken();
+    }
+    
+    return null;
   } catch (error) {
-    console.error('Failed to initialize Clerk:', error);
+    console.error('Failed to get Clerk token:', error);
     return null;
   }
 }
@@ -41,18 +54,10 @@ export async function getAuthHeaders(): Promise<AuthHeaders> {
   try {
     // Client-side: Use Clerk to get token
     if (typeof window !== 'undefined') {
-      const clerk = await getClerkInstance();
-      
-      if (clerk?.session) {
-        const token = await clerk.session.getToken();
-        return {
-          'Authorization': token ? `Bearer ${token}` : '',
-          'Content-Type': 'application/json'
-        };
-      }
+      const token = await getClerkToken();
       
       return {
-        'Authorization': '',
+        'Authorization': token ? `Bearer ${token}` : '',
         'Content-Type': 'application/json'
       };
     } else {
@@ -73,16 +78,17 @@ export async function getAuthHeaders(): Promise<AuthHeaders> {
 
 // Get API base URL based on environment
 export function getApiBaseUrl(): string {
-  // In production, this should be the deployed API URL
+  // Use environment variable or default to Workers API
   if (typeof window !== 'undefined') {
     // Client-side
+    const apiUrl = import.meta.env.PUBLIC_API_BASE_URL;
     return window.location.hostname === 'localhost' 
       ? 'http://localhost:8787'
-      : 'https://api.carbonrecycling.co.uk'; // Production API URL
+      : (apiUrl || 'https://carbon-recycling-api.charles-39b.workers.dev/api/v1');
   } else {
     // Server-side
     return process.env.NODE_ENV === 'production'
-      ? 'https://api.carbonrecycling.co.uk' // Production API URL
+      ? (process.env.PUBLIC_API_BASE_URL || 'https://carbon-recycling-api.charles-39b.workers.dev/api/v1')
       : 'http://localhost:8787';
   }
 }
