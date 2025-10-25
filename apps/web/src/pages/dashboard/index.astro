@@ -284,30 +284,6 @@ const emissionsSummary = {
   </div>
 
   <script>
-    import { Clerk } from '@clerk/clerk-js';
-
-    // Initialize Clerk
-    const clerkPublishableKey = import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2hhbXBpb24tc2VhaG9yc2UtNTMuY2xlcmsuYWNjb3VudHMuZGV2JA';
-    
-    if (clerkPublishableKey) {
-      const clerk = new Clerk(clerkPublishableKey);
-      clerk.load().then(() => {
-        // Update user information in header
-        const user = clerk.user;
-        if (user) {
-          document.getElementById('user-name').textContent = user.fullName || user.firstName || 'User';
-          document.getElementById('user-email').textContent = user.primaryEmailAddress?.emailAddress || 'user@example.com';
-        }
-        
-        // Handle sign out
-        document.getElementById('sign-out-btn').addEventListener('click', () => {
-          clerk.signOut().then(() => {
-            window.location.href = '/sign-in';
-          });
-        });
-      });
-    }
-
     // Auto-refresh emissions summary when calculations are triggered
     window.addEventListener('calculationComplete', () => {
       // Refresh the page to get updated data
