@@ -12,12 +12,12 @@ export default defineConfig({
       PUBLIC_CLERK_PUBLISHABLE_KEY: envField.string({
         context: 'client',
         access: 'public',
-        default: 'pk_test_placeholder_for_development'
+        optional: false
       }),
       CLERK_SECRET_KEY: envField.string({
         context: 'server',
         access: 'secret',
-        default: 'sk_test_placeholder_for_development'
+        optional: false
       }),
       PUBLIC_API_BASE_URL: envField.string({
         context: 'client', 
