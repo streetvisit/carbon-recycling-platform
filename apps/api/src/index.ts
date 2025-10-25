@@ -55,7 +55,9 @@ app.use('*', async (c, next) => {
     const defaultOrigins = [
       'http://localhost:4321',
       'http://localhost:3000',
-      'https://carbon-recycling.pages.dev'
+      'https://carbon-recycling.pages.dev',
+      'https://carbonrecycling.co.uk',
+      'https://www.carbonrecycling.co.uk'
     ]
     
     // Parse additional origins from environment variable

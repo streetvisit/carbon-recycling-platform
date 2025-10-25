@@ -44,7 +44,6 @@ export async function verifyClerkToken(env: any, authHeader: string | null): Pro
     // Verify the token with Clerk
     const payload = await verifyToken(token, {
       secretKey: env.CLERK_SECRET_KEY,
-      jwtKey: env.CLERK_JWT_KEY,
     });
 
     // Extract user information from the payload
