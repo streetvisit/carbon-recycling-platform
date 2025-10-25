@@ -11,20 +11,38 @@ async function getClerkToken(): Promise<string | null> {
   if (typeof window === 'undefined') return null;
   
   try {
-    // Access Clerk from global window object (injected by Clerk Astro integration)
-    const clerk = (window as any).Clerk;
+    // Try multiple ways to access Clerk
+    let clerk = (window as any).Clerk;
+    
+    // If not found, try __clerk_internal_clerk (used by some Clerk versions)
+    if (!clerk) {
+      clerk = (window as any).__clerk_internal_clerk;
+    }
+    
+    // If still not found, try getting from __clerk_session
+    if (!clerk) {
+      const sessionData = (window as any).__clerk_session;
+      if (sessionData?.token) {
+        console.log('✅ Found Clerk token from __clerk_session');
+        return sessionData.token;
+      }
+    }
     
     if (!clerk) {
-      console.warn('Clerk not found on window object');
+      console.warn('❌ Clerk not found on window object. Available keys:', Object.keys(window).filter(k => k.toLowerCase().includes('clerk')));
       return null;
     }
     
+    console.log('✅ Found Clerk instance, loaded:', clerk.loaded);
+    
     // Wait for Clerk to be loaded if not ready
     if (!clerk.loaded) {
+      console.log('⏳ Waiting for Clerk to load...');
       await new Promise((resolve) => {
         const checkLoaded = setInterval(() => {
           if (clerk.loaded) {
             clearInterval(checkLoaded);
+            console.log('✅ Clerk loaded successfully');
             resolve(true);
           }
         }, 100);
@@ -32,6 +50,7 @@ async function getClerkToken(): Promise<string | null> {
         // Timeout after 5 seconds
         setTimeout(() => {
           clearInterval(checkLoaded);
+          console.warn('⚠️ Clerk load timeout');
           resolve(false);
         }, 5000);
       });
@@ -39,12 +58,20 @@ async function getClerkToken(): Promise<string | null> {
     
     // Get session token
     if (clerk.session) {
-      return await clerk.session.getToken();
+      const token = await clerk.session.getToken();
+      if (token) {
+        console.log('✅ Got Clerk session token:', token.substring(0, 20) + '...');
+        return token;
+      } else {
+        console.warn('⚠️ Clerk session exists but no token returned');
+      }
+    } else {
+      console.warn('⚠️ No Clerk session found');
     }
     
     return null;
   } catch (error) {
-    console.error('Failed to get Clerk token:', error);
+    console.error('❌ Failed to get Clerk token:', error);
     return null;
   }
 }
