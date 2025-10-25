@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { PUBLIC_CLERK_PUBLISHABLE_KEY } from 'astro:env/client';
+import { SignUp } from '@clerk/astro/components';
 ---
 
 <Layout title="Sign Up - Carbon Recycling Platform">
@@ -18,38 +18,8 @@ import { PUBLIC_CLERK_PUBLISHABLE_KEY } from 'astro:env/client';
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <!-- Clerk SignUp component will be inserted here -->
-        <div id="sign-up"></div>
+        <SignUp signInUrl="/sign-in" afterSignUpUrl="/dashboard" />
       </div>
     </div>
   </main>
-
-  <script type="module">
-    import { Clerk } from '@clerk/clerk-js';
-    
-    // Get Clerk key from the injected global variable
-    const clerkPublishableKey = window.__CLERK_PUBLISHABLE_KEY;
-    
-    // Initialize Clerk with environment variable
-    if (clerkPublishableKey) {
-      const clerk = new Clerk(clerkPublishableKey);
-      clerk.load().then(() => {
-        clerk.mountSignUp(document.getElementById('sign-up'), {
-          signInUrl: '/sign-in',
-          afterSignUpUrl: '/dashboard',
-        });
-      }).catch((error) => {
-        console.error('Failed to initialize Clerk:', error);
-        document.getElementById('sign-up').innerHTML = 
-          '<div class="text-red-600 text-center p-4">Failed to load authentication. Please check your Clerk configuration.</div>';
-      });
-    } else {
-      console.error('Clerk publishable key not found');
-      document.getElementById('sign-up').innerHTML = 
-        '<div class="text-red-600 text-center p-4">Authentication not configured. Please add CLERK_PUBLISHABLE_KEY environment variable.</div>';
-    }
-  </script>
-  
-  <!-- Inject Clerk key as global variable -->
-  <script define:vars={{ __CLERK_PUBLISHABLE_KEY: PUBLIC_CLERK_PUBLISHABLE_KEY }}></script>
 </Layout>
